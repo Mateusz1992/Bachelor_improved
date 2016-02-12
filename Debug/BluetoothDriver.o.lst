@@ -1,0 +1,2272 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 6
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"BluetoothDriver.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.comm	device,20,4
+  20              		.global	initStatus
+  21              		.bss
+  24              	initStatus:
+  25 0000 00       		.space	1
+  26              		.global	removeInitTimerRx
+  29              	removeInitTimerRx:
+  30 0001 00       		.space	1
+  31              		.global	removeMainTimerStatus
+  34              	removeMainTimerStatus:
+  35 0002 00       		.space	1
+  36              		.global	removeRxTimerStatus
+  39              	removeRxTimerStatus:
+  40 0003 00       		.space	1
+  41              		.global	canSend
+  42              		.data
+  45              	canSend:
+  46 0000 01       		.byte	1
+  47              		.global	canSendStream
+  48              		.bss
+  51              	canSendStream:
+  52 0004 00       		.space	1
+  53              		.global	mainInitTimerID
+  54 0005 000000   		.align	2
+  57              	mainInitTimerID:
+  58 0008 00000000 		.space	4
+  59              		.global	mainInitTimerStatus
+  60              		.data
+  61 0001 000000   		.align	2
+  64              	mainInitTimerStatus:
+  65 0004 02000000 		.word	2
+  66              		.global	HandlTimerReceiveAnsID
+  67              		.bss
+  68              		.align	2
+  71              	HandlTimerReceiveAnsID:
+  72 000c 00000000 		.space	4
+  73              		.global	StatusReceiveAns
+  74              		.data
+  75              		.align	2
+  78              	StatusReceiveAns:
+  79 0008 02000000 		.word	2
+  80              		.global	TimerIdRxMessage
+  81              		.bss
+  82              		.align	2
+  85              	TimerIdRxMessage:
+  86 0010 00000000 		.space	4
+  87              		.global	TimerStatusRxMessage
+  88              		.data
+  89              		.align	2
+  92              	TimerStatusRxMessage:
+  93 000c 02000000 		.word	2
+  94              		.comm	initCommandsAnswer,960,4
+  95              		.global	stageOfConnection
+  96              		.bss
+  97              		.align	2
+ 100              	stageOfConnection:
+ 101 0014 00000000 		.space	4
+ 102              		.global	connectionFailure
+ 105              	connectionFailure:
+ 106 0018 00       		.space	1
+ 107              		.global	stageOfInit
+ 108 0019 000000   		.align	2
+ 111              	stageOfInit:
+ 112 001c 00000000 		.space	4
+ 113              		.section	.rodata
+ 114              		.align	2
+ 115              	.LC0:
+ 116 0000 4C534D39 		.ascii	"LSM9DS1\000"
+ 116      44533100 
+ 117              		.section	.text.chooseDevice,"ax",%progbits
+ 118              		.align	2
+ 119              		.global	chooseDevice
+ 120              		.thumb
+ 121              		.thumb_func
+ 123              	chooseDevice:
+ 124              	.LFB112:
+ 125              		.file 1 "../BluetoothDriver.c"
+   1:../BluetoothDriver.c **** /*
+   2:../BluetoothDriver.c ****  * BluetoothDriver.c
+   3:../BluetoothDriver.c ****  *
+   4:../BluetoothDriver.c ****  *  Created on: 08-02-2016
+   5:../BluetoothDriver.c ****  *      Author: Mateusz
+   6:../BluetoothDriver.c ****  */
+   7:../BluetoothDriver.c **** #include "BluetoothDriver.h"
+   8:../BluetoothDriver.c **** #include <string.h>
+   9:../BluetoothDriver.c **** 
+  10:../BluetoothDriver.c **** #define TRUE 1
+  11:../BluetoothDriver.c **** #define FALSE 0
+  12:../BluetoothDriver.c **** 
+  13:../BluetoothDriver.c **** //conditions for UART HRDWARE Flow Control
+  14:../BluetoothDriver.c **** #define START_ASKING 0
+  15:../BluetoothDriver.c **** #define STOP_ASKING 1
+  16:../BluetoothDriver.c **** //conditions for UART HRDWARE Flow Control
+  17:../BluetoothDriver.c **** 
+  18:../BluetoothDriver.c **** char device[20];
+  19:../BluetoothDriver.c **** 
+  20:../BluetoothDriver.c **** bool initStatus = FALSE; //if initialised
+  21:../BluetoothDriver.c **** bool removeInitTimerRx = FALSE;
+  22:../BluetoothDriver.c **** bool removeMainTimerStatus = FALSE;
+  23:../BluetoothDriver.c **** bool removeRxTimerStatus = FALSE;
+  24:../BluetoothDriver.c **** bool canSend = TRUE;
+  25:../BluetoothDriver.c **** bool canSendStream = FALSE;
+  26:../BluetoothDriver.c **** 
+  27:../BluetoothDriver.c **** 
+  28:../BluetoothDriver.c **** //main timer for initialisation
+  29:../BluetoothDriver.c **** handle_t mainInitTimerID = 0;
+  30:../BluetoothDriver.c **** uint32_t mainInitTimerStatus = SYSTM001_ERROR;
+  31:../BluetoothDriver.c **** //main timer for initialisation
+  32:../BluetoothDriver.c **** 
+  33:../BluetoothDriver.c **** //timer for receiving answers from commands
+  34:../BluetoothDriver.c **** handle_t HandlTimerReceiveAnsID = 0;
+  35:../BluetoothDriver.c **** uint32_t StatusReceiveAns = SYSTM001_ERROR;
+  36:../BluetoothDriver.c **** //timer for receiving answers from commands
+  37:../BluetoothDriver.c **** 
+  38:../BluetoothDriver.c **** //timer for receiving messages
+  39:../BluetoothDriver.c **** handle_t TimerIdRxMessage = 0;
+  40:../BluetoothDriver.c **** uint32_t TimerStatusRxMessage = SYSTM001_ERROR;
+  41:../BluetoothDriver.c **** //timer for receiving messages
+  42:../BluetoothDriver.c **** 
+  43:../BluetoothDriver.c **** //structure representing commands and answers
+  44:../BluetoothDriver.c **** commandsAndAnswers initCommandsAnswer;
+  45:../BluetoothDriver.c **** //structure representing commands and answers
+  46:../BluetoothDriver.c **** 
+  47:../BluetoothDriver.c **** //indicator of connection stage
+  48:../BluetoothDriver.c **** int stageOfConnection = 0;
+  49:../BluetoothDriver.c **** //indicator of connection stage
+  50:../BluetoothDriver.c **** 
+  51:../BluetoothDriver.c **** //in case of failure for other files to inform that failure occured
+  52:../BluetoothDriver.c **** extern bool connectionFailure = FALSE;
+  53:../BluetoothDriver.c **** //in case of failure for other files to inform that failure occured
+  54:../BluetoothDriver.c **** 
+  55:../BluetoothDriver.c **** extern int turnedOnSentTimer;
+  56:../BluetoothDriver.c **** 
+  57:../BluetoothDriver.c **** int stageOfInit = 0;
+  58:../BluetoothDriver.c **** 
+  59:../BluetoothDriver.c **** 
+  60:../BluetoothDriver.c **** void chooseDevice(char *dev)
+  61:../BluetoothDriver.c **** {
+ 126              		.loc 1 61 0
+ 127              		.cfi_startproc
+ 128              		@ args = 0, pretend = 0, frame = 8
+ 129              		@ frame_needed = 1, uses_anonymous_args = 0
+ 130 0000 80B5     		push	{r7, lr}
+ 131              	.LCFI0:
+ 132              		.cfi_def_cfa_offset 8
+ 133              		.cfi_offset 7, -8
+ 134              		.cfi_offset 14, -4
+ 135 0002 82B0     		sub	sp, sp, #8
+ 136              	.LCFI1:
+ 137              		.cfi_def_cfa_offset 16
+ 138 0004 00AF     		add	r7, sp, #0
+ 139              	.LCFI2:
+ 140              		.cfi_def_cfa_register 7
+ 141 0006 7860     		str	r0, [r7, #4]
+  62:../BluetoothDriver.c **** 	if(!strcmp(dev, "LSM9DS1"))
+ 142              		.loc 1 62 0
+ 143 0008 7868     		ldr	r0, [r7, #4]
+ 144 000a 40F20001 		movw	r1, #:lower16:.LC0
+ 145 000e C0F20001 		movt	r1, #:upper16:.LC0
+ 146 0012 FFF7FEFF 		bl	strcmp
+ 147 0016 0346     		mov	r3, r0
+ 148 0018 002B     		cmp	r3, #0
+ 149 001a 37D1     		bne	.L1
+  63:../BluetoothDriver.c **** 	{
+  64:../BluetoothDriver.c **** 		device[0] = 'L';
+ 150              		.loc 1 64 0
+ 151 001c 40F20003 		movw	r3, #:lower16:device
+ 152 0020 C0F20003 		movt	r3, #:upper16:device
+ 153 0024 4FF04C02 		mov	r2, #76
+ 154 0028 1A70     		strb	r2, [r3, #0]
+  65:../BluetoothDriver.c **** 		device[1] = 'S';
+ 155              		.loc 1 65 0
+ 156 002a 40F20003 		movw	r3, #:lower16:device
+ 157 002e C0F20003 		movt	r3, #:upper16:device
+ 158 0032 4FF05302 		mov	r2, #83
+ 159 0036 5A70     		strb	r2, [r3, #1]
+  66:../BluetoothDriver.c **** 		device[2] = 'M';
+ 160              		.loc 1 66 0
+ 161 0038 40F20003 		movw	r3, #:lower16:device
+ 162 003c C0F20003 		movt	r3, #:upper16:device
+ 163 0040 4FF04D02 		mov	r2, #77
+ 164 0044 9A70     		strb	r2, [r3, #2]
+  67:../BluetoothDriver.c **** 		device[3] = '9';
+ 165              		.loc 1 67 0
+ 166 0046 40F20003 		movw	r3, #:lower16:device
+ 167 004a C0F20003 		movt	r3, #:upper16:device
+ 168 004e 4FF03902 		mov	r2, #57
+ 169 0052 DA70     		strb	r2, [r3, #3]
+  68:../BluetoothDriver.c **** 		device[4] = 'D';
+ 170              		.loc 1 68 0
+ 171 0054 40F20003 		movw	r3, #:lower16:device
+ 172 0058 C0F20003 		movt	r3, #:upper16:device
+ 173 005c 4FF04402 		mov	r2, #68
+ 174 0060 1A71     		strb	r2, [r3, #4]
+  69:../BluetoothDriver.c **** 		device[5] = 'S';
+ 175              		.loc 1 69 0
+ 176 0062 40F20003 		movw	r3, #:lower16:device
+ 177 0066 C0F20003 		movt	r3, #:upper16:device
+ 178 006a 4FF05302 		mov	r2, #83
+ 179 006e 5A71     		strb	r2, [r3, #5]
+  70:../BluetoothDriver.c **** 		device[6] = '1';
+ 180              		.loc 1 70 0
+ 181 0070 40F20003 		movw	r3, #:lower16:device
+ 182 0074 C0F20003 		movt	r3, #:upper16:device
+ 183 0078 4FF03102 		mov	r2, #49
+ 184 007c 9A71     		strb	r2, [r3, #6]
+  71:../BluetoothDriver.c **** 		device[7] = '\0';
+ 185              		.loc 1 71 0
+ 186 007e 40F20003 		movw	r3, #:lower16:device
+ 187 0082 C0F20003 		movt	r3, #:upper16:device
+ 188 0086 4FF00002 		mov	r2, #0
+ 189 008a DA71     		strb	r2, [r3, #7]
+ 190              	.L1:
+  72:../BluetoothDriver.c **** 	}
+  73:../BluetoothDriver.c **** }
+ 191              		.loc 1 73 0
+ 192 008c 07F10807 		add	r7, r7, #8
+ 193 0090 BD46     		mov	sp, r7
+ 194 0092 80BD     		pop	{r7, pc}
+ 195              		.cfi_endproc
+ 196              	.LFE112:
+ 198              		.section	.text.resetConnection,"ax",%progbits
+ 199              		.align	2
+ 200              		.global	resetConnection
+ 201              		.thumb
+ 202              		.thumb_func
+ 204              	resetConnection:
+ 205              	.LFB113:
+  74:../BluetoothDriver.c **** 
+  75:../BluetoothDriver.c **** void resetConnection(void)
+  76:../BluetoothDriver.c **** {
+ 206              		.loc 1 76 0
+ 207              		.cfi_startproc
+ 208              		@ args = 0, pretend = 0, frame = 0
+ 209              		@ frame_needed = 1, uses_anonymous_args = 0
+ 210 0000 80B5     		push	{r7, lr}
+ 211              	.LCFI3:
+ 212              		.cfi_def_cfa_offset 8
+ 213              		.cfi_offset 7, -8
+ 214              		.cfi_offset 14, -4
+ 215 0002 00AF     		add	r7, sp, #0
+ 216              	.LCFI4:
+ 217              		.cfi_def_cfa_register 7
+  77:../BluetoothDriver.c **** 	removeReceiveTimer();
+ 218              		.loc 1 77 0
+ 219 0004 FFF7FEFF 		bl	removeReceiveTimer
+  78:../BluetoothDriver.c **** 	createMainTimer();
+ 220              		.loc 1 78 0
+ 221 0008 FFF7FEFF 		bl	createMainTimer
+  79:../BluetoothDriver.c **** }
+ 222              		.loc 1 79 0
+ 223 000c 80BD     		pop	{r7, pc}
+ 224              		.cfi_endproc
+ 225              	.LFE113:
+ 227 000e 00BF     		.section	.rodata
+ 228              		.align	2
+ 229              	.LC1:
+ 230 0008 2B524449 		.ascii	"+RDII\000"
+ 230      4900
+ 231              		.section	.text.checkErrorOccurence,"ax",%progbits
+ 232              		.align	2
+ 233              		.global	checkErrorOccurence
+ 234              		.thumb
+ 235              		.thumb_func
+ 237              	checkErrorOccurence:
+ 238              	.LFB114:
+  80:../BluetoothDriver.c **** 
+  81:../BluetoothDriver.c **** void checkErrorOccurence(char *allMsg)
+  82:../BluetoothDriver.c **** {
+ 239              		.loc 1 82 0
+ 240              		.cfi_startproc
+ 241              		@ args = 0, pretend = 0, frame = 8
+ 242              		@ frame_needed = 1, uses_anonymous_args = 0
+ 243 0000 80B5     		push	{r7, lr}
+ 244              	.LCFI5:
+ 245              		.cfi_def_cfa_offset 8
+ 246              		.cfi_offset 7, -8
+ 247              		.cfi_offset 14, -4
+ 248 0002 82B0     		sub	sp, sp, #8
+ 249              	.LCFI6:
+ 250              		.cfi_def_cfa_offset 16
+ 251 0004 00AF     		add	r7, sp, #0
+ 252              	.LCFI7:
+ 253              		.cfi_def_cfa_register 7
+ 254 0006 7860     		str	r0, [r7, #4]
+  83:../BluetoothDriver.c **** 	if(strstr(allMsg, "+") != NULL)
+ 255              		.loc 1 83 0
+ 256 0008 7868     		ldr	r0, [r7, #4]
+ 257 000a 4FF02B01 		mov	r1, #43
+ 258 000e FFF7FEFF 		bl	strchr
+ 259 0012 0346     		mov	r3, r0
+ 260 0014 002B     		cmp	r3, #0
+ 261 0016 2ED0     		beq	.L4
+  84:../BluetoothDriver.c **** 	{
+  85:../BluetoothDriver.c **** 		if(strstr(allMsg, "+RDII") != NULL)//in case of disconnection
+ 262              		.loc 1 85 0
+ 263 0018 7868     		ldr	r0, [r7, #4]
+ 264 001a 40F20001 		movw	r1, #:lower16:.LC1
+ 265 001e C0F20001 		movt	r1, #:upper16:.LC1
+ 266 0022 FFF7FEFF 		bl	strstr
+ 267 0026 0346     		mov	r3, r0
+ 268 0028 002B     		cmp	r3, #0
+ 269 002a 24D0     		beq	.L4
+  86:../BluetoothDriver.c **** 		{
+  87:../BluetoothDriver.c **** 			stageOfConnection = 0;
+ 270              		.loc 1 87 0
+ 271 002c 40F20003 		movw	r3, #:lower16:stageOfConnection
+ 272 0030 C0F20003 		movt	r3, #:upper16:stageOfConnection
+ 273 0034 4FF00002 		mov	r2, #0
+ 274 0038 1A60     		str	r2, [r3, #0]
+  88:../BluetoothDriver.c **** 			stageOfInit = 0;
+ 275              		.loc 1 88 0
+ 276 003a 40F20003 		movw	r3, #:lower16:stageOfInit
+ 277 003e C0F20003 		movt	r3, #:upper16:stageOfInit
+ 278 0042 4FF00002 		mov	r2, #0
+ 279 0046 1A60     		str	r2, [r3, #0]
+  89:../BluetoothDriver.c **** 			initStatus = FALSE;
+ 280              		.loc 1 89 0
+ 281 0048 40F20003 		movw	r3, #:lower16:initStatus
+ 282 004c C0F20003 		movt	r3, #:upper16:initStatus
+ 283 0050 4FF00002 		mov	r2, #0
+ 284 0054 1A70     		strb	r2, [r3, #0]
+  90:../BluetoothDriver.c **** 			removeInitTimerRx = FALSE;
+ 285              		.loc 1 90 0
+ 286 0056 40F20003 		movw	r3, #:lower16:removeInitTimerRx
+ 287 005a C0F20003 		movt	r3, #:upper16:removeInitTimerRx
+ 288 005e 4FF00002 		mov	r2, #0
+ 289 0062 1A70     		strb	r2, [r3, #0]
+  91:../BluetoothDriver.c **** 			connectionFailure = TRUE;
+ 290              		.loc 1 91 0
+ 291 0064 40F20003 		movw	r3, #:lower16:connectionFailure
+ 292 0068 C0F20003 		movt	r3, #:upper16:connectionFailure
+ 293 006c 4FF00102 		mov	r2, #1
+ 294 0070 1A70     		strb	r2, [r3, #0]
+  92:../BluetoothDriver.c **** 			resetConnection();
+ 295              		.loc 1 92 0
+ 296 0072 FFF7FEFF 		bl	resetConnection
+ 297              	.L4:
+  93:../BluetoothDriver.c **** 		}
+  94:../BluetoothDriver.c **** 	}
+  95:../BluetoothDriver.c **** }
+ 298              		.loc 1 95 0
+ 299 0076 07F10807 		add	r7, r7, #8
+ 300 007a BD46     		mov	sp, r7
+ 301 007c 80BD     		pop	{r7, pc}
+ 302              		.cfi_endproc
+ 303              	.LFE114:
+ 305 007e 00BF     		.section	.text.manageConnection,"ax",%progbits
+ 306              		.align	2
+ 307              		.global	manageConnection
+ 308              		.thumb
+ 309              		.thumb_func
+ 311              	manageConnection:
+ 312              	.LFB115:
+  96:../BluetoothDriver.c **** 
+  97:../BluetoothDriver.c **** void manageConnection(void)
+  98:../BluetoothDriver.c **** {
+ 313              		.loc 1 98 0
+ 314              		.cfi_startproc
+ 315              		@ args = 0, pretend = 0, frame = 0
+ 316              		@ frame_needed = 1, uses_anonymous_args = 0
+ 317 0000 80B5     		push	{r7, lr}
+ 318              	.LCFI8:
+ 319              		.cfi_def_cfa_offset 8
+ 320              		.cfi_offset 7, -8
+ 321              		.cfi_offset 14, -4
+ 322 0002 00AF     		add	r7, sp, #0
+ 323              	.LCFI9:
+ 324              		.cfi_def_cfa_register 7
+  99:../BluetoothDriver.c **** 	if(getStatusMainTimer())
+ 325              		.loc 1 99 0
+ 326 0004 FFF7FEFF 		bl	getStatusMainTimer
+ 327 0008 0346     		mov	r3, r0
+ 328 000a 002B     		cmp	r3, #0
+ 329 000c 0CD0     		beq	.L7
+ 100:../BluetoothDriver.c **** 	{
+ 101:../BluetoothDriver.c **** 		removeMainTimer();
+ 330              		.loc 1 101 0
+ 331 000e FFF7FEFF 		bl	removeMainTimer
+ 102:../BluetoothDriver.c **** 		setStatusMainTimer(FALSE);
+ 332              		.loc 1 102 0
+ 333 0012 4FF00000 		mov	r0, #0
+ 334 0016 FFF7FEFF 		bl	setStatusMainTimer
+ 103:../BluetoothDriver.c **** 		stageOfConnection = 1;
+ 335              		.loc 1 103 0
+ 336 001a 40F20003 		movw	r3, #:lower16:stageOfConnection
+ 337 001e C0F20003 		movt	r3, #:upper16:stageOfConnection
+ 338 0022 4FF00102 		mov	r2, #1
+ 339 0026 1A60     		str	r2, [r3, #0]
+ 340              	.L7:
+ 104:../BluetoothDriver.c **** 	}
+ 105:../BluetoothDriver.c **** 
+ 106:../BluetoothDriver.c **** 	if(1 == stageOfConnection)
+ 341              		.loc 1 106 0
+ 342 0028 40F20003 		movw	r3, #:lower16:stageOfConnection
+ 343 002c C0F20003 		movt	r3, #:upper16:stageOfConnection
+ 344 0030 1B68     		ldr	r3, [r3, #0]
+ 345 0032 012B     		cmp	r3, #1
+ 346 0034 27D1     		bne	.L6
+ 107:../BluetoothDriver.c **** 	{
+ 108:../BluetoothDriver.c **** 		TimerIdRxMessage = SYSTM001_CreateTimer(200,SYSTM001_PERIODIC,RxTimerHandler,NULL);
+ 347              		.loc 1 108 0
+ 348 0036 4FF0C800 		mov	r0, #200
+ 349 003a 4FF00101 		mov	r1, #1
+ 350 003e 40F20002 		movw	r2, #:lower16:RxTimerHandler
+ 351 0042 C0F20002 		movt	r2, #:upper16:RxTimerHandler
+ 352 0046 4FF00003 		mov	r3, #0
+ 353 004a FFF7FEFF 		bl	SYSTM001_CreateTimer
+ 354 004e 0246     		mov	r2, r0
+ 355 0050 40F20003 		movw	r3, #:lower16:TimerIdRxMessage
+ 356 0054 C0F20003 		movt	r3, #:upper16:TimerIdRxMessage
+ 357 0058 1A60     		str	r2, [r3, #0]
+ 109:../BluetoothDriver.c **** 		SYSTM001_StartTimer(TimerIdRxMessage);
+ 358              		.loc 1 109 0
+ 359 005a 40F20003 		movw	r3, #:lower16:TimerIdRxMessage
+ 360 005e C0F20003 		movt	r3, #:upper16:TimerIdRxMessage
+ 361 0062 1B68     		ldr	r3, [r3, #0]
+ 362 0064 1846     		mov	r0, r3
+ 363 0066 FFF7FEFF 		bl	SYSTM001_StartTimer
+ 110:../BluetoothDriver.c **** 		turnedOnSentTimer = 0;
+ 364              		.loc 1 110 0
+ 365 006a 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 366 006e C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 367 0072 4FF00002 		mov	r2, #0
+ 368 0076 1A60     		str	r2, [r3, #0]
+ 111:../BluetoothDriver.c **** 		stageOfConnection = 0;
+ 369              		.loc 1 111 0
+ 370 0078 40F20003 		movw	r3, #:lower16:stageOfConnection
+ 371 007c C0F20003 		movt	r3, #:upper16:stageOfConnection
+ 372 0080 4FF00002 		mov	r2, #0
+ 373 0084 1A60     		str	r2, [r3, #0]
+ 374              	.L6:
+ 112:../BluetoothDriver.c **** 	}
+ 113:../BluetoothDriver.c **** }
+ 375              		.loc 1 113 0
+ 376 0086 80BD     		pop	{r7, pc}
+ 377              		.cfi_endproc
+ 378              	.LFE115:
+ 380              		.section	.rodata
+ 381 000e 0000     		.align	2
+ 382              	.LC2:
+ 383 0010 524F4B0D 		.ascii	"ROK\015\012\000"
+ 383      0A00
+ 384 0016 0000     		.align	2
+ 385              	.LC3:
+ 386 0018 4F4B0D0A 		.ascii	"OK\015\012\000"
+ 386      00
+ 387              		.section	.text.copyCheckAnswers,"ax",%progbits
+ 388              		.align	2
+ 389              		.global	copyCheckAnswers
+ 390              		.thumb
+ 391              		.thumb_func
+ 393              	copyCheckAnswers:
+ 394              	.LFB116:
+ 114:../BluetoothDriver.c **** 
+ 115:../BluetoothDriver.c **** void copyCheckAnswers(void)
+ 116:../BluetoothDriver.c **** {
+ 395              		.loc 1 116 0
+ 396              		.cfi_startproc
+ 397              		@ args = 0, pretend = 0, frame = 0
+ 398              		@ frame_needed = 1, uses_anonymous_args = 0
+ 399              		@ link register save eliminated.
+ 400 0000 80B4     		push	{r7}
+ 401              	.LCFI10:
+ 402              		.cfi_def_cfa_offset 4
+ 403              		.cfi_offset 7, -4
+ 404 0002 00AF     		add	r7, sp, #0
+ 405              	.LCFI11:
+ 406              		.cfi_def_cfa_register 7
+ 117:../BluetoothDriver.c **** 	strcpy(initCommandsAnswer.answersBluetooth[0], "ROK\r\n");
+ 407              		.loc 1 117 0
+ 408 0004 2D4B     		ldr	r3, .L10
+ 409 0006 40F20002 		movw	r2, #:lower16:.LC2
+ 410 000a C0F20002 		movt	r2, #:upper16:.LC2
+ 411 000e 92E80300 		ldmia	r2, {r0, r1}
+ 412 0012 1860     		str	r0, [r3, #0]
+ 413 0014 03F10403 		add	r3, r3, #4
+ 414 0018 1980     		strh	r1, [r3, #0]	@ movhi
+ 118:../BluetoothDriver.c **** 	strcpy(initCommandsAnswer.answersBluetooth[1], "OK\r\n");
+ 415              		.loc 1 118 0
+ 416 001a 294B     		ldr	r3, .L10+4
+ 417 001c 40F20002 		movw	r2, #:lower16:.LC3
+ 418 0020 C0F20002 		movt	r2, #:upper16:.LC3
+ 419 0024 92E80300 		ldmia	r2, {r0, r1}
+ 420 0028 1860     		str	r0, [r3, #0]
+ 421 002a 03F10403 		add	r3, r3, #4
+ 422 002e 1970     		strb	r1, [r3, #0]
+ 119:../BluetoothDriver.c **** 	strcpy(initCommandsAnswer.answersBluetooth[2], "OK\r\n");
+ 423              		.loc 1 119 0
+ 424 0030 244B     		ldr	r3, .L10+8
+ 425 0032 40F20002 		movw	r2, #:lower16:.LC3
+ 426 0036 C0F20002 		movt	r2, #:upper16:.LC3
+ 427 003a 92E80300 		ldmia	r2, {r0, r1}
+ 428 003e 1860     		str	r0, [r3, #0]
+ 429 0040 03F10403 		add	r3, r3, #4
+ 430 0044 1970     		strb	r1, [r3, #0]
+ 120:../BluetoothDriver.c **** 	strcpy(initCommandsAnswer.answersBluetooth[3], "OK\r\n");
+ 431              		.loc 1 120 0
+ 432 0046 204B     		ldr	r3, .L10+12
+ 433 0048 40F20002 		movw	r2, #:lower16:.LC3
+ 434 004c C0F20002 		movt	r2, #:upper16:.LC3
+ 435 0050 92E80300 		ldmia	r2, {r0, r1}
+ 436 0054 1860     		str	r0, [r3, #0]
+ 437 0056 03F10403 		add	r3, r3, #4
+ 438 005a 1970     		strb	r1, [r3, #0]
+ 121:../BluetoothDriver.c **** 	strcpy(initCommandsAnswer.answersBluetooth[4], "OK\r\n");
+ 439              		.loc 1 121 0
+ 440 005c 1B4B     		ldr	r3, .L10+16
+ 441 005e 40F20002 		movw	r2, #:lower16:.LC3
+ 442 0062 C0F20002 		movt	r2, #:upper16:.LC3
+ 443 0066 92E80300 		ldmia	r2, {r0, r1}
+ 444 006a 1860     		str	r0, [r3, #0]
+ 445 006c 03F10403 		add	r3, r3, #4
+ 446 0070 1970     		strb	r1, [r3, #0]
+ 122:../BluetoothDriver.c **** 	strcpy(initCommandsAnswer.answersBluetooth[5], "OK\r\n");
+ 447              		.loc 1 122 0
+ 448 0072 174B     		ldr	r3, .L10+20
+ 449 0074 40F20002 		movw	r2, #:lower16:.LC3
+ 450 0078 C0F20002 		movt	r2, #:upper16:.LC3
+ 451 007c 92E80300 		ldmia	r2, {r0, r1}
+ 452 0080 1860     		str	r0, [r3, #0]
+ 453 0082 03F10403 		add	r3, r3, #4
+ 454 0086 1970     		strb	r1, [r3, #0]
+ 123:../BluetoothDriver.c **** 	strcpy(initCommandsAnswer.answersBluetooth[6], "OK\r\n");
+ 455              		.loc 1 123 0
+ 456 0088 124B     		ldr	r3, .L10+24
+ 457 008a 40F20002 		movw	r2, #:lower16:.LC3
+ 458 008e C0F20002 		movt	r2, #:upper16:.LC3
+ 459 0092 92E80300 		ldmia	r2, {r0, r1}
+ 460 0096 1860     		str	r0, [r3, #0]
+ 461 0098 03F10403 		add	r3, r3, #4
+ 462 009c 1970     		strb	r1, [r3, #0]
+ 124:../BluetoothDriver.c **** 	strcpy(initCommandsAnswer.answersBluetooth[7], "OK\r\n");
+ 463              		.loc 1 124 0
+ 464 009e 0E4B     		ldr	r3, .L10+28
+ 465 00a0 40F20002 		movw	r2, #:lower16:.LC3
+ 466 00a4 C0F20002 		movt	r2, #:upper16:.LC3
+ 467 00a8 92E80300 		ldmia	r2, {r0, r1}
+ 468 00ac 1860     		str	r0, [r3, #0]
+ 469 00ae 03F10403 		add	r3, r3, #4
+ 470 00b2 1970     		strb	r1, [r3, #0]
+ 125:../BluetoothDriver.c **** }
+ 471              		.loc 1 125 0
+ 472 00b4 BD46     		mov	sp, r7
+ 473 00b6 80BC     		pop	{r7}
+ 474 00b8 7047     		bx	lr
+ 475              	.L11:
+ 476 00ba 00BF     		.align	2
+ 477              	.L10:
+ 478 00bc 20030000 		.word	initCommandsAnswer+800
+ 479 00c0 34030000 		.word	initCommandsAnswer+820
+ 480 00c4 48030000 		.word	initCommandsAnswer+840
+ 481 00c8 5C030000 		.word	initCommandsAnswer+860
+ 482 00cc 70030000 		.word	initCommandsAnswer+880
+ 483 00d0 84030000 		.word	initCommandsAnswer+900
+ 484 00d4 98030000 		.word	initCommandsAnswer+920
+ 485 00d8 AC030000 		.word	initCommandsAnswer+940
+ 486              		.cfi_endproc
+ 487              	.LFE116:
+ 489              		.section	.rodata
+ 490 001d 000000   		.align	2
+ 491              	.LC4:
+ 492 0020 41542B4A 		.ascii	"AT+JRES\015\012\000"
+ 492      5245530D 
+ 492      0A00
+ 493 002a 0000     		.align	2
+ 494              	.LC5:
+ 495 002c 41542B4A 		.ascii	"AT+JSEC=4,1,04,1111,0,0\015\012\000"
+ 495      5345433D 
+ 495      342C312C 
+ 495      30342C31 
+ 495      3131312C 
+ 496 0046 0000     		.align	2
+ 497              	.LC6:
+ 498 0048 41542B4A 		.ascii	"AT+JSLN=07,Chmura1\015\012\000"
+ 498      534C4E3D 
+ 498      30372C43 
+ 498      686D7572 
+ 498      61310D0A 
+ 499 005d 000000   		.align	2
+ 500              	.LC7:
+ 501 0060 41542B4A 		.ascii	"AT+JRLS=32,13,0000110100001000800000805F9B34FB,Seri"
+ 501      524C533D 
+ 501      33322C31 
+ 501      332C3030 
+ 501      30303131 
+ 502 0093 616C2070 		.ascii	"al port 1,01,C20200\015\012\000"
+ 502      6F727420 
+ 502      312C3031 
+ 502      2C433230 
+ 502      3230300D 
+ 503 00a9 000000   		.align	2
+ 504              	.LC8:
+ 505 00ac 41542B4A 		.ascii	"AT+JAAC=1\015\012\000"
+ 505      4141433D 
+ 505      310D0A00 
+ 506              		.align	2
+ 507              	.LC9:
+ 508 00b8 41542B4A 		.ascii	"AT+JDIS=3\015\012\000"
+ 508      4449533D 
+ 508      330D0A00 
+ 509              		.align	2
+ 510              	.LC10:
+ 511 00c4 41542B4A 		.ascii	"AT+JGPC=FFFD,0000,0000,0000,FFFD\015\012\000"
+ 511      4750433D 
+ 511      46464644 
+ 511      2C303030 
+ 511      302C3030 
+ 512 00e7 00       		.align	2
+ 513              	.LC11:
+ 514 00e8 41542B4A 		.ascii	"AT+JSCR\015\012\000"
+ 514      5343520D 
+ 514      0A00
+ 515 00f2 0000     		.section	.text.copyCommands,"ax",%progbits
+ 516              		.align	2
+ 517              		.global	copyCommands
+ 518              		.thumb
+ 519              		.thumb_func
+ 521              	copyCommands:
+ 522              	.LFB117:
+ 126:../BluetoothDriver.c **** 
+ 127:../BluetoothDriver.c **** void copyCommands(void)
+ 128:../BluetoothDriver.c **** {
+ 523              		.loc 1 128 0
+ 524              		.cfi_startproc
+ 525              		@ args = 0, pretend = 0, frame = 0
+ 526              		@ frame_needed = 1, uses_anonymous_args = 0
+ 527 0000 B0B5     		push	{r4, r5, r7, lr}
+ 528              	.LCFI12:
+ 529              		.cfi_def_cfa_offset 16
+ 530              		.cfi_offset 4, -16
+ 531              		.cfi_offset 5, -12
+ 532              		.cfi_offset 7, -8
+ 533              		.cfi_offset 14, -4
+ 534 0002 00AF     		add	r7, sp, #0
+ 535              	.LCFI13:
+ 536              		.cfi_def_cfa_register 7
+ 129:../BluetoothDriver.c **** 	strcpy(initCommandsAnswer.commandsBluetooth[0], "AT+JRES\r\n");
+ 537              		.loc 1 129 0
+ 538 0004 40F20003 		movw	r3, #:lower16:initCommandsAnswer
+ 539 0008 C0F20003 		movt	r3, #:upper16:initCommandsAnswer
+ 540 000c 40F20002 		movw	r2, #:lower16:.LC4
+ 541 0010 C0F20002 		movt	r2, #:upper16:.LC4
+ 542 0014 07CA     		ldmia	r2, {r0, r1, r2}
+ 543 0016 03C3     		stmia	r3!, {r0, r1}
+ 544 0018 1A80     		strh	r2, [r3, #0]	@ movhi
+ 130:../BluetoothDriver.c **** 	strcpy(initCommandsAnswer.commandsBluetooth[1], "AT+JSEC=4,1,04,1111,0,0\r\n");
+ 545              		.loc 1 130 0
+ 546 001a 2D4A     		ldr	r2, .L13
+ 547 001c 40F20003 		movw	r3, #:lower16:.LC5
+ 548 0020 C0F20003 		movt	r3, #:upper16:.LC5
+ 549 0024 1446     		mov	r4, r2
+ 550 0026 1D46     		mov	r5, r3
+ 551 0028 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 552 002a 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 553 002c 95E80700 		ldmia	r5, {r0, r1, r2}
+ 554 0030 03C4     		stmia	r4!, {r0, r1}
+ 555 0032 2280     		strh	r2, [r4, #0]	@ movhi
+ 131:../BluetoothDriver.c **** 	strcpy(initCommandsAnswer.commandsBluetooth[2], "AT+JSLN=07,Chmura1\r\n");
+ 556              		.loc 1 131 0
+ 557 0034 274A     		ldr	r2, .L13+4
+ 558 0036 40F20003 		movw	r3, #:lower16:.LC6
+ 559 003a C0F20003 		movt	r3, #:upper16:.LC6
+ 560 003e 1446     		mov	r4, r2
+ 561 0040 1D46     		mov	r5, r3
+ 562 0042 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 563 0044 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 564 0046 95E80300 		ldmia	r5, {r0, r1}
+ 565 004a 2060     		str	r0, [r4, #0]
+ 566 004c 04F10404 		add	r4, r4, #4
+ 567 0050 2170     		strb	r1, [r4, #0]
+ 132:../BluetoothDriver.c **** 	strcpy(initCommandsAnswer.commandsBluetooth[3], "AT+JRLS=32,13,0000110100001000800000805F9B34FB,Se
+ 568              		.loc 1 132 0
+ 569 0052 214A     		ldr	r2, .L13+8
+ 570 0054 40F20003 		movw	r3, #:lower16:.LC7
+ 571 0058 C0F20003 		movt	r3, #:upper16:.LC7
+ 572 005c 1146     		mov	r1, r2
+ 573 005e 1A46     		mov	r2, r3
+ 574 0060 4FF04903 		mov	r3, #73
+ 575 0064 0846     		mov	r0, r1
+ 576 0066 1146     		mov	r1, r2
+ 577 0068 1A46     		mov	r2, r3
+ 578 006a FFF7FEFF 		bl	memcpy
+ 133:../BluetoothDriver.c **** 	strcpy(initCommandsAnswer.commandsBluetooth[4], "AT+JAAC=1\r\n");
+ 579              		.loc 1 133 0
+ 580 006e 1B4A     		ldr	r2, .L13+12
+ 581 0070 40F20003 		movw	r3, #:lower16:.LC8
+ 582 0074 C0F20003 		movt	r3, #:upper16:.LC8
+ 583 0078 1446     		mov	r4, r2
+ 584 007a 93E80700 		ldmia	r3, {r0, r1, r2}
+ 585 007e 84E80700 		stmia	r4, {r0, r1, r2}
+ 134:../BluetoothDriver.c **** 	strcpy(initCommandsAnswer.commandsBluetooth[5], "AT+JDIS=3\r\n");
+ 586              		.loc 1 134 0
+ 587 0082 174A     		ldr	r2, .L13+16
+ 588 0084 40F20003 		movw	r3, #:lower16:.LC9
+ 589 0088 C0F20003 		movt	r3, #:upper16:.LC9
+ 590 008c 1446     		mov	r4, r2
+ 591 008e 93E80700 		ldmia	r3, {r0, r1, r2}
+ 592 0092 84E80700 		stmia	r4, {r0, r1, r2}
+ 135:../BluetoothDriver.c **** 	strcpy(initCommandsAnswer.commandsBluetooth[6], "AT+JGPC=FFFD,0000,0000,0000,FFFD\r\n");
+ 593              		.loc 1 135 0
+ 594 0096 134A     		ldr	r2, .L13+20
+ 595 0098 40F20003 		movw	r3, #:lower16:.LC10
+ 596 009c C0F20003 		movt	r3, #:upper16:.LC10
+ 597 00a0 1446     		mov	r4, r2
+ 598 00a2 1D46     		mov	r5, r3
+ 599 00a4 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 600 00a6 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 601 00a8 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 602 00aa 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 603 00ac 2B68     		ldr	r3, [r5, #0]
+ 604 00ae 1A46     		mov	r2, r3	@ movhi
+ 605 00b0 2280     		strh	r2, [r4, #0]	@ movhi
+ 606 00b2 04F10204 		add	r4, r4, #2
+ 607 00b6 4FEA1343 		lsr	r3, r3, #16
+ 608 00ba 2370     		strb	r3, [r4, #0]
+ 136:../BluetoothDriver.c **** 	strcpy(initCommandsAnswer.commandsBluetooth[7], "AT+JSCR\r\n");
+ 609              		.loc 1 136 0
+ 610 00bc 0A4B     		ldr	r3, .L13+24
+ 611 00be 40F20002 		movw	r2, #:lower16:.LC11
+ 612 00c2 C0F20002 		movt	r2, #:upper16:.LC11
+ 613 00c6 07CA     		ldmia	r2, {r0, r1, r2}
+ 614 00c8 03C3     		stmia	r3!, {r0, r1}
+ 615 00ca 1A80     		strh	r2, [r3, #0]	@ movhi
+ 137:../BluetoothDriver.c **** }
+ 616              		.loc 1 137 0
+ 617 00cc B0BD     		pop	{r4, r5, r7, pc}
+ 618              	.L14:
+ 619 00ce 00BF     		.align	2
+ 620              	.L13:
+ 621 00d0 64000000 		.word	initCommandsAnswer+100
+ 622 00d4 C8000000 		.word	initCommandsAnswer+200
+ 623 00d8 2C010000 		.word	initCommandsAnswer+300
+ 624 00dc 90010000 		.word	initCommandsAnswer+400
+ 625 00e0 F4010000 		.word	initCommandsAnswer+500
+ 626 00e4 58020000 		.word	initCommandsAnswer+600
+ 627 00e8 BC020000 		.word	initCommandsAnswer+700
+ 628              		.cfi_endproc
+ 629              	.LFE117:
+ 631              		.section	.text.getStatusMainTimer,"ax",%progbits
+ 632              		.align	2
+ 633              		.global	getStatusMainTimer
+ 634              		.thumb
+ 635              		.thumb_func
+ 637              	getStatusMainTimer:
+ 638              	.LFB118:
+ 138:../BluetoothDriver.c **** 
+ 139:../BluetoothDriver.c **** bool getStatusMainTimer(void)
+ 140:../BluetoothDriver.c **** {
+ 639              		.loc 1 140 0
+ 640              		.cfi_startproc
+ 641              		@ args = 0, pretend = 0, frame = 0
+ 642              		@ frame_needed = 1, uses_anonymous_args = 0
+ 643              		@ link register save eliminated.
+ 644 0000 80B4     		push	{r7}
+ 645              	.LCFI14:
+ 646              		.cfi_def_cfa_offset 4
+ 647              		.cfi_offset 7, -4
+ 648 0002 00AF     		add	r7, sp, #0
+ 649              	.LCFI15:
+ 650              		.cfi_def_cfa_register 7
+ 141:../BluetoothDriver.c **** 	return removeMainTimerStatus;
+ 651              		.loc 1 141 0
+ 652 0004 40F20003 		movw	r3, #:lower16:removeMainTimerStatus
+ 653 0008 C0F20003 		movt	r3, #:upper16:removeMainTimerStatus
+ 654 000c 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 142:../BluetoothDriver.c **** }
+ 655              		.loc 1 142 0
+ 656 000e 1846     		mov	r0, r3
+ 657 0010 BD46     		mov	sp, r7
+ 658 0012 80BC     		pop	{r7}
+ 659 0014 7047     		bx	lr
+ 660              		.cfi_endproc
+ 661              	.LFE118:
+ 663 0016 00BF     		.section	.text.setStatusMainTimer,"ax",%progbits
+ 664              		.align	2
+ 665              		.global	setStatusMainTimer
+ 666              		.thumb
+ 667              		.thumb_func
+ 669              	setStatusMainTimer:
+ 670              	.LFB119:
+ 143:../BluetoothDriver.c **** 
+ 144:../BluetoothDriver.c **** void setStatusMainTimer(int status)
+ 145:../BluetoothDriver.c **** {
+ 671              		.loc 1 145 0
+ 672              		.cfi_startproc
+ 673              		@ args = 0, pretend = 0, frame = 8
+ 674              		@ frame_needed = 1, uses_anonymous_args = 0
+ 675              		@ link register save eliminated.
+ 676 0000 80B4     		push	{r7}
+ 677              	.LCFI16:
+ 678              		.cfi_def_cfa_offset 4
+ 679              		.cfi_offset 7, -4
+ 680 0002 83B0     		sub	sp, sp, #12
+ 681              	.LCFI17:
+ 682              		.cfi_def_cfa_offset 16
+ 683 0004 00AF     		add	r7, sp, #0
+ 684              	.LCFI18:
+ 685              		.cfi_def_cfa_register 7
+ 686 0006 7860     		str	r0, [r7, #4]
+ 146:../BluetoothDriver.c **** 	removeMainTimerStatus = status;
+ 687              		.loc 1 146 0
+ 688 0008 7B68     		ldr	r3, [r7, #4]
+ 689 000a DAB2     		uxtb	r2, r3
+ 690 000c 40F20003 		movw	r3, #:lower16:removeMainTimerStatus
+ 691 0010 C0F20003 		movt	r3, #:upper16:removeMainTimerStatus
+ 692 0014 1A70     		strb	r2, [r3, #0]
+ 147:../BluetoothDriver.c **** }
+ 693              		.loc 1 147 0
+ 694 0016 07F10C07 		add	r7, r7, #12
+ 695 001a BD46     		mov	sp, r7
+ 696 001c 80BC     		pop	{r7}
+ 697 001e 7047     		bx	lr
+ 698              		.cfi_endproc
+ 699              	.LFE119:
+ 701              		.section	.text.removeMainTimer,"ax",%progbits
+ 702              		.align	2
+ 703              		.global	removeMainTimer
+ 704              		.thumb
+ 705              		.thumb_func
+ 707              	removeMainTimer:
+ 708              	.LFB120:
+ 148:../BluetoothDriver.c **** 
+ 149:../BluetoothDriver.c **** void removeMainTimer(void)
+ 150:../BluetoothDriver.c **** {
+ 709              		.loc 1 150 0
+ 710              		.cfi_startproc
+ 711              		@ args = 0, pretend = 0, frame = 0
+ 712              		@ frame_needed = 1, uses_anonymous_args = 0
+ 713 0000 80B5     		push	{r7, lr}
+ 714              	.LCFI19:
+ 715              		.cfi_def_cfa_offset 8
+ 716              		.cfi_offset 7, -8
+ 717              		.cfi_offset 14, -4
+ 718 0002 00AF     		add	r7, sp, #0
+ 719              	.LCFI20:
+ 720              		.cfi_def_cfa_register 7
+ 151:../BluetoothDriver.c **** 	SYSTM001_StopTimer(mainInitTimerID);
+ 721              		.loc 1 151 0
+ 722 0004 40F20003 		movw	r3, #:lower16:mainInitTimerID
+ 723 0008 C0F20003 		movt	r3, #:upper16:mainInitTimerID
+ 724 000c 1B68     		ldr	r3, [r3, #0]
+ 725 000e 1846     		mov	r0, r3
+ 726 0010 FFF7FEFF 		bl	SYSTM001_StopTimer
+ 152:../BluetoothDriver.c **** 	SYSTM001_DeleteTimer(mainInitTimerID);
+ 727              		.loc 1 152 0
+ 728 0014 40F20003 		movw	r3, #:lower16:mainInitTimerID
+ 729 0018 C0F20003 		movt	r3, #:upper16:mainInitTimerID
+ 730 001c 1B68     		ldr	r3, [r3, #0]
+ 731 001e 1846     		mov	r0, r3
+ 732 0020 FFF7FEFF 		bl	SYSTM001_DeleteTimer
+ 153:../BluetoothDriver.c **** 	mainInitTimerID = 0;
+ 733              		.loc 1 153 0
+ 734 0024 40F20003 		movw	r3, #:lower16:mainInitTimerID
+ 735 0028 C0F20003 		movt	r3, #:upper16:mainInitTimerID
+ 736 002c 4FF00002 		mov	r2, #0
+ 737 0030 1A60     		str	r2, [r3, #0]
+ 154:../BluetoothDriver.c **** }
+ 738              		.loc 1 154 0
+ 739 0032 80BD     		pop	{r7, pc}
+ 740              		.cfi_endproc
+ 741              	.LFE120:
+ 743              		.section	.text.removeReceiveTimer,"ax",%progbits
+ 744              		.align	2
+ 745              		.global	removeReceiveTimer
+ 746              		.thumb
+ 747              		.thumb_func
+ 749              	removeReceiveTimer:
+ 750              	.LFB121:
+ 155:../BluetoothDriver.c **** 
+ 156:../BluetoothDriver.c **** void removeReceiveTimer(void)
+ 157:../BluetoothDriver.c **** {
+ 751              		.loc 1 157 0
+ 752              		.cfi_startproc
+ 753              		@ args = 0, pretend = 0, frame = 0
+ 754              		@ frame_needed = 1, uses_anonymous_args = 0
+ 755 0000 80B5     		push	{r7, lr}
+ 756              	.LCFI21:
+ 757              		.cfi_def_cfa_offset 8
+ 758              		.cfi_offset 7, -8
+ 759              		.cfi_offset 14, -4
+ 760 0002 00AF     		add	r7, sp, #0
+ 761              	.LCFI22:
+ 762              		.cfi_def_cfa_register 7
+ 158:../BluetoothDriver.c **** 	SYSTM001_StopTimer(TimerIdRxMessage);
+ 763              		.loc 1 158 0
+ 764 0004 40F20003 		movw	r3, #:lower16:TimerIdRxMessage
+ 765 0008 C0F20003 		movt	r3, #:upper16:TimerIdRxMessage
+ 766 000c 1B68     		ldr	r3, [r3, #0]
+ 767 000e 1846     		mov	r0, r3
+ 768 0010 FFF7FEFF 		bl	SYSTM001_StopTimer
+ 159:../BluetoothDriver.c **** 	SYSTM001_DeleteTimer(TimerIdRxMessage);
+ 769              		.loc 1 159 0
+ 770 0014 40F20003 		movw	r3, #:lower16:TimerIdRxMessage
+ 771 0018 C0F20003 		movt	r3, #:upper16:TimerIdRxMessage
+ 772 001c 1B68     		ldr	r3, [r3, #0]
+ 773 001e 1846     		mov	r0, r3
+ 774 0020 FFF7FEFF 		bl	SYSTM001_DeleteTimer
+ 160:../BluetoothDriver.c **** 	TimerIdRxMessage = 0;
+ 775              		.loc 1 160 0
+ 776 0024 40F20003 		movw	r3, #:lower16:TimerIdRxMessage
+ 777 0028 C0F20003 		movt	r3, #:upper16:TimerIdRxMessage
+ 778 002c 4FF00002 		mov	r2, #0
+ 779 0030 1A60     		str	r2, [r3, #0]
+ 161:../BluetoothDriver.c **** }
+ 780              		.loc 1 161 0
+ 781 0032 80BD     		pop	{r7, pc}
+ 782              		.cfi_endproc
+ 783              	.LFE121:
+ 785              		.section	.text.createMainTimer,"ax",%progbits
+ 786              		.align	2
+ 787              		.global	createMainTimer
+ 788              		.thumb
+ 789              		.thumb_func
+ 791              	createMainTimer:
+ 792              	.LFB122:
+ 162:../BluetoothDriver.c **** 
+ 163:../BluetoothDriver.c **** void createMainTimer(void)
+ 164:../BluetoothDriver.c **** {
+ 793              		.loc 1 164 0
+ 794              		.cfi_startproc
+ 795              		@ args = 0, pretend = 0, frame = 0
+ 796              		@ frame_needed = 1, uses_anonymous_args = 0
+ 797 0000 80B5     		push	{r7, lr}
+ 798              	.LCFI23:
+ 799              		.cfi_def_cfa_offset 8
+ 800              		.cfi_offset 7, -8
+ 801              		.cfi_offset 14, -4
+ 802 0002 00AF     		add	r7, sp, #0
+ 803              	.LCFI24:
+ 804              		.cfi_def_cfa_register 7
+ 165:../BluetoothDriver.c **** 	mainInitTimerID = SYSTM001_CreateTimer(1000,SYSTM001_PERIODIC,timerHandlerInitBluetooth,&initComma
+ 805              		.loc 1 165 0
+ 806 0004 4FF47A70 		mov	r0, #1000
+ 807 0008 4FF00101 		mov	r1, #1
+ 808 000c 40F20002 		movw	r2, #:lower16:timerHandlerInitBluetooth
+ 809 0010 C0F20002 		movt	r2, #:upper16:timerHandlerInitBluetooth
+ 810 0014 40F20003 		movw	r3, #:lower16:initCommandsAnswer
+ 811 0018 C0F20003 		movt	r3, #:upper16:initCommandsAnswer
+ 812 001c FFF7FEFF 		bl	SYSTM001_CreateTimer
+ 813 0020 0246     		mov	r2, r0
+ 814 0022 40F20003 		movw	r3, #:lower16:mainInitTimerID
+ 815 0026 C0F20003 		movt	r3, #:upper16:mainInitTimerID
+ 816 002a 1A60     		str	r2, [r3, #0]
+ 166:../BluetoothDriver.c **** 	mainInitTimerStatus = SYSTM001_StartTimer(mainInitTimerID);
+ 817              		.loc 1 166 0
+ 818 002c 40F20003 		movw	r3, #:lower16:mainInitTimerID
+ 819 0030 C0F20003 		movt	r3, #:upper16:mainInitTimerID
+ 820 0034 1B68     		ldr	r3, [r3, #0]
+ 821 0036 1846     		mov	r0, r3
+ 822 0038 FFF7FEFF 		bl	SYSTM001_StartTimer
+ 823 003c 0246     		mov	r2, r0
+ 824 003e 40F20003 		movw	r3, #:lower16:mainInitTimerStatus
+ 825 0042 C0F20003 		movt	r3, #:upper16:mainInitTimerStatus
+ 826 0046 1A60     		str	r2, [r3, #0]
+ 167:../BluetoothDriver.c **** }
+ 827              		.loc 1 167 0
+ 828 0048 80BD     		pop	{r7, pc}
+ 829              		.cfi_endproc
+ 830              	.LFE122:
+ 832 004a 00BF     		.section	.text.createReceiveTimer,"ax",%progbits
+ 833              		.align	2
+ 834              		.global	createReceiveTimer
+ 835              		.thumb
+ 836              		.thumb_func
+ 838              	createReceiveTimer:
+ 839              	.LFB123:
+ 168:../BluetoothDriver.c **** 
+ 169:../BluetoothDriver.c **** void createReceiveTimer(void)
+ 170:../BluetoothDriver.c **** {
+ 840              		.loc 1 170 0
+ 841              		.cfi_startproc
+ 842              		@ args = 0, pretend = 0, frame = 0
+ 843              		@ frame_needed = 1, uses_anonymous_args = 0
+ 844 0000 80B5     		push	{r7, lr}
+ 845              	.LCFI25:
+ 846              		.cfi_def_cfa_offset 8
+ 847              		.cfi_offset 7, -8
+ 848              		.cfi_offset 14, -4
+ 849 0002 00AF     		add	r7, sp, #0
+ 850              	.LCFI26:
+ 851              		.cfi_def_cfa_register 7
+ 171:../BluetoothDriver.c **** 	TimerIdRxMessage = SYSTM001_CreateTimer(200,SYSTM001_PERIODIC,RxTimerHandler,NULL);
+ 852              		.loc 1 171 0
+ 853 0004 4FF0C800 		mov	r0, #200
+ 854 0008 4FF00101 		mov	r1, #1
+ 855 000c 40F20002 		movw	r2, #:lower16:RxTimerHandler
+ 856 0010 C0F20002 		movt	r2, #:upper16:RxTimerHandler
+ 857 0014 4FF00003 		mov	r3, #0
+ 858 0018 FFF7FEFF 		bl	SYSTM001_CreateTimer
+ 859 001c 0246     		mov	r2, r0
+ 860 001e 40F20003 		movw	r3, #:lower16:TimerIdRxMessage
+ 861 0022 C0F20003 		movt	r3, #:upper16:TimerIdRxMessage
+ 862 0026 1A60     		str	r2, [r3, #0]
+ 172:../BluetoothDriver.c **** 	SYSTM001_StartTimer(TimerIdRxMessage);
+ 863              		.loc 1 172 0
+ 864 0028 40F20003 		movw	r3, #:lower16:TimerIdRxMessage
+ 865 002c C0F20003 		movt	r3, #:upper16:TimerIdRxMessage
+ 866 0030 1B68     		ldr	r3, [r3, #0]
+ 867 0032 1846     		mov	r0, r3
+ 868 0034 FFF7FEFF 		bl	SYSTM001_StartTimer
+ 173:../BluetoothDriver.c **** }
+ 869              		.loc 1 173 0
+ 870 0038 80BD     		pop	{r7, pc}
+ 871              		.cfi_endproc
+ 872              	.LFE123:
+ 874 003a 00BF     		.section	.text.timerHandlerInitBluetooth,"ax",%progbits
+ 875              		.align	2
+ 876              		.global	timerHandlerInitBluetooth
+ 877              		.thumb
+ 878              		.thumb_func
+ 880              	timerHandlerInitBluetooth:
+ 881              	.LFB124:
+ 174:../BluetoothDriver.c **** 
+ 175:../BluetoothDriver.c **** void timerHandlerInitBluetooth(void *T)
+ 176:../BluetoothDriver.c **** {
+ 882              		.loc 1 176 0
+ 883              		.cfi_startproc
+ 884              		@ args = 0, pretend = 0, frame = 16
+ 885              		@ frame_needed = 1, uses_anonymous_args = 0
+ 886 0000 80B5     		push	{r7, lr}
+ 887              	.LCFI27:
+ 888              		.cfi_def_cfa_offset 8
+ 889              		.cfi_offset 7, -8
+ 890              		.cfi_offset 14, -4
+ 891 0002 84B0     		sub	sp, sp, #16
+ 892              	.LCFI28:
+ 893              		.cfi_def_cfa_offset 24
+ 894 0004 00AF     		add	r7, sp, #0
+ 895              	.LCFI29:
+ 896              		.cfi_def_cfa_register 7
+ 897 0006 7860     		str	r0, [r7, #4]
+ 177:../BluetoothDriver.c **** 	static uint8_t whichCommand = 0;
+ 178:../BluetoothDriver.c **** 
+ 179:../BluetoothDriver.c **** 	commandsAndAnswers *temp = (commandsAndAnswers*)T;
+ 898              		.loc 1 179 0
+ 899 0008 7B68     		ldr	r3, [r7, #4]
+ 900 000a FB60     		str	r3, [r7, #12]
+ 180:../BluetoothDriver.c **** 
+ 181:../BluetoothDriver.c **** 	if(removeInitTimerRx == TRUE)
+ 901              		.loc 1 181 0
+ 902 000c 40F20003 		movw	r3, #:lower16:removeInitTimerRx
+ 903 0010 C0F20003 		movt	r3, #:upper16:removeInitTimerRx
+ 904 0014 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 905 0016 012B     		cmp	r3, #1
+ 906 0018 20D1     		bne	.L23
+ 182:../BluetoothDriver.c **** 	{
+ 183:../BluetoothDriver.c **** 		SYSTM001_DeleteTimer(HandlTimerReceiveAnsID);
+ 907              		.loc 1 183 0
+ 908 001a 40F20003 		movw	r3, #:lower16:HandlTimerReceiveAnsID
+ 909 001e C0F20003 		movt	r3, #:upper16:HandlTimerReceiveAnsID
+ 910 0022 1B68     		ldr	r3, [r3, #0]
+ 911 0024 1846     		mov	r0, r3
+ 912 0026 FFF7FEFF 		bl	SYSTM001_DeleteTimer
+ 184:../BluetoothDriver.c **** 		HandlTimerReceiveAnsID = 0;
+ 913              		.loc 1 184 0
+ 914 002a 40F20003 		movw	r3, #:lower16:HandlTimerReceiveAnsID
+ 915 002e C0F20003 		movt	r3, #:upper16:HandlTimerReceiveAnsID
+ 916 0032 4FF00002 		mov	r2, #0
+ 917 0036 1A60     		str	r2, [r3, #0]
+ 185:../BluetoothDriver.c **** 		removeInitTimerRx = FALSE;
+ 918              		.loc 1 185 0
+ 919 0038 40F20003 		movw	r3, #:lower16:removeInitTimerRx
+ 920 003c C0F20003 		movt	r3, #:upper16:removeInitTimerRx
+ 921 0040 4FF00002 		mov	r2, #0
+ 922 0044 1A70     		strb	r2, [r3, #0]
+ 186:../BluetoothDriver.c **** 		whichCommand = stageOfInit;
+ 923              		.loc 1 186 0
+ 924 0046 40F20003 		movw	r3, #:lower16:stageOfInit
+ 925 004a C0F20003 		movt	r3, #:upper16:stageOfInit
+ 926 004e 1B68     		ldr	r3, [r3, #0]
+ 927 0050 DAB2     		uxtb	r2, r3
+ 928 0052 40F20003 		movw	r3, #:lower16:whichCommand.7894
+ 929 0056 C0F20003 		movt	r3, #:upper16:whichCommand.7894
+ 930 005a 1A70     		strb	r2, [r3, #0]
+ 931              	.L23:
+ 187:../BluetoothDriver.c **** 	}
+ 188:../BluetoothDriver.c **** 
+ 189:../BluetoothDriver.c **** 	if(TRUE == initStatus)
+ 932              		.loc 1 189 0
+ 933 005c 40F20003 		movw	r3, #:lower16:initStatus
+ 934 0060 C0F20003 		movt	r3, #:upper16:initStatus
+ 935 0064 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 936 0066 012B     		cmp	r3, #1
+ 937 0068 06D1     		bne	.L24
+ 190:../BluetoothDriver.c **** 	{
+ 191:../BluetoothDriver.c **** 		removeMainTimerStatus = TRUE;
+ 938              		.loc 1 191 0
+ 939 006a 40F20003 		movw	r3, #:lower16:removeMainTimerStatus
+ 940 006e C0F20003 		movt	r3, #:upper16:removeMainTimerStatus
+ 941 0072 4FF00102 		mov	r2, #1
+ 942 0076 1A70     		strb	r2, [r3, #0]
+ 943              	.L24:
+ 192:../BluetoothDriver.c **** 	}
+ 193:../BluetoothDriver.c **** 
+ 194:../BluetoothDriver.c **** 	if(FALSE == initStatus && canSend == TRUE)
+ 944              		.loc 1 194 0
+ 945 0078 40F20003 		movw	r3, #:lower16:initStatus
+ 946 007c C0F20003 		movt	r3, #:upper16:initStatus
+ 947 0080 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 948 0082 002B     		cmp	r3, #0
+ 949 0084 55D1     		bne	.L22
+ 950              		.loc 1 194 0 is_stmt 0 discriminator 1
+ 951 0086 40F20003 		movw	r3, #:lower16:canSend
+ 952 008a C0F20003 		movt	r3, #:upper16:canSend
+ 953 008e 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 954 0090 012B     		cmp	r3, #1
+ 955 0092 4ED1     		bne	.L22
+ 956              	.LBB2:
+ 195:../BluetoothDriver.c **** 	{
+ 196:../BluetoothDriver.c **** 		//whichCommand = stageOfInit;
+ 197:../BluetoothDriver.c **** 		volatile int length = strlen(temp->commandsBluetooth[whichCommand]);
+ 957              		.loc 1 197 0 is_stmt 1
+ 958 0094 40F20003 		movw	r3, #:lower16:whichCommand.7894
+ 959 0098 C0F20003 		movt	r3, #:upper16:whichCommand.7894
+ 960 009c 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 961 009e 4FF06402 		mov	r2, #100
+ 962 00a2 02FB03F3 		mul	r3, r2, r3
+ 963 00a6 FA68     		ldr	r2, [r7, #12]
+ 964 00a8 D318     		adds	r3, r2, r3
+ 965 00aa 1846     		mov	r0, r3
+ 966 00ac FFF7FEFF 		bl	strlen
+ 967 00b0 0346     		mov	r3, r0
+ 968 00b2 BB60     		str	r3, [r7, #8]
+ 198:../BluetoothDriver.c **** 
+ 199:../BluetoothDriver.c **** 		send(temp->commandsBluetooth[whichCommand], length);
+ 969              		.loc 1 199 0
+ 970 00b4 40F20003 		movw	r3, #:lower16:whichCommand.7894
+ 971 00b8 C0F20003 		movt	r3, #:upper16:whichCommand.7894
+ 972 00bc 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 973 00be 4FF06402 		mov	r2, #100
+ 974 00c2 02FB03F3 		mul	r3, r2, r3
+ 975 00c6 FA68     		ldr	r2, [r7, #12]
+ 976 00c8 D218     		adds	r2, r2, r3
+ 977 00ca BB68     		ldr	r3, [r7, #8]
+ 978 00cc 1046     		mov	r0, r2
+ 979 00ce 1946     		mov	r1, r3
+ 980 00d0 FFF7FEFF 		bl	send
+ 200:../BluetoothDriver.c **** 
+ 201:../BluetoothDriver.c **** 		while((UART001_GetFlagStatus(&UART001_Handle0,UART001_TRANSFER_STATUS_BUSY_FLAG )==UART001_SET))
+ 981              		.loc 1 201 0
+ 982 00d4 00BF     		nop
+ 983              	.L26:
+ 984              		.loc 1 201 0 is_stmt 0 discriminator 1
+ 985 00d6 40F20000 		movw	r0, #:lower16:UART001_Handle0
+ 986 00da C0F20000 		movt	r0, #:upper16:UART001_Handle0
+ 987 00de 4FF00901 		mov	r1, #9
+ 988 00e2 FFF7FEFF 		bl	UART001_GetFlagStatus
+ 989 00e6 0346     		mov	r3, r0
+ 990 00e8 022B     		cmp	r3, #2
+ 991 00ea F4D0     		beq	.L26
+ 202:../BluetoothDriver.c **** 		{
+ 203:../BluetoothDriver.c **** 			//int h = 0;
+ 204:../BluetoothDriver.c **** 		}
+ 205:../BluetoothDriver.c **** 
+ 206:../BluetoothDriver.c **** 		canSend = FALSE;
+ 992              		.loc 1 206 0 is_stmt 1
+ 993 00ec 40F20003 		movw	r3, #:lower16:canSend
+ 994 00f0 C0F20003 		movt	r3, #:upper16:canSend
+ 995 00f4 4FF00002 		mov	r2, #0
+ 996 00f8 1A70     		strb	r2, [r3, #0]
+ 207:../BluetoothDriver.c **** 		askAboutSending();
+ 997              		.loc 1 207 0
+ 998 00fa FFF7FEFF 		bl	askAboutSending
+ 208:../BluetoothDriver.c **** 		HandlTimerReceiveAnsID = SYSTM001_CreateTimer(300,SYSTM001_ONE_SHOT,timerHandlerInitBluetoothRece
+ 999              		.loc 1 208 0
+ 1000 00fe 4FF49670 		mov	r0, #300
+ 1001 0102 4FF00001 		mov	r1, #0
+ 1002 0106 40F20002 		movw	r2, #:lower16:timerHandlerInitBluetoothReceive
+ 1003 010a C0F20002 		movt	r2, #:upper16:timerHandlerInitBluetoothReceive
+ 1004 010e 4FF00003 		mov	r3, #0
+ 1005 0112 FFF7FEFF 		bl	SYSTM001_CreateTimer
+ 1006 0116 0246     		mov	r2, r0
+ 1007 0118 40F20003 		movw	r3, #:lower16:HandlTimerReceiveAnsID
+ 1008 011c C0F20003 		movt	r3, #:upper16:HandlTimerReceiveAnsID
+ 1009 0120 1A60     		str	r2, [r3, #0]
+ 209:../BluetoothDriver.c **** 		SYSTM001_StartTimer(HandlTimerReceiveAnsID);
+ 1010              		.loc 1 209 0
+ 1011 0122 40F20003 		movw	r3, #:lower16:HandlTimerReceiveAnsID
+ 1012 0126 C0F20003 		movt	r3, #:upper16:HandlTimerReceiveAnsID
+ 1013 012a 1B68     		ldr	r3, [r3, #0]
+ 1014 012c 1846     		mov	r0, r3
+ 1015 012e FFF7FEFF 		bl	SYSTM001_StartTimer
+ 1016              	.L22:
+ 1017              	.LBE2:
+ 210:../BluetoothDriver.c **** 	}
+ 211:../BluetoothDriver.c **** }
+ 1018              		.loc 1 211 0
+ 1019 0132 07F11007 		add	r7, r7, #16
+ 1020 0136 BD46     		mov	sp, r7
+ 1021 0138 80BD     		pop	{r7, pc}
+ 1022              		.cfi_endproc
+ 1023              	.LFE124:
+ 1025 013a 00BF     		.section	.text.timerHandlerInitBluetoothReceive,"ax",%progbits
+ 1026              		.align	2
+ 1027              		.global	timerHandlerInitBluetoothReceive
+ 1028              		.thumb
+ 1029              		.thumb_func
+ 1031              	timerHandlerInitBluetoothReceive:
+ 1032              	.LFB125:
+ 212:../BluetoothDriver.c **** 
+ 213:../BluetoothDriver.c **** 
+ 214:../BluetoothDriver.c **** void timerHandlerInitBluetoothReceive(void *T)
+ 215:../BluetoothDriver.c **** {
+ 1033              		.loc 1 215 0
+ 1034              		.cfi_startproc
+ 1035              		@ args = 0, pretend = 0, frame = 16
+ 1036              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1037 0000 80B5     		push	{r7, lr}
+ 1038              	.LCFI30:
+ 1039              		.cfi_def_cfa_offset 8
+ 1040              		.cfi_offset 7, -8
+ 1041              		.cfi_offset 14, -4
+ 1042 0002 84B0     		sub	sp, sp, #16
+ 1043              	.LCFI31:
+ 1044              		.cfi_def_cfa_offset 24
+ 1045 0004 00AF     		add	r7, sp, #0
+ 1046              	.LCFI32:
+ 1047              		.cfi_def_cfa_register 7
+ 1048 0006 7860     		str	r0, [r7, #4]
+ 216:../BluetoothDriver.c **** 	char* answer = (char*)read();
+ 1049              		.loc 1 216 0
+ 1050 0008 FFF7FEFF 		bl	read
+ 1051 000c F860     		str	r0, [r7, #12]
+ 217:../BluetoothDriver.c **** 	//delayBt(10000);
+ 218:../BluetoothDriver.c **** 	//askAboutSending();
+ 219:../BluetoothDriver.c **** 
+ 220:../BluetoothDriver.c **** 	if(answer != NULL)
+ 1052              		.loc 1 220 0
+ 1053 000e FB68     		ldr	r3, [r7, #12]
+ 1054 0010 002B     		cmp	r3, #0
+ 1055 0012 3FD0     		beq	.L28
+ 221:../BluetoothDriver.c **** 	{
+ 222:../BluetoothDriver.c **** 		if(checkFunction((unsigned char*)answer, (unsigned char*)initCommandsAnswer.answersBluetooth[stag
+ 1056              		.loc 1 222 0
+ 1057 0014 40F20003 		movw	r3, #:lower16:stageOfInit
+ 1058 0018 C0F20003 		movt	r3, #:upper16:stageOfInit
+ 1059 001c 1A68     		ldr	r2, [r3, #0]
+ 1060 001e 1346     		mov	r3, r2
+ 1061 0020 4FEA8303 		lsl	r3, r3, #2
+ 1062 0024 9B18     		adds	r3, r3, r2
+ 1063 0026 4FEA8303 		lsl	r3, r3, #2
+ 1064 002a 03F54872 		add	r2, r3, #800
+ 1065 002e 40F20003 		movw	r3, #:lower16:initCommandsAnswer
+ 1066 0032 C0F20003 		movt	r3, #:upper16:initCommandsAnswer
+ 1067 0036 D318     		adds	r3, r2, r3
+ 1068 0038 F868     		ldr	r0, [r7, #12]
+ 1069 003a 1946     		mov	r1, r3
+ 1070 003c FFF7FEFF 		bl	checkFunction
+ 1071 0040 0346     		mov	r3, r0
+ 1072 0042 002B     		cmp	r3, #0
+ 1073 0044 0BD0     		beq	.L29
+ 223:../BluetoothDriver.c **** 		{
+ 224:../BluetoothDriver.c **** 			stageOfInit++;
+ 1074              		.loc 1 224 0
+ 1075 0046 40F20003 		movw	r3, #:lower16:stageOfInit
+ 1076 004a C0F20003 		movt	r3, #:upper16:stageOfInit
+ 1077 004e 1B68     		ldr	r3, [r3, #0]
+ 1078 0050 03F10102 		add	r2, r3, #1
+ 1079 0054 40F20003 		movw	r3, #:lower16:stageOfInit
+ 1080 0058 C0F20003 		movt	r3, #:upper16:stageOfInit
+ 1081 005c 1A60     		str	r2, [r3, #0]
+ 1082              	.L29:
+ 225:../BluetoothDriver.c **** 		}
+ 226:../BluetoothDriver.c **** 		free(answer);
+ 1083              		.loc 1 226 0
+ 1084 005e F868     		ldr	r0, [r7, #12]
+ 1085 0060 FFF7FEFF 		bl	free
+ 227:../BluetoothDriver.c **** 		answer = NULL;
+ 1086              		.loc 1 227 0
+ 1087 0064 4FF00003 		mov	r3, #0
+ 1088 0068 FB60     		str	r3, [r7, #12]
+ 228:../BluetoothDriver.c **** 		if(8 == stageOfInit)
+ 1089              		.loc 1 228 0
+ 1090 006a 40F20003 		movw	r3, #:lower16:stageOfInit
+ 1091 006e C0F20003 		movt	r3, #:upper16:stageOfInit
+ 1092 0072 1B68     		ldr	r3, [r3, #0]
+ 1093 0074 082B     		cmp	r3, #8
+ 1094 0076 0DD1     		bne	.L28
+ 229:../BluetoothDriver.c **** 		{
+ 230:../BluetoothDriver.c **** 			stageOfInit = 0;
+ 1095              		.loc 1 230 0
+ 1096 0078 40F20003 		movw	r3, #:lower16:stageOfInit
+ 1097 007c C0F20003 		movt	r3, #:upper16:stageOfInit
+ 1098 0080 4FF00002 		mov	r2, #0
+ 1099 0084 1A60     		str	r2, [r3, #0]
+ 231:../BluetoothDriver.c **** 			initStatus = TRUE;
+ 1100              		.loc 1 231 0
+ 1101 0086 40F20003 		movw	r3, #:lower16:initStatus
+ 1102 008a C0F20003 		movt	r3, #:upper16:initStatus
+ 1103 008e 4FF00102 		mov	r2, #1
+ 1104 0092 1A70     		strb	r2, [r3, #0]
+ 1105              	.L28:
+ 232:../BluetoothDriver.c **** 		}
+ 233:../BluetoothDriver.c **** 	}
+ 234:../BluetoothDriver.c **** 	canSend = TRUE;
+ 1106              		.loc 1 234 0
+ 1107 0094 40F20003 		movw	r3, #:lower16:canSend
+ 1108 0098 C0F20003 		movt	r3, #:upper16:canSend
+ 1109 009c 4FF00102 		mov	r2, #1
+ 1110 00a0 1A70     		strb	r2, [r3, #0]
+ 235:../BluetoothDriver.c **** 	removeInitTimerRx = TRUE;
+ 1111              		.loc 1 235 0
+ 1112 00a2 40F20003 		movw	r3, #:lower16:removeInitTimerRx
+ 1113 00a6 C0F20003 		movt	r3, #:upper16:removeInitTimerRx
+ 1114 00aa 4FF00102 		mov	r2, #1
+ 1115 00ae 1A70     		strb	r2, [r3, #0]
+ 236:../BluetoothDriver.c **** }
+ 1116              		.loc 1 236 0
+ 1117 00b0 07F11007 		add	r7, r7, #16
+ 1118 00b4 BD46     		mov	sp, r7
+ 1119 00b6 80BD     		pop	{r7, pc}
+ 1120              		.cfi_endproc
+ 1121              	.LFE125:
+ 1123              		.section	.text.RxTimerHandler,"ax",%progbits
+ 1124              		.align	2
+ 1125              		.global	RxTimerHandler
+ 1126              		.thumb
+ 1127              		.thumb_func
+ 1129              	RxTimerHandler:
+ 1130              	.LFB126:
+ 237:../BluetoothDriver.c **** 
+ 238:../BluetoothDriver.c **** void RxTimerHandler(void *T)
+ 239:../BluetoothDriver.c **** {
+ 1131              		.loc 1 239 0
+ 1132              		.cfi_startproc
+ 1133              		@ args = 0, pretend = 0, frame = 16
+ 1134              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1135 0000 80B5     		push	{r7, lr}
+ 1136              	.LCFI33:
+ 1137              		.cfi_def_cfa_offset 8
+ 1138              		.cfi_offset 7, -8
+ 1139              		.cfi_offset 14, -4
+ 1140 0002 84B0     		sub	sp, sp, #16
+ 1141              	.LCFI34:
+ 1142              		.cfi_def_cfa_offset 24
+ 1143 0004 00AF     		add	r7, sp, #0
+ 1144              	.LCFI35:
+ 1145              		.cfi_def_cfa_register 7
+ 1146 0006 7860     		str	r0, [r7, #4]
+ 240:../BluetoothDriver.c **** 	char* answer = (char*)read();
+ 1147              		.loc 1 240 0
+ 1148 0008 FFF7FEFF 		bl	read
+ 1149 000c F860     		str	r0, [r7, #12]
+ 241:../BluetoothDriver.c **** 	if(answer != NULL){
+ 1150              		.loc 1 241 0
+ 1151 000e FB68     		ldr	r3, [r7, #12]
+ 1152 0010 002B     		cmp	r3, #0
+ 1153 0012 0BD0     		beq	.L30
+ 242:../BluetoothDriver.c **** 		checkErrorOccurence(answer);
+ 1154              		.loc 1 242 0
+ 1155 0014 F868     		ldr	r0, [r7, #12]
+ 1156 0016 FFF7FEFF 		bl	checkErrorOccurence
+ 243:../BluetoothDriver.c **** 		chooseDevice(answer);
+ 1157              		.loc 1 243 0
+ 1158 001a F868     		ldr	r0, [r7, #12]
+ 1159 001c FFF7FEFF 		bl	chooseDevice
+ 244:../BluetoothDriver.c **** 		free(answer);
+ 1160              		.loc 1 244 0
+ 1161 0020 F868     		ldr	r0, [r7, #12]
+ 1162 0022 FFF7FEFF 		bl	free
+ 245:../BluetoothDriver.c **** 		answer = NULL;
+ 1163              		.loc 1 245 0
+ 1164 0026 4FF00003 		mov	r3, #0
+ 1165 002a FB60     		str	r3, [r7, #12]
+ 1166              	.L30:
+ 246:../BluetoothDriver.c **** 	}
+ 247:../BluetoothDriver.c **** }
+ 1167              		.loc 1 247 0
+ 1168 002c 07F11007 		add	r7, r7, #16
+ 1169 0030 BD46     		mov	sp, r7
+ 1170 0032 80BD     		pop	{r7, pc}
+ 1171              		.cfi_endproc
+ 1172              	.LFE126:
+ 1174              		.section	.text.initBluetooth,"ax",%progbits
+ 1175              		.align	2
+ 1176              		.global	initBluetooth
+ 1177              		.thumb
+ 1178              		.thumb_func
+ 1180              	initBluetooth:
+ 1181              	.LFB127:
+ 248:../BluetoothDriver.c **** 
+ 249:../BluetoothDriver.c **** void initBluetooth(void)
+ 250:../BluetoothDriver.c **** {
+ 1182              		.loc 1 250 0
+ 1183              		.cfi_startproc
+ 1184              		@ args = 0, pretend = 0, frame = 0
+ 1185              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1186 0000 80B5     		push	{r7, lr}
+ 1187              	.LCFI36:
+ 1188              		.cfi_def_cfa_offset 8
+ 1189              		.cfi_offset 7, -8
+ 1190              		.cfi_offset 14, -4
+ 1191 0002 00AF     		add	r7, sp, #0
+ 1192              	.LCFI37:
+ 1193              		.cfi_def_cfa_register 7
+ 251:../BluetoothDriver.c **** 	initFlowControl();
+ 1194              		.loc 1 251 0
+ 1195 0004 FFF7FEFF 		bl	initFlowControl
+ 252:../BluetoothDriver.c **** 	copyCheckAnswers();
+ 1196              		.loc 1 252 0
+ 1197 0008 FFF7FEFF 		bl	copyCheckAnswers
+ 253:../BluetoothDriver.c **** 	copyCommands();
+ 1198              		.loc 1 253 0
+ 1199 000c FFF7FEFF 		bl	copyCommands
+ 254:../BluetoothDriver.c **** 
+ 255:../BluetoothDriver.c **** 	createMainTimer();
+ 1200              		.loc 1 255 0
+ 1201 0010 FFF7FEFF 		bl	createMainTimer
+ 256:../BluetoothDriver.c **** }
+ 1202              		.loc 1 256 0
+ 1203 0014 80BD     		pop	{r7, pc}
+ 1204              		.cfi_endproc
+ 1205              	.LFE127:
+ 1207 0016 00BF     		.section	.text.send,"ax",%progbits
+ 1208              		.align	2
+ 1209              		.global	send
+ 1210              		.thumb
+ 1211              		.thumb_func
+ 1213              	send:
+ 1214              	.LFB128:
+ 257:../BluetoothDriver.c **** 
+ 258:../BluetoothDriver.c **** void send(char* command1, int length)
+ 259:../BluetoothDriver.c **** {
+ 1215              		.loc 1 259 0
+ 1216              		.cfi_startproc
+ 1217              		@ args = 0, pretend = 0, frame = 24
+ 1218              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1219 0000 80B5     		push	{r7, lr}
+ 1220              	.LCFI38:
+ 1221              		.cfi_def_cfa_offset 8
+ 1222              		.cfi_offset 7, -8
+ 1223              		.cfi_offset 14, -4
+ 1224 0002 86B0     		sub	sp, sp, #24
+ 1225              	.LCFI39:
+ 1226              		.cfi_def_cfa_offset 32
+ 1227 0004 00AF     		add	r7, sp, #0
+ 1228              	.LCFI40:
+ 1229              		.cfi_def_cfa_register 7
+ 1230 0006 7860     		str	r0, [r7, #4]
+ 1231 0008 3960     		str	r1, [r7, #0]
+ 260:../BluetoothDriver.c **** 	static int criticValue = 0;
+ 261:../BluetoothDriver.c **** 	if(!statusRtsFlowControl())
+ 1232              		.loc 1 261 0
+ 1233 000a FFF7FEFF 		bl	statusRtsFlowControl
+ 1234 000e 0346     		mov	r3, r0
+ 1235 0010 002B     		cmp	r3, #0
+ 1236 0012 01D1     		bne	.L34
+ 262:../BluetoothDriver.c **** 	{
+ 263:../BluetoothDriver.c **** 		stopAskingAboutSending();
+ 1237              		.loc 1 263 0
+ 1238 0014 FFF7FEFF 		bl	stopAskingAboutSending
+ 1239              	.L34:
+ 264:../BluetoothDriver.c **** 	}
+ 265:../BluetoothDriver.c **** 
+ 266:../BluetoothDriver.c **** 	USIC_CH_TypeDef* UartRegs = UART001_Handle0.UartRegs;
+ 1240              		.loc 1 266 0
+ 1241 0018 40F20003 		movw	r3, #:lower16:UART001_Handle0
+ 1242 001c C0F20003 		movt	r3, #:upper16:UART001_Handle0
+ 1243 0020 1B68     		ldr	r3, [r3, #0]
+ 1244 0022 3B61     		str	r3, [r7, #16]
+ 267:../BluetoothDriver.c **** 	uint32_t WriteCount = 0;
+ 1245              		.loc 1 267 0
+ 1246 0024 4FF00003 		mov	r3, #0
+ 1247 0028 7B61     		str	r3, [r7, #20]
+ 268:../BluetoothDriver.c **** 
+ 269:../BluetoothDriver.c **** 	while(length)
+ 1248              		.loc 1 269 0
+ 1249 002a 4AE0     		b	.L35
+ 1250              	.L39:
+ 270:../BluetoothDriver.c **** 	{
+ 271:../BluetoothDriver.c **** 
+ 272:../BluetoothDriver.c **** 		if(!(USIC_CH_TCSR_TDV_Msk & UartRegs->TCSR))
+ 1251              		.loc 1 272 0
+ 1252 002c 3B69     		ldr	r3, [r7, #16]
+ 1253 002e 9B6B     		ldr	r3, [r3, #56]
+ 1254 0030 03F08003 		and	r3, r3, #128
+ 1255 0034 002B     		cmp	r3, #0
+ 1256 0036 31D1     		bne	.L36
+ 273:../BluetoothDriver.c **** 		{
+ 274:../BluetoothDriver.c **** 			if(!checkStatusCts())
+ 1257              		.loc 1 274 0
+ 1258 0038 FFF7FEFF 		bl	checkStatusCts
+ 1259 003c 0346     		mov	r3, r0
+ 1260 003e 002B     		cmp	r3, #0
+ 1261 0040 11D1     		bne	.L37
+ 1262              	.LBB3:
+ 275:../BluetoothDriver.c **** 			{
+ 276:../BluetoothDriver.c **** 				char c = command1[WriteCount];
+ 1263              		.loc 1 276 0
+ 1264 0042 7A68     		ldr	r2, [r7, #4]
+ 1265 0044 7B69     		ldr	r3, [r7, #20]
+ 1266 0046 D318     		adds	r3, r2, r3
+ 1267 0048 1B78     		ldrb	r3, [r3, #0]
+ 1268 004a FB73     		strb	r3, [r7, #15]
+ 277:../BluetoothDriver.c **** 
+ 278:../BluetoothDriver.c **** 				UartRegs->TBUF[0] = c;
+ 1269              		.loc 1 278 0
+ 1270 004c FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 1271 004e 3B69     		ldr	r3, [r7, #16]
+ 1272 0050 C3F88020 		str	r2, [r3, #128]
+ 279:../BluetoothDriver.c **** 				length--;
+ 1273              		.loc 1 279 0
+ 1274 0054 3B68     		ldr	r3, [r7, #0]
+ 1275 0056 03F1FF33 		add	r3, r3, #-1
+ 1276 005a 3B60     		str	r3, [r7, #0]
+ 280:../BluetoothDriver.c **** 				WriteCount++;
+ 1277              		.loc 1 280 0
+ 1278 005c 7B69     		ldr	r3, [r7, #20]
+ 1279 005e 03F10103 		add	r3, r3, #1
+ 1280 0062 7B61     		str	r3, [r7, #20]
+ 1281 0064 1AE0     		b	.L36
+ 1282              	.L37:
+ 1283              	.LBE3:
+ 281:../BluetoothDriver.c **** 			}
+ 282:../BluetoothDriver.c **** 			else
+ 283:../BluetoothDriver.c **** 			{
+ 284:../BluetoothDriver.c **** 				criticValue++;
+ 1284              		.loc 1 284 0
+ 1285 0066 40F20003 		movw	r3, #:lower16:criticValue.7915
+ 1286 006a C0F20003 		movt	r3, #:upper16:criticValue.7915
+ 1287 006e 1B68     		ldr	r3, [r3, #0]
+ 1288 0070 03F10102 		add	r2, r3, #1
+ 1289 0074 40F20003 		movw	r3, #:lower16:criticValue.7915
+ 1290 0078 C0F20003 		movt	r3, #:upper16:criticValue.7915
+ 1291 007c 1A60     		str	r2, [r3, #0]
+ 285:../BluetoothDriver.c **** 
+ 286:../BluetoothDriver.c **** 				if(criticValue > 3)
+ 1292              		.loc 1 286 0
+ 1293 007e 40F20003 		movw	r3, #:lower16:criticValue.7915
+ 1294 0082 C0F20003 		movt	r3, #:upper16:criticValue.7915
+ 1295 0086 1B68     		ldr	r3, [r3, #0]
+ 1296 0088 032B     		cmp	r3, #3
+ 1297 008a 07DD     		ble	.L36
+ 287:../BluetoothDriver.c **** 				{
+ 288:../BluetoothDriver.c **** 					criticValue = 0;
+ 1298              		.loc 1 288 0
+ 1299 008c 40F20003 		movw	r3, #:lower16:criticValue.7915
+ 1300 0090 C0F20003 		movt	r3, #:upper16:criticValue.7915
+ 1301 0094 4FF00002 		mov	r2, #0
+ 1302 0098 1A60     		str	r2, [r3, #0]
+ 289:../BluetoothDriver.c **** 					break;
+ 1303              		.loc 1 289 0
+ 1304 009a 15E0     		b	.L33
+ 1305              	.L36:
+ 290:../BluetoothDriver.c **** 				}
+ 291:../BluetoothDriver.c **** 			}
+ 292:../BluetoothDriver.c **** 		}
+ 293:../BluetoothDriver.c **** 
+ 294:../BluetoothDriver.c **** 		if(UART001_GetFlagStatus(&UART001_Handle0,UART001_TRANS_BUFFER_IND_FLAG) == UART001_SET)
+ 1306              		.loc 1 294 0
+ 1307 009c 40F20000 		movw	r0, #:lower16:UART001_Handle0
+ 1308 00a0 C0F20000 		movt	r0, #:upper16:UART001_Handle0
+ 1309 00a4 4FF00D01 		mov	r1, #13
+ 1310 00a8 FFF7FEFF 		bl	UART001_GetFlagStatus
+ 1311 00ac 0346     		mov	r3, r0
+ 1312 00ae 022B     		cmp	r3, #2
+ 1313 00b0 07D1     		bne	.L35
+ 295:../BluetoothDriver.c **** 		{
+ 296:../BluetoothDriver.c **** 			UART001_ClearFlag(&UART001_Handle0,UART001_TRANS_BUFFER_IND_FLAG);
+ 1314              		.loc 1 296 0
+ 1315 00b2 40F20000 		movw	r0, #:lower16:UART001_Handle0
+ 1316 00b6 C0F20000 		movt	r0, #:upper16:UART001_Handle0
+ 1317 00ba 4FF00D01 		mov	r1, #13
+ 1318 00be FFF7FEFF 		bl	UART001_ClearFlag
+ 1319              	.L35:
+ 269:../BluetoothDriver.c **** 	while(length)
+ 1320              		.loc 1 269 0 discriminator 1
+ 1321 00c2 3B68     		ldr	r3, [r7, #0]
+ 1322 00c4 002B     		cmp	r3, #0
+ 1323 00c6 B1D1     		bne	.L39
+ 1324              	.L33:
+ 297:../BluetoothDriver.c **** 		}
+ 298:../BluetoothDriver.c **** 	}
+ 299:../BluetoothDriver.c **** }
+ 1325              		.loc 1 299 0
+ 1326 00c8 07F11807 		add	r7, r7, #24
+ 1327 00cc BD46     		mov	sp, r7
+ 1328 00ce 80BD     		pop	{r7, pc}
+ 1329              		.cfi_endproc
+ 1330              	.LFE128:
+ 1332              		.section	.text.read,"ax",%progbits
+ 1333              		.align	2
+ 1334              		.global	read
+ 1335              		.thumb
+ 1336              		.thumb_func
+ 1338              	read:
+ 1339              	.LFB129:
+ 300:../BluetoothDriver.c **** 
+ 301:../BluetoothDriver.c **** 
+ 302:../BluetoothDriver.c **** 
+ 303:../BluetoothDriver.c **** 
+ 304:../BluetoothDriver.c **** unsigned char* read(void)
+ 305:../BluetoothDriver.c **** {
+ 1340              		.loc 1 305 0
+ 1341              		.cfi_startproc
+ 1342              		@ args = 0, pretend = 0, frame = 16
+ 1343              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1344 0000 80B5     		push	{r7, lr}
+ 1345              	.LCFI41:
+ 1346              		.cfi_def_cfa_offset 8
+ 1347              		.cfi_offset 7, -8
+ 1348              		.cfi_offset 14, -4
+ 1349 0002 84B0     		sub	sp, sp, #16
+ 1350              	.LCFI42:
+ 1351              		.cfi_def_cfa_offset 24
+ 1352 0004 00AF     		add	r7, sp, #0
+ 1353              	.LCFI43:
+ 1354              		.cfi_def_cfa_register 7
+ 306:../BluetoothDriver.c **** 	askAboutSending();
+ 1355              		.loc 1 306 0
+ 1356 0006 FFF7FEFF 		bl	askAboutSending
+ 307:../BluetoothDriver.c **** 	unsigned char *readBuffer = NULL;
+ 1357              		.loc 1 307 0
+ 1358 000a 4FF00003 		mov	r3, #0
+ 1359 000e FB60     		str	r3, [r7, #12]
+ 308:../BluetoothDriver.c **** 	int statusRxFifoFilling = 0;
+ 1360              		.loc 1 308 0
+ 1361 0010 4FF00003 		mov	r3, #0
+ 1362 0014 BB60     		str	r3, [r7, #8]
+ 309:../BluetoothDriver.c **** 	int howManyRead = 0;
+ 1363              		.loc 1 309 0
+ 1364 0016 4FF00003 		mov	r3, #0
+ 1365 001a 7B60     		str	r3, [r7, #4]
+ 310:../BluetoothDriver.c **** 
+ 311:../BluetoothDriver.c **** 	statusRxFifoFilling = USIC_GetRxFIFOFillingLevel(UART001_0_USIC_CH);
+ 1366              		.loc 1 311 0
+ 1367 001c 4FF00003 		mov	r3, #0
+ 1368 0020 C4F60203 		movt	r3, 18434
+ 1369 0024 D3F81431 		ldr	r3, [r3, #276]
+ 1370 0028 03F4FE03 		and	r3, r3, #8323072
+ 1371 002c 4FEA1343 		lsr	r3, r3, #16
+ 1372 0030 BB60     		str	r3, [r7, #8]
+ 312:../BluetoothDriver.c **** 
+ 313:../BluetoothDriver.c **** 	if(((UART001_GetFlagStatus(&UART001_Handle0,UART001_FIFO_STD_RECV_BUF_FLAG)) == UART001_SET))
+ 1373              		.loc 1 313 0
+ 1374 0032 40F20000 		movw	r0, #:lower16:UART001_Handle0
+ 1375 0036 C0F20000 		movt	r0, #:upper16:UART001_Handle0
+ 1376 003a 4FF01001 		mov	r1, #16
+ 1377 003e FFF7FEFF 		bl	UART001_GetFlagStatus
+ 1378 0042 0346     		mov	r3, r0
+ 1379 0044 022B     		cmp	r3, #2
+ 1380 0046 49D1     		bne	.L41
+ 314:../BluetoothDriver.c **** 	{
+ 315:../BluetoothDriver.c **** 
+ 316:../BluetoothDriver.c **** 		statusRxFifoFilling = USIC_GetRxFIFOFillingLevel(UART001_0_USIC_CH);
+ 1381              		.loc 1 316 0
+ 1382 0048 4FF00003 		mov	r3, #0
+ 1383 004c C4F60203 		movt	r3, 18434
+ 1384 0050 D3F81431 		ldr	r3, [r3, #276]
+ 1385 0054 03F4FE03 		and	r3, r3, #8323072
+ 1386 0058 4FEA1343 		lsr	r3, r3, #16
+ 1387 005c BB60     		str	r3, [r7, #8]
+ 317:../BluetoothDriver.c **** 
+ 318:../BluetoothDriver.c **** 		if(statusRxFifoFilling != 0)
+ 1388              		.loc 1 318 0
+ 1389 005e BB68     		ldr	r3, [r7, #8]
+ 1390 0060 002B     		cmp	r3, #0
+ 1391 0062 18D0     		beq	.L42
+ 319:../BluetoothDriver.c **** 		{
+ 320:../BluetoothDriver.c **** 			readBuffer = (unsigned char *)malloc((sizeof(unsigned char)*statusRxFifoFilling) + 1);
+ 1392              		.loc 1 320 0
+ 1393 0064 BB68     		ldr	r3, [r7, #8]
+ 1394 0066 03F10103 		add	r3, r3, #1
+ 1395 006a 1846     		mov	r0, r3
+ 1396 006c FFF7FEFF 		bl	malloc
+ 1397 0070 0346     		mov	r3, r0
+ 1398 0072 FB60     		str	r3, [r7, #12]
+ 321:../BluetoothDriver.c **** 
+ 322:../BluetoothDriver.c **** 			howManyRead =  UART001_ReadDataBytes(&UART001_Handle0, readBuffer, statusRxFifoFilling);
+ 1399              		.loc 1 322 0
+ 1400 0074 BB68     		ldr	r3, [r7, #8]
+ 1401 0076 40F20000 		movw	r0, #:lower16:UART001_Handle0
+ 1402 007a C0F20000 		movt	r0, #:upper16:UART001_Handle0
+ 1403 007e F968     		ldr	r1, [r7, #12]
+ 1404 0080 1A46     		mov	r2, r3
+ 1405 0082 FFF7FEFF 		bl	UART001_ReadDataBytes
+ 1406 0086 0346     		mov	r3, r0
+ 1407 0088 7B60     		str	r3, [r7, #4]
+ 323:../BluetoothDriver.c **** 
+ 324:../BluetoothDriver.c **** 			readBuffer[statusRxFifoFilling] = '\0';
+ 1408              		.loc 1 324 0
+ 1409 008a BB68     		ldr	r3, [r7, #8]
+ 1410 008c FA68     		ldr	r2, [r7, #12]
+ 1411 008e D318     		adds	r3, r2, r3
+ 1412 0090 4FF00002 		mov	r2, #0
+ 1413 0094 1A70     		strb	r2, [r3, #0]
+ 1414              	.L42:
+ 325:../BluetoothDriver.c **** 		}
+ 326:../BluetoothDriver.c **** 
+ 327:../BluetoothDriver.c **** 		UART001_ClearFlag(&UART001_Handle0,UART001_FIFO_STD_RECV_BUF_FLAG);
+ 1415              		.loc 1 327 0
+ 1416 0096 40F20000 		movw	r0, #:lower16:UART001_Handle0
+ 1417 009a C0F20000 		movt	r0, #:upper16:UART001_Handle0
+ 1418 009e 4FF01001 		mov	r1, #16
+ 1419 00a2 FFF7FEFF 		bl	UART001_ClearFlag
+ 328:../BluetoothDriver.c **** 
+ 329:../BluetoothDriver.c **** 		while(!USIC_ubIsRxFIFOempty(UART001_0_USIC_CH))
+ 1420              		.loc 1 329 0
+ 1421 00a6 0DE0     		b	.L43
+ 1422              	.L44:
+ 330:../BluetoothDriver.c **** 		{
+ 331:../BluetoothDriver.c **** 			USIC_FlushRxFIFO(UART001_0_USIC_CH);
+ 1423              		.loc 1 331 0
+ 1424 00a8 4FF00003 		mov	r3, #0
+ 1425 00ac C4F60203 		movt	r3, 18434
+ 1426 00b0 4FF00002 		mov	r2, #0
+ 1427 00b4 C4F60202 		movt	r2, 18434
+ 1428 00b8 D2F81821 		ldr	r2, [r2, #280]
+ 1429 00bc 42F48042 		orr	r2, r2, #16384
+ 1430 00c0 C3F81821 		str	r2, [r3, #280]
+ 1431              	.L43:
+ 329:../BluetoothDriver.c **** 		while(!USIC_ubIsRxFIFOempty(UART001_0_USIC_CH))
+ 1432              		.loc 1 329 0 discriminator 1
+ 1433 00c4 4FF00003 		mov	r3, #0
+ 1434 00c8 C4F60203 		movt	r3, 18434
+ 1435 00cc D3F81431 		ldr	r3, [r3, #276]
+ 1436 00d0 03F00803 		and	r3, r3, #8
+ 1437 00d4 4FEAD303 		lsr	r3, r3, #3
+ 1438 00d8 002B     		cmp	r3, #0
+ 1439 00da E5D0     		beq	.L44
+ 1440              	.L41:
+ 332:../BluetoothDriver.c **** 		}
+ 333:../BluetoothDriver.c **** 	}
+ 334:../BluetoothDriver.c **** 
+ 335:../BluetoothDriver.c **** 	stopAskingAboutSending();
+ 1441              		.loc 1 335 0
+ 1442 00dc FFF7FEFF 		bl	stopAskingAboutSending
+ 336:../BluetoothDriver.c **** 
+ 337:../BluetoothDriver.c **** 	return readBuffer;
+ 1443              		.loc 1 337 0
+ 1444 00e0 FB68     		ldr	r3, [r7, #12]
+ 338:../BluetoothDriver.c **** }
+ 1445              		.loc 1 338 0
+ 1446 00e2 1846     		mov	r0, r3
+ 1447 00e4 07F11007 		add	r7, r7, #16
+ 1448 00e8 BD46     		mov	sp, r7
+ 1449 00ea 80BD     		pop	{r7, pc}
+ 1450              		.cfi_endproc
+ 1451              	.LFE129:
+ 1453              		.section	.text.askAboutSending,"ax",%progbits
+ 1454              		.align	2
+ 1455              		.global	askAboutSending
+ 1456              		.thumb
+ 1457              		.thumb_func
+ 1459              	askAboutSending:
+ 1460              	.LFB130:
+ 339:../BluetoothDriver.c **** 
+ 340:../BluetoothDriver.c **** //UART Hardware Flow Control Functions
+ 341:../BluetoothDriver.c **** void askAboutSending(void)
+ 342:../BluetoothDriver.c **** {
+ 1461              		.loc 1 342 0
+ 1462              		.cfi_startproc
+ 1463              		@ args = 0, pretend = 0, frame = 0
+ 1464              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1465              		@ link register save eliminated.
+ 1466 0000 80B4     		push	{r7}
+ 1467              	.LCFI44:
+ 1468              		.cfi_def_cfa_offset 4
+ 1469              		.cfi_offset 7, -4
+ 1470 0002 00AF     		add	r7, sp, #0
+ 1471              	.LCFI45:
+ 1472              		.cfi_def_cfa_register 7
+ 343:../BluetoothDriver.c **** 	IO004_SetOutputValue(IO004_Handle0, START_ASKING);
+ 1473              		.loc 1 343 0
+ 1474 0004 40F20003 		movw	r3, #:lower16:IO004_Handle0
+ 1475 0008 C0F20003 		movt	r3, #:upper16:IO004_Handle0
+ 1476 000c 5A68     		ldr	r2, [r3, #4]
+ 1477 000e 40F20003 		movw	r3, #:lower16:IO004_Handle0
+ 1478 0012 C0F20003 		movt	r3, #:upper16:IO004_Handle0
+ 1479 0016 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 1480 0018 4FF48031 		mov	r1, #65536
+ 1481 001c 01FA03F3 		lsl	r3, r1, r3
+ 1482 0020 5360     		str	r3, [r2, #4]
+ 344:../BluetoothDriver.c **** }
+ 1483              		.loc 1 344 0
+ 1484 0022 BD46     		mov	sp, r7
+ 1485 0024 80BC     		pop	{r7}
+ 1486 0026 7047     		bx	lr
+ 1487              		.cfi_endproc
+ 1488              	.LFE130:
+ 1490              		.section	.text.stopAskingAboutSending,"ax",%progbits
+ 1491              		.align	2
+ 1492              		.global	stopAskingAboutSending
+ 1493              		.thumb
+ 1494              		.thumb_func
+ 1496              	stopAskingAboutSending:
+ 1497              	.LFB131:
+ 345:../BluetoothDriver.c **** 
+ 346:../BluetoothDriver.c **** void stopAskingAboutSending(void)
+ 347:../BluetoothDriver.c **** {
+ 1498              		.loc 1 347 0
+ 1499              		.cfi_startproc
+ 1500              		@ args = 0, pretend = 0, frame = 0
+ 1501              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1502              		@ link register save eliminated.
+ 1503 0000 80B4     		push	{r7}
+ 1504              	.LCFI46:
+ 1505              		.cfi_def_cfa_offset 4
+ 1506              		.cfi_offset 7, -4
+ 1507 0002 00AF     		add	r7, sp, #0
+ 1508              	.LCFI47:
+ 1509              		.cfi_def_cfa_register 7
+ 348:../BluetoothDriver.c **** 	IO004_SetOutputValue(IO004_Handle0, STOP_ASKING);
+ 1510              		.loc 1 348 0
+ 1511 0004 40F20003 		movw	r3, #:lower16:IO004_Handle0
+ 1512 0008 C0F20003 		movt	r3, #:upper16:IO004_Handle0
+ 1513 000c 5A68     		ldr	r2, [r3, #4]
+ 1514 000e 40F20003 		movw	r3, #:lower16:IO004_Handle0
+ 1515 0012 C0F20003 		movt	r3, #:upper16:IO004_Handle0
+ 1516 0016 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 1517 0018 4FF00101 		mov	r1, #1
+ 1518 001c 01FA03F3 		lsl	r3, r1, r3
+ 1519 0020 5360     		str	r3, [r2, #4]
+ 349:../BluetoothDriver.c **** }
+ 1520              		.loc 1 349 0
+ 1521 0022 BD46     		mov	sp, r7
+ 1522 0024 80BC     		pop	{r7}
+ 1523 0026 7047     		bx	lr
+ 1524              		.cfi_endproc
+ 1525              	.LFE131:
+ 1527              		.section	.text.statusRtsFlowControl,"ax",%progbits
+ 1528              		.align	2
+ 1529              		.global	statusRtsFlowControl
+ 1530              		.thumb
+ 1531              		.thumb_func
+ 1533              	statusRtsFlowControl:
+ 1534              	.LFB132:
+ 350:../BluetoothDriver.c **** 
+ 351:../BluetoothDriver.c **** int statusRtsFlowControl(void)
+ 352:../BluetoothDriver.c **** {
+ 1535              		.loc 1 352 0
+ 1536              		.cfi_startproc
+ 1537              		@ args = 0, pretend = 0, frame = 0
+ 1538              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1539              		@ link register save eliminated.
+ 1540 0000 80B4     		push	{r7}
+ 1541              	.LCFI48:
+ 1542              		.cfi_def_cfa_offset 4
+ 1543              		.cfi_offset 7, -4
+ 1544 0002 00AF     		add	r7, sp, #0
+ 1545              	.LCFI49:
+ 1546              		.cfi_def_cfa_register 7
+ 353:../BluetoothDriver.c **** 	return IO004_ReadPin(IO004_Handle0);
+ 1547              		.loc 1 353 0
+ 1548 0004 40F20003 		movw	r3, #:lower16:IO004_Handle0
+ 1549 0008 C0F20003 		movt	r3, #:upper16:IO004_Handle0
+ 1550 000c 5B68     		ldr	r3, [r3, #4]
+ 1551 000e 5A6A     		ldr	r2, [r3, #36]
+ 1552 0010 40F20003 		movw	r3, #:lower16:IO004_Handle0
+ 1553 0014 C0F20003 		movt	r3, #:upper16:IO004_Handle0
+ 1554 0018 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 1555 001a 22FA03F3 		lsr	r3, r2, r3
+ 1556 001e 03F00103 		and	r3, r3, #1
+ 354:../BluetoothDriver.c **** }
+ 1557              		.loc 1 354 0
+ 1558 0022 1846     		mov	r0, r3
+ 1559 0024 BD46     		mov	sp, r7
+ 1560 0026 80BC     		pop	{r7}
+ 1561 0028 7047     		bx	lr
+ 1562              		.cfi_endproc
+ 1563              	.LFE132:
+ 1565 002a 00BF     		.section	.text.checkStatusCts,"ax",%progbits
+ 1566              		.align	2
+ 1567              		.global	checkStatusCts
+ 1568              		.thumb
+ 1569              		.thumb_func
+ 1571              	checkStatusCts:
+ 1572              	.LFB133:
+ 355:../BluetoothDriver.c **** 
+ 356:../BluetoothDriver.c **** int checkStatusCts(void)
+ 357:../BluetoothDriver.c **** {
+ 1573              		.loc 1 357 0
+ 1574              		.cfi_startproc
+ 1575              		@ args = 0, pretend = 0, frame = 0
+ 1576              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1577              		@ link register save eliminated.
+ 1578 0000 80B4     		push	{r7}
+ 1579              	.LCFI50:
+ 1580              		.cfi_def_cfa_offset 4
+ 1581              		.cfi_offset 7, -4
+ 1582 0002 00AF     		add	r7, sp, #0
+ 1583              	.LCFI51:
+ 1584              		.cfi_def_cfa_register 7
+ 358:../BluetoothDriver.c **** 	return IO004_ReadPin(IO004_Handle1);
+ 1585              		.loc 1 358 0
+ 1586 0004 40F20003 		movw	r3, #:lower16:IO004_Handle1
+ 1587 0008 C0F20003 		movt	r3, #:upper16:IO004_Handle1
+ 1588 000c 5B68     		ldr	r3, [r3, #4]
+ 1589 000e 5A6A     		ldr	r2, [r3, #36]
+ 1590 0010 40F20003 		movw	r3, #:lower16:IO004_Handle1
+ 1591 0014 C0F20003 		movt	r3, #:upper16:IO004_Handle1
+ 1592 0018 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 1593 001a 22FA03F3 		lsr	r3, r2, r3
+ 1594 001e 03F00103 		and	r3, r3, #1
+ 359:../BluetoothDriver.c **** }
+ 1595              		.loc 1 359 0
+ 1596 0022 1846     		mov	r0, r3
+ 1597 0024 BD46     		mov	sp, r7
+ 1598 0026 80BC     		pop	{r7}
+ 1599 0028 7047     		bx	lr
+ 1600              		.cfi_endproc
+ 1601              	.LFE133:
+ 1603 002a 00BF     		.section	.text.checkFunction,"ax",%progbits
+ 1604              		.align	2
+ 1605              		.global	checkFunction
+ 1606              		.thumb
+ 1607              		.thumb_func
+ 1609              	checkFunction:
+ 1610              	.LFB134:
+ 360:../BluetoothDriver.c **** //UART Hardware Flow Control Functions
+ 361:../BluetoothDriver.c **** 
+ 362:../BluetoothDriver.c **** int checkFunction(unsigned char *answer, unsigned char *readBuffer)
+ 363:../BluetoothDriver.c **** {
+ 1611              		.loc 1 363 0
+ 1612              		.cfi_startproc
+ 1613              		@ args = 0, pretend = 0, frame = 8
+ 1614              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1615 0000 80B5     		push	{r7, lr}
+ 1616              	.LCFI52:
+ 1617              		.cfi_def_cfa_offset 8
+ 1618              		.cfi_offset 7, -8
+ 1619              		.cfi_offset 14, -4
+ 1620 0002 82B0     		sub	sp, sp, #8
+ 1621              	.LCFI53:
+ 1622              		.cfi_def_cfa_offset 16
+ 1623 0004 00AF     		add	r7, sp, #0
+ 1624              	.LCFI54:
+ 1625              		.cfi_def_cfa_register 7
+ 1626 0006 7860     		str	r0, [r7, #4]
+ 1627 0008 3960     		str	r1, [r7, #0]
+ 364:../BluetoothDriver.c **** 	if(strcmp((char*)answer, (char*)readBuffer) == 0)
+ 1628              		.loc 1 364 0
+ 1629 000a 7868     		ldr	r0, [r7, #4]
+ 1630 000c 3968     		ldr	r1, [r7, #0]
+ 1631 000e FFF7FEFF 		bl	strcmp
+ 1632 0012 0346     		mov	r3, r0
+ 1633 0014 002B     		cmp	r3, #0
+ 1634 0016 02D1     		bne	.L53
+ 365:../BluetoothDriver.c **** 	{
+ 366:../BluetoothDriver.c **** 		return 1;
+ 1635              		.loc 1 366 0
+ 1636 0018 4FF00103 		mov	r3, #1
+ 1637 001c 01E0     		b	.L54
+ 1638              	.L53:
+ 367:../BluetoothDriver.c **** 	}
+ 368:../BluetoothDriver.c **** 	return 0;
+ 1639              		.loc 1 368 0
+ 1640 001e 4FF00003 		mov	r3, #0
+ 1641              	.L54:
+ 369:../BluetoothDriver.c **** }
+ 1642              		.loc 1 369 0
+ 1643 0022 1846     		mov	r0, r3
+ 1644 0024 07F10807 		add	r7, r7, #8
+ 1645 0028 BD46     		mov	sp, r7
+ 1646 002a 80BD     		pop	{r7, pc}
+ 1647              		.cfi_endproc
+ 1648              	.LFE134:
+ 1650              		.section	.text.connectStatus,"ax",%progbits
+ 1651              		.align	2
+ 1652              		.global	connectStatus
+ 1653              		.thumb
+ 1654              		.thumb_func
+ 1656              	connectStatus:
+ 1657              	.LFB135:
+ 370:../BluetoothDriver.c **** 
+ 371:../BluetoothDriver.c **** int connectStatus(void)
+ 372:../BluetoothDriver.c **** {
+ 1658              		.loc 1 372 0
+ 1659              		.cfi_startproc
+ 1660              		@ args = 0, pretend = 0, frame = 0
+ 1661              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1662              		@ link register save eliminated.
+ 1663 0000 80B4     		push	{r7}
+ 1664              	.LCFI55:
+ 1665              		.cfi_def_cfa_offset 4
+ 1666              		.cfi_offset 7, -4
+ 1667 0002 00AF     		add	r7, sp, #0
+ 1668              	.LCFI56:
+ 1669              		.cfi_def_cfa_register 7
+ 373:../BluetoothDriver.c **** 	return IO004_ReadPin(IO004_Handle2);
+ 1670              		.loc 1 373 0
+ 1671 0004 40F20003 		movw	r3, #:lower16:IO004_Handle2
+ 1672 0008 C0F20003 		movt	r3, #:upper16:IO004_Handle2
+ 1673 000c 5B68     		ldr	r3, [r3, #4]
+ 1674 000e 5A6A     		ldr	r2, [r3, #36]
+ 1675 0010 40F20003 		movw	r3, #:lower16:IO004_Handle2
+ 1676 0014 C0F20003 		movt	r3, #:upper16:IO004_Handle2
+ 1677 0018 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 1678 001a 22FA03F3 		lsr	r3, r2, r3
+ 1679 001e 03F00103 		and	r3, r3, #1
+ 374:../BluetoothDriver.c **** }
+ 1680              		.loc 1 374 0
+ 1681 0022 1846     		mov	r0, r3
+ 1682 0024 BD46     		mov	sp, r7
+ 1683 0026 80BC     		pop	{r7}
+ 1684 0028 7047     		bx	lr
+ 1685              		.cfi_endproc
+ 1686              	.LFE135:
+ 1688 002a 00BF     		.section	.text.initFlowControl,"ax",%progbits
+ 1689              		.align	2
+ 1690              		.global	initFlowControl
+ 1691              		.thumb
+ 1692              		.thumb_func
+ 1694              	initFlowControl:
+ 1695              	.LFB136:
+ 375:../BluetoothDriver.c **** 
+ 376:../BluetoothDriver.c **** void initFlowControl(void)
+ 377:../BluetoothDriver.c **** {
+ 1696              		.loc 1 377 0
+ 1697              		.cfi_startproc
+ 1698              		@ args = 0, pretend = 0, frame = 0
+ 1699              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1700 0000 80B5     		push	{r7, lr}
+ 1701              	.LCFI57:
+ 1702              		.cfi_def_cfa_offset 8
+ 1703              		.cfi_offset 7, -8
+ 1704              		.cfi_offset 14, -4
+ 1705 0002 00AF     		add	r7, sp, #0
+ 1706              	.LCFI58:
+ 1707              		.cfi_def_cfa_register 7
+ 378:../BluetoothDriver.c **** 	//stopAskingAboutSending();
+ 379:../BluetoothDriver.c **** 	askAboutSending();
+ 1708              		.loc 1 379 0
+ 1709 0004 FFF7FEFF 		bl	askAboutSending
+ 380:../BluetoothDriver.c **** }
+ 1710              		.loc 1 380 0
+ 1711 0008 80BD     		pop	{r7, pc}
+ 1712              		.cfi_endproc
+ 1713              	.LFE136:
+ 1715 000a 00BF     		.section	.text.delayBt,"ax",%progbits
+ 1716              		.align	2
+ 1717              		.global	delayBt
+ 1718              		.thumb
+ 1719              		.thumb_func
+ 1721              	delayBt:
+ 1722              	.LFB137:
+ 381:../BluetoothDriver.c **** 
+ 382:../BluetoothDriver.c **** void delayBt(uint32_t d)
+ 383:../BluetoothDriver.c **** {
+ 1723              		.loc 1 383 0
+ 1724              		.cfi_startproc
+ 1725              		@ args = 0, pretend = 0, frame = 16
+ 1726              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1727              		@ link register save eliminated.
+ 1728 0000 80B4     		push	{r7}
+ 1729              	.LCFI59:
+ 1730              		.cfi_def_cfa_offset 4
+ 1731              		.cfi_offset 7, -4
+ 1732 0002 85B0     		sub	sp, sp, #20
+ 1733              	.LCFI60:
+ 1734              		.cfi_def_cfa_offset 24
+ 1735 0004 00AF     		add	r7, sp, #0
+ 1736              	.LCFI61:
+ 1737              		.cfi_def_cfa_register 7
+ 1738 0006 7860     		str	r0, [r7, #4]
+ 1739              	.LBB4:
+ 384:../BluetoothDriver.c **** 	for(uint32_t i = 0; i < d; i++)
+ 1740              		.loc 1 384 0
+ 1741 0008 4FF00003 		mov	r3, #0
+ 1742 000c FB60     		str	r3, [r7, #12]
+ 1743 000e 03E0     		b	.L59
+ 1744              	.L60:
+ 1745              		.loc 1 384 0 is_stmt 0 discriminator 2
+ 1746 0010 FB68     		ldr	r3, [r7, #12]
+ 1747 0012 03F10103 		add	r3, r3, #1
+ 1748 0016 FB60     		str	r3, [r7, #12]
+ 1749              	.L59:
+ 1750              		.loc 1 384 0 discriminator 1
+ 1751 0018 FA68     		ldr	r2, [r7, #12]
+ 1752 001a 7B68     		ldr	r3, [r7, #4]
+ 1753 001c 9A42     		cmp	r2, r3
+ 1754 001e F7D3     		bcc	.L60
+ 1755              	.LBE4:
+ 385:../BluetoothDriver.c **** 	{
+ 386:../BluetoothDriver.c **** 		;
+ 387:../BluetoothDriver.c **** 	}
+ 388:../BluetoothDriver.c **** }
+ 1756              		.loc 1 388 0 is_stmt 1
+ 1757 0020 07F11407 		add	r7, r7, #20
+ 1758 0024 BD46     		mov	sp, r7
+ 1759 0026 80BC     		pop	{r7}
+ 1760 0028 7047     		bx	lr
+ 1761              		.cfi_endproc
+ 1762              	.LFE137:
+ 1764 002a 00BF     		.bss
+ 1765              		.align	2
+ 1766              	criticValue.7915:
+ 1767 0020 00000000 		.space	4
+ 1768              	whichCommand.7894:
+ 1769 0024 00       		.space	1
+ 1770 0025 000000   		.text
+ 1771              	.Letext0:
+ 1772              		.file 2 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+ 1773              		.file 3 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Infineon/XMC4500_series/Include/XMC4500.h"
+ 1774              		.file 4 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 1775              		.file 5 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 1776              		.file 6 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 1777              		.file 7 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 1778              		.file 8 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 1779              		.file 9 "../BluetoothDriver.h"
+ 1780              		.file 10 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Include/core_cm4.h"
+ 1781              		.file 11 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/
+ 1782              		.file 12 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/
+DEFINED SYMBOLS
+                            *ABS*:00000000 BluetoothDriver.c
+                            *COM*:00000014 device
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:24     .bss:00000000 initStatus
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:25     .bss:00000000 $d
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:29     .bss:00000001 removeInitTimerRx
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:34     .bss:00000002 removeMainTimerStatus
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:39     .bss:00000003 removeRxTimerStatus
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:45     .data:00000000 canSend
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:51     .bss:00000004 canSendStream
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:57     .bss:00000008 mainInitTimerID
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:64     .data:00000004 mainInitTimerStatus
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:61     .data:00000001 $d
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:71     .bss:0000000c HandlTimerReceiveAnsID
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:78     .data:00000008 StatusReceiveAns
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:85     .bss:00000010 TimerIdRxMessage
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:92     .data:0000000c TimerStatusRxMessage
+                            *COM*:000003c0 initCommandsAnswer
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:100    .bss:00000014 stageOfConnection
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:105    .bss:00000018 connectionFailure
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:111    .bss:0000001c stageOfInit
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:114    .rodata:00000000 $d
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:115    .rodata:00000000 .LC0
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:118    .text.chooseDevice:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:123    .text.chooseDevice:00000000 chooseDevice
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:199    .text.resetConnection:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:204    .text.resetConnection:00000000 resetConnection
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:749    .text.removeReceiveTimer:00000000 removeReceiveTimer
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:791    .text.createMainTimer:00000000 createMainTimer
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:229    .rodata:00000008 .LC1
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:232    .text.checkErrorOccurence:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:237    .text.checkErrorOccurence:00000000 checkErrorOccurence
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:306    .text.manageConnection:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:311    .text.manageConnection:00000000 manageConnection
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:637    .text.getStatusMainTimer:00000000 getStatusMainTimer
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:707    .text.removeMainTimer:00000000 removeMainTimer
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:669    .text.setStatusMainTimer:00000000 setStatusMainTimer
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1129   .text.RxTimerHandler:00000000 RxTimerHandler
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:382    .rodata:00000010 .LC2
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:385    .rodata:00000018 .LC3
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:388    .text.copyCheckAnswers:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:393    .text.copyCheckAnswers:00000000 copyCheckAnswers
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:478    .text.copyCheckAnswers:000000bc $d
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:491    .rodata:00000020 .LC4
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:494    .rodata:0000002c .LC5
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:497    .rodata:00000048 .LC6
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:500    .rodata:00000060 .LC7
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:504    .rodata:000000ac .LC8
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:507    .rodata:000000b8 .LC9
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:510    .rodata:000000c4 .LC10
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:513    .rodata:000000e8 .LC11
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:516    .text.copyCommands:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:521    .text.copyCommands:00000000 copyCommands
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:621    .text.copyCommands:000000d0 $d
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:632    .text.getStatusMainTimer:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:664    .text.setStatusMainTimer:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:702    .text.removeMainTimer:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:744    .text.removeReceiveTimer:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:786    .text.createMainTimer:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:880    .text.timerHandlerInitBluetooth:00000000 timerHandlerInitBluetooth
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:833    .text.createReceiveTimer:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:838    .text.createReceiveTimer:00000000 createReceiveTimer
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:875    .text.timerHandlerInitBluetooth:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1768   .bss:00000024 whichCommand.7894
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1213   .text.send:00000000 send
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1459   .text.askAboutSending:00000000 askAboutSending
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1031   .text.timerHandlerInitBluetoothReceive:00000000 timerHandlerInitBluetoothReceive
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1026   .text.timerHandlerInitBluetoothReceive:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1338   .text.read:00000000 read
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1609   .text.checkFunction:00000000 checkFunction
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1124   .text.RxTimerHandler:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1175   .text.initBluetooth:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1180   .text.initBluetooth:00000000 initBluetooth
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1694   .text.initFlowControl:00000000 initFlowControl
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1208   .text.send:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1533   .text.statusRtsFlowControl:00000000 statusRtsFlowControl
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1496   .text.stopAskingAboutSending:00000000 stopAskingAboutSending
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1571   .text.checkStatusCts:00000000 checkStatusCts
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1766   .bss:00000020 criticValue.7915
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1333   .text.read:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1454   .text.askAboutSending:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1491   .text.stopAskingAboutSending:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1528   .text.statusRtsFlowControl:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1566   .text.checkStatusCts:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1604   .text.checkFunction:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1651   .text.connectStatus:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1656   .text.connectStatus:00000000 connectStatus
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1689   .text.initFlowControl:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1716   .text.delayBt:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccjpZqVK.s:1721   .text.delayBt:00000000 delayBt
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.35166846b5321d4273ad8c4248893ac3
+                           .group:00000000 wm4.XMC4500.h.45.215f4b8c79f46c7645c15373868d08c0
+                           .group:00000000 wm4.core_cm4.h.47.41af406cb4cda82c972f112a9cd0a024
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.39.3d3d1b4a79aef37532666dc6ee87c6ac
+                           .group:00000000 wm4.core_cm4_simd.h.43.b5d1d38735af6366227b4256d330cf13
+                           .group:00000000 wm4.core_cm4.h.178.e5ef5ce66d198d7f00f9d0076e267c41
+                           .group:00000000 wm4.system_XMC4500.h.29.827f68baa362c84f2abae4ab67dde7c9
+                           .group:00000000 wm4.XMC4500.h.198.8e022f279ff353ed081df898dc7b9cf3
+                           .group:00000000 wm4.stddef.h.40.50cf36416e06376af8a9dca28536f2e4
+                           .group:00000000 wm4.types.h.60.e75c47576398c648cdcf9000ace5e3d8
+                           .group:00000000 wm4.MULTIPLEXER.h.46.4a863fbae1c79f0db26da3ce2dc30d02
+                           .group:00000000 wm4.CCU8PWMLIB.h.74.725ec81203769525cc7a424597055f47
+                           .group:00000000 wm4.MOTORLIB.h.62.951091d95913dd2ff36d761323a1771d
+                           .group:00000000 wm4.DBG001.h.116.d6d9e7459a0faa3905c97c1d2edb339d
+                           .group:00000000 wm4.IO004.h.53.442ea5eb47ad9eedc675253aa35f3107
+                           .group:00000000 wm4.uc_id.h.35.fa57ecd9f559d2767f56c96da2848c12
+                           .group:00000000 wm4.CLK001_Const.h.50.e5e9c2ddc89f4cc9e7b93e9648fa94e4
+                           .group:00000000 wm4.CLK001_Conf.h.81.82a8db895dc146da001475dd68223522
+                           .group:00000000 wm4.Usic.h.54.8af9f733ba5771eeb374435d205ea54b
+                           .group:00000000 wm4.UART001_Conf.h.53.ea28968cb6c53b1be9f53a4d9f42a86f
+                           .group:00000000 wm4.SYSTM001.h.64.6ecb31c49bc3e7691644fdcdfc11b5cd
+                           .group:00000000 wm4.I2C001.h.97.5277d52889d6c741e048ea45ee1277b5
+                           .group:00000000 wm4.I2C001_Conf.h.58.e471e519f7471a50493b6f4fe912ee0d
+                           .group:00000000 wm4.stdlib.h.13.603ed7eb09a1561ab06840b7c0fcff58
+                           .group:00000000 wm4.stddef.h.161.e50ff8a9d5d1abbc15641da28ac571bf
+                           .group:00000000 wm4._default_types.h.6.5e12cd604db8ce00b62bb2f02708eaf3
+                           .group:00000000 wm4.lock.h.2.9bc98482741e5e2a9450b12934a684ea
+                           .group:00000000 wm4.stddef.h.161.c6104a0666cf681b6269ddc9b4f516d4
+                           .group:00000000 wm4.reent.h.16.9e42f0e588b85e70b2bf6572af57ce64
+                           .group:00000000 wm4.alloca.h.8.dfc0c703c47ec3e69746825b17d9e66d
+                           .group:00000000 wm4.stdlib.h.53.c69c7609933ff56d59c757cec2d13230
+                           .group:00000000 wm4.string.h.8.ef946ad0bc9ad5c970c365dcd1fc4b0a
+                           .group:00000000 wm4.string.h.86.d5c872ff52e2712c985b588a0ef39f3c
+
+UNDEFINED SYMBOLS
+strcmp
+strchr
+strstr
+SYSTM001_CreateTimer
+SYSTM001_StartTimer
+turnedOnSentTimer
+memcpy
+SYSTM001_StopTimer
+SYSTM001_DeleteTimer
+strlen
+UART001_Handle0
+UART001_GetFlagStatus
+free
+UART001_ClearFlag
+malloc
+UART001_ReadDataBytes
+IO004_Handle0
+IO004_Handle1
+IO004_Handle2

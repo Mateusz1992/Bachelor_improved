@@ -1,0 +1,2933 @@
+Archive member included because of file (symbol)
+
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libm.a(lib_a-s_ceil.o)
+                              LSM9DS1_Driver.o (ceil)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libm.a(lib_a-s_round.o)
+                              LSM9DS1_Driver.o (round)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_addsubdf3.o)
+                              c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libm.a(lib_a-s_ceil.o) (__aeabi_dadd)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_muldivdf3.o)
+                              LSM9DS1_Driver.o (__aeabi_ddiv)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_cmpdf2.o)
+                              c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libm.a(lib_a-s_ceil.o) (__aeabi_dcmpgt)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_fixdfsi.o)
+                              LSM9DS1_Driver.o (__aeabi_d2iz)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_truncdfsf2.o)
+                              LSM9DS1_Driver.o (__aeabi_d2f)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-init.o)
+                              Startup/startup_XMC4500.o (__libc_init_array)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-malloc.o)
+                              BluetoothDriver.o (malloc)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mallocr.o)
+                              c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-malloc.o) (_malloc_r)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memcpy.o)
+                              BluetoothDriver.o (memcpy)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mlock.o)
+                              c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mallocr.o) (__malloc_lock)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-sbrkr.o)
+                              c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mallocr.o) (_sbrk_r)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strchr.o)
+                              BluetoothDriver.o (strchr)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strcmp.o)
+                              BluetoothDriver.o (strcmp)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strlen.o)
+                              BluetoothDriver.o (strlen)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strstr.o)
+                              BluetoothDriver.o (strstr)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-freer.o)
+                              c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-malloc.o) (_free_r)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-impure.o)
+                              c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-malloc.o) (_impure_ptr)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memchr.o)
+                              c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strstr.o) (memchr)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memcmp.o)
+                              c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strstr.o) (memcmp)
+c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-reent.o)
+                              c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-sbrkr.o) (errno)
+
+Allocating common symbols
+Common symbol       size              file
+
+aBias               0xc               LSM9DS1_Driver.o
+initCommandsAnswer  0x3c0             BluetoothDriver.o
+mBiasRaw            0x6               LSM9DS1_Driver.o
+accelOsX            0x64              LSM9DS1_Driver.o
+StatusReadBytes     0x4               LSM9DS1_Driver.o
+pomiaryAccel1       0x258             LSM9DS1_Driver.o
+TimerTbl            0x400             Dave/Generated/src/SYSTM001/SYSTM001.o
+errno               0x4               c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-reent.o)
+settings            0x28              LSM9DS1_Driver.o
+TimerIdSentMsg      0x4               SendMeasurementsToBt.o
+_autoCalc           0x1               LSM9DS1_Driver.o
+Status              0x4               LSM9DS1_Driver.o
+gy                  0x2               LSM9DS1_Driver.o
+az                  0x2               LSM9DS1_Driver.o
+temperature         0x2               LSM9DS1_Driver.o
+yAxis               0x1               SendMeasurementsToBt.o
+WriteTimerId        0x4               LSM9DS1_Driver.o
+my                  0x2               LSM9DS1_Driver.o
+xAxis               0x1               SendMeasurementsToBt.o
+ax                  0x2               LSM9DS1_Driver.o
+aRes                0x4               LSM9DS1_Driver.o
+_mAddress           0x1               LSM9DS1_Driver.o
+accelOsY            0x64              LSM9DS1_Driver.o
+_xgAddress          0x1               LSM9DS1_Driver.o
+TimerIdReadBytes    0x4               LSM9DS1_Driver.o
+gBiasRaw            0x6               LSM9DS1_Driver.o
+pomiaryAccel        0x258             LSM9DS1_Driver.o
+aBiasRaw            0x6               LSM9DS1_Driver.o
+WriteTimerStatus    0x4               LSM9DS1_Driver.o
+adrAndData          0x17              LSM9DS1_Driver.o
+gz                  0x2               LSM9DS1_Driver.o
+accelOsZ            0x64              LSM9DS1_Driver.o
+gRes                0x4               LSM9DS1_Driver.o
+mz                  0x2               LSM9DS1_Driver.o
+turnedOnSentTimer   0x4               SendMeasurementsToBt.o
+gBias               0xc               LSM9DS1_Driver.o
+mRes                0x4               LSM9DS1_Driver.o
+gx                  0x2               LSM9DS1_Driver.o
+device              0x14              BluetoothDriver.o
+ay                  0x2               LSM9DS1_Driver.o
+zAxis               0x1               SendMeasurementsToBt.o
+mx                  0x2               LSM9DS1_Driver.o
+TimerId             0x4               LSM9DS1_Driver.o
+mBias               0xc               LSM9DS1_Driver.o
+
+Discarded input sections
+
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .group         0x00000000        0x8 BluetoothDriver.o
+ .comment       0x00000000       0x71 BluetoothDriver.o
+ .group         0x00000000        0x8 CleanArray.o
+ .debug_macro   0x00000000      0x814 CleanArray.o
+ .comment       0x00000000       0x71 CleanArray.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .group         0x00000000        0x8 FIFO_functions.o
+ .debug_macro   0x00000000      0x814 FIFO_functions.o
+ .debug_macro   0x00000000       0x2d FIFO_functions.o
+ .debug_macro   0x00000000       0x3b FIFO_functions.o
+ .debug_macro   0x00000000       0x3a FIFO_functions.o
+ .debug_macro   0x00000000       0x10 FIFO_functions.o
+ .debug_macro   0x00000000       0x2e FIFO_functions.o
+ .debug_macro   0x00000000       0xa3 FIFO_functions.o
+ .debug_macro   0x00000000      0x20e FIFO_functions.o
+ .debug_macro   0x00000000       0x2d FIFO_functions.o
+ .debug_macro   0x00000000       0x42 FIFO_functions.o
+ .debug_macro   0x00000000      0xd39 FIFO_functions.o
+ .debug_macro   0x00000000       0x70 FIFO_functions.o
+ .debug_macro   0x00000000    0x150f5 FIFO_functions.o
+ .debug_macro   0x00000000      0x16c FIFO_functions.o
+ .debug_macro   0x00000000       0x22 FIFO_functions.o
+ .debug_macro   0x00000000      0x54a FIFO_functions.o
+ .debug_macro   0x00000000       0x64 FIFO_functions.o
+ .debug_macro   0x00000000       0x46 FIFO_functions.o
+ .debug_macro   0x00000000      0x160 FIFO_functions.o
+ .debug_macro   0x00000000       0x2d FIFO_functions.o
+ .debug_macro   0x00000000      0x130 FIFO_functions.o
+ .debug_macro   0x00000000       0x7f FIFO_functions.o
+ .debug_macro   0x00000000       0xb4 FIFO_functions.o
+ .debug_macro   0x00000000       0xb6 FIFO_functions.o
+ .debug_macro   0x00000000       0x2e FIFO_functions.o
+ .debug_macro   0x00000000       0x28 FIFO_functions.o
+ .debug_macro   0x00000000       0x49 FIFO_functions.o
+ .debug_macro   0x00000000       0x16 FIFO_functions.o
+ .comment       0x00000000       0x71 FIFO_functions.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 LSM9DS1_Driver.o
+ .debug_macro   0x00000000      0x814 LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x3a LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x10 LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x2e LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0xa3 LSM9DS1_Driver.o
+ .debug_macro   0x00000000      0x20e LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x2d LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x3b LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x2d LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x42 LSM9DS1_Driver.o
+ .debug_macro   0x00000000      0xd39 LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x70 LSM9DS1_Driver.o
+ .debug_macro   0x00000000    0x150f5 LSM9DS1_Driver.o
+ .debug_macro   0x00000000      0x16c LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x22 LSM9DS1_Driver.o
+ .debug_macro   0x00000000      0x54a LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x64 LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x46 LSM9DS1_Driver.o
+ .debug_macro   0x00000000      0x160 LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x2d LSM9DS1_Driver.o
+ .debug_macro   0x00000000      0x130 LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x7f LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0xb4 LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0xb6 LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x2e LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x28 LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x49 LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x16 LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x35 LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x3a LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x52 LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x43 LSM9DS1_Driver.o
+ .debug_macro   0x00000000      0x16d LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x10 LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x16 LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x23 LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x10 LSM9DS1_Driver.o
+ .debug_macro   0x00000000       0x1c LSM9DS1_Driver.o
+ .comment       0x00000000       0x71 LSM9DS1_Driver.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .group         0x00000000        0x8 Main.o
+ .debug_macro   0x00000000      0x814 Main.o
+ .debug_macro   0x00000000       0x2d Main.o
+ .debug_macro   0x00000000       0x3b Main.o
+ .debug_macro   0x00000000       0x3a Main.o
+ .debug_macro   0x00000000       0x10 Main.o
+ .debug_macro   0x00000000       0x2e Main.o
+ .debug_macro   0x00000000       0xa3 Main.o
+ .debug_macro   0x00000000      0x20e Main.o
+ .debug_macro   0x00000000       0x2d Main.o
+ .debug_macro   0x00000000       0x42 Main.o
+ .debug_macro   0x00000000      0xd39 Main.o
+ .debug_macro   0x00000000       0x70 Main.o
+ .debug_macro   0x00000000    0x150f5 Main.o
+ .debug_macro   0x00000000      0x16c Main.o
+ .debug_macro   0x00000000       0x22 Main.o
+ .debug_macro   0x00000000      0x54a Main.o
+ .debug_macro   0x00000000       0x64 Main.o
+ .debug_macro   0x00000000       0x46 Main.o
+ .debug_macro   0x00000000      0x160 Main.o
+ .debug_macro   0x00000000       0x2d Main.o
+ .debug_macro   0x00000000      0x130 Main.o
+ .debug_macro   0x00000000       0x7f Main.o
+ .debug_macro   0x00000000       0xb4 Main.o
+ .debug_macro   0x00000000       0xb6 Main.o
+ .debug_macro   0x00000000       0x2e Main.o
+ .debug_macro   0x00000000       0x28 Main.o
+ .debug_macro   0x00000000       0x49 Main.o
+ .debug_macro   0x00000000       0x16 Main.o
+ .debug_macro   0x00000000       0x10 Main.o
+ .debug_macro   0x00000000       0x35 Main.o
+ .debug_macro   0x00000000       0x3a Main.o
+ .debug_macro   0x00000000       0x52 Main.o
+ .debug_macro   0x00000000       0x43 Main.o
+ .debug_macro   0x00000000      0x16d Main.o
+ .debug_macro   0x00000000       0x16 Main.o
+ .debug_macro   0x00000000       0x23 Main.o
+ .debug_macro   0x00000000       0x16 Main.o
+ .debug_macro   0x00000000      0x1cc Main.o
+ .debug_macro   0x00000000       0x10 Main.o
+ .debug_macro   0x00000000       0x10 Main.o
+ .debug_macro   0x00000000       0x22 Main.o
+ .debug_macro   0x00000000       0x91 Main.o
+ .debug_macro   0x00000000       0x16 Main.o
+ .debug_macro   0x00000000      0x16d Main.o
+ .debug_macro   0x00000000       0x10 Main.o
+ .debug_macro   0x00000000       0x1c Main.o
+ .comment       0x00000000       0x71 Main.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 SendMeasurementsToBt.o
+ .debug_macro   0x00000000      0x814 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x16 SendMeasurementsToBt.o
+ .debug_macro   0x00000000      0x1cc SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x3a SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x10 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x2e SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0xa3 SendMeasurementsToBt.o
+ .debug_macro   0x00000000      0x20e SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x2d SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x3b SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x2d SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x42 SendMeasurementsToBt.o
+ .debug_macro   0x00000000      0xd39 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x70 SendMeasurementsToBt.o
+ .debug_macro   0x00000000    0x150f5 SendMeasurementsToBt.o
+ .debug_macro   0x00000000      0x16c SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x22 SendMeasurementsToBt.o
+ .debug_macro   0x00000000      0x54a SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x64 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x46 SendMeasurementsToBt.o
+ .debug_macro   0x00000000      0x160 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x2d SendMeasurementsToBt.o
+ .debug_macro   0x00000000      0x130 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x7f SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0xb4 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0xb6 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x2e SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x28 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x49 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x16 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x10 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x35 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x10 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x3a SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x52 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x43 SendMeasurementsToBt.o
+ .debug_macro   0x00000000      0x16d SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x10 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x22 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x91 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x16 SendMeasurementsToBt.o
+ .debug_macro   0x00000000      0x16d SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x10 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x16 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x23 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x10 SendMeasurementsToBt.o
+ .debug_macro   0x00000000       0x1c SendMeasurementsToBt.o
+ .comment       0x00000000       0x71 SendMeasurementsToBt.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .group         0x00000000        0x8 Timer.o
+ .debug_macro   0x00000000      0x814 Timer.o
+ .debug_macro   0x00000000       0x2d Timer.o
+ .debug_macro   0x00000000       0x3b Timer.o
+ .debug_macro   0x00000000       0x3a Timer.o
+ .debug_macro   0x00000000       0x10 Timer.o
+ .debug_macro   0x00000000       0x2e Timer.o
+ .debug_macro   0x00000000       0xa3 Timer.o
+ .debug_macro   0x00000000      0x20e Timer.o
+ .debug_macro   0x00000000       0x2d Timer.o
+ .debug_macro   0x00000000       0x42 Timer.o
+ .debug_macro   0x00000000      0xd39 Timer.o
+ .debug_macro   0x00000000       0x70 Timer.o
+ .debug_macro   0x00000000    0x150f5 Timer.o
+ .debug_macro   0x00000000      0x16c Timer.o
+ .debug_macro   0x00000000       0x22 Timer.o
+ .debug_macro   0x00000000      0x54a Timer.o
+ .debug_macro   0x00000000       0x64 Timer.o
+ .debug_macro   0x00000000       0x46 Timer.o
+ .debug_macro   0x00000000      0x160 Timer.o
+ .debug_macro   0x00000000       0x2d Timer.o
+ .debug_macro   0x00000000      0x130 Timer.o
+ .debug_macro   0x00000000       0x7f Timer.o
+ .debug_macro   0x00000000       0xb4 Timer.o
+ .debug_macro   0x00000000       0xb6 Timer.o
+ .debug_macro   0x00000000       0x2e Timer.o
+ .debug_macro   0x00000000       0x28 Timer.o
+ .debug_macro   0x00000000       0x49 Timer.o
+ .debug_macro   0x00000000       0x16 Timer.o
+ .comment       0x00000000       0x71 Timer.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .group         0x00000000        0x8 timerFunctions.o
+ .debug_macro   0x00000000      0x814 timerFunctions.o
+ .debug_macro   0x00000000       0x2d timerFunctions.o
+ .debug_macro   0x00000000       0x3b timerFunctions.o
+ .debug_macro   0x00000000       0x3a timerFunctions.o
+ .debug_macro   0x00000000       0x10 timerFunctions.o
+ .debug_macro   0x00000000       0x2e timerFunctions.o
+ .debug_macro   0x00000000       0xa3 timerFunctions.o
+ .debug_macro   0x00000000      0x20e timerFunctions.o
+ .debug_macro   0x00000000       0x2d timerFunctions.o
+ .debug_macro   0x00000000       0x42 timerFunctions.o
+ .debug_macro   0x00000000      0xd39 timerFunctions.o
+ .debug_macro   0x00000000       0x70 timerFunctions.o
+ .debug_macro   0x00000000    0x150f5 timerFunctions.o
+ .debug_macro   0x00000000      0x16c timerFunctions.o
+ .debug_macro   0x00000000       0x22 timerFunctions.o
+ .debug_macro   0x00000000      0x54a timerFunctions.o
+ .debug_macro   0x00000000       0x64 timerFunctions.o
+ .debug_macro   0x00000000       0x46 timerFunctions.o
+ .debug_macro   0x00000000      0x160 timerFunctions.o
+ .debug_macro   0x00000000       0x2d timerFunctions.o
+ .debug_macro   0x00000000      0x130 timerFunctions.o
+ .debug_macro   0x00000000       0x7f timerFunctions.o
+ .debug_macro   0x00000000       0xb4 timerFunctions.o
+ .debug_macro   0x00000000       0xb6 timerFunctions.o
+ .debug_macro   0x00000000       0x2e timerFunctions.o
+ .debug_macro   0x00000000       0x28 timerFunctions.o
+ .debug_macro   0x00000000       0x49 timerFunctions.o
+ .debug_macro   0x00000000       0x16 timerFunctions.o
+ .comment       0x00000000       0x71 timerFunctions.o
+ .group         0x00000000        0x8 Startup/system_XMC4500.o
+ .group         0x00000000        0x8 Startup/system_XMC4500.o
+ .group         0x00000000        0x8 Startup/system_XMC4500.o
+ .group         0x00000000        0x8 Startup/system_XMC4500.o
+ .group         0x00000000        0x8 Startup/system_XMC4500.o
+ .group         0x00000000        0x8 Startup/system_XMC4500.o
+ .group         0x00000000        0x8 Startup/system_XMC4500.o
+ .group         0x00000000        0x8 Startup/system_XMC4500.o
+ .group         0x00000000        0x8 Startup/system_XMC4500.o
+ .group         0x00000000        0x8 Startup/system_XMC4500.o
+ .group         0x00000000        0x8 Startup/system_XMC4500.o
+ .group         0x00000000        0x8 Startup/system_XMC4500.o
+ .group         0x00000000        0x8 Startup/system_XMC4500.o
+ .debug_macro   0x00000000      0x814 Startup/system_XMC4500.o
+ .debug_macro   0x00000000       0x3a Startup/system_XMC4500.o
+ .debug_macro   0x00000000       0x10 Startup/system_XMC4500.o
+ .debug_macro   0x00000000       0x2e Startup/system_XMC4500.o
+ .debug_macro   0x00000000       0xa3 Startup/system_XMC4500.o
+ .debug_macro   0x00000000      0x20e Startup/system_XMC4500.o
+ .debug_macro   0x00000000       0x2d Startup/system_XMC4500.o
+ .debug_macro   0x00000000       0x3b Startup/system_XMC4500.o
+ .debug_macro   0x00000000       0x2d Startup/system_XMC4500.o
+ .debug_macro   0x00000000       0x42 Startup/system_XMC4500.o
+ .debug_macro   0x00000000      0xd39 Startup/system_XMC4500.o
+ .debug_macro   0x00000000    0x150f5 Startup/system_XMC4500.o
+ .comment       0x00000000       0x71 Startup/system_XMC4500.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Lib/System_LibcStubs.o
+ .debug_macro   0x00000000      0x814 Lib/System_LibcStubs.o
+ .debug_macro   0x00000000       0x3a Lib/System_LibcStubs.o
+ .debug_macro   0x00000000       0x10 Lib/System_LibcStubs.o
+ .debug_macro   0x00000000       0x2e Lib/System_LibcStubs.o
+ .debug_macro   0x00000000       0xa3 Lib/System_LibcStubs.o
+ .debug_macro   0x00000000       0x3a Lib/System_LibcStubs.o
+ .debug_macro   0x00000000       0x52 Lib/System_LibcStubs.o
+ .debug_macro   0x00000000      0x16d Lib/System_LibcStubs.o
+ .debug_macro   0x00000000       0x10 Lib/System_LibcStubs.o
+ .debug_macro   0x00000000       0x22 Lib/System_LibcStubs.o
+ .debug_macro   0x00000000       0x91 Lib/System_LibcStubs.o
+ .debug_macro   0x00000000       0x35 Lib/System_LibcStubs.o
+ .comment       0x00000000       0x71 Lib/System_LibcStubs.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001.o
+ .debug_macro   0x00000000      0x814 Dave/Generated/src/UART001/UART001.o
+ .debug_macro   0x00000000      0x130 Dave/Generated/src/UART001/UART001.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/UART001/UART001.o
+ .debug_macro   0x00000000       0x3b Dave/Generated/src/UART001/UART001.o
+ .debug_macro   0x00000000       0x3a Dave/Generated/src/UART001/UART001.o
+ .debug_macro   0x00000000       0x10 Dave/Generated/src/UART001/UART001.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/UART001/UART001.o
+ .debug_macro   0x00000000       0xa3 Dave/Generated/src/UART001/UART001.o
+ .debug_macro   0x00000000      0x20e Dave/Generated/src/UART001/UART001.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/UART001/UART001.o
+ .debug_macro   0x00000000       0x42 Dave/Generated/src/UART001/UART001.o
+ .debug_macro   0x00000000      0xd39 Dave/Generated/src/UART001/UART001.o
+ .debug_macro   0x00000000       0x70 Dave/Generated/src/UART001/UART001.o
+ .debug_macro   0x00000000    0x150f5 Dave/Generated/src/UART001/UART001.o
+ .debug_macro   0x00000000      0x16c Dave/Generated/src/UART001/UART001.o
+ .debug_macro   0x00000000       0x22 Dave/Generated/src/UART001/UART001.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/UART001/UART001.o
+ .comment       0x00000000       0x71 Dave/Generated/src/UART001/UART001.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_macro   0x00000000      0x814 Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_macro   0x00000000      0x130 Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_macro   0x00000000       0x3b Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_macro   0x00000000       0x3a Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_macro   0x00000000       0x10 Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_macro   0x00000000       0xa3 Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_macro   0x00000000      0x20e Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_macro   0x00000000       0x42 Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_macro   0x00000000      0xd39 Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_macro   0x00000000       0x70 Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_macro   0x00000000    0x150f5 Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_macro   0x00000000       0xb0 Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_macro   0x00000000      0x16c Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_macro   0x00000000       0x22 Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/UART001/UART001_Conf.o
+ .comment       0x00000000       0x71 Dave/Generated/src/UART001/UART001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000      0x814 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0x3b Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0x3a Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0x10 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0xa3 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000      0x20e Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0x42 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000      0xd39 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0x70 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000    0x150f5 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000      0x16c Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0x22 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000      0x54a Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0x64 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0x46 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000      0x160 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000      0x130 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0x7f Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0xb4 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0xb6 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0x28 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0x49 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x00000000       0x16 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .comment       0x00000000       0x71 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .group         0x00000000        0x8 Dave/Generated/src/RESET001/RESET001.o
+ .group         0x00000000        0x8 Dave/Generated/src/RESET001/RESET001.o
+ .group         0x00000000        0x8 Dave/Generated/src/RESET001/RESET001.o
+ .group         0x00000000        0x8 Dave/Generated/src/RESET001/RESET001.o
+ .group         0x00000000        0x8 Dave/Generated/src/RESET001/RESET001.o
+ .group         0x00000000        0x8 Dave/Generated/src/RESET001/RESET001.o
+ .group         0x00000000        0x8 Dave/Generated/src/RESET001/RESET001.o
+ .group         0x00000000        0x8 Dave/Generated/src/RESET001/RESET001.o
+ .group         0x00000000        0x8 Dave/Generated/src/RESET001/RESET001.o
+ .group         0x00000000        0x8 Dave/Generated/src/RESET001/RESET001.o
+ .group         0x00000000        0x8 Dave/Generated/src/RESET001/RESET001.o
+ .group         0x00000000        0x8 Dave/Generated/src/RESET001/RESET001.o
+ .group         0x00000000        0x8 Dave/Generated/src/RESET001/RESET001.o
+ .group         0x00000000        0x8 Dave/Generated/src/RESET001/RESET001.o
+ .group         0x00000000        0x8 Dave/Generated/src/RESET001/RESET001.o
+ .group         0x00000000        0x8 Dave/Generated/src/RESET001/RESET001.o
+ .debug_macro   0x00000000      0x814 Dave/Generated/src/RESET001/RESET001.o
+ .debug_macro   0x00000000      0x130 Dave/Generated/src/RESET001/RESET001.o
+ .debug_macro   0x00000000       0x3a Dave/Generated/src/RESET001/RESET001.o
+ .debug_macro   0x00000000       0x10 Dave/Generated/src/RESET001/RESET001.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/RESET001/RESET001.o
+ .debug_macro   0x00000000       0xa3 Dave/Generated/src/RESET001/RESET001.o
+ .debug_macro   0x00000000      0x20e Dave/Generated/src/RESET001/RESET001.o
+ .debug_macro   0x00000000      0x16c Dave/Generated/src/RESET001/RESET001.o
+ .debug_macro   0x00000000       0x22 Dave/Generated/src/RESET001/RESET001.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/RESET001/RESET001.o
+ .debug_macro   0x00000000       0x3b Dave/Generated/src/RESET001/RESET001.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/RESET001/RESET001.o
+ .debug_macro   0x00000000       0x42 Dave/Generated/src/RESET001/RESET001.o
+ .debug_macro   0x00000000      0xd39 Dave/Generated/src/RESET001/RESET001.o
+ .debug_macro   0x00000000       0x70 Dave/Generated/src/RESET001/RESET001.o
+ .debug_macro   0x00000000    0x150f5 Dave/Generated/src/RESET001/RESET001.o
+ .comment       0x00000000       0x71 Dave/Generated/src/RESET001/RESET001.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000      0x814 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0x3b Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0x3a Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0x10 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0xa3 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000      0x20e Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0x42 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000      0xd39 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0x70 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000    0x150f5 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000      0x16c Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0x22 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000      0x54a Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0x64 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0x46 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000      0x160 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000      0x130 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0x7f Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0xb4 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0xb6 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0x28 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0x49 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x00000000       0x16 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .comment       0x00000000       0x71 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000      0x814 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0x3b Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0x3a Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0x10 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0xa3 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000      0x20e Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0x42 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000      0xd39 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0x70 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000    0x150f5 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000      0x16c Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0x22 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000      0x54a Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0x64 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0x46 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000      0x160 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000      0x130 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0x7f Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0xb4 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0xb6 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0x28 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0x49 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x00000000       0x16 Dave/Generated/src/LIBS/MOTORLIB.o
+ .comment       0x00000000       0x71 Dave/Generated/src/LIBS/MOTORLIB.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000      0x814 Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0x3b Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0x3a Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0x10 Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0xa3 Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000      0x20e Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0x42 Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000      0xd39 Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0x70 Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000    0x150f5 Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000      0x16c Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0x22 Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000      0x54a Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0x64 Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0x46 Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000      0x160 Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000      0x130 Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0x7f Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0xb4 Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0xb6 Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0x28 Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0x49 Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x00000000       0x16 Dave/Generated/src/IO004/IO004.o
+ .comment       0x00000000       0x71 Dave/Generated/src/IO004/IO004.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000      0x814 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0x3b Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0x3a Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0x10 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0xa3 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000      0x20e Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0x42 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000      0xd39 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0x70 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000    0x150f5 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000      0x16c Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0x22 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000      0x54a Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0x64 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0x46 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000      0x160 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000      0x130 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0x7f Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0xb4 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0xb6 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0x28 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0x49 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x00000000       0x16 Dave/Generated/src/IO004/IO004_Conf.o
+ .comment       0x00000000       0x71 Dave/Generated/src/IO004/IO004_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000      0x814 Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0x3b Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0x3a Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0x10 Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0xa3 Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000      0x20e Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0x42 Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000      0xd39 Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0x70 Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000    0x150f5 Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000      0x16c Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0x22 Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000      0x54a Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0x64 Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0x46 Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000      0x160 Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000      0x130 Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0x7f Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0xb4 Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0xb6 Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0x28 Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0x49 Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x00000000       0x16 Dave/Generated/src/I2C001/I2C001.o
+ .comment       0x00000000       0x71 Dave/Generated/src/I2C001/I2C001.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000      0x814 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0x3b Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0x3a Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0x10 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0xa3 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000      0x20e Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0x42 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000      0xd39 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0x70 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000    0x150f5 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000      0x16c Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0x22 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000      0x54a Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0x64 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0x46 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000      0x160 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000      0x130 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0x7f Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0xb4 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0xb6 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0x28 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0x49 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x00000000       0x16 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .comment       0x00000000       0x71 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000      0x814 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0x3b Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0x3a Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0x10 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0xa3 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000      0x20e Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0x42 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000      0xd39 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0x70 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000    0x150f5 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000      0x16c Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0x22 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000      0x54a Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0x64 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0x46 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000      0x160 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000      0x130 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0x7f Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0xb4 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0xb6 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0x28 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0x49 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x00000000       0x16 Dave/Generated/src/DAVESupport/DAVE3.o
+ .comment       0x00000000       0x71 Dave/Generated/src/DAVESupport/DAVE3.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000      0x814 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0x3b Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0x3a Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0x10 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0xa3 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000      0x20e Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0x42 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000      0xd39 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0x70 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000    0x150f5 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000      0x16c Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0x22 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000      0x54a Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0x64 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0x46 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000      0x160 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000      0x130 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0x7f Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0xb4 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0xb6 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0x28 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0x49 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x00000000       0x16 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .comment       0x00000000       0x71 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .group         0x00000000        0x8 Dave/Generated/src/CLK001/CLK001.o
+ .group         0x00000000        0x8 Dave/Generated/src/CLK001/CLK001.o
+ .group         0x00000000        0x8 Dave/Generated/src/CLK001/CLK001.o
+ .group         0x00000000        0x8 Dave/Generated/src/CLK001/CLK001.o
+ .group         0x00000000        0x8 Dave/Generated/src/CLK001/CLK001.o
+ .group         0x00000000        0x8 Dave/Generated/src/CLK001/CLK001.o
+ .group         0x00000000        0x8 Dave/Generated/src/CLK001/CLK001.o
+ .group         0x00000000        0x8 Dave/Generated/src/CLK001/CLK001.o
+ .group         0x00000000        0x8 Dave/Generated/src/CLK001/CLK001.o
+ .group         0x00000000        0x8 Dave/Generated/src/CLK001/CLK001.o
+ .group         0x00000000        0x8 Dave/Generated/src/CLK001/CLK001.o
+ .group         0x00000000        0x8 Dave/Generated/src/CLK001/CLK001.o
+ .group         0x00000000        0x8 Dave/Generated/src/CLK001/CLK001.o
+ .group         0x00000000        0x8 Dave/Generated/src/CLK001/CLK001.o
+ .group         0x00000000        0x8 Dave/Generated/src/CLK001/CLK001.o
+ .group         0x00000000        0x8 Dave/Generated/src/CLK001/CLK001.o
+ .debug_macro   0x00000000      0x814 Dave/Generated/src/CLK001/CLK001.o
+ .debug_macro   0x00000000      0x130 Dave/Generated/src/CLK001/CLK001.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/CLK001/CLK001.o
+ .debug_macro   0x00000000       0x3b Dave/Generated/src/CLK001/CLK001.o
+ .debug_macro   0x00000000       0x3a Dave/Generated/src/CLK001/CLK001.o
+ .debug_macro   0x00000000       0x10 Dave/Generated/src/CLK001/CLK001.o
+ .debug_macro   0x00000000       0x2e Dave/Generated/src/CLK001/CLK001.o
+ .debug_macro   0x00000000       0xa3 Dave/Generated/src/CLK001/CLK001.o
+ .debug_macro   0x00000000      0x20e Dave/Generated/src/CLK001/CLK001.o
+ .debug_macro   0x00000000       0x2d Dave/Generated/src/CLK001/CLK001.o
+ .debug_macro   0x00000000       0x42 Dave/Generated/src/CLK001/CLK001.o
+ .debug_macro   0x00000000      0xd39 Dave/Generated/src/CLK001/CLK001.o
+ .debug_macro   0x00000000       0x70 Dave/Generated/src/CLK001/CLK001.o
+ .debug_macro   0x00000000    0x150f5 Dave/Generated/src/CLK001/CLK001.o
+ .debug_macro   0x00000000       0x7f Dave/Generated/src/CLK001/CLK001.o
+ .debug_macro   0x00000000       0xb4 Dave/Generated/src/CLK001/CLK001.o
+ .comment       0x00000000       0x71 Dave/Generated/src/CLK001/CLK001.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH_1_cached   0x08000000         0x00100000         xr
+FLASH_1_uncached 0x0c000000         0x00100000         xr
+PSRAM_1          0x10000000         0x00010000         !xr
+DSRAM_1_system   0x20000000         0x00010000         !xr
+DSRAM_2_comm     0x30000000         0x00008000         !xr
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD BluetoothDriver.o
+LOAD CleanArray.o
+LOAD FIFO_functions.o
+LOAD LSM9DS1_Driver.o
+LOAD Main.o
+LOAD SendMeasurementsToBt.o
+LOAD Timer.o
+LOAD timerFunctions.o
+LOAD Startup/startup_XMC4500.o
+LOAD Startup/system_XMC4500.o
+LOAD Lib/System_LibcStubs.o
+LOAD Dave/Generated/src/UART001/UART001.o
+LOAD Dave/Generated/src/UART001/UART001_Conf.o
+LOAD Dave/Generated/src/SYSTM001/SYSTM001.o
+LOAD Dave/Generated/src/RESET001/RESET001.o
+LOAD Dave/Generated/src/LIBS/CCU8PWMLIB.o
+LOAD Dave/Generated/src/LIBS/MOTORLIB.o
+LOAD Dave/Generated/src/IO004/IO004.o
+LOAD Dave/Generated/src/IO004/IO004_Conf.o
+LOAD Dave/Generated/src/I2C001/I2C001.o
+LOAD Dave/Generated/src/I2C001/I2C001_Conf.o
+LOAD Dave/Generated/src/DAVESupport/DAVE3.o
+LOAD Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+LOAD Dave/Generated/src/CLK001/CLK001.o
+LOAD c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libm.a
+START GROUP
+LOAD c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a
+LOAD c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a
+LOAD c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libc.a
+END GROUP
+                0x00000800                stack_size = 0x800
+
+.text           0x08000000     0x93f0 load address 0x0c000000
+                0x08000000                sText = .
+ *(.Xmc4500.reset)
+ .Xmc4500.reset
+                0x08000000      0x21c Startup/startup_XMC4500.o
+                0x08000000                __Xmc4500_interrupt_vector_cortex_m
+                0x08000200                __Xmc4500_reset_cortex_m
+ *(.Xmc4500.postreset)
+ .Xmc4500.postreset
+                0x0800021c       0xa8 Startup/startup_XMC4500.o
+ *(.XmcStartup)
+ .XmcStartup    0x080002c4        0x4 Startup/startup_XMC4500.o
+ *(.text .text.* .gnu.linkonce.t.*)
+ .text          0x080002c8        0x0 BluetoothDriver.o
+ .text.chooseDevice
+                0x080002c8       0x94 BluetoothDriver.o
+                0x080002c8                chooseDevice
+ .text.resetConnection
+                0x0800035c       0x10 BluetoothDriver.o
+                0x0800035c                resetConnection
+ .text.checkErrorOccurence
+                0x0800036c       0x80 BluetoothDriver.o
+                0x0800036c                checkErrorOccurence
+ .text.manageConnection
+                0x080003ec       0x88 BluetoothDriver.o
+                0x080003ec                manageConnection
+ .text.copyCheckAnswers
+                0x08000474       0xdc BluetoothDriver.o
+                0x08000474                copyCheckAnswers
+ .text.copyCommands
+                0x08000550       0xec BluetoothDriver.o
+                0x08000550                copyCommands
+ .text.getStatusMainTimer
+                0x0800063c       0x18 BluetoothDriver.o
+                0x0800063c                getStatusMainTimer
+ .text.setStatusMainTimer
+                0x08000654       0x20 BluetoothDriver.o
+                0x08000654                setStatusMainTimer
+ .text.removeMainTimer
+                0x08000674       0x34 BluetoothDriver.o
+                0x08000674                removeMainTimer
+ .text.removeReceiveTimer
+                0x080006a8       0x34 BluetoothDriver.o
+                0x080006a8                removeReceiveTimer
+ .text.createMainTimer
+                0x080006dc       0x4c BluetoothDriver.o
+                0x080006dc                createMainTimer
+ .text.createReceiveTimer
+                0x08000728       0x3c BluetoothDriver.o
+                0x08000728                createReceiveTimer
+ .text.timerHandlerInitBluetooth
+                0x08000764      0x13c BluetoothDriver.o
+                0x08000764                timerHandlerInitBluetooth
+ .text.timerHandlerInitBluetoothReceive
+                0x080008a0       0xb8 BluetoothDriver.o
+                0x080008a0                timerHandlerInitBluetoothReceive
+ .text.RxTimerHandler
+                0x08000958       0x34 BluetoothDriver.o
+                0x08000958                RxTimerHandler
+ .text.initBluetooth
+                0x0800098c       0x18 BluetoothDriver.o
+                0x0800098c                initBluetooth
+ .text.send     0x080009a4       0xd0 BluetoothDriver.o
+                0x080009a4                send
+ .text.read     0x08000a74       0xec BluetoothDriver.o
+                0x08000a74                read
+ .text.askAboutSending
+                0x08000b60       0x28 BluetoothDriver.o
+                0x08000b60                askAboutSending
+ .text.stopAskingAboutSending
+                0x08000b88       0x28 BluetoothDriver.o
+                0x08000b88                stopAskingAboutSending
+ .text.statusRtsFlowControl
+                0x08000bb0       0x2c BluetoothDriver.o
+                0x08000bb0                statusRtsFlowControl
+ .text.checkStatusCts
+                0x08000bdc       0x2c BluetoothDriver.o
+                0x08000bdc                checkStatusCts
+ .text.checkFunction
+                0x08000c08       0x2c BluetoothDriver.o
+                0x08000c08                checkFunction
+ .text.connectStatus
+                0x08000c34       0x2c BluetoothDriver.o
+                0x08000c34                connectStatus
+ .text.initFlowControl
+                0x08000c60        0xc BluetoothDriver.o
+                0x08000c60                initFlowControl
+ .text.delayBt  0x08000c6c       0x2c BluetoothDriver.o
+                0x08000c6c                delayBt
+ .text          0x08000c98        0x0 CleanArray.o
+ .text.cleanArray
+                0x08000c98       0x38 CleanArray.o
+                0x08000c98                cleanArray
+ .text          0x08000cd0        0x0 FIFO_functions.o
+ .text.flushFIFO
+                0x08000cd0       0x2c FIFO_functions.o
+                0x08000cd0                flushFIFO
+ .text.clearErrorFlags
+                0x08000cfc       0x70 FIFO_functions.o
+                0x08000cfc                clearErrorFlags
+ .text          0x08000d6c        0x0 LSM9DS1_Driver.o
+ .text.getAccelX
+                0x08000d6c       0x18 LSM9DS1_Driver.o
+                0x08000d6c                getAccelX
+ .text.getAccelY
+                0x08000d84       0x18 LSM9DS1_Driver.o
+                0x08000d84                getAccelY
+ .text.getAccelZ
+                0x08000d9c       0x18 LSM9DS1_Driver.o
+                0x08000d9c                getAccelZ
+ .text.startMeasurements
+                0x08000db4       0x40 LSM9DS1_Driver.o
+                0x08000db4                startMeasurements
+ .text.readAndSendMeasurements
+                0x08000df4      0x488 LSM9DS1_Driver.o
+                0x08000df4                readAndSendMeasurements
+ .text.initAdrAndSubAdr
+                0x0800127c       0x50 LSM9DS1_Driver.o
+                0x0800127c                initAdrAndSubAdr
+ .text.initLSM9DS1
+                0x080012cc       0x5c LSM9DS1_Driver.o
+                0x080012cc                initLSM9DS1
+ .text.init     0x08001328      0x2bc LSM9DS1_Driver.o
+                0x08001328                init
+ .text.begin    0x080015e4       0xb8 LSM9DS1_Driver.o
+                0x080015e4                begin
+ .text.constrainScales
+                0x0800169c       0xdc LSM9DS1_Driver.o
+                0x0800169c                constrainScales
+ .text.initI2C  0x08001778        0xc LSM9DS1_Driver.o
+                0x08001778                initI2C
+ .text.initSPI  0x08001784        0xc LSM9DS1_Driver.o
+                0x08001784                initSPI
+ .text.calcgRes
+                0x08001790       0x34 LSM9DS1_Driver.o
+                0x08001790                calcgRes
+ .text.calcaRes
+                0x080017c4       0x34 LSM9DS1_Driver.o
+                0x080017c4                calcaRes
+ .text.calcmRes
+                0x080017f8       0xb4 LSM9DS1_Driver.o
+                0x080017f8                calcmRes
+ .text.delay    0x080018ac       0x34 LSM9DS1_Driver.o
+                0x080018ac                delay
+ .text.I2CreadByte
+                0x080018e0      0x150 LSM9DS1_Driver.o
+                0x080018e0                I2CreadByte
+ .text.mReadByte
+                0x08001a30       0x3c LSM9DS1_Driver.o
+                0x08001a30                mReadByte
+ .text.xgReadByte
+                0x08001a6c       0x3c LSM9DS1_Driver.o
+                0x08001a6c                xgReadByte
+ .text.initGyro
+                0x08001aa8      0x1a4 LSM9DS1_Driver.o
+                0x08001aa8                initGyro
+ .text.xgWriteByte
+                0x08001c4c       0x3c LSM9DS1_Driver.o
+                0x08001c4c                xgWriteByte
+ .text.I2CwriteByte
+                0x08001c88       0xd4 LSM9DS1_Driver.o
+                0x08001c88                I2CwriteByte
+ .text.initAccel
+                0x08001d5c      0x144 LSM9DS1_Driver.o
+                0x08001d5c                initAccel
+ .text.initMag  0x08001ea0      0x140 LSM9DS1_Driver.o
+                0x08001ea0                initMag
+ .text.mWriteByte
+                0x08001fe0       0x40 LSM9DS1_Driver.o
+                0x08001fe0                mWriteByte
+ .text.enableFIFO
+                0x08002020       0x44 LSM9DS1_Driver.o
+                0x08002020                enableFIFO
+ .text.setFIFO  0x08002064       0x40 LSM9DS1_Driver.o
+                0x08002064                setFIFO
+ .text.calibrate
+                0x080020a4      0x240 LSM9DS1_Driver.o
+                0x080020a4                calibrate
+ .text.xgReadBytes
+                0x080022e4       0x68 LSM9DS1_Driver.o
+                0x080022e4                xgReadBytes
+ .text.SPIreadBytes
+                0x0800234c       0x1c LSM9DS1_Driver.o
+                0x0800234c                SPIreadBytes
+ .text.readGyro1
+                0x08002368      0x144 LSM9DS1_Driver.o
+                0x08002368                readGyro1
+ .text.readAccel1
+                0x080024ac      0x134 LSM9DS1_Driver.o
+                0x080024ac                readAccel1
+ .text.readAccelToSensor
+                0x080025e0      0x1dc LSM9DS1_Driver.o
+                0x080025e0                readAccelToSensor
+ .text.I2CreadBytes
+                0x080027bc      0x1ac LSM9DS1_Driver.o
+                0x080027bc                I2CreadBytes
+ .text.magAvailable
+                0x08002968       0x38 LSM9DS1_Driver.o
+                0x08002968                magAvailable
+ .text.readMag1
+                0x080029a0       0xa0 LSM9DS1_Driver.o
+                0x080029a0                readMag1
+ .text.calibrateMag
+                0x08002a40      0x1e4 LSM9DS1_Driver.o
+                0x08002a40                calibrateMag
+ .text.calcMag  0x08002c24       0x54 LSM9DS1_Driver.o
+                0x08002c24                calcMag
+ .text.magOffset
+                0x08002c78       0x64 LSM9DS1_Driver.o
+                0x08002c78                magOffset
+ .text.accelAvailable
+                0x08002cdc       0x24 LSM9DS1_Driver.o
+                0x08002cdc                accelAvailable
+ .text.gyroAvailable
+                0x08002d00       0x28 LSM9DS1_Driver.o
+                0x08002d00                gyroAvailable
+ .text.tempAvailable
+                0x08002d28       0x28 LSM9DS1_Driver.o
+                0x08002d28                tempAvailable
+ .text.readAccel
+                0x08002d50       0xa4 LSM9DS1_Driver.o
+                0x08002d50                readAccel
+ .text.readMag  0x08002df4       0x80 LSM9DS1_Driver.o
+                0x08002df4                readMag
+ .text.readTemp
+                0x08002e74       0x84 LSM9DS1_Driver.o
+                0x08002e74                readTemp
+ .text.readGyro
+                0x08002ef8       0xa4 LSM9DS1_Driver.o
+                0x08002ef8                readGyro
+ .text.calcGyro
+                0x08002f9c       0x54 LSM9DS1_Driver.o
+                0x08002f9c                calcGyro
+ .text.calcAccel
+                0x08002ff0       0x54 LSM9DS1_Driver.o
+                0x08002ff0                calcAccel
+ .text.setGyroScale
+                0x08003044       0x88 LSM9DS1_Driver.o
+                0x08003044                setGyroScale
+ .text.setAccelScale
+                0x080030cc       0x9c LSM9DS1_Driver.o
+                0x080030cc                setAccelScale
+ .text.setMagScale
+                0x08003168       0xa4 LSM9DS1_Driver.o
+                0x08003168                setMagScale
+ .text.setGyroODR
+                0x0800320c       0x60 LSM9DS1_Driver.o
+                0x0800320c                setGyroODR
+ .text.setAccelODR
+                0x0800326c       0x60 LSM9DS1_Driver.o
+                0x0800326c                setAccelODR
+ .text.setMagODR
+                0x080032cc       0x5c LSM9DS1_Driver.o
+                0x080032cc                setMagODR
+ .text.configInt
+                0x08003328       0x6c LSM9DS1_Driver.o
+                0x08003328                configInt
+ .text.configInactivity
+                0x08003394       0x50 LSM9DS1_Driver.o
+                0x08003394                configInactivity
+ .text.getInactivity
+                0x080033e4       0x28 LSM9DS1_Driver.o
+                0x080033e4                getInactivity
+ .text.configAccelInt
+                0x0800340c       0x34 LSM9DS1_Driver.o
+                0x0800340c                configAccelInt
+ .text.configAccelThs
+                0x08003440       0x4c LSM9DS1_Driver.o
+                0x08003440                configAccelThs
+ .text.getAccelIntSrc
+                0x0800348c       0x34 LSM9DS1_Driver.o
+                0x0800348c                getAccelIntSrc
+ .text.configGyroInt
+                0x080034c0       0x48 LSM9DS1_Driver.o
+                0x080034c0                configGyroInt
+ .text.configGyroThs
+                0x08003508       0x7c LSM9DS1_Driver.o
+                0x08003508                configGyroThs
+ .text.getGyroIntSrc
+                0x08003584       0x34 LSM9DS1_Driver.o
+                0x08003584                getGyroIntSrc
+ .text.configMagInt
+                0x080035b8       0x58 LSM9DS1_Driver.o
+                0x080035b8                configMagInt
+ .text.configMagThs
+                0x08003610       0x38 LSM9DS1_Driver.o
+                0x08003610                configMagThs
+ .text.getMagIntSrc
+                0x08003648       0x34 LSM9DS1_Driver.o
+                0x08003648                getMagIntSrc
+ .text.sleepGyro
+                0x0800367c       0x44 LSM9DS1_Driver.o
+                0x0800367c                sleepGyro
+ .text.getFIFOSamples
+                0x080036c0       0x18 LSM9DS1_Driver.o
+                0x080036c0                getFIFOSamples
+ .text.timerHandlerSendMsg
+                0x080036d8       0xd0 LSM9DS1_Driver.o
+                0x080036d8                timerHandlerSendMsg
+ .text.timerHandlerReceiveOneMeasurementEachSensor
+                0x080037a8      0x218 LSM9DS1_Driver.o
+                0x080037a8                timerHandlerReceiveOneMeasurementEachSensor
+ .text.receiveByte
+                0x080039c0      0x16c LSM9DS1_Driver.o
+                0x080039c0                receiveByte
+ .text          0x08003b2c        0x0 Main.o
+ .text.main     0x08003b2c       0x28 Main.o
+                0x08003b2c                main
+ .text          0x08003b54        0x0 SendMeasurementsToBt.o
+ .text.sendMeasurementsToBt
+                0x08003b54      0x11c SendMeasurementsToBt.o
+                0x08003b54                sendMeasurementsToBt
+ .text.sendMsgLSM9DS1
+                0x08003c70       0xac SendMeasurementsToBt.o
+                0x08003c70                sendMsgLSM9DS1
+ .text          0x08003d1c        0x0 Timer.o
+ .text.makeTimer
+                0x08003d1c       0x44 Timer.o
+                0x08003d1c                makeTimer
+ .text.removeTimer
+                0x08003d60       0x44 Timer.o
+                0x08003d60                removeTimer
+ .text          0x08003da4        0x0 timerFunctions.o
+ .text          0x08003da4       0xe2 Startup/startup_XMC4500.o
+                0x08003da4                NMI_Handler
+                0x08003da6                HardFault_Handler
+                0x08003da8                MemManage_Handler
+                0x08003daa                BusFault_Handler
+                0x08003dac                UsageFault_Handler
+                0x08003dae                SVC_Handler
+                0x08003db0                DebugMon_Handler
+                0x08003db2                PendSV_Handler
+                0x08003db6                SCU_0_IRQHandler
+                0x08003db8                ERU0_0_IRQHandler
+                0x08003dba                ERU0_1_IRQHandler
+                0x08003dbc                ERU0_2_IRQHandler
+                0x08003dbe                ERU0_3_IRQHandler
+                0x08003dc0                ERU1_0_IRQHandler
+                0x08003dc2                ERU1_1_IRQHandler
+                0x08003dc4                ERU1_2_IRQHandler
+                0x08003dc6                ERU1_3_IRQHandler
+                0x08003dc8                PMU0_0_IRQHandler
+                0x08003dca                VADC0_C0_0_IRQHandler
+                0x08003dcc                VADC0_C0_1_IRQHandler
+                0x08003dce                VADC0_C0_2_IRQHandler
+                0x08003dd0                VADC0_C0_3_IRQHandler
+                0x08003dd2                VADC0_G0_0_IRQHandler
+                0x08003dd4                VADC0_G0_1_IRQHandler
+                0x08003dd6                VADC0_G0_2_IRQHandler
+                0x08003dd8                VADC0_G0_3_IRQHandler
+                0x08003dda                VADC0_G1_0_IRQHandler
+                0x08003ddc                VADC0_G1_1_IRQHandler
+                0x08003dde                VADC0_G1_2_IRQHandler
+                0x08003de0                VADC0_G1_3_IRQHandler
+                0x08003de2                VADC0_G2_0_IRQHandler
+                0x08003de4                VADC0_G2_1_IRQHandler
+                0x08003de6                VADC0_G2_2_IRQHandler
+                0x08003de8                VADC0_G2_3_IRQHandler
+                0x08003dea                VADC0_G3_0_IRQHandler
+                0x08003dec                VADC0_G3_1_IRQHandler
+                0x08003dee                VADC0_G3_2_IRQHandler
+                0x08003df0                VADC0_G3_3_IRQHandler
+                0x08003df2                DSD0_0_IRQHandler
+                0x08003df4                DSD0_1_IRQHandler
+                0x08003df6                DSD0_2_IRQHandler
+                0x08003df8                DSD0_3_IRQHandler
+                0x08003dfa                DSD0_4_IRQHandler
+                0x08003dfc                DSD0_5_IRQHandler
+                0x08003dfe                DSD0_6_IRQHandler
+                0x08003e00                DSD0_7_IRQHandler
+                0x08003e02                DAC0_0_IRQHandler
+                0x08003e04                DAC0_1_IRQHandler
+                0x08003e06                CCU40_0_IRQHandler
+                0x08003e08                CCU40_1_IRQHandler
+                0x08003e0a                CCU40_2_IRQHandler
+                0x08003e0c                CCU40_3_IRQHandler
+                0x08003e0e                CCU41_0_IRQHandler
+                0x08003e10                CCU41_1_IRQHandler
+                0x08003e12                CCU41_2_IRQHandler
+                0x08003e14                CCU41_3_IRQHandler
+                0x08003e16                CCU42_0_IRQHandler
+                0x08003e18                CCU42_1_IRQHandler
+                0x08003e1a                CCU42_2_IRQHandler
+                0x08003e1c                CCU42_3_IRQHandler
+                0x08003e1e                CCU43_0_IRQHandler
+                0x08003e20                CCU43_1_IRQHandler
+                0x08003e22                CCU43_2_IRQHandler
+                0x08003e24                CCU43_3_IRQHandler
+                0x08003e26                CCU80_0_IRQHandler
+                0x08003e28                CCU80_1_IRQHandler
+                0x08003e2a                CCU80_2_IRQHandler
+                0x08003e2c                CCU80_3_IRQHandler
+                0x08003e2e                CCU81_0_IRQHandler
+                0x08003e30                CCU81_1_IRQHandler
+                0x08003e32                CCU81_2_IRQHandler
+                0x08003e34                CCU81_3_IRQHandler
+                0x08003e36                POSIF0_0_IRQHandler
+                0x08003e38                POSIF0_1_IRQHandler
+                0x08003e3a                POSIF1_0_IRQHandler
+                0x08003e3c                POSIF1_1_IRQHandler
+                0x08003e3e                CAN0_0_IRQHandler
+                0x08003e40                CAN0_1_IRQHandler
+                0x08003e42                CAN0_2_IRQHandler
+                0x08003e44                CAN0_3_IRQHandler
+                0x08003e46                CAN0_4_IRQHandler
+                0x08003e48                CAN0_5_IRQHandler
+                0x08003e4a                CAN0_6_IRQHandler
+                0x08003e4c                CAN0_7_IRQHandler
+                0x08003e4e                USIC0_0_IRQHandler
+                0x08003e50                USIC0_1_IRQHandler
+                0x08003e52                USIC0_2_IRQHandler
+                0x08003e54                USIC0_3_IRQHandler
+                0x08003e56                USIC0_4_IRQHandler
+                0x08003e58                USIC0_5_IRQHandler
+                0x08003e5a                USIC1_0_IRQHandler
+                0x08003e5c                USIC1_1_IRQHandler
+                0x08003e5e                USIC1_2_IRQHandler
+                0x08003e60                USIC1_3_IRQHandler
+                0x08003e62                USIC1_4_IRQHandler
+                0x08003e64                USIC1_5_IRQHandler
+                0x08003e66                USIC2_0_IRQHandler
+                0x08003e68                USIC2_1_IRQHandler
+                0x08003e6a                USIC2_2_IRQHandler
+                0x08003e6c                USIC2_3_IRQHandler
+                0x08003e6e                USIC2_4_IRQHandler
+                0x08003e70                USIC2_5_IRQHandler
+                0x08003e72                LEDTS0_0_IRQHandler
+                0x08003e74                FCE0_0_IRQHandler
+                0x08003e76                GPDMA0_0_IRQHandler
+                0x08003e78                SDMMC0_0_IRQHandler
+                0x08003e7a                USB0_0_IRQHandler
+                0x08003e7c                ETH0_0_IRQHandler
+                0x08003e7e                GPDMA1_0_IRQHandler
+ .text          0x08003e86        0x0 Startup/system_XMC4500.o
+ *fill*         0x08003e86        0x2 00
+ .text.SystemInit
+                0x08003e88       0x9c Startup/system_XMC4500.o
+                0x08003e88                SystemInit
+ .text.SystemCoreClockUpdate
+                0x08003f24      0x148 Startup/system_XMC4500.o
+                0x08003f24                SystemCoreClockUpdate
+ .text.SystemClockSetup
+                0x0800406c      0x4cc Startup/system_XMC4500.o
+ .text          0x08004538        0x0 Lib/System_LibcStubs.o
+ .text._open    0x08004538       0x1c Lib/System_LibcStubs.o
+                0x08004538                _open
+ .text._lseek   0x08004554       0x1c Lib/System_LibcStubs.o
+                0x08004554                _lseek
+ .text._read    0x08004570       0x1c Lib/System_LibcStubs.o
+                0x08004570                _read
+ .text._write   0x0800458c       0x1c Lib/System_LibcStubs.o
+                0x0800458c                _write
+ .text._close   0x080045a8       0x10 Lib/System_LibcStubs.o
+                0x080045a8                _close
+ .text._fstat   0x080045b8       0x28 Lib/System_LibcStubs.o
+                0x080045b8                _fstat
+ .text._link    0x080045e0       0x28 Lib/System_LibcStubs.o
+                0x080045e0                _link
+ .text._unlink  0x08004608       0x18 Lib/System_LibcStubs.o
+                0x08004608                _unlink
+ .text._sbrk    0x08004620       0xa0 Lib/System_LibcStubs.o
+                0x08004620                _sbrk
+ .text._times   0x080046c0       0x18 Lib/System_LibcStubs.o
+                0x080046c0                _times
+ .text._wait    0x080046d8       0x18 Lib/System_LibcStubs.o
+                0x080046d8                _wait
+ .text._kill    0x080046f0       0x1c Lib/System_LibcStubs.o
+                0x080046f0                _kill
+ .text._fork    0x0800470c       0x10 Lib/System_LibcStubs.o
+                0x0800470c                _fork
+ .text._getpid  0x0800471c       0x10 Lib/System_LibcStubs.o
+                0x0800471c                _getpid
+ .text._exit    0x0800472c        0xc Lib/System_LibcStubs.o
+                0x0800472c                _exit
+ .text._init    0x08004738        0xc Lib/System_LibcStubs.o
+                0x08004738                _init
+ .text._isatty  0x08004744       0x18 Lib/System_LibcStubs.o
+                0x08004744                _isatty
+ .text          0x0800475c        0x0 Dave/Generated/src/UART001/UART001.o
+ .text.UART001_lInit
+                0x0800475c      0x1a8 Dave/Generated/src/UART001/UART001.o
+                0x0800475c                UART001_lInit
+ .text.UART001_lConfigTXPin
+                0x08004904       0xfc Dave/Generated/src/UART001/UART001.o
+                0x08004904                UART001_lConfigTXPin
+ .text.UART001_labsRealType
+                0x08004a00       0x38 Dave/Generated/src/UART001/UART001.o
+                0x08004a00                UART001_labsRealType
+ .text.UART001_lConfigureBaudRate
+                0x08004a38      0x4e8 Dave/Generated/src/UART001/UART001.o
+                0x08004a38                UART001_lConfigureBaudRate
+ .text.UART001_Init
+                0x08004f20       0x6c Dave/Generated/src/UART001/UART001.o
+                0x08004f20                UART001_Init
+ .text.UART001_DeInit
+                0x08004f8c       0x14 Dave/Generated/src/UART001/UART001.o
+                0x08004f8c                UART001_DeInit
+ .text.UART001_Configure
+                0x08004fa0      0x114 Dave/Generated/src/UART001/UART001.o
+                0x08004fa0                UART001_Configure
+ .text.UART001_ReadDataMultiple
+                0x080050b4       0x80 Dave/Generated/src/UART001/UART001.o
+                0x080050b4                UART001_ReadDataMultiple
+ .text.UART001_ReadDataBytes
+                0x08005134       0x80 Dave/Generated/src/UART001/UART001.o
+                0x08005134                UART001_ReadDataBytes
+ .text.UART001_WriteDataMultiple
+                0x080051b4       0x90 Dave/Generated/src/UART001/UART001.o
+                0x080051b4                UART001_WriteDataMultiple
+ .text.UART001_WriteDataBytes
+                0x08005244       0x90 Dave/Generated/src/UART001/UART001.o
+                0x08005244                UART001_WriteDataBytes
+ .text.UART001_GetFlagStatus
+                0x080052d4       0x98 Dave/Generated/src/UART001/UART001.o
+                0x080052d4                UART001_GetFlagStatus
+ .text.UART001_ClearFlag
+                0x0800536c       0x78 Dave/Generated/src/UART001/UART001.o
+                0x0800536c                UART001_ClearFlag
+ .text          0x080053e4        0x0 Dave/Generated/src/UART001/UART001_Conf.o
+ .text          0x080053e4        0x0 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .text.NVIC_GetPriorityGrouping
+                0x080053e4       0x20 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .text.NVIC_SetPriority
+                0x08005404       0x5c Dave/Generated/src/SYSTM001/SYSTM001.o
+ .text.NVIC_EncodePriority
+                0x08005460       0x78 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .text.SysTick_Config
+                0x080054d8       0x64 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .text.SYSTM001_lInsertTimerList
+                0x0800553c      0x214 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .text.SYSTM001_lRemoveTimerList
+                0x08005750       0xd8 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .text.SYSTM001_lTimerHandler
+                0x08005828       0x94 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .text.SysTick_Handler
+                0x080058bc       0x5c Dave/Generated/src/SYSTM001/SYSTM001.o
+                0x080058bc                SysTick_Handler
+ .text.SYSTM001_Init
+                0x08005918       0x64 Dave/Generated/src/SYSTM001/SYSTM001.o
+                0x08005918                SYSTM001_Init
+ .text.SYSTM001_CreateTimer
+                0x0800597c      0x1a0 Dave/Generated/src/SYSTM001/SYSTM001.o
+                0x0800597c                SYSTM001_CreateTimer
+ .text.SYSTM001_StartTimer
+                0x08005b1c       0xb4 Dave/Generated/src/SYSTM001/SYSTM001.o
+                0x08005b1c                SYSTM001_StartTimer
+ .text.SYSTM001_StopTimer
+                0x08005bd0       0x90 Dave/Generated/src/SYSTM001/SYSTM001.o
+                0x08005bd0                SYSTM001_StopTimer
+ .text.SYSTM001_DeleteTimer
+                0x08005c60       0x9c Dave/Generated/src/SYSTM001/SYSTM001.o
+                0x08005c60                SYSTM001_DeleteTimer
+ .text.SYSTM001_GetTime
+                0x08005cfc       0x18 Dave/Generated/src/SYSTM001/SYSTM001.o
+                0x08005cfc                SYSTM001_GetTime
+ .text.SYSTM001_GetSysTickCount
+                0x08005d14       0x28 Dave/Generated/src/SYSTM001/SYSTM001.o
+                0x08005d14                SYSTM001_GetSysTickCount
+ .text          0x08005d3c        0x0 Dave/Generated/src/RESET001/RESET001.o
+ .text.RESET001_AssertReset
+                0x08005d3c       0x54 Dave/Generated/src/RESET001/RESET001.o
+                0x08005d3c                RESET001_AssertReset
+ .text.RESET001_DeassertReset
+                0x08005d90       0x54 Dave/Generated/src/RESET001/RESET001.o
+                0x08005d90                RESET001_DeassertReset
+ .text.RESET001_GetResetInfo
+                0x08005de4       0x2c Dave/Generated/src/RESET001/RESET001.o
+                0x08005de4                RESET001_GetResetInfo
+ .text.RESET001_GetStatus
+                0x08005e10       0x7c Dave/Generated/src/RESET001/RESET001.o
+                0x08005e10                RESET001_GetStatus
+ .text.RESET001_ClearResetInfo
+                0x08005e8c       0x28 Dave/Generated/src/RESET001/RESET001.o
+                0x08005e8c                RESET001_ClearResetInfo
+ .text          0x08005eb4        0x0 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .text          0x08005eb4        0x0 Dave/Generated/src/LIBS/MOTORLIB.o
+ .text          0x08005eb4        0x0 Dave/Generated/src/IO004/IO004.o
+ .text.IO004_Init
+                0x08005eb4      0x130 Dave/Generated/src/IO004/IO004.o
+                0x08005eb4                IO004_Init
+ .text.IO004_DisableOutputDriver
+                0x08005fe4      0x17c Dave/Generated/src/IO004/IO004.o
+                0x08005fe4                IO004_DisableOutputDriver
+ .text.IO004_EnableOutputDriver
+                0x08006160      0x17c Dave/Generated/src/IO004/IO004.o
+                0x08006160                IO004_EnableOutputDriver
+ .text          0x080062dc        0x0 Dave/Generated/src/IO004/IO004_Conf.o
+ .text          0x080062dc        0x0 Dave/Generated/src/I2C001/I2C001.o
+ .text.I2C001_lInit
+                0x080062dc      0x1bc Dave/Generated/src/I2C001/I2C001.o
+                0x080062dc                I2C001_lInit
+ .text.I2C001_lConfigureBitRate
+                0x08006498      0x1a0 Dave/Generated/src/I2C001/I2C001.o
+                0x08006498                I2C001_lConfigureBitRate
+ .text.I2C001_Init
+                0x08006638       0xd8 Dave/Generated/src/I2C001/I2C001.o
+                0x08006638                I2C001_Init
+ .text.I2C001_DeInit
+                0x08006710        0xc Dave/Generated/src/I2C001/I2C001.o
+                0x08006710                I2C001_DeInit
+ .text.I2C001_Configure
+                0x0800671c      0x100 Dave/Generated/src/I2C001/I2C001.o
+                0x0800671c                I2C001_Configure
+ .text.I2C001_ReadData
+                0x0800681c       0x54 Dave/Generated/src/I2C001/I2C001.o
+                0x0800681c                I2C001_ReadData
+ .text.I2C001_WriteData
+                0x08006870       0x6c Dave/Generated/src/I2C001/I2C001.o
+                0x08006870                I2C001_WriteData
+ .text.I2C001_GetFlagStatus
+                0x080068dc       0xc8 Dave/Generated/src/I2C001/I2C001.o
+                0x080068dc                I2C001_GetFlagStatus
+ .text.I2C001_ClearFlag
+                0x080069a4       0x84 Dave/Generated/src/I2C001/I2C001.o
+                0x080069a4                I2C001_ClearFlag
+ .text          0x08006a28        0x0 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .text          0x08006a28        0x0 Dave/Generated/src/DAVESupport/DAVE3.o
+ .text.NVIC_SetPriorityGrouping
+                0x08006a28       0x50 Dave/Generated/src/DAVESupport/DAVE3.o
+ .text.DAVE_Init
+                0x08006a78       0x2c Dave/Generated/src/DAVESupport/DAVE3.o
+                0x08006a78                DAVE_Init
+ .text.SystemInit_DAVE3
+                0x08006aa4        0xc Dave/Generated/src/DAVESupport/DAVE3.o
+                0x08006aa4                SystemInit_DAVE3
+ .text          0x08006ab0        0x0 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .text.DAVE_MUX_Init
+                0x08006ab0      0x1e0 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+                0x08006ab0                DAVE_MUX_Init
+ .text.DAVE_MUX_PreInit
+                0x08006c90        0xc Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+                0x08006c90                DAVE_MUX_PreInit
+ .text          0x08006c9c        0x0 Dave/Generated/src/CLK001/CLK001.o
+ .text.CLK001_Delay
+                0x08006c9c       0x34 Dave/Generated/src/CLK001/CLK001.o
+ .text.CLK001_SysClk_Valid
+                0x08006cd0       0x38 Dave/Generated/src/CLK001/CLK001.o
+ .text.CLK001_BackupClkTrim
+                0x08006d08       0x94 Dave/Generated/src/CLK001/CLK001.o
+ .text.CLK001_SetMainPLLClkSrc
+                0x08006d9c       0xf0 Dave/Generated/src/CLK001/CLK001.o
+ .text.CLK001_ConfigMainPLL
+                0x08006e8c      0x15c Dave/Generated/src/CLK001/CLK001.o
+ .text.CLK001_FreqStepupMainPLL
+                0x08006fe8      0x164 Dave/Generated/src/CLK001/CLK001.o
+ .text.CLK001_SysClk_Init
+                0x0800714c       0x50 Dave/Generated/src/CLK001/CLK001.o
+ .text.CLK001_Init
+                0x0800719c       0x30 Dave/Generated/src/CLK001/CLK001.o
+                0x0800719c                CLK001_Init
+ .text.AllowPLLInitByStartup
+                0x080071cc       0x10 Dave/Generated/src/CLK001/CLK001.o
+                0x080071cc                AllowPLLInitByStartup
+ .text          0x080071dc        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libm.a(lib_a-s_ceil.o)
+ *fill*         0x080071dc        0x4 00
+ .text.ceil     0x080071e0      0x120 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libm.a(lib_a-s_ceil.o)
+                0x080071e0                ceil
+ .text          0x08007300        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libm.a(lib_a-s_round.o)
+ .text.round    0x08007300       0xa0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libm.a(lib_a-s_round.o)
+                0x08007300                round
+ .text          0x080073a0      0x370 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_addsubdf3.o)
+                0x080073a0                __aeabi_drsub
+                0x080073a8                __aeabi_dsub
+                0x080073a8                __subdf3
+                0x080073ac                __aeabi_dadd
+                0x080073ac                __adddf3
+                0x08007624                __floatunsidf
+                0x08007624                __aeabi_ui2d
+                0x08007644                __floatsidf
+                0x08007644                __aeabi_i2d
+                0x08007668                __aeabi_f2d
+                0x08007668                __extendsfdf2
+                0x080076a4                __floatundidf
+                0x080076a4                __aeabi_ul2d
+                0x080076b4                __floatdidf
+                0x080076b4                __aeabi_l2d
+ .text          0x08007710      0x424 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_muldivdf3.o)
+                0x08007710                __aeabi_dmul
+                0x08007710                __muldf3
+                0x08007964                __divdf3
+                0x08007964                __aeabi_ddiv
+ .text          0x08007b34      0x110 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_cmpdf2.o)
+                0x08007b34                __gtdf2
+                0x08007b34                __gedf2
+                0x08007b3c                __ltdf2
+                0x08007b3c                __ledf2
+                0x08007b44                __nedf2
+                0x08007b44                __eqdf2
+                0x08007b44                __cmpdf2
+                0x08007bc0                __aeabi_cdrcmple
+                0x08007bd0                __aeabi_cdcmpeq
+                0x08007bd0                __aeabi_cdcmple
+                0x08007be0                __aeabi_dcmpeq
+                0x08007bf4                __aeabi_dcmplt
+                0x08007c08                __aeabi_dcmple
+                0x08007c1c                __aeabi_dcmpge
+                0x08007c30                __aeabi_dcmpgt
+ .text          0x08007c44       0x50 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_fixdfsi.o)
+                0x08007c44                __aeabi_d2iz
+                0x08007c44                __fixdfsi
+ .text          0x08007c94       0xa0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_truncdfsf2.o)
+                0x08007c94                __truncdfsf2
+                0x08007c94                __aeabi_d2f
+ .text          0x08007d34        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-init.o)
+ .text.__libc_init_array
+                0x08007d34       0x94 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-init.o)
+                0x08007d34                __libc_init_array
+ .text          0x08007dc8        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-malloc.o)
+ .text.malloc   0x08007dc8       0x10 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-malloc.o)
+                0x08007dc8                malloc
+ .text.free     0x08007dd8       0x10 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-malloc.o)
+                0x08007dd8                free
+ .text          0x08007de8        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mallocr.o)
+ .text._malloc_r
+                0x08007de8      0x55c c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mallocr.o)
+                0x08007de8                _malloc_r
+ .text          0x08008344        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memcpy.o)
+ .text.memcpy   0x08008344      0x144 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memcpy.o)
+                0x08008344                memcpy
+ .text          0x08008488        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mlock.o)
+ .text.__malloc_lock
+                0x08008488        0x4 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mlock.o)
+                0x08008488                __malloc_lock
+ .text.__malloc_unlock
+                0x0800848c        0x4 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mlock.o)
+                0x0800848c                __malloc_unlock
+ .text          0x08008490        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-sbrkr.o)
+ .text._sbrk_r  0x08008490       0x24 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-sbrkr.o)
+                0x08008490                _sbrk_r
+ .text          0x080084b4        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strchr.o)
+ .text.strchr   0x080084b4       0xfc c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strchr.o)
+                0x080084b4                strchr
+ .text          0x080085b0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strcmp.o)
+ .text.strcmp   0x080085b0       0x80 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strcmp.o)
+                0x080085b0                strcmp
+ .text.strcmp_unaligned
+                0x08008630      0x15c c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strcmp.o)
+ .text          0x0800878c        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strlen.o)
+ .text.strlen   0x0800878c       0x60 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strlen.o)
+                0x0800878c                strlen
+ .text          0x080087ec        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strstr.o)
+ .text.critical_factorization
+                0x080087ec       0xbc c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strstr.o)
+ .text.two_way_long_needle
+                0x080088a8      0x318 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strstr.o)
+ .text.strstr   0x08008bc0      0x2f0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strstr.o)
+                0x08008bc0                strstr
+ .text          0x08008eb0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-freer.o)
+ .text._malloc_trim_r
+                0x08008eb0       0x98 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-freer.o)
+                0x08008eb0                _malloc_trim_r
+ .text._free_r  0x08008f48      0x194 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-freer.o)
+                0x08008f48                _free_r
+ .text          0x080090dc        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-impure.o)
+ .text          0x080090dc        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memchr.o)
+ .text.memchr   0x080090dc      0x140 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memchr.o)
+                0x080090dc                memchr
+ .text          0x0800921c        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memcmp.o)
+ .text.memcmp   0x0800921c       0xb8 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memcmp.o)
+                0x0800921c                memcmp
+ .text          0x080092d4        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-reent.o)
+ .text.cleanup_glue
+                0x080092d4       0x1c c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-reent.o)
+                0x080092d4                cleanup_glue
+ .text._reclaim_reent
+                0x080092f0       0x8c c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-reent.o)
+                0x080092f0                _reclaim_reent
+ .text._wrapup_reent
+                0x0800937c       0x74 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-reent.o)
+                0x0800937c                _wrapup_reent
+ *(.glue*)
+ .glue_7        0x00000000        0x0 linker stubs
+ .glue_7t       0x00000000        0x0 linker stubs
+ *(.v4*)
+ .v4_bx         0x00000000        0x0 linker stubs
+ *(.vfp11_veneer)
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+ *(.init)
+                0x080093f0                __preinit_array_start = .
+ *(.preinit_array)
+                0x080093f0                __preinit_array_end = .
+                0x080093f0                __init_array_start = .
+ *(SORT(.init_array.*))
+ *(.init_array)
+                0x080093f0                __init_array_end = .
+ *crtbegin.o(.ctors)
+ *(EXCLUDE_FILE(*crtend.o) .ctors)
+ *(SORT(.ctors.*))
+ *crtend.o(.ctors)
+ *(.fini)
+                0x080093f0                __fini_array_start = .
+ *(.fini_array)
+ *(SORT(.fini_array.*))
+                0x080093f0                __fini_array_end = .
+ *crtbegin.o(.dtors)
+ *(EXCLUDE_FILE(*crtend.o) .dtors)
+ *(SORT(.dtors.*))
+ *crtend.o(.dtors)
+                0x080093f0                __extab_start = .
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+ .ARM.extab.Xmc4500.reset
+                0x080093f0        0x0 Startup/startup_XMC4500.o
+ .ARM.extab.Xmc4500.postreset
+                0x080093f0        0x0 Startup/startup_XMC4500.o
+                0x080093f0                . = ALIGN (0x4)
+                0x080093f0                __extab_end = ABSOLUTE (.)
+
+.iplt           0x080093f0        0x0 load address 0x0c0093f0
+ .iplt          0x00000000        0x0 BluetoothDriver.o
+
+.ARM.exidx      0x080093f0       0x10 load address 0x0c0093f0
+                0x080093f0                __exidx_start = .
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+ .ARM.exidx.Xmc4500.reset
+                0x080093f0        0x8 Startup/startup_XMC4500.o
+ .ARM.exidx.Xmc4500.postreset
+                0x080093f8        0x8 Startup/startup_XMC4500.o
+                0x08009400                . = ALIGN (0x4)
+                0x08009400                __exidx_end = ABSOLUTE (.)
+
+.rodata         0x08009400      0x168 load address 0x0c009400
+ *(.rodata .rodata.*)
+ .rodata        0x08009400       0xf4 BluetoothDriver.o
+ .rodata        0x080094f4        0x8 SendMeasurementsToBt.o
+ .rodata        0x080094fc       0x34 Dave/Generated/src/UART001/UART001_Conf.o
+                0x080094fc                UART001_Handle0
+ .rodata        0x08009530       0x18 Dave/Generated/src/IO004/IO004_Conf.o
+                0x08009530                IO004_Handle0
+                0x08009538                IO004_Handle1
+                0x08009540                IO004_Handle2
+ .rodata        0x08009548       0x18 Dave/Generated/src/I2C001/I2C001_Conf.o
+                0x08009548                I2C001_Handle0
+ .rodata.str1.4
+                0x08009560        0x4 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-impure.o)
+ .rodata._global_impure_ptr
+                0x08009564        0x4 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-impure.o)
+                0x08009564                _global_impure_ptr
+ *(.gnu.linkonce.r*)
+
+.rel.dyn        0x08009568        0x0 load address 0x0c009568
+ .rel.iplt      0x00000000        0x0 BluetoothDriver.o
+                0x08009570                . = ALIGN (0x10)
+                0x0c009570                eROData = (. | 0x4000000)
+
+Stack           0x10000000      0x800
+                0x10000800                . = (. + stack_size)
+ *fill*         0x10000000      0x800 00
+                0x10000800                __Xmc4500_stack = .
+
+.data3          0x10000800        0x0
+                0x10000800                __data3_start = .
+ *(.data3)
+                0x10000800                __data3_end = .
+                0x00000000                __data3_size = (__data3_end - __data3_start)
+
+.data           0x20000000      0x874 load address 0x0c009570
+                0x20000000                __Xmc4500_sData = .
+ *(.data)
+ .data          0x20000000       0x10 BluetoothDriver.o
+                0x20000000                canSend
+                0x20000004                mainInitTimerStatus
+                0x20000008                StatusReceiveAns
+                0x2000000c                TimerStatusRxMessage
+ .data          0x20000010        0x0 CleanArray.o
+ .data          0x20000010        0x0 FIFO_functions.o
+ .data          0x20000010       0x1c LSM9DS1_Driver.o
+                0x20000010                StatusTimerReadMeasurements
+                0x20000014                readingAllowed
+                0x20000018                statusTimerSendMsg
+                0x2000001c                magSensitivity
+ .data          0x2000002c        0x0 Main.o
+ .data          0x2000002c        0x0 SendMeasurementsToBt.o
+ .data          0x2000002c        0x0 Timer.o
+ .data          0x2000002c        0x0 timerFunctions.o
+ .data          0x2000002c        0x0 Startup/startup_XMC4500.o
+ .data          0x2000002c        0x4 Startup/system_XMC4500.o
+                0x2000002c                SystemCoreClock
+ .data          0x20000030        0x0 Lib/System_LibcStubs.o
+ .data          0x20000030        0x0 Dave/Generated/src/UART001/UART001.o
+ .data          0x20000030        0x4 Dave/Generated/src/UART001/UART001_Conf.o
+                0x20000030                UART001_HandleArray
+ .data          0x20000034        0x0 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .data          0x20000034        0x0 Dave/Generated/src/RESET001/RESET001.o
+ .data          0x20000034        0x0 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .data          0x20000034        0x0 Dave/Generated/src/LIBS/MOTORLIB.o
+ .data          0x20000034        0x0 Dave/Generated/src/IO004/IO004.o
+ .data          0x20000034        0x0 Dave/Generated/src/IO004/IO004_Conf.o
+ .data          0x20000034        0x0 Dave/Generated/src/I2C001/I2C001.o
+ .data          0x20000034        0x0 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .data          0x20000034        0x0 Dave/Generated/src/DAVESupport/DAVE3.o
+ .data          0x20000034        0x0 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .data          0x20000034        0x0 Dave/Generated/src/CLK001/CLK001.o
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libm.a(lib_a-s_ceil.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libm.a(lib_a-s_round.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_addsubdf3.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_muldivdf3.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_cmpdf2.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_fixdfsi.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_truncdfsf2.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-init.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-malloc.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mallocr.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memcpy.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mlock.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-sbrkr.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strchr.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strcmp.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strlen.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strstr.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-freer.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-impure.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memchr.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memcmp.o)
+ .data          0x20000034        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-reent.o)
+ *(.data*)
+ .data.__malloc_av_
+                0x20000034      0x408 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mallocr.o)
+                0x20000034                __malloc_av_
+ .data.__malloc_trim_threshold
+                0x2000043c        0x4 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mallocr.o)
+                0x2000043c                __malloc_trim_threshold
+ .data.__malloc_sbrk_base
+                0x20000440        0x4 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mallocr.o)
+                0x20000440                __malloc_sbrk_base
+ *fill*         0x20000444        0x4 00
+ .data.impure_data
+                0x20000448      0x428 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-impure.o)
+ .data._impure_ptr
+                0x20000870        0x4 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-impure.o)
+                0x20000870                _impure_ptr
+ *(*.data)
+ *(.gnu.linkonce.d*)
+                0x20000874                __Xmc4500_eData = ALIGN (0x4)
+                0x00000874                __Xmc4500_Data_Size = (__Xmc4500_eData - __Xmc4500_sData)
+
+.igot.plt       0x20000874        0x0 load address 0x0c009de4
+ .igot.plt      0x00000000        0x0 BluetoothDriver.o
+
+.ram_code       0x10000800        0x0 load address 0x0c009de4
+                0x10000800                __ram_code_start = .
+ *(.ram_code)
+                0x10000800                __ram_code_end = .
+                0x0c009de4                __ram_code_load = LOADADDR (.ram_code)
+                0x00000000                __ram_code_size = (__ram_code_end - __ram_code_start)
+
+.bss            0x20000874      0xf3c load address 0x0c009de4
+                0x20000874                __Xmc4500_sBSS = .
+ *(.bss)
+ .bss           0x20000874       0x28 BluetoothDriver.o
+                0x20000874                initStatus
+                0x20000875                removeInitTimerRx
+                0x20000876                removeMainTimerStatus
+                0x20000877                removeRxTimerStatus
+                0x20000878                canSendStream
+                0x2000087c                mainInitTimerID
+                0x20000880                HandlTimerReceiveAnsID
+                0x20000884                TimerIdRxMessage
+                0x20000888                stageOfConnection
+                0x2000088c                connectionFailure
+                0x20000890                stageOfInit
+ .bss           0x2000089c        0x0 CleanArray.o
+ .bss           0x2000089c        0x0 FIFO_functions.o
+ .bss           0x2000089c       0x2c LSM9DS1_Driver.o
+                0x2000089c                TimerIdReadMeasurements
+                0x200008a4                TimerIDSendMsg
+                0x200008a8                sendingInProgress
+                0x200008ac                counter
+                0x200008b0                accelX
+                0x200008b2                accelY
+                0x200008b4                accelZ
+                0x200008b6                gyroX
+                0x200008b8                gyroY
+                0x200008ba                gyroZ
+ .bss           0x200008c8        0x0 Main.o
+ .bss           0x200008c8        0x8 SendMeasurementsToBt.o
+                0x200008c8                turnedOn
+ .bss           0x200008d0        0x0 Timer.o
+ .bss           0x200008d0        0x0 timerFunctions.o
+ .bss           0x200008d0        0x0 Startup/startup_XMC4500.o
+ .bss           0x200008d0        0x0 Startup/system_XMC4500.o
+ .bss           0x200008d0        0xc Lib/System_LibcStubs.o
+                0x200008d0                __dso_handle
+ .bss           0x200008dc        0x0 Dave/Generated/src/UART001/UART001.o
+ .bss           0x200008dc        0x0 Dave/Generated/src/UART001/UART001_Conf.o
+ .bss           0x200008dc        0xc Dave/Generated/src/SYSTM001/SYSTM001.o
+                0x200008dc                TimerList
+                0x200008e0                TimerTracker
+                0x200008e4                SysTickCount
+ .bss           0x200008e8        0x0 Dave/Generated/src/RESET001/RESET001.o
+ .bss           0x200008e8        0x0 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .bss           0x200008e8        0x0 Dave/Generated/src/LIBS/MOTORLIB.o
+ .bss           0x200008e8        0x0 Dave/Generated/src/IO004/IO004.o
+ .bss           0x200008e8        0x0 Dave/Generated/src/IO004/IO004_Conf.o
+ .bss           0x200008e8        0x0 Dave/Generated/src/I2C001/I2C001.o
+ .bss           0x200008e8        0x0 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .bss           0x200008e8        0x0 Dave/Generated/src/DAVESupport/DAVE3.o
+ .bss           0x200008e8        0x0 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .bss           0x200008e8        0x8 Dave/Generated/src/CLK001/CLK001.o
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libm.a(lib_a-s_ceil.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libm.a(lib_a-s_round.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_addsubdf3.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_muldivdf3.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_cmpdf2.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_fixdfsi.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_truncdfsf2.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-init.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-malloc.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mallocr.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memcpy.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mlock.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-sbrkr.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strchr.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strcmp.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strlen.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strstr.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-freer.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-impure.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memchr.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memcmp.o)
+ .bss           0x200008f0        0x0 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-reent.o)
+ *(.bss*)
+ .bss.__malloc_max_total_mem
+                0x200008f0        0x4 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mallocr.o)
+                0x200008f0                __malloc_max_total_mem
+ .bss.__malloc_max_sbrked_mem
+                0x200008f4        0x4 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mallocr.o)
+                0x200008f4                __malloc_max_sbrked_mem
+ .bss.__malloc_top_pad
+                0x200008f8        0x4 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mallocr.o)
+                0x200008f8                __malloc_top_pad
+ .bss.__malloc_current_mallinfo
+                0x200008fc       0x28 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mallocr.o)
+                0x200008fc                __malloc_current_mallinfo
+ *(COMMON)
+ COMMON         0x20000924      0x3d4 BluetoothDriver.o
+                0x20000924                initCommandsAnswer
+                0x20000ce4                device
+ COMMON         0x20000cf8      0x6a4 LSM9DS1_Driver.o
+                0x20000cf8                aBias
+                0x20000d04                mBiasRaw
+                0x20000d0c                accelOsX
+                0x20000d70                StatusReadBytes
+                0x20000d74                pomiaryAccel1
+                0x20000fcc                settings
+                0x20000ff4                _autoCalc
+                0x20000ff8                Status
+                0x20000ffc                gy
+                0x20000ffe                az
+                0x20001000                temperature
+                0x20001004                WriteTimerId
+                0x20001008                my
+                0x2000100a                ax
+                0x2000100c                aRes
+                0x20001010                _mAddress
+                0x20001014                accelOsY
+                0x20001078                _xgAddress
+                0x2000107c                TimerIdReadBytes
+                0x20001080                gBiasRaw
+                0x20001088                pomiaryAccel
+                0x200012e0                aBiasRaw
+                0x200012e8                WriteTimerStatus
+                0x200012ec                adrAndData
+                0x20001304                gz
+                0x20001308                accelOsZ
+                0x2000136c                gRes
+                0x20001370                mz
+                0x20001374                gBias
+                0x20001380                mRes
+                0x20001384                gx
+                0x20001386                ay
+                0x20001388                mx
+                0x2000138c                TimerId
+                0x20001390                mBias
+ COMMON         0x2000139c        0xd SendMeasurementsToBt.o
+                0x2000139c                TimerIdSentMsg
+                0x200013a0                yAxis
+                0x200013a1                xAxis
+                0x200013a4                turnedOnSentTimer
+                0x200013a8                zAxis
+ *fill*         0x200013a9        0x3 00
+ COMMON         0x200013ac      0x400 Dave/Generated/src/SYSTM001/SYSTM001.o
+                0x200013ac                TimerTbl
+ COMMON         0x200017ac        0x4 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-reent.o)
+                0x200017ac                errno
+ *(.gnu.linkonce.b*)
+                0x200017b0                __Xmc4500_eBSS = ALIGN (0x4)
+                0x200017b0                . = ALIGN (0x4)
+                0x200017b0                Heap_Bank1_Start = .
+                0x00000f3c                __Xmc4500_BSS_Size = (__Xmc4500_eBSS - __Xmc4500_sBSS)
+
+.data2          0x30000000        0x0
+                0x30000000                __data2_start = .
+ *(ETH_RAM)
+                0x30000000                __data2_end = .
+                0x00000000                __data2_size = (__data2_end - __data2_start)
+                0x0000e850                Heap_Bank1_Size = (0x10000 - (Heap_Bank1_Start - ORIGIN (DSRAM_1_system)))
+
+DSRAM2_Heap     0x30000000        0x0
+                0x30000000                Heap_Bank2_Start = .
+                0x00008000                Heap_Bank2_Size = (0x8000 - (Heap_Bank2_Start - ORIGIN (DSRAM_2_comm)))
+
+PSRAM_Heap      0x10000800        0x0
+                0x10000800                Heap_Bank3_Start = .
+                0x0000f800                Heap_Bank3_Size = (0x10000 - (Heap_Bank3_Start - ORIGIN (PSRAM_1)))
+
+/DISCARD/
+ *(.comment)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x820
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0xe8 BluetoothDriver.o
+ .debug_aranges
+                0x000000e8       0x20 CleanArray.o
+ .debug_aranges
+                0x00000108       0x28 FIFO_functions.o
+ .debug_aranges
+                0x00000130      0x250 LSM9DS1_Driver.o
+ .debug_aranges
+                0x00000380       0x20 Main.o
+ .debug_aranges
+                0x000003a0       0x28 SendMeasurementsToBt.o
+ .debug_aranges
+                0x000003c8       0x28 Timer.o
+ .debug_aranges
+                0x000003f0       0x18 timerFunctions.o
+ .debug_aranges
+                0x00000408       0x38 Startup/startup_XMC4500.o
+ .debug_aranges
+                0x00000440       0x30 Startup/system_XMC4500.o
+ .debug_aranges
+                0x00000470       0xa0 Lib/System_LibcStubs.o
+ .debug_aranges
+                0x00000510       0x80 Dave/Generated/src/UART001/UART001.o
+ .debug_aranges
+                0x00000590       0x18 Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_aranges
+                0x000005a8       0x90 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_aranges
+                0x00000638       0x40 Dave/Generated/src/RESET001/RESET001.o
+ .debug_aranges
+                0x00000678       0x18 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_aranges
+                0x00000690       0x18 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_aranges
+                0x000006a8       0x30 Dave/Generated/src/IO004/IO004.o
+ .debug_aranges
+                0x000006d8       0x18 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_aranges
+                0x000006f0       0x60 Dave/Generated/src/I2C001/I2C001.o
+ .debug_aranges
+                0x00000750       0x18 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_aranges
+                0x00000768       0x30 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_aranges
+                0x00000798       0x28 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_aranges
+                0x000007c0       0x60 Dave/Generated/src/CLK001/CLK001.o
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_info     0x00000000     0xa9e7
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000     0x1067 BluetoothDriver.o
+ .debug_info    0x00001067       0x96 CleanArray.o
+ .debug_info    0x000010fd      0x590 FIFO_functions.o
+ .debug_info    0x0000168d     0x2158 LSM9DS1_Driver.o
+ .debug_info    0x000037e5      0x5d4 Main.o
+ .debug_info    0x00003db9      0x6c1 SendMeasurementsToBt.o
+ .debug_info    0x0000447a      0x1ab Timer.o
+ .debug_info    0x00004625       0x94 timerFunctions.o
+ .debug_info    0x000046b9       0x79 Startup/startup_XMC4500.o
+ .debug_info    0x00004732      0xaf0 Startup/system_XMC4500.o
+ .debug_info    0x00005222      0x65f Lib/System_LibcStubs.o
+ .debug_info    0x00005881      0xfc2 Dave/Generated/src/UART001/UART001.o
+ .debug_info    0x00006843      0x805 Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_info    0x00007048      0xc2e Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_info    0x00007c76      0x47c Dave/Generated/src/RESET001/RESET001.o
+ .debug_info    0x000080f2       0x94 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_info    0x00008186       0x94 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_info    0x0000821a      0x3b9 Dave/Generated/src/IO004/IO004.o
+ .debug_info    0x000085d3      0x2aa Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_info    0x0000887d      0xbd1 Dave/Generated/src/I2C001/I2C001.o
+ .debug_info    0x0000944e      0x54a Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_info    0x00009998      0x2e9 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_info    0x00009c81      0x6dd Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_info    0x0000a35e      0x689 Dave/Generated/src/CLK001/CLK001.o
+
+.debug_abbrev   0x00000000     0x1e04
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x31d BluetoothDriver.o
+ .debug_abbrev  0x0000031d       0x84 CleanArray.o
+ .debug_abbrev  0x000003a1      0x157 FIFO_functions.o
+ .debug_abbrev  0x000004f8      0x35d LSM9DS1_Driver.o
+ .debug_abbrev  0x00000855       0xe7 Main.o
+ .debug_abbrev  0x0000093c      0x124 SendMeasurementsToBt.o
+ .debug_abbrev  0x00000a60       0xb5 Timer.o
+ .debug_abbrev  0x00000b15       0x4e timerFunctions.o
+ .debug_abbrev  0x00000b63       0x12 Startup/startup_XMC4500.o
+ .debug_abbrev  0x00000b75      0x154 Startup/system_XMC4500.o
+ .debug_abbrev  0x00000cc9      0x149 Lib/System_LibcStubs.o
+ .debug_abbrev  0x00000e12      0x203 Dave/Generated/src/UART001/UART001.o
+ .debug_abbrev  0x00001015      0x12c Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_abbrev  0x00001141      0x26b Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_abbrev  0x000013ac      0x122 Dave/Generated/src/RESET001/RESET001.o
+ .debug_abbrev  0x000014ce       0x4e Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_abbrev  0x0000151c       0x4e Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_abbrev  0x0000156a      0x129 Dave/Generated/src/IO004/IO004.o
+ .debug_abbrev  0x00001693       0xbb Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_abbrev  0x0000174e      0x20a Dave/Generated/src/I2C001/I2C001.o
+ .debug_abbrev  0x00001958      0x110 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_abbrev  0x00001a68       0xf3 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_abbrev  0x00001b5b      0x123 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_abbrev  0x00001c7e      0x186 Dave/Generated/src/CLK001/CLK001.o
+
+.debug_line     0x00000000     0xbee1
+ *(.debug_line)
+ .debug_line    0x00000000      0xbd5 BluetoothDriver.o
+ .debug_line    0x00000bd5       0x52 CleanArray.o
+ .debug_line    0x00000c27      0x90d FIFO_functions.o
+ .debug_line    0x00001534     0x13b5 LSM9DS1_Driver.o
+ .debug_line    0x000028e9      0xa31 Main.o
+ .debug_line    0x0000331a      0xa54 SendMeasurementsToBt.o
+ .debug_line    0x00003d6e      0x8fd Timer.o
+ .debug_line    0x0000466b      0x8e7 timerFunctions.o
+ .debug_line    0x00004f52      0x130 Startup/startup_XMC4500.o
+ .debug_line    0x00005082      0x3b7 Startup/system_XMC4500.o
+ .debug_line    0x00005439      0x3c1 Lib/System_LibcStubs.o
+ .debug_line    0x000057fa      0x6c6 Dave/Generated/src/UART001/UART001.o
+ .debug_line    0x00005ec0      0x3de Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_line    0x0000629e      0xaf4 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_line    0x00006d92      0x41e Dave/Generated/src/RESET001/RESET001.o
+ .debug_line    0x000071b0      0x91e Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_line    0x00007ace      0x91a Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_line    0x000083e8      0x979 Dave/Generated/src/IO004/IO004.o
+ .debug_line    0x00008d61      0x8e5 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_line    0x00009646      0xa1f Dave/Generated/src/I2C001/I2C001.o
+ .debug_line    0x0000a065      0x8e7 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_line    0x0000a94c      0x876 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_line    0x0000b1c2      0x870 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_line    0x0000ba32      0x4af Dave/Generated/src/CLK001/CLK001.o
+
+.debug_frame    0x00000000     0x1a58
+ *(.debug_frame)
+ .debug_frame   0x00000000      0x310 BluetoothDriver.o
+ .debug_frame   0x00000310       0x2c CleanArray.o
+ .debug_frame   0x0000033c       0x48 FIFO_functions.o
+ .debug_frame   0x00000384      0x8d0 LSM9DS1_Driver.o
+ .debug_frame   0x00000c54       0x2c Main.o
+ .debug_frame   0x00000c80       0x4c SendMeasurementsToBt.o
+ .debug_frame   0x00000ccc       0x50 Timer.o
+ .debug_frame   0x00000d1c       0x6c Startup/system_XMC4500.o
+ .debug_frame   0x00000d88      0x1ec Lib/System_LibcStubs.o
+ .debug_frame   0x00000f74      0x190 Dave/Generated/src/UART001/UART001.o
+ .debug_frame   0x00001104      0x1d0 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_frame   0x000012d4       0x9c Dave/Generated/src/RESET001/RESET001.o
+ .debug_frame   0x00001370       0x64 Dave/Generated/src/IO004/IO004.o
+ .debug_frame   0x000013d4      0x114 Dave/Generated/src/I2C001/I2C001.o
+ .debug_frame   0x000014e8       0x64 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_frame   0x0000154c       0x48 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_frame   0x00001594      0x120 Dave/Generated/src/CLK001/CLK001.o
+ .debug_frame   0x000016b4       0x38 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libm.a(lib_a-s_ceil.o)
+ .debug_frame   0x000016ec       0x30 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libm.a(lib_a-s_round.o)
+ .debug_frame   0x0000171c       0x30 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-init.o)
+ .debug_frame   0x0000174c       0x30 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-malloc.o)
+ .debug_frame   0x0000177c       0x38 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mallocr.o)
+ .debug_frame   0x000017b4       0x30 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memcpy.o)
+ .debug_frame   0x000017e4       0x30 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mlock.o)
+ .debug_frame   0x00001814       0x2c c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-sbrkr.o)
+ .debug_frame   0x00001840       0x2c c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strchr.o)
+ .debug_frame   0x0000186c       0x30 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strcmp.o)
+ .debug_frame   0x0000189c       0x20 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strlen.o)
+ .debug_frame   0x000018bc       0x88 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strstr.o)
+ .debug_frame   0x00001944       0x50 c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-freer.o)
+ .debug_frame   0x00001994       0x2c c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memchr.o)
+ .debug_frame   0x000019c0       0x2c c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memcmp.o)
+ .debug_frame   0x000019ec       0x6c c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-reent.o)
+
+.debug_str      0x00000000    0x9b70a
+ *(.debug_str)
+ .debug_str     0x00000000    0x94c50 BluetoothDriver.o
+                              0x9514d (size before relaxing)
+ .debug_str     0x00094c50       0x1b CleanArray.o
+                               0x22d3 (size before relaxing)
+ .debug_str     0x00094c6b      0x11c FIFO_functions.o
+                              0x931cf (size before relaxing)
+ .debug_str     0x00094d87     0x321f LSM9DS1_Driver.o
+                              0x97c15 (size before relaxing)
+ .debug_str     0x00097fa6       0x4f Main.o
+                              0x9594e (size before relaxing)
+ .debug_str     0x00097ff5       0x77 SendMeasurementsToBt.o
+                              0x959fe (size before relaxing)
+ .debug_str     0x0009806c       0x72 Timer.o
+                              0x92feb (size before relaxing)
+ .debug_str     0x000980de       0x14 timerFunctions.o
+                              0x92f46 (size before relaxing)
+ .debug_str     0x000980f2      0x62d Startup/system_XMC4500.o
+                              0x90476 (size before relaxing)
+ .debug_str     0x0009871f     0x14fe Lib/System_LibcStubs.o
+                               0x5896 (size before relaxing)
+ .debug_str     0x00099c1d      0x515 Dave/Generated/src/UART001/UART001.o
+                              0x91574 (size before relaxing)
+ .debug_str     0x0009a132       0x2d Dave/Generated/src/UART001/UART001_Conf.o
+                              0x90dc0 (size before relaxing)
+ .debug_str     0x0009a15f      0xbad Dave/Generated/src/SYSTM001/SYSTM001.o
+                              0x93d05 (size before relaxing)
+ .debug_str     0x0009ad0c      0x225 Dave/Generated/src/RESET001/RESET001.o
+                              0x907d5 (size before relaxing)
+ .debug_str     0x0009af31       0x28 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+                              0x92f47 (size before relaxing)
+ .debug_str     0x0009af59       0x26 Dave/Generated/src/LIBS/MOTORLIB.o
+                              0x92f45 (size before relaxing)
+ .debug_str     0x0009af7f      0x156 Dave/Generated/src/IO004/IO004.o
+                              0x9315a (size before relaxing)
+ .debug_str     0x0009b0d5       0x29 Dave/Generated/src/IO004/IO004_Conf.o
+                              0x93021 (size before relaxing)
+ .debug_str     0x0009b0fe      0x36d Dave/Generated/src/I2C001/I2C001.o
+                              0x936e0 (size before relaxing)
+ .debug_str     0x0009b46b       0x2b Dave/Generated/src/I2C001/I2C001_Conf.o
+                              0x931b9 (size before relaxing)
+ .debug_str     0x0009b496       0x68 Dave/Generated/src/DAVESupport/DAVE3.o
+                              0x93015 (size before relaxing)
+ .debug_str     0x0009b4fe       0x66 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+                              0x9310f (size before relaxing)
+ .debug_str     0x0009b564      0x1a6 Dave/Generated/src/CLK001/CLK001.o
+                              0x90a5e (size before relaxing)
+
+.debug_loc      0x00000000     0x2634
+ *(.debug_loc)
+ .debug_loc     0x00000000      0x4f0 BluetoothDriver.o
+ .debug_loc     0x000004f0       0x38 CleanArray.o
+ .debug_loc     0x00000528       0x64 FIFO_functions.o
+ .debug_loc     0x0000058c      0xefa LSM9DS1_Driver.o
+ .debug_loc     0x00001486       0x2c Main.o
+ .debug_loc     0x000014b2       0x64 SendMeasurementsToBt.o
+ .debug_loc     0x00001516       0x70 Timer.o
+ .debug_loc     0x00001586       0xa8 Startup/system_XMC4500.o
+ .debug_loc     0x0000162e      0x388 Lib/System_LibcStubs.o
+ .debug_loc     0x000019b6      0x2e6 Dave/Generated/src/UART001/UART001.o
+ .debug_loc     0x00001c9c      0x330 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_loc     0x00001fcc      0x118 Dave/Generated/src/RESET001/RESET001.o
+ .debug_loc     0x000020e4       0x9c Dave/Generated/src/IO004/IO004.o
+ .debug_loc     0x00002180      0x1e0 Dave/Generated/src/I2C001/I2C001.o
+ .debug_loc     0x00002360       0x90 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_loc     0x000023f0       0x64 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_loc     0x00002454      0x1e0 Dave/Generated/src/CLK001/CLK001.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_ranges   0x00000000      0x678
+ *(.debug_ranges)
+ .debug_ranges  0x00000000       0xd8 BluetoothDriver.o
+ .debug_ranges  0x000000d8       0x10 CleanArray.o
+ .debug_ranges  0x000000e8       0x18 FIFO_functions.o
+ .debug_ranges  0x00000100      0x240 LSM9DS1_Driver.o
+ .debug_ranges  0x00000340       0x10 Main.o
+ .debug_ranges  0x00000350       0x18 SendMeasurementsToBt.o
+ .debug_ranges  0x00000368       0x18 Timer.o
+ .debug_ranges  0x00000380       0x30 Startup/startup_XMC4500.o
+ .debug_ranges  0x000003b0       0x20 Startup/system_XMC4500.o
+ .debug_ranges  0x000003d0       0x90 Lib/System_LibcStubs.o
+ .debug_ranges  0x00000460       0x70 Dave/Generated/src/UART001/UART001.o
+ .debug_ranges  0x000004d0       0x80 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_ranges  0x00000550       0x30 Dave/Generated/src/RESET001/RESET001.o
+ .debug_ranges  0x00000580       0x20 Dave/Generated/src/IO004/IO004.o
+ .debug_ranges  0x000005a0       0x50 Dave/Generated/src/I2C001/I2C001.o
+ .debug_ranges  0x000005f0       0x20 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_ranges  0x00000610       0x18 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_ranges  0x00000628       0x50 Dave/Generated/src/CLK001/CLK001.o
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.build_attributes
+                0x00000000      0x8ea
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x00000000       0x39 BluetoothDriver.o
+ .ARM.attributes
+                0x00000039       0x39 CleanArray.o
+ .ARM.attributes
+                0x00000072       0x39 FIFO_functions.o
+ .ARM.attributes
+                0x000000ab       0x39 LSM9DS1_Driver.o
+ .ARM.attributes
+                0x000000e4       0x39 Main.o
+ .ARM.attributes
+                0x0000011d       0x39 SendMeasurementsToBt.o
+ .ARM.attributes
+                0x00000156       0x39 Timer.o
+ .ARM.attributes
+                0x0000018f       0x39 timerFunctions.o
+ .ARM.attributes
+                0x000001c8       0x27 Startup/startup_XMC4500.o
+ .ARM.attributes
+                0x000001ef       0x39 Startup/system_XMC4500.o
+ .ARM.attributes
+                0x00000228       0x39 Lib/System_LibcStubs.o
+ .ARM.attributes
+                0x00000261       0x39 Dave/Generated/src/UART001/UART001.o
+ .ARM.attributes
+                0x0000029a       0x39 Dave/Generated/src/UART001/UART001_Conf.o
+ .ARM.attributes
+                0x000002d3       0x39 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .ARM.attributes
+                0x0000030c       0x39 Dave/Generated/src/RESET001/RESET001.o
+ .ARM.attributes
+                0x00000345       0x39 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .ARM.attributes
+                0x0000037e       0x39 Dave/Generated/src/LIBS/MOTORLIB.o
+ .ARM.attributes
+                0x000003b7       0x39 Dave/Generated/src/IO004/IO004.o
+ .ARM.attributes
+                0x000003f0       0x39 Dave/Generated/src/IO004/IO004_Conf.o
+ .ARM.attributes
+                0x00000429       0x39 Dave/Generated/src/I2C001/I2C001.o
+ .ARM.attributes
+                0x00000462       0x39 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .ARM.attributes
+                0x0000049b       0x39 Dave/Generated/src/DAVESupport/DAVE3.o
+ .ARM.attributes
+                0x000004d4       0x39 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .ARM.attributes
+                0x0000050d       0x39 Dave/Generated/src/CLK001/CLK001.o
+ .ARM.attributes
+                0x00000546       0x2e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libm.a(lib_a-s_ceil.o)
+ .ARM.attributes
+                0x00000574       0x2e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libm.a(lib_a-s_round.o)
+ .ARM.attributes
+                0x000005a2       0x1e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_addsubdf3.o)
+ .ARM.attributes
+                0x000005c0       0x1e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_muldivdf3.o)
+ .ARM.attributes
+                0x000005de       0x1e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_cmpdf2.o)
+ .ARM.attributes
+                0x000005fc       0x1e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_fixdfsi.o)
+ .ARM.attributes
+                0x0000061a       0x1e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7e-m\libgcc.a(_arm_truncdfsf2.o)
+ .ARM.attributes
+                0x00000638       0x2e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-init.o)
+ .ARM.attributes
+                0x00000666       0x2e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-malloc.o)
+ .ARM.attributes
+                0x00000694       0x2e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mallocr.o)
+ .ARM.attributes
+                0x000006c2       0x2e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memcpy.o)
+ .ARM.attributes
+                0x000006f0       0x2e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-mlock.o)
+ .ARM.attributes
+                0x0000071e       0x2e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-sbrkr.o)
+ .ARM.attributes
+                0x0000074c       0x2e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strchr.o)
+ .ARM.attributes
+                0x0000077a       0x2e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strcmp.o)
+ .ARM.attributes
+                0x000007a8       0x2e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strlen.o)
+ .ARM.attributes
+                0x000007d6       0x2e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-strstr.o)
+ .ARM.attributes
+                0x00000804       0x2e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-freer.o)
+ .ARM.attributes
+                0x00000832       0x2e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-impure.o)
+ .ARM.attributes
+                0x00000860       0x2e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memchr.o)
+ .ARM.attributes
+                0x0000088e       0x2e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-memcmp.o)
+ .ARM.attributes
+                0x000008bc       0x2e c:/dave-3.1.10/arm-gcc/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7e-m\libg.a(lib_a-reent.o)
+OUTPUT(Bachelor_improved.elf elf32-littlearm)
+
+.debug_macro    0x00000000    0x1b595
+ .debug_macro   0x00000000      0x26d BluetoothDriver.o
+ .debug_macro   0x0000026d      0x814 BluetoothDriver.o
+ .debug_macro   0x00000a81       0x2d BluetoothDriver.o
+ .debug_macro   0x00000aae       0x3b BluetoothDriver.o
+ .debug_macro   0x00000ae9       0x3a BluetoothDriver.o
+ .debug_macro   0x00000b23       0x10 BluetoothDriver.o
+ .debug_macro   0x00000b33       0x2e BluetoothDriver.o
+ .debug_macro   0x00000b61       0xa3 BluetoothDriver.o
+ .debug_macro   0x00000c04      0x20e BluetoothDriver.o
+ .debug_macro   0x00000e12       0x2d BluetoothDriver.o
+ .debug_macro   0x00000e3f       0x42 BluetoothDriver.o
+ .debug_macro   0x00000e81      0xd39 BluetoothDriver.o
+ .debug_macro   0x00001bba       0x70 BluetoothDriver.o
+ .debug_macro   0x00001c2a    0x150f5 BluetoothDriver.o
+ .debug_macro   0x00016d1f      0x16c BluetoothDriver.o
+ .debug_macro   0x00016e8b       0x22 BluetoothDriver.o
+ .debug_macro   0x00016ead      0x54a BluetoothDriver.o
+ .debug_macro   0x000173f7       0x64 BluetoothDriver.o
+ .debug_macro   0x0001745b       0x46 BluetoothDriver.o
+ .debug_macro   0x000174a1      0x160 BluetoothDriver.o
+ .debug_macro   0x00017601       0x2d BluetoothDriver.o
+ .debug_macro   0x0001762e      0x130 BluetoothDriver.o
+ .debug_macro   0x0001775e       0x7f BluetoothDriver.o
+ .debug_macro   0x000177dd       0xb4 BluetoothDriver.o
+ .debug_macro   0x00017891       0xb6 BluetoothDriver.o
+ .debug_macro   0x00017947       0x2e BluetoothDriver.o
+ .debug_macro   0x00017975       0x28 BluetoothDriver.o
+ .debug_macro   0x0001799d       0x49 BluetoothDriver.o
+ .debug_macro   0x000179e6       0x16 BluetoothDriver.o
+ .debug_macro   0x000179fc       0x10 BluetoothDriver.o
+ .debug_macro   0x00017a0c       0x35 BluetoothDriver.o
+ .debug_macro   0x00017a41       0x3a BluetoothDriver.o
+ .debug_macro   0x00017a7b       0x52 BluetoothDriver.o
+ .debug_macro   0x00017acd       0x43 BluetoothDriver.o
+ .debug_macro   0x00017b10      0x16d BluetoothDriver.o
+ .debug_macro   0x00017c7d       0x16 BluetoothDriver.o
+ .debug_macro   0x00017c93       0x23 BluetoothDriver.o
+ .debug_macro   0x00017cb6       0x10 BluetoothDriver.o
+ .debug_macro   0x00017cc6       0x1c BluetoothDriver.o
+ .debug_macro   0x00017ce2       0x11 CleanArray.o
+ .debug_macro   0x00017cf3      0x1be FIFO_functions.o
+ .debug_macro   0x00017eb1      0x308 LSM9DS1_Driver.o
+ .debug_macro   0x000181b9       0x16 LSM9DS1_Driver.o
+ .debug_macro   0x000181cf      0x1cc LSM9DS1_Driver.o
+ .debug_macro   0x0001839b       0x10 LSM9DS1_Driver.o
+ .debug_macro   0x000183ab       0x10 LSM9DS1_Driver.o
+ .debug_macro   0x000183bb       0x10 LSM9DS1_Driver.o
+ .debug_macro   0x000183cb       0x22 LSM9DS1_Driver.o
+ .debug_macro   0x000183ed       0x91 LSM9DS1_Driver.o
+ .debug_macro   0x0001847e       0x16 LSM9DS1_Driver.o
+ .debug_macro   0x00018494      0x16d LSM9DS1_Driver.o
+ .debug_macro   0x00018601       0x10 LSM9DS1_Driver.o
+ .debug_macro   0x00018611      0x447 LSM9DS1_Driver.o
+ .debug_macro   0x00018a58      0x1da LSM9DS1_Driver.o
+ .debug_macro   0x00018c32      0x2cf Main.o
+ .debug_macro   0x00018f01       0x16 Main.o
+ .debug_macro   0x00018f17      0x2d4 SendMeasurementsToBt.o
+ .debug_macro   0x000191eb      0x1be Timer.o
+ .debug_macro   0x000193a9      0x1be timerFunctions.o
+ .debug_macro   0x00019567      0x17e Startup/system_XMC4500.o
+ .debug_macro   0x000196e5       0x6a Startup/system_XMC4500.o
+ .debug_macro   0x0001974f      0x119 Lib/System_LibcStubs.o
+ .debug_macro   0x00019868       0x19 Lib/System_LibcStubs.o
+ .debug_macro   0x00019881       0x10 Lib/System_LibcStubs.o
+ .debug_macro   0x00019891       0x16 Lib/System_LibcStubs.o
+ .debug_macro   0x000198a7       0x89 Lib/System_LibcStubs.o
+ .debug_macro   0x00019930       0xf5 Lib/System_LibcStubs.o
+ .debug_macro   0x00019a25       0x34 Lib/System_LibcStubs.o
+ .debug_macro   0x00019a59      0x120 Lib/System_LibcStubs.o
+ .debug_macro   0x00019b79       0x16 Lib/System_LibcStubs.o
+ .debug_macro   0x00019b8f      0x495 Lib/System_LibcStubs.o
+ .debug_macro   0x0001a024      0x170 Dave/Generated/src/UART001/UART001.o
+ .debug_macro   0x0001a194       0xb0 Dave/Generated/src/UART001/UART001.o
+ .debug_macro   0x0001a244      0x100 Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_macro   0x0001a344      0x270 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_macro   0x0001a5b4       0xff Dave/Generated/src/RESET001/RESET001.o
+ .debug_macro   0x0001a6b3      0x1b8 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_macro   0x0001a86b      0x1b8 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_macro   0x0001aa23      0x1b4 Dave/Generated/src/IO004/IO004.o
+ .debug_macro   0x0001abd7      0x1b4 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_macro   0x0001ad8b      0x200 Dave/Generated/src/I2C001/I2C001.o
+ .debug_macro   0x0001af8b      0x1b4 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_macro   0x0001b13f      0x1b4 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_macro   0x0001b2f3      0x1b4 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_macro   0x0001b4a7       0xee Dave/Generated/src/CLK001/CLK001.o

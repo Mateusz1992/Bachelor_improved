@@ -1,0 +1,100 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 6
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"CleanArray.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.comm	device,20,4
+  20              		.section	.text.cleanArray,"ax",%progbits
+  21              		.align	2
+  22              		.global	cleanArray
+  23              		.thumb
+  24              		.thumb_func
+  26              	cleanArray:
+  27              	.LFB0:
+  28              		.file 1 "../CleanArray.c"
+   1:../CleanArray.c **** /*
+   2:../CleanArray.c ****  * CleanArray.c
+   3:../CleanArray.c ****  *
+   4:../CleanArray.c ****  *  Created on: 12-02-2016
+   5:../CleanArray.c ****  *      Author: Mateusz
+   6:../CleanArray.c ****  */
+   7:../CleanArray.c **** char device[20];
+   8:../CleanArray.c **** 
+   9:../CleanArray.c **** void cleanArray(void)
+  10:../CleanArray.c **** {
+  29              		.loc 1 10 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 8
+  32              		@ frame_needed = 1, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34 0000 80B4     		push	{r7}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 4
+  37              		.cfi_offset 7, -4
+  38 0002 83B0     		sub	sp, sp, #12
+  39              	.LCFI1:
+  40              		.cfi_def_cfa_offset 16
+  41 0004 00AF     		add	r7, sp, #0
+  42              	.LCFI2:
+  43              		.cfi_def_cfa_register 7
+  44              	.LBB2:
+  11:../CleanArray.c **** 	for(int i = 0; i < 20; i++)
+  45              		.loc 1 11 0
+  46 0006 4FF00003 		mov	r3, #0
+  47 000a 7B60     		str	r3, [r7, #4]
+  48 000c 0CE0     		b	.L2
+  49              	.L3:
+  12:../CleanArray.c **** 	{
+  13:../CleanArray.c **** 		device[i] = '\0';
+  50              		.loc 1 13 0 discriminator 2
+  51 000e 40F20003 		movw	r3, #:lower16:device
+  52 0012 C0F20003 		movt	r3, #:upper16:device
+  53 0016 7A68     		ldr	r2, [r7, #4]
+  54 0018 9B18     		adds	r3, r3, r2
+  55 001a 4FF00002 		mov	r2, #0
+  56 001e 1A70     		strb	r2, [r3, #0]
+  11:../CleanArray.c **** 	for(int i = 0; i < 20; i++)
+  57              		.loc 1 11 0 discriminator 2
+  58 0020 7B68     		ldr	r3, [r7, #4]
+  59 0022 03F10103 		add	r3, r3, #1
+  60 0026 7B60     		str	r3, [r7, #4]
+  61              	.L2:
+  11:../CleanArray.c **** 	for(int i = 0; i < 20; i++)
+  62              		.loc 1 11 0 is_stmt 0 discriminator 1
+  63 0028 7B68     		ldr	r3, [r7, #4]
+  64 002a 132B     		cmp	r3, #19
+  65 002c EFDD     		ble	.L3
+  66              	.LBE2:
+  14:../CleanArray.c **** 	}
+  15:../CleanArray.c **** }
+  67              		.loc 1 15 0 is_stmt 1
+  68 002e 07F10C07 		add	r7, r7, #12
+  69 0032 BD46     		mov	sp, r7
+  70 0034 80BC     		pop	{r7}
+  71 0036 7047     		bx	lr
+  72              		.cfi_endproc
+  73              	.LFE0:
+  75              		.text
+  76              	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 CleanArray.c
+                            *COM*:00000014 device
+C:\Users\Mateusz\AppData\Local\Temp\cc3VZEIZ.s:21     .text.cleanArray:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\cc3VZEIZ.s:26     .text.cleanArray:00000000 cleanArray
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.35166846b5321d4273ad8c4248893ac3
+
+NO UNDEFINED SYMBOLS

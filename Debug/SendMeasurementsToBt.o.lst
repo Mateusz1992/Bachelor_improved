@@ -1,0 +1,479 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 6
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"SendMeasurementsToBt.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.comm	TimerId,4,4
+  20              		.comm	Status,4,4
+  21              		.comm	WriteTimerId,4,4
+  22              		.comm	WriteTimerStatus,4,4
+  23              		.comm	TimerIdReadBytes,4,4
+  24              		.comm	StatusReadBytes,4,4
+  25              		.comm	settings,40,4
+  26              		.comm	gBias,12,4
+  27              		.comm	aBias,12,4
+  28              		.comm	mBias,12,4
+  29              		.comm	gBiasRaw,6,4
+  30              		.comm	aBiasRaw,6,4
+  31              		.comm	mBiasRaw,6,4
+  32              		.comm	_autoCalc,1,1
+  33              		.comm	_mAddress,1,1
+  34              		.comm	_xgAddress,1,1
+  35              		.comm	gRes,4,4
+  36              		.comm	aRes,4,4
+  37              		.comm	mRes,4,4
+  38              		.comm	gx,2,2
+  39              		.comm	gy,2,2
+  40              		.comm	gz,2,2
+  41              		.comm	ax,2,2
+  42              		.comm	ay,2,2
+  43              		.comm	az,2,2
+  44              		.comm	mx,2,2
+  45              		.comm	my,2,2
+  46              		.comm	mz,2,2
+  47              		.comm	temperature,2,2
+  48              		.comm	device,20,4
+  49              		.global	turnedOn
+  50              		.bss
+  51              		.align	2
+  54              	turnedOn:
+  55 0000 00000000 		.space	4
+  56              		.comm	xAxis,1,1
+  57              		.comm	yAxis,1,1
+  58              		.comm	zAxis,1,1
+  59              		.comm	connectionFailure,1,1
+  60              		.comm	TimerIdSentMsg,4,4
+  61              		.comm	turnedOnSentTimer,4,4
+  62              		.section	.rodata
+  63              		.align	2
+  64              	.LC0:
+  65 0000 4C534D39 		.ascii	"LSM9DS1\000"
+  65      44533100 
+  66              		.section	.text.sendMeasurementsToBt,"ax",%progbits
+  67              		.align	2
+  68              		.global	sendMeasurementsToBt
+  69              		.thumb
+  70              		.thumb_func
+  72              	sendMeasurementsToBt:
+  73              	.LFB112:
+  74              		.file 1 "../SendMeasurementsToBt.c"
+   1:../SendMeasurementsToBt.c **** /*
+   2:../SendMeasurementsToBt.c ****  * SendMeasurementsToBt.c
+   3:../SendMeasurementsToBt.c ****  *
+   4:../SendMeasurementsToBt.c ****  *  Created on: 12-02-2016
+   5:../SendMeasurementsToBt.c ****  *      Author: Mateusz
+   6:../SendMeasurementsToBt.c ****  */
+   7:../SendMeasurementsToBt.c **** #include "CleanArray.h"
+   8:../SendMeasurementsToBt.c **** #include "LSM9DS1_Driver.h"
+   9:../SendMeasurementsToBt.c **** #include "BluetoothDriver.h"
+  10:../SendMeasurementsToBt.c **** #include "SendMeasurementsToBt.h"
+  11:../SendMeasurementsToBt.c **** #include <DAVE3.h>
+  12:../SendMeasurementsToBt.c **** #include <string.h>
+  13:../SendMeasurementsToBt.c **** 
+  14:../SendMeasurementsToBt.c **** char device[20]; //tablica w ktorej przechowujemy wybrany sensor
+  15:../SendMeasurementsToBt.c **** int turnedOn = 0; //czy ktorys timer jest wlaczony
+  16:../SendMeasurementsToBt.c **** 
+  17:../SendMeasurementsToBt.c **** char xAxis;
+  18:../SendMeasurementsToBt.c **** char yAxis;
+  19:../SendMeasurementsToBt.c **** char zAxis;
+  20:../SendMeasurementsToBt.c **** 
+  21:../SendMeasurementsToBt.c **** bool connectionFailure; //jesli wystapil problem z polaczeniem bluetooth to trzeba usunac timer, zm
+  22:../SendMeasurementsToBt.c **** 
+  23:../SendMeasurementsToBt.c **** handle_t TimerIdSentMsg; //id timera do
+  24:../SendMeasurementsToBt.c **** int turnedOnSentTimer;
+  25:../SendMeasurementsToBt.c **** 
+  26:../SendMeasurementsToBt.c **** void sendMeasurementsToBt(void)
+  27:../SendMeasurementsToBt.c **** {
+  75              		.loc 1 27 0
+  76              		.cfi_startproc
+  77              		@ args = 0, pretend = 0, frame = 0
+  78              		@ frame_needed = 1, uses_anonymous_args = 0
+  79 0000 80B5     		push	{r7, lr}
+  80              	.LCFI0:
+  81              		.cfi_def_cfa_offset 8
+  82              		.cfi_offset 7, -8
+  83              		.cfi_offset 14, -4
+  84 0002 00AF     		add	r7, sp, #0
+  85              	.LCFI1:
+  86              		.cfi_def_cfa_register 7
+  28:../SendMeasurementsToBt.c **** 	if(!strcmp(device, "LSM9DS1"))
+  87              		.loc 1 28 0
+  88 0004 40F20000 		movw	r0, #:lower16:device
+  89 0008 C0F20000 		movt	r0, #:upper16:device
+  90 000c 40F20001 		movw	r1, #:lower16:.LC0
+  91 0010 C0F20001 		movt	r1, #:upper16:.LC0
+  92 0014 FFF7FEFF 		bl	strcmp
+  93 0018 0346     		mov	r3, r0
+  94 001a 002B     		cmp	r3, #0
+  95 001c 7DD1     		bne	.L1
+  29:../SendMeasurementsToBt.c **** 	{
+  30:../SendMeasurementsToBt.c **** 		readAndSendMeasurements(NULL);
+  96              		.loc 1 30 0
+  97 001e 4FF00000 		mov	r0, #0
+  98 0022 FFF7FEFF 		bl	readAndSendMeasurements
+  31:../SendMeasurementsToBt.c **** 		xAxis = getAccelX() + 48;
+  99              		.loc 1 31 0
+ 100 0026 FFF7FEFF 		bl	getAccelX
+ 101 002a 0346     		mov	r3, r0
+ 102 002c DBB2     		uxtb	r3, r3
+ 103 002e 03F13003 		add	r3, r3, #48
+ 104 0032 DAB2     		uxtb	r2, r3
+ 105 0034 40F20003 		movw	r3, #:lower16:xAxis
+ 106 0038 C0F20003 		movt	r3, #:upper16:xAxis
+ 107 003c 1A70     		strb	r2, [r3, #0]
+  32:../SendMeasurementsToBt.c **** 		yAxis = getAccelY() + 48;
+ 108              		.loc 1 32 0
+ 109 003e FFF7FEFF 		bl	getAccelY
+ 110 0042 0346     		mov	r3, r0
+ 111 0044 DBB2     		uxtb	r3, r3
+ 112 0046 03F13003 		add	r3, r3, #48
+ 113 004a DAB2     		uxtb	r2, r3
+ 114 004c 40F20003 		movw	r3, #:lower16:yAxis
+ 115 0050 C0F20003 		movt	r3, #:upper16:yAxis
+ 116 0054 1A70     		strb	r2, [r3, #0]
+  33:../SendMeasurementsToBt.c **** 		zAxis = getAccelZ() + 48;
+ 117              		.loc 1 33 0
+ 118 0056 FFF7FEFF 		bl	getAccelZ
+ 119 005a 0346     		mov	r3, r0
+ 120 005c DBB2     		uxtb	r3, r3
+ 121 005e 03F13003 		add	r3, r3, #48
+ 122 0062 DAB2     		uxtb	r2, r3
+ 123 0064 40F20003 		movw	r3, #:lower16:zAxis
+ 124 0068 C0F20003 		movt	r3, #:upper16:zAxis
+ 125 006c 1A70     		strb	r2, [r3, #0]
+  34:../SendMeasurementsToBt.c **** 
+  35:../SendMeasurementsToBt.c **** 		if(0 == turnedOnSentTimer)
+ 126              		.loc 1 35 0
+ 127 006e 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 128 0072 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 129 0076 1B68     		ldr	r3, [r3, #0]
+ 130 0078 002B     		cmp	r3, #0
+ 131 007a 20D1     		bne	.L3
+  36:../SendMeasurementsToBt.c **** 		{
+  37:../SendMeasurementsToBt.c **** 			TimerIdSentMsg = SYSTM001_CreateTimer(50,SYSTM001_PERIODIC,sendMsgLSM9DS1,NULL);
+ 132              		.loc 1 37 0
+ 133 007c 4FF03200 		mov	r0, #50
+ 134 0080 4FF00101 		mov	r1, #1
+ 135 0084 40F20002 		movw	r2, #:lower16:sendMsgLSM9DS1
+ 136 0088 C0F20002 		movt	r2, #:upper16:sendMsgLSM9DS1
+ 137 008c 4FF00003 		mov	r3, #0
+ 138 0090 FFF7FEFF 		bl	SYSTM001_CreateTimer
+ 139 0094 0246     		mov	r2, r0
+ 140 0096 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 141 009a C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 142 009e 1A60     		str	r2, [r3, #0]
+  38:../SendMeasurementsToBt.c **** 			SYSTM001_StartTimer(TimerIdSentMsg);
+ 143              		.loc 1 38 0
+ 144 00a0 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 145 00a4 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 146 00a8 1B68     		ldr	r3, [r3, #0]
+ 147 00aa 1846     		mov	r0, r3
+ 148 00ac FFF7FEFF 		bl	SYSTM001_StartTimer
+  39:../SendMeasurementsToBt.c **** 			turnedOnSentTimer = 1;
+ 149              		.loc 1 39 0
+ 150 00b0 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 151 00b4 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 152 00b8 4FF00102 		mov	r2, #1
+ 153 00bc 1A60     		str	r2, [r3, #0]
+ 154              	.L3:
+  40:../SendMeasurementsToBt.c **** 		}
+  41:../SendMeasurementsToBt.c **** 
+  42:../SendMeasurementsToBt.c **** 		if(1 == turnedOnSentTimer)
+ 155              		.loc 1 42 0
+ 156 00be 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 157 00c2 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 158 00c6 1B68     		ldr	r3, [r3, #0]
+ 159 00c8 012B     		cmp	r3, #1
+ 160 00ca 26D1     		bne	.L1
+  43:../SendMeasurementsToBt.c **** 		{
+  44:../SendMeasurementsToBt.c **** 			if(TRUE == connectionFailure)
+ 161              		.loc 1 44 0
+ 162 00cc 40F20003 		movw	r3, #:lower16:connectionFailure
+ 163 00d0 C0F20003 		movt	r3, #:upper16:connectionFailure
+ 164 00d4 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 165 00d6 012B     		cmp	r3, #1
+ 166 00d8 1FD1     		bne	.L1
+  45:../SendMeasurementsToBt.c **** 			{
+  46:../SendMeasurementsToBt.c **** 				connectionFailure = FALSE;
+ 167              		.loc 1 46 0
+ 168 00da 40F20003 		movw	r3, #:lower16:connectionFailure
+ 169 00de C0F20003 		movt	r3, #:upper16:connectionFailure
+ 170 00e2 4FF00002 		mov	r2, #0
+ 171 00e6 1A70     		strb	r2, [r3, #0]
+  47:../SendMeasurementsToBt.c **** 				SYSTM001_StopTimer(TimerIdSentMsg);
+ 172              		.loc 1 47 0
+ 173 00e8 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 174 00ec C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 175 00f0 1B68     		ldr	r3, [r3, #0]
+ 176 00f2 1846     		mov	r0, r3
+ 177 00f4 FFF7FEFF 		bl	SYSTM001_StopTimer
+  48:../SendMeasurementsToBt.c **** 
+  49:../SendMeasurementsToBt.c **** 				SYSTM001_DeleteTimer(TimerIdSentMsg);
+ 178              		.loc 1 49 0
+ 179 00f8 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 180 00fc C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 181 0100 1B68     		ldr	r3, [r3, #0]
+ 182 0102 1846     		mov	r0, r3
+ 183 0104 FFF7FEFF 		bl	SYSTM001_DeleteTimer
+  50:../SendMeasurementsToBt.c **** 
+  51:../SendMeasurementsToBt.c **** 				TimerIdSentMsg = 0;
+ 184              		.loc 1 51 0
+ 185 0108 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 186 010c C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 187 0110 4FF00002 		mov	r2, #0
+ 188 0114 1A60     		str	r2, [r3, #0]
+  52:../SendMeasurementsToBt.c **** 				cleanArray();
+ 189              		.loc 1 52 0
+ 190 0116 FFF7FEFF 		bl	cleanArray
+ 191              	.L1:
+  53:../SendMeasurementsToBt.c **** 
+  54:../SendMeasurementsToBt.c **** 			}
+  55:../SendMeasurementsToBt.c **** 		}
+  56:../SendMeasurementsToBt.c **** 	}
+  57:../SendMeasurementsToBt.c **** }
+ 192              		.loc 1 57 0
+ 193 011a 80BD     		pop	{r7, pc}
+ 194              		.cfi_endproc
+ 195              	.LFE112:
+ 197              		.section	.text.sendMsgLSM9DS1,"ax",%progbits
+ 198              		.align	2
+ 199              		.global	sendMsgLSM9DS1
+ 200              		.thumb
+ 201              		.thumb_func
+ 203              	sendMsgLSM9DS1:
+ 204              	.LFB113:
+  58:../SendMeasurementsToBt.c **** 
+  59:../SendMeasurementsToBt.c **** 
+  60:../SendMeasurementsToBt.c **** void sendMsgLSM9DS1(void *T)
+  61:../SendMeasurementsToBt.c **** {
+ 205              		.loc 1 61 0
+ 206              		.cfi_startproc
+ 207              		@ args = 0, pretend = 0, frame = 8
+ 208              		@ frame_needed = 1, uses_anonymous_args = 0
+ 209 0000 80B5     		push	{r7, lr}
+ 210              	.LCFI2:
+ 211              		.cfi_def_cfa_offset 8
+ 212              		.cfi_offset 7, -8
+ 213              		.cfi_offset 14, -4
+ 214 0002 82B0     		sub	sp, sp, #8
+ 215              	.LCFI3:
+ 216              		.cfi_def_cfa_offset 16
+ 217 0004 00AF     		add	r7, sp, #0
+ 218              	.LCFI4:
+ 219              		.cfi_def_cfa_register 7
+ 220 0006 7860     		str	r0, [r7, #4]
+  62:../SendMeasurementsToBt.c **** 	static int i = 0;
+  63:../SendMeasurementsToBt.c **** 
+  64:../SendMeasurementsToBt.c **** 	if(0 == i){
+ 221              		.loc 1 64 0
+ 222 0008 40F20003 		movw	r3, #:lower16:i.8967
+ 223 000c C0F20003 		movt	r3, #:upper16:i.8967
+ 224 0010 1B68     		ldr	r3, [r3, #0]
+ 225 0012 002B     		cmp	r3, #0
+ 226 0014 14D1     		bne	.L5
+  65:../SendMeasurementsToBt.c **** 		send(&xAxis, 1);
+ 227              		.loc 1 65 0
+ 228 0016 40F20000 		movw	r0, #:lower16:xAxis
+ 229 001a C0F20000 		movt	r0, #:upper16:xAxis
+ 230 001e 4FF00101 		mov	r1, #1
+ 231 0022 FFF7FEFF 		bl	send
+  66:../SendMeasurementsToBt.c **** 		i++;
+ 232              		.loc 1 66 0
+ 233 0026 40F20003 		movw	r3, #:lower16:i.8967
+ 234 002a C0F20003 		movt	r3, #:upper16:i.8967
+ 235 002e 1B68     		ldr	r3, [r3, #0]
+ 236 0030 03F10102 		add	r2, r3, #1
+ 237 0034 40F20003 		movw	r3, #:lower16:i.8967
+ 238 0038 C0F20003 		movt	r3, #:upper16:i.8967
+ 239 003c 1A60     		str	r2, [r3, #0]
+ 240 003e 31E0     		b	.L4
+ 241              	.L5:
+  67:../SendMeasurementsToBt.c **** 	}
+  68:../SendMeasurementsToBt.c **** 	else if(1 == i)
+ 242              		.loc 1 68 0
+ 243 0040 40F20003 		movw	r3, #:lower16:i.8967
+ 244 0044 C0F20003 		movt	r3, #:upper16:i.8967
+ 245 0048 1B68     		ldr	r3, [r3, #0]
+ 246 004a 012B     		cmp	r3, #1
+ 247 004c 14D1     		bne	.L7
+  69:../SendMeasurementsToBt.c **** 	{
+  70:../SendMeasurementsToBt.c **** 		send(&yAxis, 1);
+ 248              		.loc 1 70 0
+ 249 004e 40F20000 		movw	r0, #:lower16:yAxis
+ 250 0052 C0F20000 		movt	r0, #:upper16:yAxis
+ 251 0056 4FF00101 		mov	r1, #1
+ 252 005a FFF7FEFF 		bl	send
+  71:../SendMeasurementsToBt.c **** 		i++;
+ 253              		.loc 1 71 0
+ 254 005e 40F20003 		movw	r3, #:lower16:i.8967
+ 255 0062 C0F20003 		movt	r3, #:upper16:i.8967
+ 256 0066 1B68     		ldr	r3, [r3, #0]
+ 257 0068 03F10102 		add	r2, r3, #1
+ 258 006c 40F20003 		movw	r3, #:lower16:i.8967
+ 259 0070 C0F20003 		movt	r3, #:upper16:i.8967
+ 260 0074 1A60     		str	r2, [r3, #0]
+ 261 0076 15E0     		b	.L4
+ 262              	.L7:
+  72:../SendMeasurementsToBt.c **** 	}
+  73:../SendMeasurementsToBt.c **** 	else if(2 == i)
+ 263              		.loc 1 73 0
+ 264 0078 40F20003 		movw	r3, #:lower16:i.8967
+ 265 007c C0F20003 		movt	r3, #:upper16:i.8967
+ 266 0080 1B68     		ldr	r3, [r3, #0]
+ 267 0082 022B     		cmp	r3, #2
+ 268 0084 0ED1     		bne	.L4
+  74:../SendMeasurementsToBt.c **** 	{
+  75:../SendMeasurementsToBt.c **** 		send(&zAxis, 1);
+ 269              		.loc 1 75 0
+ 270 0086 40F20000 		movw	r0, #:lower16:zAxis
+ 271 008a C0F20000 		movt	r0, #:upper16:zAxis
+ 272 008e 4FF00101 		mov	r1, #1
+ 273 0092 FFF7FEFF 		bl	send
+  76:../SendMeasurementsToBt.c **** 		i = 0;
+ 274              		.loc 1 76 0
+ 275 0096 40F20003 		movw	r3, #:lower16:i.8967
+ 276 009a C0F20003 		movt	r3, #:upper16:i.8967
+ 277 009e 4FF00002 		mov	r2, #0
+ 278 00a2 1A60     		str	r2, [r3, #0]
+ 279              	.L4:
+  77:../SendMeasurementsToBt.c **** 	}
+  78:../SendMeasurementsToBt.c **** }
+ 280              		.loc 1 78 0
+ 281 00a4 07F10807 		add	r7, r7, #8
+ 282 00a8 BD46     		mov	sp, r7
+ 283 00aa 80BD     		pop	{r7, pc}
+ 284              		.cfi_endproc
+ 285              	.LFE113:
+ 287              		.bss
+ 288              		.align	2
+ 289              	i.8967:
+ 290 0004 00000000 		.space	4
+ 291              		.text
+ 292              	.Letext0:
+ 293              		.file 2 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+ 294              		.file 3 "../LSM9DS1_Types.h"
+ 295              		.file 4 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 296              		.file 5 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 297              		.file 6 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Include/core_cm4.h"
+ 298              		.file 7 "../LSM9DS1_Driver.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 SendMeasurementsToBt.c
+                            *COM*:00000004 TimerId
+                            *COM*:00000004 Status
+                            *COM*:00000004 WriteTimerId
+                            *COM*:00000004 WriteTimerStatus
+                            *COM*:00000004 TimerIdReadBytes
+                            *COM*:00000004 StatusReadBytes
+                            *COM*:00000028 settings
+                            *COM*:0000000c gBias
+                            *COM*:0000000c aBias
+                            *COM*:0000000c mBias
+                            *COM*:00000006 gBiasRaw
+                            *COM*:00000006 aBiasRaw
+                            *COM*:00000006 mBiasRaw
+                            *COM*:00000001 _autoCalc
+                            *COM*:00000001 _mAddress
+                            *COM*:00000001 _xgAddress
+                            *COM*:00000004 gRes
+                            *COM*:00000004 aRes
+                            *COM*:00000004 mRes
+                            *COM*:00000002 gx
+                            *COM*:00000002 gy
+                            *COM*:00000002 gz
+                            *COM*:00000002 ax
+                            *COM*:00000002 ay
+                            *COM*:00000002 az
+                            *COM*:00000002 mx
+                            *COM*:00000002 my
+                            *COM*:00000002 mz
+                            *COM*:00000002 temperature
+                            *COM*:00000014 device
+C:\Users\Mateusz\AppData\Local\Temp\ccYDALjW.s:54     .bss:00000000 turnedOn
+C:\Users\Mateusz\AppData\Local\Temp\ccYDALjW.s:51     .bss:00000000 $d
+                            *COM*:00000001 xAxis
+                            *COM*:00000001 yAxis
+                            *COM*:00000001 zAxis
+                            *COM*:00000001 connectionFailure
+                            *COM*:00000004 TimerIdSentMsg
+                            *COM*:00000004 turnedOnSentTimer
+C:\Users\Mateusz\AppData\Local\Temp\ccYDALjW.s:63     .rodata:00000000 $d
+C:\Users\Mateusz\AppData\Local\Temp\ccYDALjW.s:64     .rodata:00000000 .LC0
+C:\Users\Mateusz\AppData\Local\Temp\ccYDALjW.s:67     .text.sendMeasurementsToBt:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccYDALjW.s:72     .text.sendMeasurementsToBt:00000000 sendMeasurementsToBt
+C:\Users\Mateusz\AppData\Local\Temp\ccYDALjW.s:203    .text.sendMsgLSM9DS1:00000000 sendMsgLSM9DS1
+C:\Users\Mateusz\AppData\Local\Temp\ccYDALjW.s:198    .text.sendMsgLSM9DS1:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccYDALjW.s:289    .bss:00000004 i.8967
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.35166846b5321d4273ad8c4248893ac3
+                           .group:00000000 wm4.LSM9DS1_Driver.h.9.225085f752270af24a0df342ed7d3479
+                           .group:00000000 wm4.LSM9DS1_Registers.h.9.72af380d6da01de607f77d245bf32825
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.XMC4500.h.45.215f4b8c79f46c7645c15373868d08c0
+                           .group:00000000 wm4.core_cm4.h.47.41af406cb4cda82c972f112a9cd0a024
+                           .group:00000000 wm4.core_cmInstr.h.39.3d3d1b4a79aef37532666dc6ee87c6ac
+                           .group:00000000 wm4.core_cm4_simd.h.43.b5d1d38735af6366227b4256d330cf13
+                           .group:00000000 wm4.core_cm4.h.178.e5ef5ce66d198d7f00f9d0076e267c41
+                           .group:00000000 wm4.system_XMC4500.h.29.827f68baa362c84f2abae4ab67dde7c9
+                           .group:00000000 wm4.XMC4500.h.198.8e022f279ff353ed081df898dc7b9cf3
+                           .group:00000000 wm4.stddef.h.40.50cf36416e06376af8a9dca28536f2e4
+                           .group:00000000 wm4.types.h.60.e75c47576398c648cdcf9000ace5e3d8
+                           .group:00000000 wm4.MULTIPLEXER.h.46.4a863fbae1c79f0db26da3ce2dc30d02
+                           .group:00000000 wm4.CCU8PWMLIB.h.74.725ec81203769525cc7a424597055f47
+                           .group:00000000 wm4.MOTORLIB.h.62.951091d95913dd2ff36d761323a1771d
+                           .group:00000000 wm4.DBG001.h.116.d6d9e7459a0faa3905c97c1d2edb339d
+                           .group:00000000 wm4.IO004.h.53.442ea5eb47ad9eedc675253aa35f3107
+                           .group:00000000 wm4.uc_id.h.35.fa57ecd9f559d2767f56c96da2848c12
+                           .group:00000000 wm4.CLK001_Const.h.50.e5e9c2ddc89f4cc9e7b93e9648fa94e4
+                           .group:00000000 wm4.CLK001_Conf.h.81.82a8db895dc146da001475dd68223522
+                           .group:00000000 wm4.Usic.h.54.8af9f733ba5771eeb374435d205ea54b
+                           .group:00000000 wm4.UART001_Conf.h.53.ea28968cb6c53b1be9f53a4d9f42a86f
+                           .group:00000000 wm4.SYSTM001.h.64.6ecb31c49bc3e7691644fdcdfc11b5cd
+                           .group:00000000 wm4.I2C001.h.97.5277d52889d6c741e048ea45ee1277b5
+                           .group:00000000 wm4.I2C001_Conf.h.58.e471e519f7471a50493b6f4fe912ee0d
+                           .group:00000000 wm4.stdio.h.31.f48311dde756a2aec27351b58a280fb9
+                           .group:00000000 wm4.stddef.h.161.e50ff8a9d5d1abbc15641da28ac571bf
+                           .group:00000000 wm4.stdarg.h.34.3a23a216c0c293b3d2ea2e89281481e6
+                           .group:00000000 wm4._default_types.h.6.5e12cd604db8ce00b62bb2f02708eaf3
+                           .group:00000000 wm4.lock.h.2.9bc98482741e5e2a9450b12934a684ea
+                           .group:00000000 wm4.stddef.h.161.c6104a0666cf681b6269ddc9b4f516d4
+                           .group:00000000 wm4.reent.h.16.9e42f0e588b85e70b2bf6572af57ce64
+                           .group:00000000 wm4.types.h.23.0d949686bbcadd1621462d4fa1f884f9
+                           .group:00000000 wm4.types.h.2.e9cec8c90ab35f77d9f499e06ae02400
+                           .group:00000000 wm4.types.h.80.1f2c84c0d57dd52dd9936095d9ac218e
+                           .group:00000000 wm4.stdio.h.2.4aa87247282eca6c8f36f9de33d8df1a
+                           .group:00000000 wm4.stdio.h.63.dfdea6580b080784d08faace69b6ed76
+                           .group:00000000 wm4.stdlib.h.13.603ed7eb09a1561ab06840b7c0fcff58
+                           .group:00000000 wm4.alloca.h.8.dfc0c703c47ec3e69746825b17d9e66d
+                           .group:00000000 wm4.stdlib.h.53.c69c7609933ff56d59c757cec2d13230
+                           .group:00000000 wm4.string.h.8.ef946ad0bc9ad5c970c365dcd1fc4b0a
+                           .group:00000000 wm4.string.h.86.d5c872ff52e2712c985b588a0ef39f3c
+
+UNDEFINED SYMBOLS
+strcmp
+readAndSendMeasurements
+getAccelX
+getAccelY
+getAccelZ
+SYSTM001_CreateTimer
+SYSTM001_StartTimer
+SYSTM001_StopTimer
+SYSTM001_DeleteTimer
+cleanArray
+send
