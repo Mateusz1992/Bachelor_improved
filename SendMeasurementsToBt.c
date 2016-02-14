@@ -34,7 +34,7 @@ void sendMeasurementsToBt(void)
 
 		if(0 == turnedOnSentTimer)
 		{
-			TimerIdSentMsg = SYSTM001_CreateTimer(50,SYSTM001_PERIODIC,sendMsgLSM9DS1,NULL);
+			TimerIdSentMsg = SYSTM001_CreateTimer(10,SYSTM001_PERIODIC,sendMsgLSM9DS1,NULL);
 			SYSTM001_StartTimer(TimerIdSentMsg);
 			turnedOnSentTimer = 1;
 		}

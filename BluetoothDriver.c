@@ -105,7 +105,7 @@ void manageConnection(void)
 
 	if(1 == stageOfConnection)
 	{
-		TimerIdRxMessage = SYSTM001_CreateTimer(200,SYSTM001_PERIODIC,RxTimerHandler,NULL);
+		TimerIdRxMessage = SYSTM001_CreateTimer(20,SYSTM001_PERIODIC,RxTimerHandler,NULL);
 		SYSTM001_StartTimer(TimerIdRxMessage);
 		turnedOnSentTimer = 0;
 		stageOfConnection = 0;

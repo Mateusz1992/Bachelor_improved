@@ -134,19 +134,7 @@ void readAndSendMeasurements(void (*sendFunction)(char *str, int len))
 	if(counter >= 1)
 	{
 		int i = 0;
-		/*for(int i = 0; i < 100; i++)
-		{
-			accelOsX[i] = pomiaryAccel[i].ax;
-			accelOsY[i] = pomiaryAccel[i].ay;
-			accelOsZ[i] = pomiaryAccel[i].az;
-		}
 
-		for(i = 0; i < 100; i++)
-		{
-			(*sendFunction)(&accelOsX[i], strlen(&accelOsX[i]));
-			(*sendFunction)(&accelOsY[i], strlen(&accelOsY[i]));
-			(*sendFunction)(&accelOsZ[i], strlen(&accelOsZ[i]));
-		}*/
 		counter = 0;
 	}
 }
