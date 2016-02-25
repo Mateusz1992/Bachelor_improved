@@ -210,8 +210,8 @@
   <provided xsi:type="ResourceModel:BitField" name="SIZE" URI="http://www.infineon.com/0.1.30/peripheral/usic/1/channel/0/rbctr_size" maxValue="7" minValue="0" startPos="24" stopPos="26" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.24/uart001_0.app#//@consumed.30"/>
-    <localValue xsi:type="ResourceModel:IntegerValue" value="6"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="6"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="5"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="5"/>
     <toolTipHelpDescription>Buffer Size</toolTipHelpDescription>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b000" description="The FIFO mechanism is disabled. The buffer does not accept any request for data."/>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b001" description="The FIFO buffer contains 2 entries."/>

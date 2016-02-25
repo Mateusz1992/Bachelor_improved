@@ -2,6 +2,7 @@
 <ResourceModel:App xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="RESET001" description="App which provides APIs to &#xA;assert/deassert peripheral&#xA; modules." descriptionURL="/doc/html/group___r_e_s_e_t001_app.html" mode="SHARABLE" URI="http://www.infineon.com/1.0.14/app/reset001/0">
   <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../UART001/1.0.24/uart001_0.app#//@consumed.7"/>
   <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../I2C001/1.0.28/i2c001_0.app#//@consumed.6"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../I2C001/1.0.28/i2c001_1.app#//@consumed.6"/>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.14/app/reset001/0/rcurst">
     <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../SCU/SCU_0.dd#//@provided.28"/>
     <requiredResource uriString="peripheral/scu/0/rstctrl/0/rcurst" uriType="LOCALTYPE"/>

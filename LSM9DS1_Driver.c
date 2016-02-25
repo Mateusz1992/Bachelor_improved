@@ -16,7 +16,7 @@
 #include <string.h>
 
 //#define DELAY 10000
-#define DELAY 10000
+#define DELAY 12000
 
 #define LSM9DS1_M	0x1E // Would be 0x1C if SDO_M is LOW
 #define LSM9DS1_AG	0x6B // Would be 0x6A if SDO_AG is LOW
@@ -34,7 +34,8 @@ uint32_t StatusTimerReadMeasurements = SYSTM001_ERROR;
 volatile bool readingAllowed = TRUE;
 
 accel pomiaryAccel[100];
-accel pomiaryAccel1[100];
+extern accel copiedData[100];
+//accel pomiaryAccel1[100];
 
 addressAndData adrAndData;
 
@@ -53,17 +54,49 @@ float magSensitivity[4] = {0.00014, 0.00029, 0.00043, 0.00058};
 int16_t accelX = 0;
 int16_t accelY = 0;
 int16_t accelZ = 0;
+
+float accelXf = 0;
+float accelYf = 0;
+float accelZf = 0;
 //linear acceleration all axes
 
 //gyroscope all axes
 int16_t gyroX = 0;
 int16_t gyroY = 0;
 int16_t gyroZ = 0;
+
+float gyroXf = 0;
+float gyroYf = 0;
+float gyroZf = 0;
+
 //gyroscope all axes
+
+//magnetometer all axes
+int16_t magnetX = 0;
+int16_t magnetY = 0;
+int16_t magnetZ = 0;
+
+float magnetXf = 0;
+float magnetYf = 0;
+float magnetZf = 0;
+//magnetometer all axes
+
+
+extern char copied = 0;
+
+float getAccelXf(void)
+{
+	return accelXf;
+}
 
 int16_t getAccelX(void)
 {
 	return accelX;
+}
+
+float getAccelYf(void)
+{
+	return accelYf;
 }
 
 int16_t getAccelY(void)
@@ -71,14 +104,79 @@ int16_t getAccelY(void)
 	return accelY;
 }
 
+float getAccelZf(void)
+{
+	return accelZf;
+}
+
 int16_t getAccelZ(void)
 {
 	return accelZ;
 }
 
+float getGyroXf(void)
+{
+	return gyroXf;
+}
+
+int16_t getGyroX(void)
+{
+	return gyroX;
+}
+
+float getGyroYf(void)
+{
+	return gyroYf;
+}
+
+int16_t getGyroY(void)
+{
+	return gyroY;
+}
+
+float getGyroZf(void)
+{
+	return gyroZf;
+}
+
+int16_t getGyroZ(void)
+{
+	return gyroZ;
+}
+
+float getMagnetXf(void)
+{
+	return magnetXf;
+}
+
+int16_t getMagnetX(void)
+{
+	return magnetX;
+}
+
+float getMagnetYf(void)
+{
+	return magnetYf;
+}
+
+int16_t getMagnetY(void)
+{
+	return magnetY;
+}
+
+float getMagnetZf(void)
+{
+	return magnetZf;
+}
+
+int16_t getMagnetZ(void)
+{
+	return magnetZ;
+}
+
 void startMeasurements(void)
 {
-	TimerIdReadMeasurements=SYSTM001_CreateTimer(2,SYSTM001_PERIODIC,timerHandlerReceiveOneMeasurementEachSensor,&adrAndData);
+	TimerIdReadMeasurements=SYSTM001_CreateTimer(35,SYSTM001_PERIODIC,timerHandlerReceiveOneMeasurementEachSensor,&adrAndData);
 	SYSTM001_StartTimer(TimerIdReadMeasurements);
 }
 
@@ -102,17 +200,26 @@ void readAndSendMeasurements(void (*sendFunction)(char *str, int len))
 			accelX -= aBiasRaw[Z_AXIS];
 		}
 
+		accelXf = calcAccel(accelX);
+		accelYf = calcAccel(accelY);
+		accelZf = calcAccel(accelZ);
+
 		accelX = calcAccel(accelX);
 		accelY = calcAccel(accelY);
 		accelZ = calcAccel(accelZ);
+
 
 		pomiaryAccel[counter].ax = accelX;
 		pomiaryAccel[counter].ay = accelY;
 		pomiaryAccel[counter].az = accelZ;
 
+
 		gyroX = (adrAndData.dane[7] << 1) | adrAndData.dane[6];
+
 		gyroY = (adrAndData.dane[9] << 1) | adrAndData.dane[8];
+
 		gyroZ = (adrAndData.dane[11] << 1) | adrAndData.dane[10];
+
 
 		if (_autoCalc) //kalibracja
 		{
@@ -120,22 +227,62 @@ void readAndSendMeasurements(void (*sendFunction)(char *str, int len))
 			gyroY -= gBiasRaw[Y_AXIS];
 			gyroZ -= gBiasRaw[Z_AXIS];
 		}
+
+		gyroXf = calcGyro(gyroX);
+		gyroYf = calcGyro(gyroY);
+		gyroZf = calcGyro(gyroZ);
+
 		gyroX = calcGyro(gyroX);
 		gyroY = calcGyro(gyroY);
 		gyroZ = calcGyro(gyroZ);
 
-		pomiaryAccel1[counter].ax = gyroX;
-		pomiaryAccel1[counter].ay = gyroY;
-		pomiaryAccel1[counter].az = gyroZ;
+		pomiaryAccel[counter].gx = gyroX;
+		pomiaryAccel[counter].gy = gyroY;
+		pomiaryAccel[counter].gz = gyroZ;
+
+
+
+		magnetX = (adrAndData.dane[13] << 1) | adrAndData.dane[12];
+
+		magnetY = (adrAndData.dane[15] << 1) | adrAndData.dane[14];
+
+		magnetY = (adrAndData.dane[17] << 1) | adrAndData.dane[16];
+
+
+		magnetXf = calcMag(magnetX);
+		magnetYf = calcMag(magnetY);
+		magnetZf = calcMag(magnetZ);
+
+		magnetX = calcMag(magnetX);
+		magnetY = calcMag(magnetY);
+		magnetZ = calcMag(magnetZ);
+
 		counter++;
-		readingAllowed = TRUE;
+
+		/*if(counter < 50)
+		{
+			readingAllowed = TRUE;
+		}*/
 	}
 
-	if(counter >= 1)
+	if(counter >= 1/* && copied == 0*/)
 	{
 		int i = 0;
 
+		/*for(i = 0; i < 50; i++)
+		{
+			copiedData[i].ax = pomiaryAccel[i].ax;
+			copiedData[i].ay = pomiaryAccel[i].ay;
+			copiedData[i].az = pomiaryAccel[i].az;
+
+			copiedData[i].gx = pomiaryAccel[i].gx;
+			copiedData[i].gy = pomiaryAccel[i].gy;
+			copiedData[i].gz = pomiaryAccel[i].gz;
+		}*/
+
 		counter = 0;
+		copied = 1;
+		readingAllowed = TRUE;
 	}
 }
 
@@ -382,14 +529,14 @@ uint8_t I2CreadByte(uint8_t address, uint8_t subAddress)
 		data1.Data1.Data = ((address<<1) | I2C_WRITE);
 		while(!I2C001_WriteData(&I2C001_Handle0,&data1));
 
-		delay(10000);
+		delay(DELAY);
 
 		I2C001_DataType data2;
 		data2.Data1.TDF_Type = I2C_TDF_MTxData;
 		data2.Data1.Data = subAddress;
 		while(!I2C001_WriteData(&I2C001_Handle0,&data2));
 
-		delay(10000);
+		delay(DELAY);
 
 
 		I2C001_DataType data3;
@@ -397,7 +544,7 @@ uint8_t I2CreadByte(uint8_t address, uint8_t subAddress)
 		data3.Data1.Data = ((address<<1) | I2C_READ);
 		while(!I2C001_WriteData(&I2C001_Handle0,&data3));
 
-		delay(10000);
+		delay(DELAY);
 
 
 		I2C001_DataType data4;
@@ -405,7 +552,7 @@ uint8_t I2CreadByte(uint8_t address, uint8_t subAddress)
 		data4.Data1.Data = ubyteFF;
 		while(!I2C001_WriteData(&I2C001_Handle0,&data4));
 
-		delay(10000);
+		delay(DELAY);
 
 		I2C001_DataType data5;
 		data5.Data1.TDF_Type = I2C_TDF_MStop;
@@ -413,12 +560,13 @@ uint8_t I2CreadByte(uint8_t address, uint8_t subAddress)
 		while(!I2C001_WriteData(&I2C001_Handle0,&data5));
 		stageOfReading++;
 
-		delay(10000);
+		delay(DELAY);
 
 		uint16_t DataReceive1 = 0;
 		if(I2C001_ReadData(&I2C001_Handle0,&DataReceive1))
 		{
 			stageOfReading++;
+			delay(DELAY);
 		}
 		else
 		{
@@ -541,28 +689,28 @@ void I2CwriteByte(uint8_t address, uint8_t subAddress, uint8_t data)
 		data1.Data1.Data = ((address<<1) | I2C_WRITE);
 		while(!I2C001_WriteData(&I2C001_Handle0,&data1));
 
-		delay(10000);
+		delay(DELAY);
 
 		I2C001_DataType data2;
 		data2.Data1.TDF_Type = I2C_TDF_MTxData;
 		data2.Data1.Data = subAddress;
 		while(!I2C001_WriteData(&I2C001_Handle0,&data2));
 
-		delay(10000);
+		delay(DELAY);
 
 		I2C001_DataType data3;
 		data3.Data1.TDF_Type = I2C_TDF_MTxData;
 		data3.Data1.Data = data;
 		while(!I2C001_WriteData(&I2C001_Handle0,&data3));
 
-		delay(10000);
+		delay(DELAY);
 
 		I2C001_DataType data4;
 		data4.Data1.TDF_Type = I2C_TDF_MStop;
 		data4.Data1.Data = ubyteFF;
 		while(!I2C001_WriteData(&I2C001_Handle0,&data4));
 
-		delay(10000);
+		delay(DELAY);
 }
 
 void initAccel(void)
@@ -802,7 +950,7 @@ void readGyro1(void)
 		subAddr = OUT_X_L_G;
 		subAddr = subAddr + i;
 		temp[i] = I2CreadBytes(_xgAddress, subAddr, NULL, 0);
-		delay(10000);
+		delay(DELAY);
 		i++;
 	}
 
@@ -900,7 +1048,7 @@ uint8_t I2CreadBytes(uint8_t address, uint8_t subAddress, uint8_t * dest, uint8_
 		{
 			USIC_FlushTxFIFO(I2CRegs);
 		}
-		delay(10000);
+		delay(DELAY);
 
 		I2C001_DataType data2;
 		data2.Data1.TDF_Type = I2C_TDF_MTxData;
@@ -909,7 +1057,7 @@ uint8_t I2CreadBytes(uint8_t address, uint8_t subAddress, uint8_t * dest, uint8_
 		{
 			USIC_FlushTxFIFO(I2CRegs);
 		}
-		delay(10000);
+		delay(DELAY);
 
 		I2C001_DataType data3;
 		data3.Data1.TDF_Type = I2C_TDF_MRStart;
@@ -918,7 +1066,7 @@ uint8_t I2CreadBytes(uint8_t address, uint8_t subAddress, uint8_t * dest, uint8_
 		{
 			USIC_FlushTxFIFO(I2CRegs);
 		}
-		delay(10000);
+		delay(DELAY);
 
 		I2C001_DataType data4;
 		data4.Data1.TDF_Type = I2C_TDF_MRxAck1;
@@ -927,7 +1075,7 @@ uint8_t I2CreadBytes(uint8_t address, uint8_t subAddress, uint8_t * dest, uint8_
 		{
 			USIC_FlushTxFIFO(I2CRegs);
 		}
-		delay(10000);
+		delay(DELAY);
 
 		I2C001_DataType data5;
 		data5.Data1.TDF_Type = I2C_TDF_MStop;
@@ -936,20 +1084,21 @@ uint8_t I2CreadBytes(uint8_t address, uint8_t subAddress, uint8_t * dest, uint8_
 		{
 			USIC_FlushTxFIFO(I2CRegs);
 		}
-		delay(10000);
+		delay(DELAY);
 
 		int k = 0;
 
 		uint16_t buffer = 0;
 		if(I2C001_ReadData(&I2C001_Handle0,&buffer))
 		{
+			delay(DELAY);
 			k++;
 		}
 		else
 		{
 			k--;
 		}
-		delay(10000);
+		delay(DELAY);
 		return (uint8_t)buffer;
 }
 
@@ -1021,7 +1170,7 @@ void calibrateMag(bool loadIn)
 float calcMag(int16_t mag)
 {
 	// Return the mag raw reading times our pre-calculated Gs / (ADC tick):
-	return ceil(mRes * mag);
+	return /*ceil(*/mRes * mag/*)*/;
 	//return mag;
 }
 
@@ -1150,14 +1299,14 @@ int16_t readGyro(lsm9ds1_axis axis)
 float calcGyro(int16_t gyro)
 {
 	// Return the gyro raw reading times our pre-calculated DPS / (ADC tick):
-	return round(gRes * gyro);
+	return /*round(*/gRes * gyro/*)*/;
 	//return gyro;
 }
 
 float calcAccel(int16_t accel)
 {
 	// Return the accel raw reading times our pre-calculated g's / (ADC tick):
-	return round(aRes * accel);
+	return /*round(*/aRes * accel/*)*/;
 	//return accel;
 }
 
@@ -1604,6 +1753,8 @@ void receiveByte(uint8_t adr, uint8_t subAdr, uint8_t *buffer)
 	uint16_t bufferToRead = 0;
 	if(I2C001_ReadData(&I2C001_Handle0,&bufferToRead))
 	{
+		I2C001_ClearFlag(&I2C001_Handle0, I2C001_FLAG_RIF);
+		I2C001_ClearFlag(&I2C001_Handle0, I2C001_FLAG_RSIF);
 		k++;
 	}
 	else

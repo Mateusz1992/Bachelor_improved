@@ -1726,12 +1726,12 @@
  152              		.file 3 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
 DEFINED SYMBOLS
                             *ABS*:00000000 DAVE3.c
-C:\Users\Mateusz\AppData\Local\Temp\cc8Hs3hJ.s:20     .text.NVIC_SetPriorityGrouping:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\cc8Hs3hJ.s:24     .text.NVIC_SetPriorityGrouping:00000000 NVIC_SetPriorityGrouping
-C:\Users\Mateusz\AppData\Local\Temp\cc8Hs3hJ.s:81     .text.DAVE_Init:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\cc8Hs3hJ.s:86     .text.DAVE_Init:00000000 DAVE_Init
-C:\Users\Mateusz\AppData\Local\Temp\cc8Hs3hJ.s:124    .text.SystemInit_DAVE3:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\cc8Hs3hJ.s:129    .text.SystemInit_DAVE3:00000000 SystemInit_DAVE3
+C:\Users\Mateusz\AppData\Local\Temp\cc5JiKsf.s:20     .text.NVIC_SetPriorityGrouping:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\cc5JiKsf.s:24     .text.NVIC_SetPriorityGrouping:00000000 NVIC_SetPriorityGrouping
+C:\Users\Mateusz\AppData\Local\Temp\cc5JiKsf.s:81     .text.DAVE_Init:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\cc5JiKsf.s:86     .text.DAVE_Init:00000000 DAVE_Init
+C:\Users\Mateusz\AppData\Local\Temp\cc5JiKsf.s:124    .text.SystemInit_DAVE3:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\cc5JiKsf.s:129    .text.SystemInit_DAVE3:00000000 SystemInit_DAVE3
                      .debug_frame:00000010 $d
                            .group:00000000 wm4.1.35166846b5321d4273ad8c4248893ac3
                            .group:00000000 wm4.XMC4500.h.45.215f4b8c79f46c7645c15373868d08c0
@@ -1760,7 +1760,7 @@ C:\Users\Mateusz\AppData\Local\Temp\cc8Hs3hJ.s:129    .text.SystemInit_DAVE3:000
                            .group:00000000 wm4.UART001_Conf.h.53.ea28968cb6c53b1be9f53a4d9f42a86f
                            .group:00000000 wm4.SYSTM001.h.64.6ecb31c49bc3e7691644fdcdfc11b5cd
                            .group:00000000 wm4.I2C001.h.97.5277d52889d6c741e048ea45ee1277b5
-                           .group:00000000 wm4.I2C001_Conf.h.58.e471e519f7471a50493b6f4fe912ee0d
+                           .group:00000000 wm4.I2C001_Conf.h.58.e3e909c2ec9c29fee288b93938e533a2
 
 UNDEFINED SYMBOLS
 DAVE_MUX_PreInit

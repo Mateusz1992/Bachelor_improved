@@ -243,8 +243,8 @@
   <provided xsi:type="ResourceModel:BitField" name="SIZE" URI="http://www.infineon.com/0.1.30/peripheral/usic/2/channel/0/rbctr_size" maxValue="7" minValue="0" startPos="24" stopPos="26" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../I2C001/1.0.28/i2c001_0.app#//@consumed.38"/>
-    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
     <toolTipHelpDescription>Buffer Size</toolTipHelpDescription>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b000" description="The FIFO mechanism is disabled. The buffer does not accept any request for data."/>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b001" description="The FIFO buffer contains 2 entries."/>
@@ -265,8 +265,8 @@
   <provided xsi:type="ResourceModel:BitField" name="SIZE" URI="http://www.infineon.com/0.1.30/peripheral/usic/2/channel/0/tbctr_size" maxValue="7" minValue="0" startPos="24" stopPos="26" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../I2C001/1.0.28/i2c001_0.app#//@consumed.40"/>
-    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
     <toolTipHelpDescription>Buffer Size</toolTipHelpDescription>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b000" description="The FIFO mechanism is disabled. The buffer does not accept any request for data."/>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b001" description="The FIFO buffer contains 2 entries."/>
@@ -280,8 +280,8 @@
   <provided xsi:type="ResourceModel:BitField" name="PDIV" URI="http://www.infineon.com/0.1.30/peripheral/usic/2/channel/0/brg/pdiv" maxValue="1023" minValue="0" startPos="16" stopPos="25" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../I2C001/1.0.28/i2c001_0.app#//@consumed.41"/>
-    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="5"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="5"/>
     <toolTipHelpDescription>Divider Mode: Divider Factor to Generate fPDIV</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_sclkout" description="Shift clock output sclkout  " URI="http://www.infineon.com/0.1.30/peripheral/usic/2/channel/0/sclkout" signalType="SINGAL" direction="OUT" isVisible="true">
@@ -290,8 +290,8 @@
   <provided xsi:type="ResourceModel:BitField" name="STEP" URI="http://www.infineon.com/0.1.30/peripheral/usic/2/channel/0/fdr/step" maxValue="1023" minValue="0" startPos="0" stopPos="9" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../I2C001/1.0.28/i2c001_0.app#//@consumed.49"/>
-    <localValue xsi:type="ResourceModel:IntegerValue" value="fffffffffffffc00"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="fffffffffffffc00"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="200"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="200"/>
     <toolTipHelpDescription>Step Value</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://www.infineon.com/0.1.30/peripheral/usic/2/channel/0/dx2cr_dsel" maxValue="7" minValue="0" startPos="0" stopPos="2" accessPermission="rw">
@@ -582,8 +582,8 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="DPTR" URI="http://www.infineon.com/0.1.30/peripheral/usic/2/channel/0/tbctr_dptr" maxValue="63" minValue="0" startPos="0" stopPos="5" accessPermission="w">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="4"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="4"/>
     <toolTipHelpDescription>Data Pointer</toolTipHelpDescription>
   </provided>
   <categoryDescription description="USIC 2 Device Description" name="USIC 2"/>

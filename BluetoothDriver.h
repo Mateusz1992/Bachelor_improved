@@ -17,6 +17,8 @@ typedef struct commandsAndAnswers
 	char answersBluetooth[8][20];
 }commandsAndAnswers;
 
+void resetConnectionIndicator(void);
+
 void chooseDevice(char *dev);
 
 void resetConnection(void);

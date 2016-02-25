@@ -62,6 +62,8 @@ extern const IO004_HandleType IO004_Handle1;
 
 extern const IO004_HandleType IO004_Handle2;
 
+extern const IO004_HandleType IO004_Handle3;
+
 
 #ifdef __cplusplus
 }

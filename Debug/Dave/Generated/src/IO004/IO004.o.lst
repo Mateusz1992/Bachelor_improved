@@ -288,7 +288,7 @@
  135 010a 43F48003 		orr	r3, r3, #4194304
  136 010e 5364     		str	r3, [r2, #68]
  155:../Dave/Generated/src/IO004/IO004.c ****                                      PORT1_PDR1_PD13_Msk);
- 156:../Dave/Generated/src/IO004/IO004.c ****   IO004_Handle2.PortRegs->IOCR12 |= (0U << 11);
+ 156:../Dave/Generated/src/IO004/IO004.c ****   IO004_Handle2.PortRegs->IOCR12 |= (0U << 11);   
  137              		.loc 1 156 0
  138 0110 40F20003 		movw	r3, #:lower16:IO004_Handle2
  139 0114 C0F20003 		movt	r3, #:upper16:IO004_Handle2
@@ -298,479 +298,522 @@
  143 0122 5B68     		ldr	r3, [r3, #4]
  144 0124 DB69     		ldr	r3, [r3, #28]
  145 0126 D361     		str	r3, [r2, #28]
- 157:../Dave/Generated/src/IO004/IO004.c **** }
- 146              		.loc 1 157 0
- 147 0128 BD46     		mov	sp, r7
- 148 012a 80BC     		pop	{r7}
- 149 012c 7047     		bx	lr
- 150              		.cfi_endproc
- 151              	.LFE112:
- 153 012e 00BF     		.section	.text.IO004_DisableOutputDriver,"ax",%progbits
- 154              		.align	2
- 155              		.global	IO004_DisableOutputDriver
- 156              		.thumb
- 157              		.thumb_func
- 159              	IO004_DisableOutputDriver:
- 160              	.LFB113:
- 158:../Dave/Generated/src/IO004/IO004.c **** 
- 159:../Dave/Generated/src/IO004/IO004.c **** void IO004_DisableOutputDriver(const IO004_HandleType* Handle,IO004_InputModeType Mode)
- 160:../Dave/Generated/src/IO004/IO004.c **** {
- 161              		.loc 1 160 0
- 162              		.cfi_startproc
- 163              		@ args = 0, pretend = 0, frame = 16
- 164              		@ frame_needed = 1, uses_anonymous_args = 0
- 165              		@ link register save eliminated.
- 166 0000 80B4     		push	{r7}
- 167              	.LCFI2:
- 168              		.cfi_def_cfa_offset 4
- 169              		.cfi_offset 7, -4
- 170 0002 85B0     		sub	sp, sp, #20
- 171              	.LCFI3:
- 172              		.cfi_def_cfa_offset 24
- 173 0004 00AF     		add	r7, sp, #0
- 174              	.LCFI4:
- 175              		.cfi_def_cfa_register 7
- 176 0006 7860     		str	r0, [r7, #4]
- 177 0008 0B46     		mov	r3, r1
- 178 000a FB70     		strb	r3, [r7, #3]
- 161:../Dave/Generated/src/IO004/IO004.c ****   uint8_t Pin = Handle->PortPin;
- 179              		.loc 1 161 0
- 180 000c 7B68     		ldr	r3, [r7, #4]
- 181 000e 5B78     		ldrb	r3, [r3, #1]
- 182 0010 FB73     		strb	r3, [r7, #15]
- 162:../Dave/Generated/src/IO004/IO004.c ****   /* <<<DD_IO004_API_2>>> */
- 163:../Dave/Generated/src/IO004/IO004.c ****   if(Pin < 4U)
- 183              		.loc 1 163 0
- 184 0012 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
- 185 0014 032B     		cmp	r3, #3
- 186 0016 23D8     		bhi	.L3
- 164:../Dave/Generated/src/IO004/IO004.c ****   {
- 165:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR0  =  (uint32_t)(Handle->PortRegs->IOCR0 & ~(0x0000001FUL << (3U+(Pin*8U)
- 187              		.loc 1 165 0
- 188 0018 7B68     		ldr	r3, [r7, #4]
- 189 001a 5B68     		ldr	r3, [r3, #4]
- 190 001c 7A68     		ldr	r2, [r7, #4]
- 191 001e 5268     		ldr	r2, [r2, #4]
- 192 0020 1169     		ldr	r1, [r2, #16]
- 193 0022 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
- 194 0024 4FEAC202 		lsl	r2, r2, #3
- 195 0028 02F10302 		add	r2, r2, #3
- 196 002c 4FF01F00 		mov	r0, #31
- 197 0030 00FA02F2 		lsl	r2, r0, r2
- 198 0034 6FEA0202 		mvn	r2, r2
- 199 0038 0A40     		ands	r2, r2, r1
- 200 003a 1A61     		str	r2, [r3, #16]
- 166:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR0 |= (uint32_t)(((uint32_t)Mode & 0x1FUL) << (3U+(Pin*8U)));
- 201              		.loc 1 166 0
- 202 003c 7B68     		ldr	r3, [r7, #4]
- 203 003e 5B68     		ldr	r3, [r3, #4]
- 204 0040 7A68     		ldr	r2, [r7, #4]
- 205 0042 5268     		ldr	r2, [r2, #4]
- 206 0044 1169     		ldr	r1, [r2, #16]
- 207 0046 FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
- 208 0048 02F01F00 		and	r0, r2, #31
- 209 004c FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
- 210 004e 4FEAC202 		lsl	r2, r2, #3
- 211 0052 02F10302 		add	r2, r2, #3
- 212 0056 00FA02F2 		lsl	r2, r0, r2
- 213 005a 0A43     		orrs	r2, r2, r1
- 214 005c 1A61     		str	r2, [r3, #16]
- 215 005e 88E0     		b	.L2
- 216              	.L3:
- 167:../Dave/Generated/src/IO004/IO004.c ****   } else if ((Pin >= 4U) && (Pin <= 7U))
- 217              		.loc 1 167 0
- 218 0060 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
- 219 0062 032B     		cmp	r3, #3
- 220 0064 2AD9     		bls	.L5
- 221              		.loc 1 167 0 is_stmt 0 discriminator 1
- 222 0066 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
- 223 0068 072B     		cmp	r3, #7
- 224 006a 27D8     		bhi	.L5
- 168:../Dave/Generated/src/IO004/IO004.c ****   {
- 169:../Dave/Generated/src/IO004/IO004.c ****     Pin = Pin - 4U;
- 225              		.loc 1 169 0 is_stmt 1
- 226 006c FB7B     		ldrb	r3, [r7, #15]
- 227 006e A3F10403 		sub	r3, r3, #4
- 228 0072 FB73     		strb	r3, [r7, #15]
- 170:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR4  =  (uint32_t)(Handle->PortRegs->IOCR4 & ~(0x0000001FUL << (3U+(Pin*8U)
- 229              		.loc 1 170 0
- 230 0074 7B68     		ldr	r3, [r7, #4]
- 231 0076 5B68     		ldr	r3, [r3, #4]
- 232 0078 7A68     		ldr	r2, [r7, #4]
- 233 007a 5268     		ldr	r2, [r2, #4]
- 234 007c 5169     		ldr	r1, [r2, #20]
- 235 007e FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
- 236 0080 4FEAC202 		lsl	r2, r2, #3
- 237 0084 02F10302 		add	r2, r2, #3
- 238 0088 4FF01F00 		mov	r0, #31
- 239 008c 00FA02F2 		lsl	r2, r0, r2
- 240 0090 6FEA0202 		mvn	r2, r2
- 241 0094 0A40     		ands	r2, r2, r1
- 242 0096 5A61     		str	r2, [r3, #20]
- 171:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR4 |=  (uint32_t)(((uint32_t)Mode & 0x1FUL) << (3U+(Pin*8U)));
- 243              		.loc 1 171 0
- 244 0098 7B68     		ldr	r3, [r7, #4]
- 245 009a 5B68     		ldr	r3, [r3, #4]
- 246 009c 7A68     		ldr	r2, [r7, #4]
- 247 009e 5268     		ldr	r2, [r2, #4]
- 248 00a0 5169     		ldr	r1, [r2, #20]
- 249 00a2 FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
- 250 00a4 02F01F00 		and	r0, r2, #31
- 251 00a8 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
- 252 00aa 4FEAC202 		lsl	r2, r2, #3
- 253 00ae 02F10302 		add	r2, r2, #3
- 254 00b2 00FA02F2 		lsl	r2, r0, r2
- 255 00b6 0A43     		orrs	r2, r2, r1
- 256 00b8 5A61     		str	r2, [r3, #20]
- 257 00ba 5AE0     		b	.L2
- 258              	.L5:
- 172:../Dave/Generated/src/IO004/IO004.c ****   } else if ((Pin >= 8U) && (Pin <= 11U))
- 259              		.loc 1 172 0
- 260 00bc FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
- 261 00be 072B     		cmp	r3, #7
- 262 00c0 2AD9     		bls	.L6
- 263              		.loc 1 172 0 is_stmt 0 discriminator 1
- 264 00c2 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
- 265 00c4 0B2B     		cmp	r3, #11
- 266 00c6 27D8     		bhi	.L6
- 173:../Dave/Generated/src/IO004/IO004.c ****   {
- 174:../Dave/Generated/src/IO004/IO004.c ****     Pin = Pin - 8U;
- 267              		.loc 1 174 0 is_stmt 1
- 268 00c8 FB7B     		ldrb	r3, [r7, #15]
- 269 00ca A3F10803 		sub	r3, r3, #8
- 270 00ce FB73     		strb	r3, [r7, #15]
- 175:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR8  =  (uint32_t)(Handle->PortRegs->IOCR8 & ~(0x0000001FUL << (3U+(Pin*8U)
- 271              		.loc 1 175 0
- 272 00d0 7B68     		ldr	r3, [r7, #4]
- 273 00d2 5B68     		ldr	r3, [r3, #4]
- 274 00d4 7A68     		ldr	r2, [r7, #4]
- 275 00d6 5268     		ldr	r2, [r2, #4]
- 276 00d8 9169     		ldr	r1, [r2, #24]
- 277 00da FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
- 278 00dc 4FEAC202 		lsl	r2, r2, #3
- 279 00e0 02F10302 		add	r2, r2, #3
- 280 00e4 4FF01F00 		mov	r0, #31
- 281 00e8 00FA02F2 		lsl	r2, r0, r2
- 282 00ec 6FEA0202 		mvn	r2, r2
- 283 00f0 0A40     		ands	r2, r2, r1
- 284 00f2 9A61     		str	r2, [r3, #24]
- 176:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR8 |=  (uint32_t)(((uint32_t)Mode & 0x1FUL) << (3U+(Pin*8U)));
- 285              		.loc 1 176 0
- 286 00f4 7B68     		ldr	r3, [r7, #4]
- 287 00f6 5B68     		ldr	r3, [r3, #4]
- 288 00f8 7A68     		ldr	r2, [r7, #4]
- 289 00fa 5268     		ldr	r2, [r2, #4]
- 290 00fc 9169     		ldr	r1, [r2, #24]
- 291 00fe FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
- 292 0100 02F01F00 		and	r0, r2, #31
- 293 0104 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
- 294 0106 4FEAC202 		lsl	r2, r2, #3
- 295 010a 02F10302 		add	r2, r2, #3
- 296 010e 00FA02F2 		lsl	r2, r0, r2
- 297 0112 0A43     		orrs	r2, r2, r1
- 298 0114 9A61     		str	r2, [r3, #24]
- 299 0116 2CE0     		b	.L2
- 300              	.L6:
- 177:../Dave/Generated/src/IO004/IO004.c ****   } else if ((Pin >= 12U) && (Pin <= 15U))
- 301              		.loc 1 177 0
- 302 0118 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
- 303 011a 0B2B     		cmp	r3, #11
- 304 011c 29D9     		bls	.L2
- 305              		.loc 1 177 0 is_stmt 0 discriminator 1
- 306 011e FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
- 307 0120 0F2B     		cmp	r3, #15
- 308 0122 26D8     		bhi	.L2
- 178:../Dave/Generated/src/IO004/IO004.c ****   {
- 179:../Dave/Generated/src/IO004/IO004.c ****     Pin = Pin - 12U;
- 309              		.loc 1 179 0 is_stmt 1
- 310 0124 FB7B     		ldrb	r3, [r7, #15]
- 311 0126 A3F10C03 		sub	r3, r3, #12
- 312 012a FB73     		strb	r3, [r7, #15]
- 180:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR12  =  (uint32_t)(Handle->PortRegs->IOCR12 & ~(0x0000001FUL << (3U+(Pin*8
- 313              		.loc 1 180 0
- 314 012c 7B68     		ldr	r3, [r7, #4]
- 315 012e 5B68     		ldr	r3, [r3, #4]
- 316 0130 7A68     		ldr	r2, [r7, #4]
- 317 0132 5268     		ldr	r2, [r2, #4]
- 318 0134 D169     		ldr	r1, [r2, #28]
- 319 0136 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
- 320 0138 4FEAC202 		lsl	r2, r2, #3
- 321 013c 02F10302 		add	r2, r2, #3
- 322 0140 4FF01F00 		mov	r0, #31
- 323 0144 00FA02F2 		lsl	r2, r0, r2
- 324 0148 6FEA0202 		mvn	r2, r2
- 325 014c 0A40     		ands	r2, r2, r1
- 326 014e DA61     		str	r2, [r3, #28]
- 181:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR12 |=  (uint32_t)(((uint32_t)Mode & 0x1FUL) << (3U+(Pin*8U)));
- 327              		.loc 1 181 0
- 328 0150 7B68     		ldr	r3, [r7, #4]
- 329 0152 5B68     		ldr	r3, [r3, #4]
- 330 0154 7A68     		ldr	r2, [r7, #4]
- 331 0156 5268     		ldr	r2, [r2, #4]
- 332 0158 D169     		ldr	r1, [r2, #28]
- 333 015a FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
- 334 015c 02F01F00 		and	r0, r2, #31
- 335 0160 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
- 336 0162 4FEAC202 		lsl	r2, r2, #3
- 337 0166 02F10302 		add	r2, r2, #3
- 338 016a 00FA02F2 		lsl	r2, r0, r2
- 339 016e 0A43     		orrs	r2, r2, r1
- 340 0170 DA61     		str	r2, [r3, #28]
- 341              	.L2:
- 182:../Dave/Generated/src/IO004/IO004.c ****   }
- 183:../Dave/Generated/src/IO004/IO004.c ****   else
- 184:../Dave/Generated/src/IO004/IO004.c ****   {
- 185:../Dave/Generated/src/IO004/IO004.c **** 	  /*Not supposed to be here */
- 186:../Dave/Generated/src/IO004/IO004.c ****   }
- 187:../Dave/Generated/src/IO004/IO004.c **** 
- 188:../Dave/Generated/src/IO004/IO004.c **** }
- 342              		.loc 1 188 0
- 343 0172 07F11407 		add	r7, r7, #20
- 344 0176 BD46     		mov	sp, r7
- 345 0178 80BC     		pop	{r7}
- 346 017a 7047     		bx	lr
- 347              		.cfi_endproc
- 348              	.LFE113:
- 350              		.section	.text.IO004_EnableOutputDriver,"ax",%progbits
- 351              		.align	2
- 352              		.global	IO004_EnableOutputDriver
- 353              		.thumb
- 354              		.thumb_func
- 356              	IO004_EnableOutputDriver:
- 357              	.LFB114:
- 189:../Dave/Generated/src/IO004/IO004.c **** 
- 190:../Dave/Generated/src/IO004/IO004.c **** void IO004_EnableOutputDriver(const IO004_HandleType* Handle,IO004_OutputModeType Mode)
- 191:../Dave/Generated/src/IO004/IO004.c **** {
- 358              		.loc 1 191 0
- 359              		.cfi_startproc
- 360              		@ args = 0, pretend = 0, frame = 16
- 361              		@ frame_needed = 1, uses_anonymous_args = 0
- 362              		@ link register save eliminated.
- 363 0000 80B4     		push	{r7}
- 364              	.LCFI5:
- 365              		.cfi_def_cfa_offset 4
- 366              		.cfi_offset 7, -4
- 367 0002 85B0     		sub	sp, sp, #20
- 368              	.LCFI6:
- 369              		.cfi_def_cfa_offset 24
- 370 0004 00AF     		add	r7, sp, #0
- 371              	.LCFI7:
- 372              		.cfi_def_cfa_register 7
- 373 0006 7860     		str	r0, [r7, #4]
- 374 0008 0B46     		mov	r3, r1
- 375 000a FB70     		strb	r3, [r7, #3]
- 192:../Dave/Generated/src/IO004/IO004.c **** 
- 193:../Dave/Generated/src/IO004/IO004.c ****   uint8_t Pin = Handle->PortPin;
- 376              		.loc 1 193 0
- 377 000c 7B68     		ldr	r3, [r7, #4]
- 378 000e 5B78     		ldrb	r3, [r3, #1]
- 379 0010 FB73     		strb	r3, [r7, #15]
- 194:../Dave/Generated/src/IO004/IO004.c ****   /* <<<DD_IO004_API_2>>> */
- 195:../Dave/Generated/src/IO004/IO004.c ****   if(Pin < 4U)
- 380              		.loc 1 195 0
- 381 0012 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
- 382 0014 032B     		cmp	r3, #3
- 383 0016 23D8     		bhi	.L8
- 196:../Dave/Generated/src/IO004/IO004.c ****   {
- 197:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR0  =  (uint32_t)(Handle->PortRegs->IOCR0 & ~(0x0000001FUL << (3U+(Pin*8U)
- 384              		.loc 1 197 0
- 385 0018 7B68     		ldr	r3, [r7, #4]
- 386 001a 5B68     		ldr	r3, [r3, #4]
- 387 001c 7A68     		ldr	r2, [r7, #4]
- 388 001e 5268     		ldr	r2, [r2, #4]
- 389 0020 1169     		ldr	r1, [r2, #16]
- 390 0022 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
- 391 0024 4FEAC202 		lsl	r2, r2, #3
- 392 0028 02F10302 		add	r2, r2, #3
- 393 002c 4FF01F00 		mov	r0, #31
- 394 0030 00FA02F2 		lsl	r2, r0, r2
- 395 0034 6FEA0202 		mvn	r2, r2
- 396 0038 0A40     		ands	r2, r2, r1
- 397 003a 1A61     		str	r2, [r3, #16]
- 198:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR0 |=  (uint32_t)(((uint32_t)Mode & 0x1FUL) << (3U+(Pin*8U)));
- 398              		.loc 1 198 0
- 399 003c 7B68     		ldr	r3, [r7, #4]
- 400 003e 5B68     		ldr	r3, [r3, #4]
- 401 0040 7A68     		ldr	r2, [r7, #4]
- 402 0042 5268     		ldr	r2, [r2, #4]
- 403 0044 1169     		ldr	r1, [r2, #16]
- 404 0046 FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
- 405 0048 02F01F00 		and	r0, r2, #31
- 406 004c FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
- 407 004e 4FEAC202 		lsl	r2, r2, #3
- 408 0052 02F10302 		add	r2, r2, #3
- 409 0056 00FA02F2 		lsl	r2, r0, r2
- 410 005a 0A43     		orrs	r2, r2, r1
- 411 005c 1A61     		str	r2, [r3, #16]
- 412 005e 88E0     		b	.L7
- 413              	.L8:
- 199:../Dave/Generated/src/IO004/IO004.c ****   } else if ((Pin >= 4U) && (Pin <= 7U))
- 414              		.loc 1 199 0
- 415 0060 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
- 416 0062 032B     		cmp	r3, #3
- 417 0064 2AD9     		bls	.L10
- 418              		.loc 1 199 0 is_stmt 0 discriminator 1
- 419 0066 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
- 420 0068 072B     		cmp	r3, #7
- 421 006a 27D8     		bhi	.L10
- 200:../Dave/Generated/src/IO004/IO004.c ****   {
- 201:../Dave/Generated/src/IO004/IO004.c ****     Pin = Pin - 4U;
- 422              		.loc 1 201 0 is_stmt 1
- 423 006c FB7B     		ldrb	r3, [r7, #15]
- 424 006e A3F10403 		sub	r3, r3, #4
- 425 0072 FB73     		strb	r3, [r7, #15]
- 202:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR4  =  (uint32_t)(Handle->PortRegs->IOCR4 & ~(0x0000001FUL << (3U+(Pin*8U)
- 426              		.loc 1 202 0
- 427 0074 7B68     		ldr	r3, [r7, #4]
- 428 0076 5B68     		ldr	r3, [r3, #4]
- 429 0078 7A68     		ldr	r2, [r7, #4]
- 430 007a 5268     		ldr	r2, [r2, #4]
- 431 007c 5169     		ldr	r1, [r2, #20]
- 432 007e FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
- 433 0080 4FEAC202 		lsl	r2, r2, #3
- 434 0084 02F10302 		add	r2, r2, #3
- 435 0088 4FF01F00 		mov	r0, #31
- 436 008c 00FA02F2 		lsl	r2, r0, r2
- 437 0090 6FEA0202 		mvn	r2, r2
- 438 0094 0A40     		ands	r2, r2, r1
- 439 0096 5A61     		str	r2, [r3, #20]
- 203:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR4 |=  (uint32_t)(((uint32_t)Mode & 0x1FUL) << (3U+(Pin*8U)));
- 440              		.loc 1 203 0
- 441 0098 7B68     		ldr	r3, [r7, #4]
- 442 009a 5B68     		ldr	r3, [r3, #4]
- 443 009c 7A68     		ldr	r2, [r7, #4]
- 444 009e 5268     		ldr	r2, [r2, #4]
- 445 00a0 5169     		ldr	r1, [r2, #20]
- 446 00a2 FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
- 447 00a4 02F01F00 		and	r0, r2, #31
- 448 00a8 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
- 449 00aa 4FEAC202 		lsl	r2, r2, #3
- 450 00ae 02F10302 		add	r2, r2, #3
- 451 00b2 00FA02F2 		lsl	r2, r0, r2
- 452 00b6 0A43     		orrs	r2, r2, r1
- 453 00b8 5A61     		str	r2, [r3, #20]
- 454 00ba 5AE0     		b	.L7
- 455              	.L10:
- 204:../Dave/Generated/src/IO004/IO004.c ****   } else if ((Pin >= 8U) && (Pin <= 11U))
- 456              		.loc 1 204 0
- 457 00bc FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
- 458 00be 072B     		cmp	r3, #7
- 459 00c0 2AD9     		bls	.L11
- 460              		.loc 1 204 0 is_stmt 0 discriminator 1
- 461 00c2 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
- 462 00c4 0B2B     		cmp	r3, #11
- 463 00c6 27D8     		bhi	.L11
- 205:../Dave/Generated/src/IO004/IO004.c ****   {
- 206:../Dave/Generated/src/IO004/IO004.c ****     Pin = Pin - 8U;
- 464              		.loc 1 206 0 is_stmt 1
- 465 00c8 FB7B     		ldrb	r3, [r7, #15]
- 466 00ca A3F10803 		sub	r3, r3, #8
- 467 00ce FB73     		strb	r3, [r7, #15]
- 207:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR8  =  (uint32_t)(Handle->PortRegs->IOCR8 & ~(0x0000001FUL << (3U+(Pin*8U)
- 468              		.loc 1 207 0
- 469 00d0 7B68     		ldr	r3, [r7, #4]
- 470 00d2 5B68     		ldr	r3, [r3, #4]
- 471 00d4 7A68     		ldr	r2, [r7, #4]
- 472 00d6 5268     		ldr	r2, [r2, #4]
- 473 00d8 9169     		ldr	r1, [r2, #24]
- 474 00da FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
- 475 00dc 4FEAC202 		lsl	r2, r2, #3
- 476 00e0 02F10302 		add	r2, r2, #3
- 477 00e4 4FF01F00 		mov	r0, #31
- 478 00e8 00FA02F2 		lsl	r2, r0, r2
- 479 00ec 6FEA0202 		mvn	r2, r2
- 480 00f0 0A40     		ands	r2, r2, r1
- 481 00f2 9A61     		str	r2, [r3, #24]
- 208:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR8 |=  (uint32_t)(((uint32_t)Mode & 0x1FUL) << (3U+(Pin*8U)));
- 482              		.loc 1 208 0
- 483 00f4 7B68     		ldr	r3, [r7, #4]
- 484 00f6 5B68     		ldr	r3, [r3, #4]
- 485 00f8 7A68     		ldr	r2, [r7, #4]
- 486 00fa 5268     		ldr	r2, [r2, #4]
- 487 00fc 9169     		ldr	r1, [r2, #24]
- 488 00fe FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
- 489 0100 02F01F00 		and	r0, r2, #31
- 490 0104 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
- 491 0106 4FEAC202 		lsl	r2, r2, #3
- 492 010a 02F10302 		add	r2, r2, #3
- 493 010e 00FA02F2 		lsl	r2, r0, r2
- 494 0112 0A43     		orrs	r2, r2, r1
- 495 0114 9A61     		str	r2, [r3, #24]
- 496 0116 2CE0     		b	.L7
- 497              	.L11:
- 209:../Dave/Generated/src/IO004/IO004.c ****   } else if ((Pin >= 12U) && (Pin <= 15U))
- 498              		.loc 1 209 0
- 499 0118 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
- 500 011a 0B2B     		cmp	r3, #11
- 501 011c 29D9     		bls	.L7
- 502              		.loc 1 209 0 is_stmt 0 discriminator 1
- 503 011e FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
- 504 0120 0F2B     		cmp	r3, #15
- 505 0122 26D8     		bhi	.L7
- 210:../Dave/Generated/src/IO004/IO004.c ****   {
- 211:../Dave/Generated/src/IO004/IO004.c ****     Pin = Pin - 12U;
- 506              		.loc 1 211 0 is_stmt 1
- 507 0124 FB7B     		ldrb	r3, [r7, #15]
- 508 0126 A3F10C03 		sub	r3, r3, #12
- 509 012a FB73     		strb	r3, [r7, #15]
- 212:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR12  =  (uint32_t)(Handle->PortRegs->IOCR12 & ~(0x0000001FUL << (3U+(Pin*8
- 510              		.loc 1 212 0
- 511 012c 7B68     		ldr	r3, [r7, #4]
- 512 012e 5B68     		ldr	r3, [r3, #4]
- 513 0130 7A68     		ldr	r2, [r7, #4]
- 514 0132 5268     		ldr	r2, [r2, #4]
- 515 0134 D169     		ldr	r1, [r2, #28]
- 516 0136 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
- 517 0138 4FEAC202 		lsl	r2, r2, #3
- 518 013c 02F10302 		add	r2, r2, #3
- 519 0140 4FF01F00 		mov	r0, #31
- 520 0144 00FA02F2 		lsl	r2, r0, r2
- 521 0148 6FEA0202 		mvn	r2, r2
- 522 014c 0A40     		ands	r2, r2, r1
- 523 014e DA61     		str	r2, [r3, #28]
- 213:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR12 |=  (uint32_t)(((uint32_t)Mode & 0x1FUL) << (3U+(Pin*8U)));
- 524              		.loc 1 213 0
- 525 0150 7B68     		ldr	r3, [r7, #4]
- 526 0152 5B68     		ldr	r3, [r3, #4]
- 527 0154 7A68     		ldr	r2, [r7, #4]
- 528 0156 5268     		ldr	r2, [r2, #4]
- 529 0158 D169     		ldr	r1, [r2, #28]
- 530 015a FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
- 531 015c 02F01F00 		and	r0, r2, #31
- 532 0160 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
- 533 0162 4FEAC202 		lsl	r2, r2, #3
- 534 0166 02F10302 		add	r2, r2, #3
- 535 016a 00FA02F2 		lsl	r2, r0, r2
- 536 016e 0A43     		orrs	r2, r2, r1
- 537 0170 DA61     		str	r2, [r3, #28]
- 538              	.L7:
- 214:../Dave/Generated/src/IO004/IO004.c ****   }
- 215:../Dave/Generated/src/IO004/IO004.c ****   else
- 216:../Dave/Generated/src/IO004/IO004.c ****   {
- 217:../Dave/Generated/src/IO004/IO004.c **** 	  /*Not supposed to be here */
- 218:../Dave/Generated/src/IO004/IO004.c ****   }
- 219:../Dave/Generated/src/IO004/IO004.c **** }
- 539              		.loc 1 219 0
- 540 0172 07F11407 		add	r7, r7, #20
- 541 0176 BD46     		mov	sp, r7
- 542 0178 80BC     		pop	{r7}
- 543 017a 7047     		bx	lr
- 544              		.cfi_endproc
- 545              	.LFE114:
- 547              		.text
- 548              	.Letext0:
- 549              		.file 2 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
- 550              		.file 3 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
- 551              		.file 4 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Include/core_cm4.h"
- 552              		.file 5 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 157:../Dave/Generated/src/IO004/IO004.c **** 
+ 158:../Dave/Generated/src/IO004/IO004.c ****   /* Configuration of 1 Port 0 based on User configuration */
+ 159:../Dave/Generated/src/IO004/IO004.c ****   IO004_Handle3.PortRegs->OMR = 0U<< 0;
+ 146              		.loc 1 159 0
+ 147 0128 40F20003 		movw	r3, #:lower16:IO004_Handle3
+ 148 012c C0F20003 		movt	r3, #:upper16:IO004_Handle3
+ 149 0130 5B68     		ldr	r3, [r3, #4]
+ 150 0132 4FF00002 		mov	r2, #0
+ 151 0136 5A60     		str	r2, [r3, #4]
+ 160:../Dave/Generated/src/IO004/IO004.c ****   
+ 161:../Dave/Generated/src/IO004/IO004.c ****   IO004_Handle3.PortRegs->PDR0   &= (uint32_t)(~(PORT1_PDR0_PD0_Msk));
+ 152              		.loc 1 161 0
+ 153 0138 40F20003 		movw	r3, #:lower16:IO004_Handle3
+ 154 013c C0F20003 		movt	r3, #:upper16:IO004_Handle3
+ 155 0140 5A68     		ldr	r2, [r3, #4]
+ 156 0142 40F20003 		movw	r3, #:lower16:IO004_Handle3
+ 157 0146 C0F20003 		movt	r3, #:upper16:IO004_Handle3
+ 158 014a 5B68     		ldr	r3, [r3, #4]
+ 159 014c 1B6C     		ldr	r3, [r3, #64]
+ 160 014e 23F00703 		bic	r3, r3, #7
+ 161 0152 1364     		str	r3, [r2, #64]
+ 162:../Dave/Generated/src/IO004/IO004.c ****   IO004_Handle3.PortRegs->PDR0   |= (uint32_t)((4UL << PORT1_PDR0_PD0_Pos) & \
+ 162              		.loc 1 162 0
+ 163 0154 40F20003 		movw	r3, #:lower16:IO004_Handle3
+ 164 0158 C0F20003 		movt	r3, #:upper16:IO004_Handle3
+ 165 015c 5A68     		ldr	r2, [r3, #4]
+ 166 015e 40F20003 		movw	r3, #:lower16:IO004_Handle3
+ 167 0162 C0F20003 		movt	r3, #:upper16:IO004_Handle3
+ 168 0166 5B68     		ldr	r3, [r3, #4]
+ 169 0168 1B6C     		ldr	r3, [r3, #64]
+ 170 016a 43F00403 		orr	r3, r3, #4
+ 171 016e 1364     		str	r3, [r2, #64]
+ 163:../Dave/Generated/src/IO004/IO004.c ****                                           PORT1_PDR0_PD0_Msk);
+ 164:../Dave/Generated/src/IO004/IO004.c ****   IO004_Handle3.PortRegs->IOCR0 |= (0U << 3);
+ 172              		.loc 1 164 0
+ 173 0170 40F20003 		movw	r3, #:lower16:IO004_Handle3
+ 174 0174 C0F20003 		movt	r3, #:upper16:IO004_Handle3
+ 175 0178 5A68     		ldr	r2, [r3, #4]
+ 176 017a 40F20003 		movw	r3, #:lower16:IO004_Handle3
+ 177 017e C0F20003 		movt	r3, #:upper16:IO004_Handle3
+ 178 0182 5B68     		ldr	r3, [r3, #4]
+ 179 0184 1B69     		ldr	r3, [r3, #16]
+ 180 0186 1361     		str	r3, [r2, #16]
+ 165:../Dave/Generated/src/IO004/IO004.c **** }
+ 181              		.loc 1 165 0
+ 182 0188 BD46     		mov	sp, r7
+ 183 018a 80BC     		pop	{r7}
+ 184 018c 7047     		bx	lr
+ 185              		.cfi_endproc
+ 186              	.LFE112:
+ 188 018e 00BF     		.section	.text.IO004_DisableOutputDriver,"ax",%progbits
+ 189              		.align	2
+ 190              		.global	IO004_DisableOutputDriver
+ 191              		.thumb
+ 192              		.thumb_func
+ 194              	IO004_DisableOutputDriver:
+ 195              	.LFB113:
+ 166:../Dave/Generated/src/IO004/IO004.c **** 
+ 167:../Dave/Generated/src/IO004/IO004.c **** void IO004_DisableOutputDriver(const IO004_HandleType* Handle,IO004_InputModeType Mode)
+ 168:../Dave/Generated/src/IO004/IO004.c **** {
+ 196              		.loc 1 168 0
+ 197              		.cfi_startproc
+ 198              		@ args = 0, pretend = 0, frame = 16
+ 199              		@ frame_needed = 1, uses_anonymous_args = 0
+ 200              		@ link register save eliminated.
+ 201 0000 80B4     		push	{r7}
+ 202              	.LCFI2:
+ 203              		.cfi_def_cfa_offset 4
+ 204              		.cfi_offset 7, -4
+ 205 0002 85B0     		sub	sp, sp, #20
+ 206              	.LCFI3:
+ 207              		.cfi_def_cfa_offset 24
+ 208 0004 00AF     		add	r7, sp, #0
+ 209              	.LCFI4:
+ 210              		.cfi_def_cfa_register 7
+ 211 0006 7860     		str	r0, [r7, #4]
+ 212 0008 0B46     		mov	r3, r1
+ 213 000a FB70     		strb	r3, [r7, #3]
+ 169:../Dave/Generated/src/IO004/IO004.c ****   uint8_t Pin = Handle->PortPin;
+ 214              		.loc 1 169 0
+ 215 000c 7B68     		ldr	r3, [r7, #4]
+ 216 000e 5B78     		ldrb	r3, [r3, #1]
+ 217 0010 FB73     		strb	r3, [r7, #15]
+ 170:../Dave/Generated/src/IO004/IO004.c ****   /* <<<DD_IO004_API_2>>> */
+ 171:../Dave/Generated/src/IO004/IO004.c ****   if(Pin < 4U)
+ 218              		.loc 1 171 0
+ 219 0012 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 220 0014 032B     		cmp	r3, #3
+ 221 0016 23D8     		bhi	.L3
+ 172:../Dave/Generated/src/IO004/IO004.c ****   {
+ 173:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR0  =  (uint32_t)(Handle->PortRegs->IOCR0 & ~(0x0000001FUL << (3U+(Pin*8U)
+ 222              		.loc 1 173 0
+ 223 0018 7B68     		ldr	r3, [r7, #4]
+ 224 001a 5B68     		ldr	r3, [r3, #4]
+ 225 001c 7A68     		ldr	r2, [r7, #4]
+ 226 001e 5268     		ldr	r2, [r2, #4]
+ 227 0020 1169     		ldr	r1, [r2, #16]
+ 228 0022 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 229 0024 4FEAC202 		lsl	r2, r2, #3
+ 230 0028 02F10302 		add	r2, r2, #3
+ 231 002c 4FF01F00 		mov	r0, #31
+ 232 0030 00FA02F2 		lsl	r2, r0, r2
+ 233 0034 6FEA0202 		mvn	r2, r2
+ 234 0038 0A40     		ands	r2, r2, r1
+ 235 003a 1A61     		str	r2, [r3, #16]
+ 174:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR0 |= (uint32_t)(((uint32_t)Mode & 0x1FUL) << (3U+(Pin*8U)));
+ 236              		.loc 1 174 0
+ 237 003c 7B68     		ldr	r3, [r7, #4]
+ 238 003e 5B68     		ldr	r3, [r3, #4]
+ 239 0040 7A68     		ldr	r2, [r7, #4]
+ 240 0042 5268     		ldr	r2, [r2, #4]
+ 241 0044 1169     		ldr	r1, [r2, #16]
+ 242 0046 FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
+ 243 0048 02F01F00 		and	r0, r2, #31
+ 244 004c FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 245 004e 4FEAC202 		lsl	r2, r2, #3
+ 246 0052 02F10302 		add	r2, r2, #3
+ 247 0056 00FA02F2 		lsl	r2, r0, r2
+ 248 005a 0A43     		orrs	r2, r2, r1
+ 249 005c 1A61     		str	r2, [r3, #16]
+ 250 005e 88E0     		b	.L2
+ 251              	.L3:
+ 175:../Dave/Generated/src/IO004/IO004.c ****   } else if ((Pin >= 4U) && (Pin <= 7U))
+ 252              		.loc 1 175 0
+ 253 0060 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 254 0062 032B     		cmp	r3, #3
+ 255 0064 2AD9     		bls	.L5
+ 256              		.loc 1 175 0 is_stmt 0 discriminator 1
+ 257 0066 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 258 0068 072B     		cmp	r3, #7
+ 259 006a 27D8     		bhi	.L5
+ 176:../Dave/Generated/src/IO004/IO004.c ****   {
+ 177:../Dave/Generated/src/IO004/IO004.c ****     Pin = Pin - 4U;
+ 260              		.loc 1 177 0 is_stmt 1
+ 261 006c FB7B     		ldrb	r3, [r7, #15]
+ 262 006e A3F10403 		sub	r3, r3, #4
+ 263 0072 FB73     		strb	r3, [r7, #15]
+ 178:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR4  =  (uint32_t)(Handle->PortRegs->IOCR4 & ~(0x0000001FUL << (3U+(Pin*8U)
+ 264              		.loc 1 178 0
+ 265 0074 7B68     		ldr	r3, [r7, #4]
+ 266 0076 5B68     		ldr	r3, [r3, #4]
+ 267 0078 7A68     		ldr	r2, [r7, #4]
+ 268 007a 5268     		ldr	r2, [r2, #4]
+ 269 007c 5169     		ldr	r1, [r2, #20]
+ 270 007e FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 271 0080 4FEAC202 		lsl	r2, r2, #3
+ 272 0084 02F10302 		add	r2, r2, #3
+ 273 0088 4FF01F00 		mov	r0, #31
+ 274 008c 00FA02F2 		lsl	r2, r0, r2
+ 275 0090 6FEA0202 		mvn	r2, r2
+ 276 0094 0A40     		ands	r2, r2, r1
+ 277 0096 5A61     		str	r2, [r3, #20]
+ 179:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR4 |=  (uint32_t)(((uint32_t)Mode & 0x1FUL) << (3U+(Pin*8U)));
+ 278              		.loc 1 179 0
+ 279 0098 7B68     		ldr	r3, [r7, #4]
+ 280 009a 5B68     		ldr	r3, [r3, #4]
+ 281 009c 7A68     		ldr	r2, [r7, #4]
+ 282 009e 5268     		ldr	r2, [r2, #4]
+ 283 00a0 5169     		ldr	r1, [r2, #20]
+ 284 00a2 FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
+ 285 00a4 02F01F00 		and	r0, r2, #31
+ 286 00a8 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 287 00aa 4FEAC202 		lsl	r2, r2, #3
+ 288 00ae 02F10302 		add	r2, r2, #3
+ 289 00b2 00FA02F2 		lsl	r2, r0, r2
+ 290 00b6 0A43     		orrs	r2, r2, r1
+ 291 00b8 5A61     		str	r2, [r3, #20]
+ 292 00ba 5AE0     		b	.L2
+ 293              	.L5:
+ 180:../Dave/Generated/src/IO004/IO004.c ****   } else if ((Pin >= 8U) && (Pin <= 11U))
+ 294              		.loc 1 180 0
+ 295 00bc FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 296 00be 072B     		cmp	r3, #7
+ 297 00c0 2AD9     		bls	.L6
+ 298              		.loc 1 180 0 is_stmt 0 discriminator 1
+ 299 00c2 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 300 00c4 0B2B     		cmp	r3, #11
+ 301 00c6 27D8     		bhi	.L6
+ 181:../Dave/Generated/src/IO004/IO004.c ****   {
+ 182:../Dave/Generated/src/IO004/IO004.c ****     Pin = Pin - 8U;
+ 302              		.loc 1 182 0 is_stmt 1
+ 303 00c8 FB7B     		ldrb	r3, [r7, #15]
+ 304 00ca A3F10803 		sub	r3, r3, #8
+ 305 00ce FB73     		strb	r3, [r7, #15]
+ 183:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR8  =  (uint32_t)(Handle->PortRegs->IOCR8 & ~(0x0000001FUL << (3U+(Pin*8U)
+ 306              		.loc 1 183 0
+ 307 00d0 7B68     		ldr	r3, [r7, #4]
+ 308 00d2 5B68     		ldr	r3, [r3, #4]
+ 309 00d4 7A68     		ldr	r2, [r7, #4]
+ 310 00d6 5268     		ldr	r2, [r2, #4]
+ 311 00d8 9169     		ldr	r1, [r2, #24]
+ 312 00da FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 313 00dc 4FEAC202 		lsl	r2, r2, #3
+ 314 00e0 02F10302 		add	r2, r2, #3
+ 315 00e4 4FF01F00 		mov	r0, #31
+ 316 00e8 00FA02F2 		lsl	r2, r0, r2
+ 317 00ec 6FEA0202 		mvn	r2, r2
+ 318 00f0 0A40     		ands	r2, r2, r1
+ 319 00f2 9A61     		str	r2, [r3, #24]
+ 184:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR8 |=  (uint32_t)(((uint32_t)Mode & 0x1FUL) << (3U+(Pin*8U)));
+ 320              		.loc 1 184 0
+ 321 00f4 7B68     		ldr	r3, [r7, #4]
+ 322 00f6 5B68     		ldr	r3, [r3, #4]
+ 323 00f8 7A68     		ldr	r2, [r7, #4]
+ 324 00fa 5268     		ldr	r2, [r2, #4]
+ 325 00fc 9169     		ldr	r1, [r2, #24]
+ 326 00fe FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
+ 327 0100 02F01F00 		and	r0, r2, #31
+ 328 0104 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 329 0106 4FEAC202 		lsl	r2, r2, #3
+ 330 010a 02F10302 		add	r2, r2, #3
+ 331 010e 00FA02F2 		lsl	r2, r0, r2
+ 332 0112 0A43     		orrs	r2, r2, r1
+ 333 0114 9A61     		str	r2, [r3, #24]
+ 334 0116 2CE0     		b	.L2
+ 335              	.L6:
+ 185:../Dave/Generated/src/IO004/IO004.c ****   } else if ((Pin >= 12U) && (Pin <= 15U))
+ 336              		.loc 1 185 0
+ 337 0118 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 338 011a 0B2B     		cmp	r3, #11
+ 339 011c 29D9     		bls	.L2
+ 340              		.loc 1 185 0 is_stmt 0 discriminator 1
+ 341 011e FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 342 0120 0F2B     		cmp	r3, #15
+ 343 0122 26D8     		bhi	.L2
+ 186:../Dave/Generated/src/IO004/IO004.c ****   {
+ 187:../Dave/Generated/src/IO004/IO004.c ****     Pin = Pin - 12U;
+ 344              		.loc 1 187 0 is_stmt 1
+ 345 0124 FB7B     		ldrb	r3, [r7, #15]
+ 346 0126 A3F10C03 		sub	r3, r3, #12
+ 347 012a FB73     		strb	r3, [r7, #15]
+ 188:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR12  =  (uint32_t)(Handle->PortRegs->IOCR12 & ~(0x0000001FUL << (3U+(Pin*8
+ 348              		.loc 1 188 0
+ 349 012c 7B68     		ldr	r3, [r7, #4]
+ 350 012e 5B68     		ldr	r3, [r3, #4]
+ 351 0130 7A68     		ldr	r2, [r7, #4]
+ 352 0132 5268     		ldr	r2, [r2, #4]
+ 353 0134 D169     		ldr	r1, [r2, #28]
+ 354 0136 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 355 0138 4FEAC202 		lsl	r2, r2, #3
+ 356 013c 02F10302 		add	r2, r2, #3
+ 357 0140 4FF01F00 		mov	r0, #31
+ 358 0144 00FA02F2 		lsl	r2, r0, r2
+ 359 0148 6FEA0202 		mvn	r2, r2
+ 360 014c 0A40     		ands	r2, r2, r1
+ 361 014e DA61     		str	r2, [r3, #28]
+ 189:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR12 |=  (uint32_t)(((uint32_t)Mode & 0x1FUL) << (3U+(Pin*8U)));
+ 362              		.loc 1 189 0
+ 363 0150 7B68     		ldr	r3, [r7, #4]
+ 364 0152 5B68     		ldr	r3, [r3, #4]
+ 365 0154 7A68     		ldr	r2, [r7, #4]
+ 366 0156 5268     		ldr	r2, [r2, #4]
+ 367 0158 D169     		ldr	r1, [r2, #28]
+ 368 015a FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
+ 369 015c 02F01F00 		and	r0, r2, #31
+ 370 0160 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 371 0162 4FEAC202 		lsl	r2, r2, #3
+ 372 0166 02F10302 		add	r2, r2, #3
+ 373 016a 00FA02F2 		lsl	r2, r0, r2
+ 374 016e 0A43     		orrs	r2, r2, r1
+ 375 0170 DA61     		str	r2, [r3, #28]
+ 376              	.L2:
+ 190:../Dave/Generated/src/IO004/IO004.c ****   }
+ 191:../Dave/Generated/src/IO004/IO004.c ****   else
+ 192:../Dave/Generated/src/IO004/IO004.c ****   {
+ 193:../Dave/Generated/src/IO004/IO004.c **** 	  /*Not supposed to be here */
+ 194:../Dave/Generated/src/IO004/IO004.c ****   }
+ 195:../Dave/Generated/src/IO004/IO004.c **** 
+ 196:../Dave/Generated/src/IO004/IO004.c **** }
+ 377              		.loc 1 196 0
+ 378 0172 07F11407 		add	r7, r7, #20
+ 379 0176 BD46     		mov	sp, r7
+ 380 0178 80BC     		pop	{r7}
+ 381 017a 7047     		bx	lr
+ 382              		.cfi_endproc
+ 383              	.LFE113:
+ 385              		.section	.text.IO004_EnableOutputDriver,"ax",%progbits
+ 386              		.align	2
+ 387              		.global	IO004_EnableOutputDriver
+ 388              		.thumb
+ 389              		.thumb_func
+ 391              	IO004_EnableOutputDriver:
+ 392              	.LFB114:
+ 197:../Dave/Generated/src/IO004/IO004.c **** 
+ 198:../Dave/Generated/src/IO004/IO004.c **** void IO004_EnableOutputDriver(const IO004_HandleType* Handle,IO004_OutputModeType Mode)
+ 199:../Dave/Generated/src/IO004/IO004.c **** {
+ 393              		.loc 1 199 0
+ 394              		.cfi_startproc
+ 395              		@ args = 0, pretend = 0, frame = 16
+ 396              		@ frame_needed = 1, uses_anonymous_args = 0
+ 397              		@ link register save eliminated.
+ 398 0000 80B4     		push	{r7}
+ 399              	.LCFI5:
+ 400              		.cfi_def_cfa_offset 4
+ 401              		.cfi_offset 7, -4
+ 402 0002 85B0     		sub	sp, sp, #20
+ 403              	.LCFI6:
+ 404              		.cfi_def_cfa_offset 24
+ 405 0004 00AF     		add	r7, sp, #0
+ 406              	.LCFI7:
+ 407              		.cfi_def_cfa_register 7
+ 408 0006 7860     		str	r0, [r7, #4]
+ 409 0008 0B46     		mov	r3, r1
+ 410 000a FB70     		strb	r3, [r7, #3]
+ 200:../Dave/Generated/src/IO004/IO004.c **** 
+ 201:../Dave/Generated/src/IO004/IO004.c ****   uint8_t Pin = Handle->PortPin;
+ 411              		.loc 1 201 0
+ 412 000c 7B68     		ldr	r3, [r7, #4]
+ 413 000e 5B78     		ldrb	r3, [r3, #1]
+ 414 0010 FB73     		strb	r3, [r7, #15]
+ 202:../Dave/Generated/src/IO004/IO004.c ****   /* <<<DD_IO004_API_2>>> */
+ 203:../Dave/Generated/src/IO004/IO004.c ****   if(Pin < 4U)
+ 415              		.loc 1 203 0
+ 416 0012 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 417 0014 032B     		cmp	r3, #3
+ 418 0016 23D8     		bhi	.L8
+ 204:../Dave/Generated/src/IO004/IO004.c ****   {
+ 205:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR0  =  (uint32_t)(Handle->PortRegs->IOCR0 & ~(0x0000001FUL << (3U+(Pin*8U)
+ 419              		.loc 1 205 0
+ 420 0018 7B68     		ldr	r3, [r7, #4]
+ 421 001a 5B68     		ldr	r3, [r3, #4]
+ 422 001c 7A68     		ldr	r2, [r7, #4]
+ 423 001e 5268     		ldr	r2, [r2, #4]
+ 424 0020 1169     		ldr	r1, [r2, #16]
+ 425 0022 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 426 0024 4FEAC202 		lsl	r2, r2, #3
+ 427 0028 02F10302 		add	r2, r2, #3
+ 428 002c 4FF01F00 		mov	r0, #31
+ 429 0030 00FA02F2 		lsl	r2, r0, r2
+ 430 0034 6FEA0202 		mvn	r2, r2
+ 431 0038 0A40     		ands	r2, r2, r1
+ 432 003a 1A61     		str	r2, [r3, #16]
+ 206:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR0 |=  (uint32_t)(((uint32_t)Mode & 0x1FUL) << (3U+(Pin*8U)));
+ 433              		.loc 1 206 0
+ 434 003c 7B68     		ldr	r3, [r7, #4]
+ 435 003e 5B68     		ldr	r3, [r3, #4]
+ 436 0040 7A68     		ldr	r2, [r7, #4]
+ 437 0042 5268     		ldr	r2, [r2, #4]
+ 438 0044 1169     		ldr	r1, [r2, #16]
+ 439 0046 FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
+ 440 0048 02F01F00 		and	r0, r2, #31
+ 441 004c FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 442 004e 4FEAC202 		lsl	r2, r2, #3
+ 443 0052 02F10302 		add	r2, r2, #3
+ 444 0056 00FA02F2 		lsl	r2, r0, r2
+ 445 005a 0A43     		orrs	r2, r2, r1
+ 446 005c 1A61     		str	r2, [r3, #16]
+ 447 005e 88E0     		b	.L7
+ 448              	.L8:
+ 207:../Dave/Generated/src/IO004/IO004.c ****   } else if ((Pin >= 4U) && (Pin <= 7U))
+ 449              		.loc 1 207 0
+ 450 0060 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 451 0062 032B     		cmp	r3, #3
+ 452 0064 2AD9     		bls	.L10
+ 453              		.loc 1 207 0 is_stmt 0 discriminator 1
+ 454 0066 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 455 0068 072B     		cmp	r3, #7
+ 456 006a 27D8     		bhi	.L10
+ 208:../Dave/Generated/src/IO004/IO004.c ****   {
+ 209:../Dave/Generated/src/IO004/IO004.c ****     Pin = Pin - 4U;
+ 457              		.loc 1 209 0 is_stmt 1
+ 458 006c FB7B     		ldrb	r3, [r7, #15]
+ 459 006e A3F10403 		sub	r3, r3, #4
+ 460 0072 FB73     		strb	r3, [r7, #15]
+ 210:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR4  =  (uint32_t)(Handle->PortRegs->IOCR4 & ~(0x0000001FUL << (3U+(Pin*8U)
+ 461              		.loc 1 210 0
+ 462 0074 7B68     		ldr	r3, [r7, #4]
+ 463 0076 5B68     		ldr	r3, [r3, #4]
+ 464 0078 7A68     		ldr	r2, [r7, #4]
+ 465 007a 5268     		ldr	r2, [r2, #4]
+ 466 007c 5169     		ldr	r1, [r2, #20]
+ 467 007e FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 468 0080 4FEAC202 		lsl	r2, r2, #3
+ 469 0084 02F10302 		add	r2, r2, #3
+ 470 0088 4FF01F00 		mov	r0, #31
+ 471 008c 00FA02F2 		lsl	r2, r0, r2
+ 472 0090 6FEA0202 		mvn	r2, r2
+ 473 0094 0A40     		ands	r2, r2, r1
+ 474 0096 5A61     		str	r2, [r3, #20]
+ 211:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR4 |=  (uint32_t)(((uint32_t)Mode & 0x1FUL) << (3U+(Pin*8U)));
+ 475              		.loc 1 211 0
+ 476 0098 7B68     		ldr	r3, [r7, #4]
+ 477 009a 5B68     		ldr	r3, [r3, #4]
+ 478 009c 7A68     		ldr	r2, [r7, #4]
+ 479 009e 5268     		ldr	r2, [r2, #4]
+ 480 00a0 5169     		ldr	r1, [r2, #20]
+ 481 00a2 FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
+ 482 00a4 02F01F00 		and	r0, r2, #31
+ 483 00a8 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 484 00aa 4FEAC202 		lsl	r2, r2, #3
+ 485 00ae 02F10302 		add	r2, r2, #3
+ 486 00b2 00FA02F2 		lsl	r2, r0, r2
+ 487 00b6 0A43     		orrs	r2, r2, r1
+ 488 00b8 5A61     		str	r2, [r3, #20]
+ 489 00ba 5AE0     		b	.L7
+ 490              	.L10:
+ 212:../Dave/Generated/src/IO004/IO004.c ****   } else if ((Pin >= 8U) && (Pin <= 11U))
+ 491              		.loc 1 212 0
+ 492 00bc FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 493 00be 072B     		cmp	r3, #7
+ 494 00c0 2AD9     		bls	.L11
+ 495              		.loc 1 212 0 is_stmt 0 discriminator 1
+ 496 00c2 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 497 00c4 0B2B     		cmp	r3, #11
+ 498 00c6 27D8     		bhi	.L11
+ 213:../Dave/Generated/src/IO004/IO004.c ****   {
+ 214:../Dave/Generated/src/IO004/IO004.c ****     Pin = Pin - 8U;
+ 499              		.loc 1 214 0 is_stmt 1
+ 500 00c8 FB7B     		ldrb	r3, [r7, #15]
+ 501 00ca A3F10803 		sub	r3, r3, #8
+ 502 00ce FB73     		strb	r3, [r7, #15]
+ 215:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR8  =  (uint32_t)(Handle->PortRegs->IOCR8 & ~(0x0000001FUL << (3U+(Pin*8U)
+ 503              		.loc 1 215 0
+ 504 00d0 7B68     		ldr	r3, [r7, #4]
+ 505 00d2 5B68     		ldr	r3, [r3, #4]
+ 506 00d4 7A68     		ldr	r2, [r7, #4]
+ 507 00d6 5268     		ldr	r2, [r2, #4]
+ 508 00d8 9169     		ldr	r1, [r2, #24]
+ 509 00da FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 510 00dc 4FEAC202 		lsl	r2, r2, #3
+ 511 00e0 02F10302 		add	r2, r2, #3
+ 512 00e4 4FF01F00 		mov	r0, #31
+ 513 00e8 00FA02F2 		lsl	r2, r0, r2
+ 514 00ec 6FEA0202 		mvn	r2, r2
+ 515 00f0 0A40     		ands	r2, r2, r1
+ 516 00f2 9A61     		str	r2, [r3, #24]
+ 216:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR8 |=  (uint32_t)(((uint32_t)Mode & 0x1FUL) << (3U+(Pin*8U)));
+ 517              		.loc 1 216 0
+ 518 00f4 7B68     		ldr	r3, [r7, #4]
+ 519 00f6 5B68     		ldr	r3, [r3, #4]
+ 520 00f8 7A68     		ldr	r2, [r7, #4]
+ 521 00fa 5268     		ldr	r2, [r2, #4]
+ 522 00fc 9169     		ldr	r1, [r2, #24]
+ 523 00fe FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
+ 524 0100 02F01F00 		and	r0, r2, #31
+ 525 0104 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 526 0106 4FEAC202 		lsl	r2, r2, #3
+ 527 010a 02F10302 		add	r2, r2, #3
+ 528 010e 00FA02F2 		lsl	r2, r0, r2
+ 529 0112 0A43     		orrs	r2, r2, r1
+ 530 0114 9A61     		str	r2, [r3, #24]
+ 531 0116 2CE0     		b	.L7
+ 532              	.L11:
+ 217:../Dave/Generated/src/IO004/IO004.c ****   } else if ((Pin >= 12U) && (Pin <= 15U))
+ 533              		.loc 1 217 0
+ 534 0118 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 535 011a 0B2B     		cmp	r3, #11
+ 536 011c 29D9     		bls	.L7
+ 537              		.loc 1 217 0 is_stmt 0 discriminator 1
+ 538 011e FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 539 0120 0F2B     		cmp	r3, #15
+ 540 0122 26D8     		bhi	.L7
+ 218:../Dave/Generated/src/IO004/IO004.c ****   {
+ 219:../Dave/Generated/src/IO004/IO004.c ****     Pin = Pin - 12U;
+ 541              		.loc 1 219 0 is_stmt 1
+ 542 0124 FB7B     		ldrb	r3, [r7, #15]
+ 543 0126 A3F10C03 		sub	r3, r3, #12
+ 544 012a FB73     		strb	r3, [r7, #15]
+ 220:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR12  =  (uint32_t)(Handle->PortRegs->IOCR12 & ~(0x0000001FUL << (3U+(Pin*8
+ 545              		.loc 1 220 0
+ 546 012c 7B68     		ldr	r3, [r7, #4]
+ 547 012e 5B68     		ldr	r3, [r3, #4]
+ 548 0130 7A68     		ldr	r2, [r7, #4]
+ 549 0132 5268     		ldr	r2, [r2, #4]
+ 550 0134 D169     		ldr	r1, [r2, #28]
+ 551 0136 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 552 0138 4FEAC202 		lsl	r2, r2, #3
+ 553 013c 02F10302 		add	r2, r2, #3
+ 554 0140 4FF01F00 		mov	r0, #31
+ 555 0144 00FA02F2 		lsl	r2, r0, r2
+ 556 0148 6FEA0202 		mvn	r2, r2
+ 557 014c 0A40     		ands	r2, r2, r1
+ 558 014e DA61     		str	r2, [r3, #28]
+ 221:../Dave/Generated/src/IO004/IO004.c ****     Handle->PortRegs->IOCR12 |=  (uint32_t)(((uint32_t)Mode & 0x1FUL) << (3U+(Pin*8U)));
+ 559              		.loc 1 221 0
+ 560 0150 7B68     		ldr	r3, [r7, #4]
+ 561 0152 5B68     		ldr	r3, [r3, #4]
+ 562 0154 7A68     		ldr	r2, [r7, #4]
+ 563 0156 5268     		ldr	r2, [r2, #4]
+ 564 0158 D169     		ldr	r1, [r2, #28]
+ 565 015a FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
+ 566 015c 02F01F00 		and	r0, r2, #31
+ 567 0160 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 568 0162 4FEAC202 		lsl	r2, r2, #3
+ 569 0166 02F10302 		add	r2, r2, #3
+ 570 016a 00FA02F2 		lsl	r2, r0, r2
+ 571 016e 0A43     		orrs	r2, r2, r1
+ 572 0170 DA61     		str	r2, [r3, #28]
+ 573              	.L7:
+ 222:../Dave/Generated/src/IO004/IO004.c ****   }
+ 223:../Dave/Generated/src/IO004/IO004.c ****   else
+ 224:../Dave/Generated/src/IO004/IO004.c ****   {
+ 225:../Dave/Generated/src/IO004/IO004.c **** 	  /*Not supposed to be here */
+ 226:../Dave/Generated/src/IO004/IO004.c ****   }
+ 227:../Dave/Generated/src/IO004/IO004.c **** }
+ 574              		.loc 1 227 0
+ 575 0172 07F11407 		add	r7, r7, #20
+ 576 0176 BD46     		mov	sp, r7
+ 577 0178 80BC     		pop	{r7}
+ 578 017a 7047     		bx	lr
+ 579              		.cfi_endproc
+ 580              	.LFE114:
+ 582              		.text
+ 583              	.Letext0:
+ 584              		.file 2 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+ 585              		.file 3 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 586              		.file 4 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Include/core_cm4.h"
+ 587              		.file 5 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
 DEFINED SYMBOLS
                             *ABS*:00000000 IO004.c
-C:\Users\Mateusz\AppData\Local\Temp\ccaF1KuJ.s:20     .text.IO004_Init:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccaF1KuJ.s:25     .text.IO004_Init:00000000 IO004_Init
-C:\Users\Mateusz\AppData\Local\Temp\ccaF1KuJ.s:154    .text.IO004_DisableOutputDriver:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccaF1KuJ.s:159    .text.IO004_DisableOutputDriver:00000000 IO004_DisableOutputDriver
-C:\Users\Mateusz\AppData\Local\Temp\ccaF1KuJ.s:351    .text.IO004_EnableOutputDriver:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccaF1KuJ.s:356    .text.IO004_EnableOutputDriver:00000000 IO004_EnableOutputDriver
+C:\Users\Mateusz\AppData\Local\Temp\ccKMHG7R.s:20     .text.IO004_Init:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccKMHG7R.s:25     .text.IO004_Init:00000000 IO004_Init
+C:\Users\Mateusz\AppData\Local\Temp\ccKMHG7R.s:189    .text.IO004_DisableOutputDriver:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccKMHG7R.s:194    .text.IO004_DisableOutputDriver:00000000 IO004_DisableOutputDriver
+C:\Users\Mateusz\AppData\Local\Temp\ccKMHG7R.s:386    .text.IO004_EnableOutputDriver:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccKMHG7R.s:391    .text.IO004_EnableOutputDriver:00000000 IO004_EnableOutputDriver
                      .debug_frame:00000010 $d
                            .group:00000000 wm4.1.35166846b5321d4273ad8c4248893ac3
                            .group:00000000 wm4.XMC4500.h.45.215f4b8c79f46c7645c15373868d08c0
@@ -799,9 +842,10 @@ C:\Users\Mateusz\AppData\Local\Temp\ccaF1KuJ.s:356    .text.IO004_EnableOutputDr
                            .group:00000000 wm4.UART001_Conf.h.53.ea28968cb6c53b1be9f53a4d9f42a86f
                            .group:00000000 wm4.SYSTM001.h.64.6ecb31c49bc3e7691644fdcdfc11b5cd
                            .group:00000000 wm4.I2C001.h.97.5277d52889d6c741e048ea45ee1277b5
-                           .group:00000000 wm4.I2C001_Conf.h.58.e471e519f7471a50493b6f4fe912ee0d
+                           .group:00000000 wm4.I2C001_Conf.h.58.e3e909c2ec9c29fee288b93938e533a2
 
 UNDEFINED SYMBOLS
 IO004_Handle0
 IO004_Handle1
 IO004_Handle2
+IO004_Handle3

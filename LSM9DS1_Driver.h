@@ -77,6 +77,12 @@ typedef struct
 	int16_t ax;
 	int16_t ay;
 	int16_t az;
+
+	int16_t gx;
+	int16_t gy;
+	int16_t gz;
+
+	//int16_t
 }accel;
 
 void readAccelToSensor(accel *pomiar);
@@ -91,11 +97,47 @@ typedef enum {
 
 void myDelay(volatile unsigned int delay);
 
+//ACCELERATION GETTERS
+float getAccelXf(void);
+
 int16_t getAccelX(void);
+
+float getAccelYf(void);
 
 int16_t getAccelY(void);
 
+float getAccelZf(void);
+
 int16_t getAccelZ(void);
+//ACCELERATION GETTERS
+
+//GYRO GETTERS
+float getGyroXf(void);
+
+int16_t getGyroX(void);
+
+float getGyroYf(void);
+
+int16_t getGyroY(void);
+
+float getGyroZf(void);
+
+int16_t getGyroZ(void);
+//GYRO GETTERS
+
+//MAGNET GETTERS
+float getMagnetXf(void);
+
+int16_t getMagnetX(void);
+
+float getMagnetYf(void);
+
+int16_t getMagnetY(void);
+
+float getMagnetZf(void);
+
+int16_t getMagnetZ(void);
+//MAGNET GETTERS
 
 void startMeasurements(void);
 

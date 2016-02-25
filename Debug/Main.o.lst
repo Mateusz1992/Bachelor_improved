@@ -45,12 +45,12 @@
   45              		.comm	my,2,2
   46              		.comm	mz,2,2
   47              		.comm	temperature,2,2
-  48              		.section	.text.main,"ax",%progbits
+  48              		.section	.text.check,"ax",%progbits
   49              		.align	2
-  50              		.global	main
+  50              		.global	check
   51              		.thumb
   52              		.thumb_func
-  54              	main:
+  54              	check:
   55              	.LFB112:
   56              		.file 1 "../Main.c"
    1:../Main.c     **** /*
@@ -73,7 +73,7 @@
   18:../Main.c     **** extern char device[20];
   19:../Main.c     **** 
   20:../Main.c     **** 
-  21:../Main.c     **** int main(void)
+  21:../Main.c     **** void check(void)
   22:../Main.c     **** {
   57              		.loc 1 22 0
   58              		.cfi_startproc
@@ -87,49 +87,226 @@
   66 0002 00AF     		add	r7, sp, #0
   67              	.LCFI1:
   68              		.cfi_def_cfa_register 7
-  23:../Main.c     **** //	status_t status;		// Declaration of return variable for DAVE3 APIs (toggle comment if required)
-  24:../Main.c     **** 
-  25:../Main.c     **** 
-  26:../Main.c     **** 	DAVE_Init();			// Initialization of DAVE Apps
-  69              		.loc 1 26 0
-  70 0004 FFF7FEFF 		bl	DAVE_Init
-  27:../Main.c     **** 
-  28:../Main.c     **** 	initBluetooth();
-  71              		.loc 1 28 0
-  72 0008 FFF7FEFF 		bl	initBluetooth
-  29:../Main.c     **** 	initLSM9DS1();
-  73              		.loc 1 29 0
-  74 000c FFF7FEFF 		bl	initLSM9DS1
-  30:../Main.c     **** 	calibrate(TRUE);
-  75              		.loc 1 30 0
-  76 0010 4FF00100 		mov	r0, #1
-  77 0014 FFF7FEFF 		bl	calibrate
-  31:../Main.c     **** 	startMeasurements();
-  78              		.loc 1 31 0
-  79 0018 FFF7FEFF 		bl	startMeasurements
-  80              	.L2:
-  32:../Main.c     **** 
-  33:../Main.c     **** 	while(1)
-  34:../Main.c     **** 	{
-  35:../Main.c     **** 
-  36:../Main.c     **** 		sendMeasurementsToBt();
-  81              		.loc 1 36 0 discriminator 1
-  82 001c FFF7FEFF 		bl	sendMeasurementsToBt
-  37:../Main.c     **** 		manageConnection();
-  83              		.loc 1 37 0 discriminator 1
-  84 0020 FFF7FEFF 		bl	manageConnection
+  23:../Main.c     **** 	if(I2C001_SET == I2C001_GetFlagStatus(&I2C001_Handle0,I2C001_FLAG_RSIF))
+  69              		.loc 1 23 0
+  70 0004 40F20000 		movw	r0, #:lower16:I2C001_Handle0
+  71 0008 C0F20000 		movt	r0, #:upper16:I2C001_Handle0
+  72 000c 4FF00001 		mov	r1, #0
+  73 0010 FFF7FEFF 		bl	I2C001_GetFlagStatus
+  74 0014 0346     		mov	r3, r0
+  75 0016 032B     		cmp	r3, #3
+  76 0018 6AD0     		beq	.L1
+  24:../Main.c     **** 	{
+  25:../Main.c     **** 		;
+  26:../Main.c     **** 	}
+  27:../Main.c     **** 	else if(I2C001_SET == I2C001_GetFlagStatus(&I2C001_Handle0,I2C001_FLAG_DLIF))
+  77              		.loc 1 27 0
+  78 001a 40F20000 		movw	r0, #:lower16:I2C001_Handle0
+  79 001e C0F20000 		movt	r0, #:upper16:I2C001_Handle0
+  80 0022 4FF00101 		mov	r1, #1
+  81 0026 FFF7FEFF 		bl	I2C001_GetFlagStatus
+  82 002a 0346     		mov	r3, r0
+  83 002c 032B     		cmp	r3, #3
+  84 002e 5FD0     		beq	.L1
+  28:../Main.c     **** 	{
+  29:../Main.c     **** 		;
+  30:../Main.c     **** 	}
+  31:../Main.c     **** 	else if(I2C001_SET == I2C001_GetFlagStatus(&I2C001_Handle0,I2C001_FLAG_TSIF))
+  85              		.loc 1 31 0
+  86 0030 40F20000 		movw	r0, #:lower16:I2C001_Handle0
+  87 0034 C0F20000 		movt	r0, #:upper16:I2C001_Handle0
+  88 0038 4FF00201 		mov	r1, #2
+  89 003c FFF7FEFF 		bl	I2C001_GetFlagStatus
+  90 0040 0346     		mov	r3, r0
+  91 0042 032B     		cmp	r3, #3
+  92 0044 54D0     		beq	.L1
+  32:../Main.c     **** 	{
+  33:../Main.c     **** 		;
+  34:../Main.c     **** 	}
+  35:../Main.c     **** 	else if(I2C001_SET == I2C001_GetFlagStatus(&I2C001_Handle0,I2C001_FLAG_TBIF))
+  93              		.loc 1 35 0
+  94 0046 40F20000 		movw	r0, #:lower16:I2C001_Handle0
+  95 004a C0F20000 		movt	r0, #:upper16:I2C001_Handle0
+  96 004e 4FF00301 		mov	r1, #3
+  97 0052 FFF7FEFF 		bl	I2C001_GetFlagStatus
+  98 0056 0346     		mov	r3, r0
+  99 0058 032B     		cmp	r3, #3
+ 100 005a 49D0     		beq	.L1
+  36:../Main.c     **** 	{
+  37:../Main.c     **** 		;
   38:../Main.c     **** 	}
-  85              		.loc 1 38 0 discriminator 1
-  86 0024 FAE7     		b	.L2
-  87              		.cfi_endproc
-  88              	.LFE112:
-  90 0026 00BF     		.text
-  91              	.Letext0:
-  92              		.file 2 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
-  93              		.file 3 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
-  94              		.file 4 "../LSM9DS1_Types.h"
-  95              		.file 5 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Include/core_cm4.h"
-  96              		.file 6 "../LSM9DS1_Driver.h"
+  39:../Main.c     **** 	else if(I2C001_SET == I2C001_GetFlagStatus(&I2C001_Handle0,I2C001_FLAG_RIF))
+ 101              		.loc 1 39 0
+ 102 005c 40F20000 		movw	r0, #:lower16:I2C001_Handle0
+ 103 0060 C0F20000 		movt	r0, #:upper16:I2C001_Handle0
+ 104 0064 4FF00401 		mov	r1, #4
+ 105 0068 FFF7FEFF 		bl	I2C001_GetFlagStatus
+ 106 006c 0346     		mov	r3, r0
+ 107 006e 032B     		cmp	r3, #3
+ 108 0070 3ED0     		beq	.L1
+  40:../Main.c     **** 	{
+  41:../Main.c     **** 		;
+  42:../Main.c     **** 	}
+  43:../Main.c     **** 	else if(I2C001_SET == I2C001_GetFlagStatus(&I2C001_Handle0,I2C001_FLAG_WRONG_TDF))
+ 109              		.loc 1 43 0
+ 110 0072 40F20000 		movw	r0, #:lower16:I2C001_Handle0
+ 111 0076 C0F20000 		movt	r0, #:upper16:I2C001_Handle0
+ 112 007a 4FF00501 		mov	r1, #5
+ 113 007e FFF7FEFF 		bl	I2C001_GetFlagStatus
+ 114 0082 0346     		mov	r3, r0
+ 115 0084 032B     		cmp	r3, #3
+ 116 0086 33D0     		beq	.L1
+  44:../Main.c     **** 	{
+  45:../Main.c     **** 		;
+  46:../Main.c     **** 	}
+  47:../Main.c     **** 	else if(I2C001_SET == I2C001_GetFlagStatus(&I2C001_Handle0,I2C001_FLAG_NACK_RECEIVED))
+ 117              		.loc 1 47 0
+ 118 0088 40F20000 		movw	r0, #:lower16:I2C001_Handle0
+ 119 008c C0F20000 		movt	r0, #:upper16:I2C001_Handle0
+ 120 0090 4FF00601 		mov	r1, #6
+ 121 0094 FFF7FEFF 		bl	I2C001_GetFlagStatus
+ 122 0098 0346     		mov	r3, r0
+ 123 009a 032B     		cmp	r3, #3
+ 124 009c 28D0     		beq	.L1
+  48:../Main.c     **** 	{
+  49:../Main.c     **** 		;
+  50:../Main.c     **** 	}
+  51:../Main.c     **** 	else if(I2C001_SET == I2C001_GetFlagStatus(&I2C001_Handle0,I2C001_FLAG_SRBI))
+ 125              		.loc 1 51 0
+ 126 009e 40F20000 		movw	r0, #:lower16:I2C001_Handle0
+ 127 00a2 C0F20000 		movt	r0, #:upper16:I2C001_Handle0
+ 128 00a6 4FF00701 		mov	r1, #7
+ 129 00aa FFF7FEFF 		bl	I2C001_GetFlagStatus
+ 130 00ae 0346     		mov	r3, r0
+ 131 00b0 032B     		cmp	r3, #3
+ 132 00b2 1DD0     		beq	.L1
+  52:../Main.c     **** 	{
+  53:../Main.c     **** 		int a;
+  54:../Main.c     **** 	}
+  55:../Main.c     **** 	else if(I2C001_SET == I2C001_GetFlagStatus(&I2C001_Handle0,I2C001_FLAG_RBERI))
+ 133              		.loc 1 55 0
+ 134 00b4 40F20000 		movw	r0, #:lower16:I2C001_Handle0
+ 135 00b8 C0F20000 		movt	r0, #:upper16:I2C001_Handle0
+ 136 00bc 4FF00801 		mov	r1, #8
+ 137 00c0 FFF7FEFF 		bl	I2C001_GetFlagStatus
+ 138 00c4 0346     		mov	r3, r0
+ 139 00c6 032B     		cmp	r3, #3
+ 140 00c8 12D0     		beq	.L1
+  56:../Main.c     **** 	{
+  57:../Main.c     **** 		int b;
+  58:../Main.c     **** 	}
+  59:../Main.c     **** 	else if(I2C001_SET == I2C001_GetFlagStatus(&I2C001_Handle0,I2C001_FLAG_STBI))
+ 141              		.loc 1 59 0
+ 142 00ca 40F20000 		movw	r0, #:lower16:I2C001_Handle0
+ 143 00ce C0F20000 		movt	r0, #:upper16:I2C001_Handle0
+ 144 00d2 4FF00901 		mov	r1, #9
+ 145 00d6 FFF7FEFF 		bl	I2C001_GetFlagStatus
+ 146 00da 0346     		mov	r3, r0
+ 147 00dc 032B     		cmp	r3, #3
+ 148 00de 07D0     		beq	.L1
+  60:../Main.c     **** 	{
+  61:../Main.c     **** 		int c;
+  62:../Main.c     **** 	}
+  63:../Main.c     **** 	else if(I2C001_SET == I2C001_GetFlagStatus(&I2C001_Handle0,I2C001_FLAG_TBERI))
+ 149              		.loc 1 63 0
+ 150 00e0 40F20000 		movw	r0, #:lower16:I2C001_Handle0
+ 151 00e4 C0F20000 		movt	r0, #:upper16:I2C001_Handle0
+ 152 00e8 4FF00A01 		mov	r1, #10
+ 153 00ec FFF7FEFF 		bl	I2C001_GetFlagStatus
+ 154              	.L1:
+  64:../Main.c     **** 	{
+  65:../Main.c     **** 		int d;
+  66:../Main.c     **** 	}
+  67:../Main.c     **** }
+ 155              		.loc 1 67 0
+ 156 00f0 80BD     		pop	{r7, pc}
+ 157              		.cfi_endproc
+ 158              	.LFE112:
+ 160 00f2 00BF     		.section	.text.main,"ax",%progbits
+ 161              		.align	2
+ 162              		.global	main
+ 163              		.thumb
+ 164              		.thumb_func
+ 166              	main:
+ 167              	.LFB113:
+  68:../Main.c     **** 
+  69:../Main.c     **** int main(void)
+  70:../Main.c     **** {
+ 168              		.loc 1 70 0
+ 169              		.cfi_startproc
+ 170              		@ args = 0, pretend = 0, frame = 8
+ 171              		@ frame_needed = 1, uses_anonymous_args = 0
+ 172 0000 80B5     		push	{r7, lr}
+ 173              	.LCFI2:
+ 174              		.cfi_def_cfa_offset 8
+ 175              		.cfi_offset 7, -8
+ 176              		.cfi_offset 14, -4
+ 177 0002 82B0     		sub	sp, sp, #8
+ 178              	.LCFI3:
+ 179              		.cfi_def_cfa_offset 16
+ 180 0004 00AF     		add	r7, sp, #0
+ 181              	.LCFI4:
+ 182              		.cfi_def_cfa_register 7
+  71:../Main.c     **** //	status_t status;		// Declaration of return variable for DAVE3 APIs (toggle comment if required)
+  72:../Main.c     **** 	int siema = 0;
+ 183              		.loc 1 72 0
+ 184 0006 4FF00003 		mov	r3, #0
+ 185 000a 7B60     		str	r3, [r7, #4]
+  73:../Main.c     **** 
+  74:../Main.c     **** 	DAVE_Init();			// Initialization of DAVE Apps
+ 186              		.loc 1 74 0
+ 187 000c FFF7FEFF 		bl	DAVE_Init
+  75:../Main.c     **** 
+  76:../Main.c     **** 	initLSM9DS1();
+ 188              		.loc 1 76 0
+ 189 0010 FFF7FEFF 		bl	initLSM9DS1
+  77:../Main.c     **** 	calibrate(TRUE);
+ 190              		.loc 1 77 0
+ 191 0014 4FF00100 		mov	r0, #1
+ 192 0018 FFF7FEFF 		bl	calibrate
+  78:../Main.c     **** 	resetConnectionIndicator();
+ 193              		.loc 1 78 0
+ 194 001c FFF7FEFF 		bl	resetConnectionIndicator
+  79:../Main.c     **** 
+  80:../Main.c     **** 	initBluetooth();
+ 195              		.loc 1 80 0
+ 196 0020 FFF7FEFF 		bl	initBluetooth
+  81:../Main.c     **** 	startMeasurements();
+ 197              		.loc 1 81 0
+ 198 0024 FFF7FEFF 		bl	startMeasurements
+ 199              	.L4:
+  82:../Main.c     **** 
+  83:../Main.c     **** 	while(1)
+  84:../Main.c     **** 	{
+  85:../Main.c     **** 		//if(siema == 0 && )
+  86:../Main.c     **** 		sendMeasurementsToBt();
+ 200              		.loc 1 86 0 discriminator 1
+ 201 0028 FFF7FEFF 		bl	sendMeasurementsToBt
+  87:../Main.c     **** 		manageConnection();
+ 202              		.loc 1 87 0 discriminator 1
+ 203 002c FFF7FEFF 		bl	manageConnection
+  88:../Main.c     **** 
+  89:../Main.c     **** 		check();
+ 204              		.loc 1 89 0 discriminator 1
+ 205 0030 FFF7FEFF 		bl	check
+  90:../Main.c     **** 
+  91:../Main.c     **** 
+  92:../Main.c     **** 	}
+ 206              		.loc 1 92 0 discriminator 1
+ 207 0034 F8E7     		b	.L4
+ 208              		.cfi_endproc
+ 209              	.LFE113:
+ 211 0036 00BF     		.text
+ 212              	.Letext0:
+ 213              		.file 2 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+ 214              		.file 3 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Infineon/XMC4500_series/Include/XMC4500.h"
+ 215              		.file 4 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 216              		.file 5 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 217              		.file 6 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 218              		.file 7 "../LSM9DS1_Types.h"
+ 219              		.file 8 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Include/core_cm4.h"
+ 220              		.file 9 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 221              		.file 10 "../LSM9DS1_Driver.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 Main.c
                             *COM*:00000004 TimerId
@@ -161,8 +338,10 @@ DEFINED SYMBOLS
                             *COM*:00000002 my
                             *COM*:00000002 mz
                             *COM*:00000002 temperature
-C:\Users\Mateusz\AppData\Local\Temp\ccEPxptp.s:49     .text.main:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccEPxptp.s:54     .text.main:00000000 main
+C:\Users\Mateusz\AppData\Local\Temp\cclrcsAT.s:49     .text.check:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\cclrcsAT.s:54     .text.check:00000000 check
+C:\Users\Mateusz\AppData\Local\Temp\cclrcsAT.s:161    .text.main:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\cclrcsAT.s:166    .text.main:00000000 main
                      .debug_frame:00000010 $d
                            .group:00000000 wm4.1.35166846b5321d4273ad8c4248893ac3
                            .group:00000000 wm4.XMC4500.h.45.215f4b8c79f46c7645c15373868d08c0
@@ -191,7 +370,7 @@ C:\Users\Mateusz\AppData\Local\Temp\ccEPxptp.s:54     .text.main:00000000 main
                            .group:00000000 wm4.UART001_Conf.h.53.ea28968cb6c53b1be9f53a4d9f42a86f
                            .group:00000000 wm4.SYSTM001.h.64.6ecb31c49bc3e7691644fdcdfc11b5cd
                            .group:00000000 wm4.I2C001.h.97.5277d52889d6c741e048ea45ee1277b5
-                           .group:00000000 wm4.I2C001_Conf.h.58.e471e519f7471a50493b6f4fe912ee0d
+                           .group:00000000 wm4.I2C001_Conf.h.58.e3e909c2ec9c29fee288b93938e533a2
                            .group:00000000 wm4.stdlib.h.13.603ed7eb09a1561ab06840b7c0fcff58
                            .group:00000000 wm4.stddef.h.161.e50ff8a9d5d1abbc15641da28ac571bf
                            .group:00000000 wm4._default_types.h.6.5e12cd604db8ce00b62bb2f02708eaf3
@@ -213,10 +392,13 @@ C:\Users\Mateusz\AppData\Local\Temp\ccEPxptp.s:54     .text.main:00000000 main
                            .group:00000000 wm4.string.h.86.d5c872ff52e2712c985b588a0ef39f3c
 
 UNDEFINED SYMBOLS
+I2C001_Handle0
+I2C001_GetFlagStatus
 DAVE_Init
-initBluetooth
 initLSM9DS1
 calibrate
+resetConnectionIndicator
+initBluetooth
 startMeasurements
 sendMeasurementsToBt
 manageConnection

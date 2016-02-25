@@ -56,6 +56,11 @@ extern int turnedOnSentTimer;
 
 int stageOfInit = 0;
 
+void resetConnectionIndicator(void)
+{
+	IO004_SetOutputValue(IO004_Handle3,0);
+}
+
 
 void chooseDevice(char *dev)
 {
@@ -70,10 +75,40 @@ void chooseDevice(char *dev)
 		device[6] = '1';
 		device[7] = '\0';
 	}
+	else if(!strcmp(dev, "Gyroscope"))
+	{
+		device[0] = 'G';
+		device[1] = 'y';
+		device[2] = 'r';
+		device[3] = 'o';
+		device[4] = 's';
+		device[5] = 'c';
+		device[6] = 'o';
+		device[7] = 'p';
+		device[8] = 'e';
+		device[9] = '\0';
+	}
+	else if(!strcmp(dev, "Magnetometer"))
+	{
+		device[0] = 'M';
+		device[1] = 'a';
+		device[2] = 'g';
+		device[3] = 'n';
+		device[4] = 'e';
+		device[5] = 't';
+		device[6] = 'o';
+		device[7] = 'm';
+		device[8] = 'e';
+		device[9] = 't';
+		device[10] = 'e';
+		device[11] = 'r';
+		device[12] = '\0';
+	}
 }
 
 void resetConnection(void)
 {
+	resetConnectionIndicator();
 	removeReceiveTimer();
 	createMainTimer();
 }
@@ -105,7 +140,7 @@ void manageConnection(void)
 
 	if(1 == stageOfConnection)
 	{
-		TimerIdRxMessage = SYSTM001_CreateTimer(20,SYSTM001_PERIODIC,RxTimerHandler,NULL);
+		TimerIdRxMessage = SYSTM001_CreateTimer(40,SYSTM001_PERIODIC,RxTimerHandler,NULL);
 		SYSTM001_StartTimer(TimerIdRxMessage);
 		turnedOnSentTimer = 0;
 		stageOfConnection = 0;
@@ -162,7 +197,7 @@ void removeReceiveTimer(void)
 
 void createMainTimer(void)
 {
-	mainInitTimerID = SYSTM001_CreateTimer(1000,SYSTM001_PERIODIC,timerHandlerInitBluetooth,&initCommandsAnswer);
+	mainInitTimerID = SYSTM001_CreateTimer(400,SYSTM001_PERIODIC,timerHandlerInitBluetooth,&initCommandsAnswer);
 	mainInitTimerStatus = SYSTM001_StartTimer(mainInitTimerID);
 }
 
@@ -229,6 +264,7 @@ void timerHandlerInitBluetoothReceive(void *T)
 		{
 			stageOfInit = 0;
 			initStatus = TRUE;
+			IO004_SetOutputValue(IO004_Handle3,1);
 		}
 	}
 	canSend = TRUE;
@@ -275,9 +311,19 @@ void send(char* command1, int length)
 			{
 				char c = command1[WriteCount];
 
-				UartRegs->TBUF[0] = c;
-				length--;
-				WriteCount++;
+				if(c >= 0)
+				{
+					UartRegs->TBUF[0] = c;
+					length--;
+					WriteCount++;
+				}
+				else
+				{
+					UartRegs->TBUF[0] = '-';
+					UartRegs->TBUF[0] = (char)abs((int)c);
+					length--;
+					WriteCount++;
+				}
 			}
 			else
 			{

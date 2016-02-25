@@ -57,6 +57,15 @@
   <nodes xsi:type="DaveExpert:PeripheralNode">
     <resource xsi:type="ResourceModel:Peripheral" href="USIC2/USIC2_2.dd#/"/>
   </nodes>
+  <nodes xsi:type="DaveExpert:AppNode">
+    <resource xsi:type="ResourceModel:App" href="IO004/1.0.22/io004_3.app#/"/>
+  </nodes>
+  <nodes xsi:type="DaveExpert:AppNode">
+    <resource xsi:type="ResourceModel:App" href="I2C001/1.0.28/i2c001_1.app#/"/>
+  </nodes>
+  <nodes xsi:type="DaveExpert:PeripheralNode">
+    <resource xsi:type="ResourceModel:Peripheral" href="USIC0/USIC0_0.dd#/"/>
+  </nodes>
   <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.5" target="//@nodes.6"/>
   <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.5" target="//@nodes.7"/>
   <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.6" target="//@nodes.10"/>
@@ -72,4 +81,9 @@
   <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.17" target="//@nodes.7"/>
   <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.17" target="//@nodes.18"/>
   <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.17" target="//@nodes.13"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.19" target="//@nodes.12"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.20" target="//@nodes.6"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.20" target="//@nodes.7"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.20" target="//@nodes.21"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.20" target="//@nodes.12"/>
 </DaveExpert:ApplicationModelData>

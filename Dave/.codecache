@@ -18,7 +18,7 @@
     <File genName="SYSTM001.h" genPath="Dave\Generated\inc\SYSTM001\SYSTM001.h" jetPath="SYSTM001/1.0.18/Templates/SYSTM001_h.jet" location="bin\CodeGenerator\systm001_hTemplate.class"/>
         <File genName="SYSTM001.c" genPath="Dave\Generated\src\SYSTM001\SYSTM001.c" jetPath="SYSTM001/1.0.18/Templates/SYSTM001c.jet" location="bin\CodeGenerator\systm001c_template.class"/>
     <File genName="I2C001_Conf.h" genPath="Dave\Generated\inc\I2C001\I2C001_Conf.h" jetPath="I2C001/1.0.28/Templates/I2C001_Confh.jet" location="bin\CodeGenerator\i2c001_confh_template.class"/>
-        <File genName="I2C001.c" genPath="Dave\Generated\src\I2C001\I2C001.c" jetPath="I2C001/1.0.28/Templates/I2C001c.jet" location="bin\CodeGenerator\i2c001c_template.class"/>
         <File genName="I2C001_Conf.c" genPath="Dave\Generated\src\I2C001\I2C001_Conf.c" jetPath="I2C001/1.0.28/Templates/I2C001_Confc.jet" location="bin\CodeGenerator\i2c001_confc_template.class"/>
+    <File genName="I2C001.c" genPath="Dave\Generated\src\I2C001\I2C001.c" jetPath="I2C001/1.0.28/Templates/I2C001c.jet" location="bin\CodeGenerator\i2c001c_template.class"/>
     </TemplateCaches>
 </Cache>

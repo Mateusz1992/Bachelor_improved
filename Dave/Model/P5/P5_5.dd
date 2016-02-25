@@ -103,8 +103,8 @@
   <provided xsi:type="ResourceModel:BitField" name="PD2" URI="http://www.infineon.com/0.1.39/port/p/5/pad/2/pdr_pd" maxValue="7" minValue="0" startPos="8" stopPos="10" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="2"/>
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../I2C001/1.0.28/i2c001_0.app#//@consumed.47"/>
-    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="4"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="4"/>
     <toolTipHelpDescription>Pad Driver Mode for Pn.2</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC2_3" URI="http://www.infineon.com/0.1.39/port/p/5/pad/2/iocr_po" maxValue="1" minValue="0" startPos="22" stopPos="22" accessPermission="rw">
@@ -143,8 +143,8 @@
   <provided xsi:type="ResourceModel:BitField" name="PD0" URI="http://www.infineon.com/0.1.39/port/p/5/pad/0/pdr_pd" maxValue="7" minValue="0" startPos="0" stopPos="2" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="2"/>
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../I2C001/1.0.28/i2c001_0.app#//@consumed.45"/>
-    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="4"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="4"/>
     <toolTipHelpDescription>Pad Driver Mode for Pn.0</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC0_3" URI="http://www.infineon.com/0.1.39/port/p/5/pad/0/iocr_po" maxValue="1" minValue="0" startPos="6" stopPos="6" accessPermission="rw">

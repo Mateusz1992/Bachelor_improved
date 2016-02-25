@@ -153,7 +153,15 @@ void IO004_Init(void)
   IO004_Handle2.PortRegs->PDR1  &= (uint32_t)(~(PORT1_PDR1_PD13_Msk));
   IO004_Handle2.PortRegs->PDR1  |= (uint32_t)((4UL << PORT1_PDR1_PD13_Pos) & \
                                      PORT1_PDR1_PD13_Msk);
-  IO004_Handle2.PortRegs->IOCR12 |= (0U << 11);
+  IO004_Handle2.PortRegs->IOCR12 |= (0U << 11);   
+
+  /* Configuration of 1 Port 0 based on User configuration */
+  IO004_Handle3.PortRegs->OMR = 0U<< 0;
+  
+  IO004_Handle3.PortRegs->PDR0   &= (uint32_t)(~(PORT1_PDR0_PD0_Msk));
+  IO004_Handle3.PortRegs->PDR0   |= (uint32_t)((4UL << PORT1_PDR0_PD0_Pos) & \
+                                          PORT1_PDR0_PD0_Msk);
+  IO004_Handle3.PortRegs->IOCR0 |= (0U << 3);
 }
 
 void IO004_DisableOutputDriver(const IO004_HandleType* Handle,IO004_InputModeType Mode)

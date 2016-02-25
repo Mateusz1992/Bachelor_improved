@@ -38,18 +38,26 @@
   44 0011 0D       		.byte	13
   45 0012 0000     		.space	2
   46 0014 00810248 		.word	1208123648
-  47              		.text
-  48              	.Letext0:
-  49              		.file 1 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
-  50              		.file 2 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
-  51              		.file 3 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Include/core_cm4.h"
-  52              		.file 4 "../Dave/Generated/src/IO004/IO004_Conf.c"
+  47              		.global	IO004_Handle3
+  48              		.align	2
+  51              	IO004_Handle3:
+  52 0018 01       		.byte	1
+  53 0019 00       		.byte	0
+  54 001a 0000     		.space	2
+  55 001c 00810248 		.word	1208123648
+  56              		.text
+  57              	.Letext0:
+  58              		.file 1 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+  59              		.file 2 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+  60              		.file 3 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Include/core_cm4.h"
+  61              		.file 4 "../Dave/Generated/src/IO004/IO004_Conf.c"
 DEFINED SYMBOLS
                             *ABS*:00000000 IO004_Conf.c
-C:\Users\Mateusz\AppData\Local\Temp\ccvvZzWw.s:24     .rodata:00000000 IO004_Handle0
-C:\Users\Mateusz\AppData\Local\Temp\ccvvZzWw.s:21     .rodata:00000000 $d
-C:\Users\Mateusz\AppData\Local\Temp\ccvvZzWw.s:33     .rodata:00000008 IO004_Handle1
-C:\Users\Mateusz\AppData\Local\Temp\ccvvZzWw.s:42     .rodata:00000010 IO004_Handle2
+C:\Users\Mateusz\AppData\Local\Temp\ccjXh7Bw.s:24     .rodata:00000000 IO004_Handle0
+C:\Users\Mateusz\AppData\Local\Temp\ccjXh7Bw.s:21     .rodata:00000000 $d
+C:\Users\Mateusz\AppData\Local\Temp\ccjXh7Bw.s:33     .rodata:00000008 IO004_Handle1
+C:\Users\Mateusz\AppData\Local\Temp\ccjXh7Bw.s:42     .rodata:00000010 IO004_Handle2
+C:\Users\Mateusz\AppData\Local\Temp\ccjXh7Bw.s:51     .rodata:00000018 IO004_Handle3
                            .group:00000000 wm4.1.35166846b5321d4273ad8c4248893ac3
                            .group:00000000 wm4.XMC4500.h.45.215f4b8c79f46c7645c15373868d08c0
                            .group:00000000 wm4.core_cm4.h.47.41af406cb4cda82c972f112a9cd0a024
@@ -77,6 +85,6 @@ C:\Users\Mateusz\AppData\Local\Temp\ccvvZzWw.s:42     .rodata:00000010 IO004_Han
                            .group:00000000 wm4.UART001_Conf.h.53.ea28968cb6c53b1be9f53a4d9f42a86f
                            .group:00000000 wm4.SYSTM001.h.64.6ecb31c49bc3e7691644fdcdfc11b5cd
                            .group:00000000 wm4.I2C001.h.97.5277d52889d6c741e048ea45ee1277b5
-                           .group:00000000 wm4.I2C001_Conf.h.58.e471e519f7471a50493b6f4fe912ee0d
+                           .group:00000000 wm4.I2C001_Conf.h.58.e3e909c2ec9c29fee288b93938e533a2
 
 NO UNDEFINED SYMBOLS

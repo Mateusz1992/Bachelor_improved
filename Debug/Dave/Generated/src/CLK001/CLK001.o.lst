@@ -2130,27 +2130,27 @@
  797              		.file 5 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Include/core_cm4.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 CLK001.c
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:20     .bss:00000000 $d
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:21     .bss:00000000 VCO
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:24     .bss:00000004 stepping_K2DIV
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:27     .text.CLK001_Delay:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:31     .text.CLK001_Delay:00000000 CLK001_Delay
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:108    .text.CLK001_SysClk_Valid:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:112    .text.CLK001_SysClk_Valid:00000000 CLK001_SysClk_Valid
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:157    .text.CLK001_BackupClkTrim:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:161    .text.CLK001_BackupClkTrim:00000000 CLK001_BackupClkTrim
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:232    .text.CLK001_SetMainPLLClkSrc:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:236    .text.CLK001_SetMainPLLClkSrc:00000000 CLK001_SetMainPLLClkSrc
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:349    .text.CLK001_ConfigMainPLL:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:353    .text.CLK001_ConfigMainPLL:00000000 CLK001_ConfigMainPLL
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:504    .text.CLK001_FreqStepupMainPLL:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:508    .text.CLK001_FreqStepupMainPLL:00000000 CLK001_FreqStepupMainPLL
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:660    .text.CLK001_SysClk_Init:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:664    .text.CLK001_SysClk_Init:00000000 CLK001_SysClk_Init
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:717    .text.CLK001_Init:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:722    .text.CLK001_Init:00000000 CLK001_Init
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:764    .text.AllowPLLInitByStartup:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccOESXas.s:769    .text.AllowPLLInitByStartup:00000000 AllowPLLInitByStartup
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:20     .bss:00000000 $d
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:21     .bss:00000000 VCO
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:24     .bss:00000004 stepping_K2DIV
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:27     .text.CLK001_Delay:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:31     .text.CLK001_Delay:00000000 CLK001_Delay
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:108    .text.CLK001_SysClk_Valid:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:112    .text.CLK001_SysClk_Valid:00000000 CLK001_SysClk_Valid
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:157    .text.CLK001_BackupClkTrim:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:161    .text.CLK001_BackupClkTrim:00000000 CLK001_BackupClkTrim
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:232    .text.CLK001_SetMainPLLClkSrc:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:236    .text.CLK001_SetMainPLLClkSrc:00000000 CLK001_SetMainPLLClkSrc
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:349    .text.CLK001_ConfigMainPLL:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:353    .text.CLK001_ConfigMainPLL:00000000 CLK001_ConfigMainPLL
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:504    .text.CLK001_FreqStepupMainPLL:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:508    .text.CLK001_FreqStepupMainPLL:00000000 CLK001_FreqStepupMainPLL
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:660    .text.CLK001_SysClk_Init:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:664    .text.CLK001_SysClk_Init:00000000 CLK001_SysClk_Init
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:717    .text.CLK001_Init:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:722    .text.CLK001_Init:00000000 CLK001_Init
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:764    .text.AllowPLLInitByStartup:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\cckLoG2k.s:769    .text.AllowPLLInitByStartup:00000000 AllowPLLInitByStartup
                      .debug_frame:00000010 $d
                            .group:00000000 wm4.1.35166846b5321d4273ad8c4248893ac3
                            .group:00000000 wm4.uc_id.h.35.fa57ecd9f559d2767f56c96da2848c12

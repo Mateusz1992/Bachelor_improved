@@ -84,6 +84,28 @@ const I2C001Handle_type I2C001_Handle0  =
 
    .USICChannel = USIC_U2C0,/* USIC Channel No */
    .I2CRegs = USIC2_CH0, /* Register Base address */
+   .BitRate  = (uint32_t) 400,/* Bit Rate */
+   .TxLimit = (uint8_t) 1,/* FIFO Tigger Level */
+   .RxLimit = (uint8_t) 0,/* FIFO Tigger Level */
+   .TxFifoSize = (uint8_t) 2,/* Tx FIFO Size */
+   .RxFifoSize = (uint8_t) 2,/* Rx FIFO Size */
+   .StartCondRecvIntEn = (bool) 0, /* Protocol specific interrupt enable */
+   .RepStartCondRecvIntEn = (bool) 0, /* Protocol specific interrupt enable */
+   .StopCondRecvIntEn = (bool) 0, /* Protocol specific interrupt enable */
+   .NackDetectIntEn = (bool) 0, /* Protocol specific interrupt enable */
+   .ArbLostIntEn = (bool) 0, /* Protocol specific interrupt enable */   
+   .ErrorIntEn = (bool) 0, /* Protocol specific interrupt enable */   
+   .AckIntEn = (bool) 0 /* Protocol specific interrupt enable */   
+     
+};
+
+
+const I2C001Handle_type I2C001_Handle1  = 
+{
+  /* Temp Code for testing Eval functions */
+
+   .USICChannel = USIC_U0C0,/* USIC Channel No */
+   .I2CRegs = USIC0_CH0, /* Register Base address */
    .BitRate  = (uint32_t) 100,/* Bit Rate */
    .TxLimit = (uint8_t) 1,/* FIFO Tigger Level */
    .RxLimit = (uint8_t) 0,/* FIFO Tigger Level */

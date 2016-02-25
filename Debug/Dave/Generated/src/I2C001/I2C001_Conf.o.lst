@@ -23,11 +23,11 @@
   25 0000 04       		.byte	4
   26 0001 000000   		.space	3
   27 0004 00400248 		.word	1208107008
-  28 0008 64000000 		.word	100
+  28 0008 90010000 		.word	400
   29 000c 01       		.byte	1
   30 000d 00       		.byte	0
-  31 000e 01       		.byte	1
-  32 000f 01       		.byte	1
+  31 000e 02       		.byte	2
+  32 000f 02       		.byte	2
   33 0010 00       		.byte	0
   34 0011 00       		.byte	0
   35 0012 00       		.byte	0
@@ -36,19 +36,39 @@
   38 0015 00       		.byte	0
   39 0016 00       		.byte	0
   40 0017 00       		.space	1
-  41              		.text
-  42              	.Letext0:
-  43              		.file 1 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
-  44              		.file 2 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Infineon/XMC4500_series/Include/XMC4500.h"
-  45              		.file 3 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
-  46              		.file 4 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
-  47              		.file 5 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
-  48              		.file 6 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Include/core_cm4.h"
-  49              		.file 7 "../Dave/Generated/src/I2C001/I2C001_Conf.c"
+  41              		.global	I2C001_Handle1
+  42              		.align	2
+  45              	I2C001_Handle1:
+  46 0018 00       		.byte	0
+  47 0019 000000   		.space	3
+  48 001c 00000340 		.word	1073938432
+  49 0020 64000000 		.word	100
+  50 0024 01       		.byte	1
+  51 0025 00       		.byte	0
+  52 0026 01       		.byte	1
+  53 0027 01       		.byte	1
+  54 0028 00       		.byte	0
+  55 0029 00       		.byte	0
+  56 002a 00       		.byte	0
+  57 002b 00       		.byte	0
+  58 002c 00       		.byte	0
+  59 002d 00       		.byte	0
+  60 002e 00       		.byte	0
+  61 002f 00       		.space	1
+  62              		.text
+  63              	.Letext0:
+  64              		.file 1 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+  65              		.file 2 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Infineon/XMC4500_series/Include/XMC4500.h"
+  66              		.file 3 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+  67              		.file 4 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+  68              		.file 5 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+  69              		.file 6 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Include/core_cm4.h"
+  70              		.file 7 "../Dave/Generated/src/I2C001/I2C001_Conf.c"
 DEFINED SYMBOLS
                             *ABS*:00000000 I2C001_Conf.c
-C:\Users\Mateusz\AppData\Local\Temp\cchzYwWV.s:24     .rodata:00000000 I2C001_Handle0
-C:\Users\Mateusz\AppData\Local\Temp\cchzYwWV.s:21     .rodata:00000000 $d
+C:\Users\Mateusz\AppData\Local\Temp\cc4MgRJO.s:24     .rodata:00000000 I2C001_Handle0
+C:\Users\Mateusz\AppData\Local\Temp\cc4MgRJO.s:21     .rodata:00000000 $d
+C:\Users\Mateusz\AppData\Local\Temp\cc4MgRJO.s:45     .rodata:00000018 I2C001_Handle1
                            .group:00000000 wm4.1.35166846b5321d4273ad8c4248893ac3
                            .group:00000000 wm4.XMC4500.h.45.215f4b8c79f46c7645c15373868d08c0
                            .group:00000000 wm4.core_cm4.h.47.41af406cb4cda82c972f112a9cd0a024
@@ -76,6 +96,6 @@ C:\Users\Mateusz\AppData\Local\Temp\cchzYwWV.s:21     .rodata:00000000 $d
                            .group:00000000 wm4.UART001_Conf.h.53.ea28968cb6c53b1be9f53a4d9f42a86f
                            .group:00000000 wm4.SYSTM001.h.64.6ecb31c49bc3e7691644fdcdfc11b5cd
                            .group:00000000 wm4.I2C001.h.97.5277d52889d6c741e048ea45ee1277b5
-                           .group:00000000 wm4.I2C001_Conf.h.58.e471e519f7471a50493b6f4fe912ee0d
+                           .group:00000000 wm4.I2C001_Conf.h.58.e3e909c2ec9c29fee288b93938e533a2
 
 NO UNDEFINED SYMBOLS

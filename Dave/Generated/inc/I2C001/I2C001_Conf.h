@@ -72,7 +72,13 @@ extern "C" {
 #define I2C001_0_USIC 	  USIC2
 /*Base Address of mapped USIC Channel for App Instance 0 */
 #define I2C001_0_USIC_CH  USIC2_CH0
+/*Base Address of mapped USIC Module for App Instance 1 */
+#define I2C001_1_USIC 	  USIC0
+/*Base Address of mapped USIC Channel for App Instance 1 */
+#define I2C001_1_USIC_CH  USIC0_CH0
 extern const I2C001Handle_type I2C001_Handle0; 
+
+extern const I2C001Handle_type I2C001_Handle1; 
  
 
 #ifdef __cplusplus

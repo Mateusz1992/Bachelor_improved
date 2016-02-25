@@ -416,18 +416,35 @@ void I2C001_Init(void)
   I2C001_lInit(&I2C001_Handle0);          
      /* Configuration of SCL Pin 5.2 based on User configuration */
   PORT5->PDR0  &= (~(PORT5_PDR0_PD2_Msk));
-  PORT5->PDR0  |= (((uint32_t)0 << PORT5_PDR0_PD2_Pos) & PORT5_PDR0_PD2_Msk);       
+  PORT5->PDR0  |= (((uint32_t)4 << PORT5_PDR0_PD2_Pos) & PORT5_PDR0_PD2_Msk);       
   PORT5->IOCR0 |= ((uint32_t)24 << 19);
  	 
   PORT5->OMR |= ((uint32_t)0x01 << 2);          
      /* Configuration of SDA Pin 5.0 based on User configuration */
   PORT5->PDR0  &= (~(PORT5_PDR0_PD0_Msk));
-  PORT5->PDR0  |= (((uint32_t)0 << PORT5_PDR0_PD0_Pos) & PORT5_PDR0_PD0_Msk);
+  PORT5->PDR0  |= (((uint32_t)4 << PORT5_PDR0_PD0_Pos) & PORT5_PDR0_PD0_Msk);
  	
  	
   PORT5->IOCR0 |= ((uint32_t)24 << 3);
  	 
   PORT5->OMR |= ((uint32_t)0x01 << 0);
+
+  RESET001_DeassertReset(PER0_USIC0);
+  I2C001_lInit(&I2C001_Handle1);        
+     /* Configuration of SCL Pin 1.1 based on User configuration */
+  PORT1->PDR0  &= (~(PORT1_PDR0_PD1_Msk));
+  PORT1->PDR0  |= (((uint32_t)0 << PORT1_PDR0_PD1_Pos) & PORT1_PDR0_PD1_Msk);       
+  PORT1->IOCR0 |= ((uint32_t)24 << 11);
+ 	 
+  PORT1->OMR |= ((uint32_t)0x01 << 1);          
+     /* Configuration of SDA Pin 1.5 based on User configuration */
+  PORT1->PDR0  &= (~(PORT1_PDR0_PD5_Msk));
+  PORT1->PDR0  |= (((uint32_t)0 << PORT1_PDR0_PD5_Pos) & PORT1_PDR0_PD5_Msk);
+ 	
+ 	
+  PORT1->IOCR4 |= ((uint32_t)24 << 11);
+ 	 
+  PORT1->OMR |= ((uint32_t)0x01 << 5);
 
 }
  /* Function provide to reset the App to default values. */
