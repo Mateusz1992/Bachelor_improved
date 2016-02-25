@@ -17,23 +17,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
   6 .debug_aranges 000008a8  00000000  00000000  000208f8  2**3
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_info   0000b5d9  00000000  00000000  000211a0  2**0
+  7 .debug_info   0000b5e6  00000000  00000000  000211a0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 00001e95  00000000  00000000  0002c779  2**0
+  8 .debug_abbrev 00001e95  00000000  00000000  0002c786  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_line   0000c0ca  00000000  00000000  0002e60e  2**0
+  9 .debug_line   0000c0cb  00000000  00000000  0002e61b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_frame  00002854  00000000  00000000  0003a6d8  2**2
+ 10 .debug_frame  00002854  00000000  00000000  0003a6e8  2**2
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_str    0009b89e  00000000  00000000  0003cf2c  2**0
+ 11 .debug_str    0009b89e  00000000  00000000  0003cf3c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_loc    0000292c  00000000  00000000  000d87ca  2**0
+ 12 .debug_loc    0000292c  00000000  00000000  000d87da  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_ranges 00000700  00000000  00000000  000db0f8  2**3
+ 13 .debug_ranges 00000700  00000000  00000000  000db108  2**3
                   CONTENTS, READONLY, DEBUGGING
- 14 .build_attributes 00000ef6  00000000  00000000  000db7f8  2**0
+ 14 .build_attributes 00000ef6  00000000  00000000  000db808  2**0
                   CONTENTS, READONLY
- 15 .debug_macro  0001b5a1  00000000  00000000  000dc6ee  2**0
+ 15 .debug_macro  0001b5a1  00000000  00000000  000dc6fe  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -2448,11 +2448,11 @@ void readAndSendMeasurements(void (*sendFunction)(char *str, int len))
  80013a0:	809a      	strh	r2, [r3, #4]
 
 
-		gyroX = (adrAndData.dane[7] << 1) | adrAndData.dane[6];
+		gyroX = (adrAndData.dane[7] << 8) | adrAndData.dane[6];
  80013a2:	f241 33ac 	movw	r3, #5036	; 0x13ac
  80013a6:	f2c2 0300 	movt	r3, #8192	; 0x2000
  80013aa:	79db      	ldrb	r3, [r3, #7]
- 80013ac:	ea4f 0343 	mov.w	r3, r3, lsl #1
+ 80013ac:	ea4f 2303 	mov.w	r3, r3, lsl #8
  80013b0:	b29a      	uxth	r2, r3
  80013b2:	f241 33ac 	movw	r3, #5036	; 0x13ac
  80013b6:	f2c2 0300 	movt	r3, #8192	; 0x2000
@@ -2463,11 +2463,11 @@ void readAndSendMeasurements(void (*sendFunction)(char *str, int len))
  80013c4:	f2c2 0300 	movt	r3, #8192	; 0x2000
  80013c8:	801a      	strh	r2, [r3, #0]
 
-		gyroY = (adrAndData.dane[9] << 1) | adrAndData.dane[8];
+		gyroY = (adrAndData.dane[9] << 8) | adrAndData.dane[8];
  80013ca:	f241 33ac 	movw	r3, #5036	; 0x13ac
  80013ce:	f2c2 0300 	movt	r3, #8192	; 0x2000
  80013d2:	7a5b      	ldrb	r3, [r3, #9]
- 80013d4:	ea4f 0343 	mov.w	r3, r3, lsl #1
+ 80013d4:	ea4f 2303 	mov.w	r3, r3, lsl #8
  80013d8:	b29a      	uxth	r2, r3
  80013da:	f241 33ac 	movw	r3, #5036	; 0x13ac
  80013de:	f2c2 0300 	movt	r3, #8192	; 0x2000
@@ -2478,11 +2478,11 @@ void readAndSendMeasurements(void (*sendFunction)(char *str, int len))
  80013ec:	f2c2 0300 	movt	r3, #8192	; 0x2000
  80013f0:	801a      	strh	r2, [r3, #0]
 
-		gyroZ = (adrAndData.dane[11] << 1) | adrAndData.dane[10];
+		gyroZ = (adrAndData.dane[11] << 8) | adrAndData.dane[10];
  80013f2:	f241 33ac 	movw	r3, #5036	; 0x13ac
  80013f6:	f2c2 0300 	movt	r3, #8192	; 0x2000
  80013fa:	7adb      	ldrb	r3, [r3, #11]
- 80013fc:	ea4f 0343 	mov.w	r3, r3, lsl #1
+ 80013fc:	ea4f 2303 	mov.w	r3, r3, lsl #8
  8001400:	b29a      	uxth	r2, r3
  8001402:	f241 33ac 	movw	r3, #5036	; 0x13ac
  8001406:	f2c2 0300 	movt	r3, #8192	; 0x2000
@@ -2678,11 +2678,11 @@ void readAndSendMeasurements(void (*sendFunction)(char *str, int len))
 
 
 
-		magnetX = (adrAndData.dane[13] << 1) | adrAndData.dane[12];
+		magnetX = (adrAndData.dane[13] << 8) | adrAndData.dane[12];
  800160a:	f241 33ac 	movw	r3, #5036	; 0x13ac
  800160e:	f2c2 0300 	movt	r3, #8192	; 0x2000
  8001612:	7b5b      	ldrb	r3, [r3, #13]
- 8001614:	ea4f 0343 	mov.w	r3, r3, lsl #1
+ 8001614:	ea4f 2303 	mov.w	r3, r3, lsl #8
  8001618:	b29a      	uxth	r2, r3
  800161a:	f241 33ac 	movw	r3, #5036	; 0x13ac
  800161e:	f2c2 0300 	movt	r3, #8192	; 0x2000
@@ -2693,11 +2693,11 @@ void readAndSendMeasurements(void (*sendFunction)(char *str, int len))
  800162c:	f2c2 0300 	movt	r3, #8192	; 0x2000
  8001630:	801a      	strh	r2, [r3, #0]
 
-		magnetY = (adrAndData.dane[15] << 1) | adrAndData.dane[14];
+		magnetY = (adrAndData.dane[15] << 8) | adrAndData.dane[14];
  8001632:	f241 33ac 	movw	r3, #5036	; 0x13ac
  8001636:	f2c2 0300 	movt	r3, #8192	; 0x2000
  800163a:	7bdb      	ldrb	r3, [r3, #15]
- 800163c:	ea4f 0343 	mov.w	r3, r3, lsl #1
+ 800163c:	ea4f 2303 	mov.w	r3, r3, lsl #8
  8001640:	b29a      	uxth	r2, r3
  8001642:	f241 33ac 	movw	r3, #5036	; 0x13ac
  8001646:	f2c2 0300 	movt	r3, #8192	; 0x2000
@@ -2708,18 +2708,18 @@ void readAndSendMeasurements(void (*sendFunction)(char *str, int len))
  8001654:	f2c2 0300 	movt	r3, #8192	; 0x2000
  8001658:	801a      	strh	r2, [r3, #0]
 
-		magnetY = (adrAndData.dane[17] << 1) | adrAndData.dane[16];
+		magnetZ = (adrAndData.dane[17] << 8) | adrAndData.dane[16];
  800165a:	f241 33ac 	movw	r3, #5036	; 0x13ac
  800165e:	f2c2 0300 	movt	r3, #8192	; 0x2000
  8001662:	7c5b      	ldrb	r3, [r3, #17]
- 8001664:	ea4f 0343 	mov.w	r3, r3, lsl #1
+ 8001664:	ea4f 2303 	mov.w	r3, r3, lsl #8
  8001668:	b29a      	uxth	r2, r3
  800166a:	f241 33ac 	movw	r3, #5036	; 0x13ac
  800166e:	f2c2 0300 	movt	r3, #8192	; 0x2000
  8001672:	7c1b      	ldrb	r3, [r3, #16]
  8001674:	4313      	orrs	r3, r2
  8001676:	b29a      	uxth	r2, r3
- 8001678:	f640 135a 	movw	r3, #2394	; 0x95a
+ 8001678:	f640 135c 	movw	r3, #2396	; 0x95c
  800167c:	f2c2 0300 	movt	r3, #8192	; 0x2000
  8001680:	801a      	strh	r2, [r3, #0]
 
@@ -4150,100 +4150,101 @@ void I2CwriteByte(uint8_t address, uint8_t subAddress, uint8_t data)
  80021da:	71ba      	strb	r2, [r7, #6]
  80021dc:	717b      	strb	r3, [r7, #5]
 
+		uint8_t c = (address<<1);
+ 80021de:	79fb      	ldrb	r3, [r7, #7]
+ 80021e0:	ea4f 0343 	mov.w	r3, r3, lsl #1
+ 80021e4:	75fb      	strb	r3, [r7, #23]
 		I2C001_DataType data1;
 		data1.Data1.TDF_Type = I2C_TDF_MStart;
- 80021de:	f04f 0304 	mov.w	r3, #4
- 80021e2:	757b      	strb	r3, [r7, #21]
-		data1.Data1.Data = ((address<<1) | I2C_WRITE);
- 80021e4:	79fb      	ldrb	r3, [r7, #7]
- 80021e6:	ea4f 0343 	mov.w	r3, r3, lsl #1
- 80021ea:	b2db      	uxtb	r3, r3
- 80021ec:	753b      	strb	r3, [r7, #20]
+ 80021e6:	f04f 0304 	mov.w	r3, #4
+ 80021ea:	757b      	strb	r3, [r7, #21]
+		data1.Data1.Data = (c | I2C_WRITE);
+ 80021ec:	7dfb      	ldrb	r3, [r7, #23]
+ 80021ee:	753b      	strb	r3, [r7, #20]
 		while(!I2C001_WriteData(&I2C001_Handle0,&data1));
- 80021ee:	bf00      	nop
- 80021f0:	f107 0314 	add.w	r3, r7, #20
- 80021f4:	f643 2004 	movw	r0, #14852	; 0x3a04
- 80021f8:	f6c0 0001 	movt	r0, #2049	; 0x801
- 80021fc:	4619      	mov	r1, r3
- 80021fe:	f005 f99d 	bl	800753c <I2C001_WriteData>
- 8002202:	4603      	mov	r3, r0
- 8002204:	2b00      	cmp	r3, #0
- 8002206:	d0f3      	beq.n	80021f0 <I2CwriteByte+0x24>
+ 80021f0:	bf00      	nop
+ 80021f2:	f107 0314 	add.w	r3, r7, #20
+ 80021f6:	f643 2004 	movw	r0, #14852	; 0x3a04
+ 80021fa:	f6c0 0001 	movt	r0, #2049	; 0x801
+ 80021fe:	4619      	mov	r1, r3
+ 8002200:	f005 f99c 	bl	800753c <I2C001_WriteData>
+ 8002204:	4603      	mov	r3, r0
+ 8002206:	2b00      	cmp	r3, #0
+ 8002208:	d0f3      	beq.n	80021f2 <I2CwriteByte+0x26>
 
 		delay(DELAY);
- 8002208:	f642 60e0 	movw	r0, #12000	; 0x2ee0
- 800220c:	f7ff fdec 	bl	8001de8 <delay>
+ 800220a:	f642 60e0 	movw	r0, #12000	; 0x2ee0
+ 800220e:	f7ff fdeb 	bl	8001de8 <delay>
 
 		I2C001_DataType data2;
 		data2.Data1.TDF_Type = I2C_TDF_MTxData;
- 8002210:	f04f 0300 	mov.w	r3, #0
- 8002214:	747b      	strb	r3, [r7, #17]
+ 8002212:	f04f 0300 	mov.w	r3, #0
+ 8002216:	747b      	strb	r3, [r7, #17]
 		data2.Data1.Data = subAddress;
- 8002216:	79bb      	ldrb	r3, [r7, #6]
- 8002218:	743b      	strb	r3, [r7, #16]
+ 8002218:	79bb      	ldrb	r3, [r7, #6]
+ 800221a:	743b      	strb	r3, [r7, #16]
 		while(!I2C001_WriteData(&I2C001_Handle0,&data2));
- 800221a:	bf00      	nop
- 800221c:	f107 0310 	add.w	r3, r7, #16
- 8002220:	f643 2004 	movw	r0, #14852	; 0x3a04
- 8002224:	f6c0 0001 	movt	r0, #2049	; 0x801
- 8002228:	4619      	mov	r1, r3
- 800222a:	f005 f987 	bl	800753c <I2C001_WriteData>
- 800222e:	4603      	mov	r3, r0
- 8002230:	2b00      	cmp	r3, #0
- 8002232:	d0f3      	beq.n	800221c <I2CwriteByte+0x50>
+ 800221c:	bf00      	nop
+ 800221e:	f107 0310 	add.w	r3, r7, #16
+ 8002222:	f643 2004 	movw	r0, #14852	; 0x3a04
+ 8002226:	f6c0 0001 	movt	r0, #2049	; 0x801
+ 800222a:	4619      	mov	r1, r3
+ 800222c:	f005 f986 	bl	800753c <I2C001_WriteData>
+ 8002230:	4603      	mov	r3, r0
+ 8002232:	2b00      	cmp	r3, #0
+ 8002234:	d0f3      	beq.n	800221e <I2CwriteByte+0x52>
 
 		delay(DELAY);
- 8002234:	f642 60e0 	movw	r0, #12000	; 0x2ee0
- 8002238:	f7ff fdd6 	bl	8001de8 <delay>
+ 8002236:	f642 60e0 	movw	r0, #12000	; 0x2ee0
+ 800223a:	f7ff fdd5 	bl	8001de8 <delay>
 
 		I2C001_DataType data3;
 		data3.Data1.TDF_Type = I2C_TDF_MTxData;
- 800223c:	f04f 0300 	mov.w	r3, #0
- 8002240:	737b      	strb	r3, [r7, #13]
+ 800223e:	f04f 0300 	mov.w	r3, #0
+ 8002242:	737b      	strb	r3, [r7, #13]
 		data3.Data1.Data = data;
- 8002242:	797b      	ldrb	r3, [r7, #5]
- 8002244:	733b      	strb	r3, [r7, #12]
+ 8002244:	797b      	ldrb	r3, [r7, #5]
+ 8002246:	733b      	strb	r3, [r7, #12]
 		while(!I2C001_WriteData(&I2C001_Handle0,&data3));
- 8002246:	bf00      	nop
- 8002248:	f107 030c 	add.w	r3, r7, #12
- 800224c:	f643 2004 	movw	r0, #14852	; 0x3a04
- 8002250:	f6c0 0001 	movt	r0, #2049	; 0x801
- 8002254:	4619      	mov	r1, r3
- 8002256:	f005 f971 	bl	800753c <I2C001_WriteData>
- 800225a:	4603      	mov	r3, r0
- 800225c:	2b00      	cmp	r3, #0
- 800225e:	d0f3      	beq.n	8002248 <I2CwriteByte+0x7c>
+ 8002248:	bf00      	nop
+ 800224a:	f107 030c 	add.w	r3, r7, #12
+ 800224e:	f643 2004 	movw	r0, #14852	; 0x3a04
+ 8002252:	f6c0 0001 	movt	r0, #2049	; 0x801
+ 8002256:	4619      	mov	r1, r3
+ 8002258:	f005 f970 	bl	800753c <I2C001_WriteData>
+ 800225c:	4603      	mov	r3, r0
+ 800225e:	2b00      	cmp	r3, #0
+ 8002260:	d0f3      	beq.n	800224a <I2CwriteByte+0x7e>
 
 		delay(DELAY);
- 8002260:	f642 60e0 	movw	r0, #12000	; 0x2ee0
- 8002264:	f7ff fdc0 	bl	8001de8 <delay>
+ 8002262:	f642 60e0 	movw	r0, #12000	; 0x2ee0
+ 8002266:	f7ff fdbf 	bl	8001de8 <delay>
 
 		I2C001_DataType data4;
 		data4.Data1.TDF_Type = I2C_TDF_MStop;
- 8002268:	f04f 0306 	mov.w	r3, #6
- 800226c:	727b      	strb	r3, [r7, #9]
+ 800226a:	f04f 0306 	mov.w	r3, #6
+ 800226e:	727b      	strb	r3, [r7, #9]
 		data4.Data1.Data = ubyteFF;
- 800226e:	f04f 03ff 	mov.w	r3, #255	; 0xff
- 8002272:	723b      	strb	r3, [r7, #8]
+ 8002270:	f04f 03ff 	mov.w	r3, #255	; 0xff
+ 8002274:	723b      	strb	r3, [r7, #8]
 		while(!I2C001_WriteData(&I2C001_Handle0,&data4));
- 8002274:	bf00      	nop
- 8002276:	f107 0308 	add.w	r3, r7, #8
- 800227a:	f643 2004 	movw	r0, #14852	; 0x3a04
- 800227e:	f6c0 0001 	movt	r0, #2049	; 0x801
- 8002282:	4619      	mov	r1, r3
- 8002284:	f005 f95a 	bl	800753c <I2C001_WriteData>
- 8002288:	4603      	mov	r3, r0
- 800228a:	2b00      	cmp	r3, #0
- 800228c:	d0f3      	beq.n	8002276 <I2CwriteByte+0xaa>
+ 8002276:	bf00      	nop
+ 8002278:	f107 0308 	add.w	r3, r7, #8
+ 800227c:	f643 2004 	movw	r0, #14852	; 0x3a04
+ 8002280:	f6c0 0001 	movt	r0, #2049	; 0x801
+ 8002284:	4619      	mov	r1, r3
+ 8002286:	f005 f959 	bl	800753c <I2C001_WriteData>
+ 800228a:	4603      	mov	r3, r0
+ 800228c:	2b00      	cmp	r3, #0
+ 800228e:	d0f3      	beq.n	8002278 <I2CwriteByte+0xac>
 
 		delay(DELAY);
- 800228e:	f642 60e0 	movw	r0, #12000	; 0x2ee0
- 8002292:	f7ff fda9 	bl	8001de8 <delay>
+ 8002290:	f642 60e0 	movw	r0, #12000	; 0x2ee0
+ 8002294:	f7ff fda8 	bl	8001de8 <delay>
 }
- 8002296:	f107 0718 	add.w	r7, r7, #24
- 800229a:	46bd      	mov	sp, r7
- 800229c:	bd80      	pop	{r7, pc}
- 800229e:	bf00      	nop
+ 8002298:	f107 0718 	add.w	r7, r7, #24
+ 800229c:	46bd      	mov	sp, r7
+ 800229e:	bd80      	pop	{r7, pc}
 
 080022a0 <initAccel>:
 

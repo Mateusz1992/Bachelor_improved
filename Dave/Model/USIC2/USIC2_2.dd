@@ -280,8 +280,8 @@
   <provided xsi:type="ResourceModel:BitField" name="PDIV" URI="http://www.infineon.com/0.1.30/peripheral/usic/2/channel/0/brg/pdiv" maxValue="1023" minValue="0" startPos="16" stopPos="25" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../I2C001/1.0.28/i2c001_0.app#//@consumed.41"/>
-    <localValue xsi:type="ResourceModel:IntegerValue" value="5"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="5"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="3a"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="3a"/>
     <toolTipHelpDescription>Divider Mode: Divider Factor to Generate fPDIV</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:SignalDeclaration" name="c0_sclkout" description="Shift clock output sclkout  " URI="http://www.infineon.com/0.1.30/peripheral/usic/2/channel/0/sclkout" signalType="SINGAL" direction="OUT" isVisible="true">
@@ -290,8 +290,8 @@
   <provided xsi:type="ResourceModel:BitField" name="STEP" URI="http://www.infineon.com/0.1.30/peripheral/usic/2/channel/0/fdr/step" maxValue="1023" minValue="0" startPos="0" stopPos="9" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../I2C001/1.0.28/i2c001_0.app#//@consumed.49"/>
-    <localValue xsi:type="ResourceModel:IntegerValue" value="200"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="200"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1f7"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1f7"/>
     <toolTipHelpDescription>Step Value</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://www.infineon.com/0.1.30/peripheral/usic/2/channel/0/dx2cr_dsel" maxValue="7" minValue="0" startPos="0" stopPos="2" accessPermission="rw">

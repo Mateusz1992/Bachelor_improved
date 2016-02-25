@@ -84,7 +84,7 @@ const I2C001Handle_type I2C001_Handle0  =
 
    .USICChannel = USIC_U2C0,/* USIC Channel No */
    .I2CRegs = USIC2_CH0, /* Register Base address */
-   .BitRate  = (uint32_t) 400,/* Bit Rate */
+   .BitRate  = (uint32_t) 100,/* Bit Rate */
    .TxLimit = (uint8_t) 1,/* FIFO Tigger Level */
    .RxLimit = (uint8_t) 0,/* FIFO Tigger Level */
    .TxFifoSize = (uint8_t) 2,/* Tx FIFO Size */

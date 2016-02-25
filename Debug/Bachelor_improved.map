@@ -3076,32 +3076,32 @@ PSRAM_Heap      0x10000800        0x0
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_info     0x00000000     0xb5d9
+.debug_info     0x00000000     0xb5e6
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000     0x108e BluetoothDriver.o
  .debug_info    0x0000108e       0x96 CleanArray.o
  .debug_info    0x00001124      0x590 FIFO_functions.o
- .debug_info    0x000016b4     0x2434 LSM9DS1_Driver.o
- .debug_info    0x00003ae8      0xb0d Main.o
- .debug_info    0x000045f5      0x7c1 SendMeasurementsToBt.o
- .debug_info    0x00004db6      0x1ab Timer.o
- .debug_info    0x00004f61       0x94 timerFunctions.o
- .debug_info    0x00004ff5       0x79 Startup/startup_XMC4500.o
- .debug_info    0x0000506e      0xaf0 Startup/system_XMC4500.o
- .debug_info    0x00005b5e      0x65f Lib/System_LibcStubs.o
- .debug_info    0x000061bd      0xfc2 Dave/Generated/src/UART001/UART001.o
- .debug_info    0x0000717f      0x805 Dave/Generated/src/UART001/UART001_Conf.o
- .debug_info    0x00007984      0xc2e Dave/Generated/src/SYSTM001/SYSTM001.o
- .debug_info    0x000085b2      0x47c Dave/Generated/src/RESET001/RESET001.o
- .debug_info    0x00008a2e       0x94 Dave/Generated/src/LIBS/CCU8PWMLIB.o
- .debug_info    0x00008ac2       0x94 Dave/Generated/src/LIBS/MOTORLIB.o
- .debug_info    0x00008b56      0x3c6 Dave/Generated/src/IO004/IO004.o
- .debug_info    0x00008f1c      0x2bc Dave/Generated/src/IO004/IO004_Conf.o
- .debug_info    0x000091d8      0xd1a Dave/Generated/src/I2C001/I2C001.o
- .debug_info    0x00009ef2      0x55c Dave/Generated/src/I2C001/I2C001_Conf.o
- .debug_info    0x0000a44e      0x2e9 Dave/Generated/src/DAVESupport/DAVE3.o
- .debug_info    0x0000a737      0x819 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
- .debug_info    0x0000af50      0x689 Dave/Generated/src/CLK001/CLK001.o
+ .debug_info    0x000016b4     0x2441 LSM9DS1_Driver.o
+ .debug_info    0x00003af5      0xb0d Main.o
+ .debug_info    0x00004602      0x7c1 SendMeasurementsToBt.o
+ .debug_info    0x00004dc3      0x1ab Timer.o
+ .debug_info    0x00004f6e       0x94 timerFunctions.o
+ .debug_info    0x00005002       0x79 Startup/startup_XMC4500.o
+ .debug_info    0x0000507b      0xaf0 Startup/system_XMC4500.o
+ .debug_info    0x00005b6b      0x65f Lib/System_LibcStubs.o
+ .debug_info    0x000061ca      0xfc2 Dave/Generated/src/UART001/UART001.o
+ .debug_info    0x0000718c      0x805 Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_info    0x00007991      0xc2e Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_info    0x000085bf      0x47c Dave/Generated/src/RESET001/RESET001.o
+ .debug_info    0x00008a3b       0x94 Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_info    0x00008acf       0x94 Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_info    0x00008b63      0x3c6 Dave/Generated/src/IO004/IO004.o
+ .debug_info    0x00008f29      0x2bc Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_info    0x000091e5      0xd1a Dave/Generated/src/I2C001/I2C001.o
+ .debug_info    0x00009eff      0x55c Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_info    0x0000a45b      0x2e9 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_info    0x0000a744      0x819 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_info    0x0000af5d      0x689 Dave/Generated/src/CLK001/CLK001.o
 
 .debug_abbrev   0x00000000     0x1e95
  *(.debug_abbrev)
@@ -3130,32 +3130,32 @@ PSRAM_Heap      0x10000800        0x0
  .debug_abbrev  0x00001bec      0x123 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
  .debug_abbrev  0x00001d0f      0x186 Dave/Generated/src/CLK001/CLK001.o
 
-.debug_line     0x00000000     0xc0ca
+.debug_line     0x00000000     0xc0cb
  *(.debug_line)
  .debug_line    0x00000000      0xc04 BluetoothDriver.o
  .debug_line    0x00000c04       0x52 CleanArray.o
  .debug_line    0x00000c56      0x90d FIFO_functions.o
- .debug_line    0x00001563     0x14da LSM9DS1_Driver.o
- .debug_line    0x00002a3d      0xa54 Main.o
- .debug_line    0x00003491      0xab0 SendMeasurementsToBt.o
- .debug_line    0x00003f41      0x8fd Timer.o
- .debug_line    0x0000483e      0x8e7 timerFunctions.o
- .debug_line    0x00005125      0x130 Startup/startup_XMC4500.o
- .debug_line    0x00005255      0x3b7 Startup/system_XMC4500.o
- .debug_line    0x0000560c      0x3c1 Lib/System_LibcStubs.o
- .debug_line    0x000059cd      0x6c6 Dave/Generated/src/UART001/UART001.o
- .debug_line    0x00006093      0x3de Dave/Generated/src/UART001/UART001_Conf.o
- .debug_line    0x00006471      0xaf4 Dave/Generated/src/SYSTM001/SYSTM001.o
- .debug_line    0x00006f65      0x41e Dave/Generated/src/RESET001/RESET001.o
- .debug_line    0x00007383      0x91e Dave/Generated/src/LIBS/CCU8PWMLIB.o
- .debug_line    0x00007ca1      0x91a Dave/Generated/src/LIBS/MOTORLIB.o
- .debug_line    0x000085bb      0x97d Dave/Generated/src/IO004/IO004.o
- .debug_line    0x00008f38      0x8e5 Dave/Generated/src/IO004/IO004_Conf.o
- .debug_line    0x0000981d      0xa29 Dave/Generated/src/I2C001/I2C001.o
- .debug_line    0x0000a246      0x8e7 Dave/Generated/src/I2C001/I2C001_Conf.o
- .debug_line    0x0000ab2d      0x876 Dave/Generated/src/DAVESupport/DAVE3.o
- .debug_line    0x0000b3a3      0x878 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
- .debug_line    0x0000bc1b      0x4af Dave/Generated/src/CLK001/CLK001.o
+ .debug_line    0x00001563     0x14db LSM9DS1_Driver.o
+ .debug_line    0x00002a3e      0xa54 Main.o
+ .debug_line    0x00003492      0xab0 SendMeasurementsToBt.o
+ .debug_line    0x00003f42      0x8fd Timer.o
+ .debug_line    0x0000483f      0x8e7 timerFunctions.o
+ .debug_line    0x00005126      0x130 Startup/startup_XMC4500.o
+ .debug_line    0x00005256      0x3b7 Startup/system_XMC4500.o
+ .debug_line    0x0000560d      0x3c1 Lib/System_LibcStubs.o
+ .debug_line    0x000059ce      0x6c6 Dave/Generated/src/UART001/UART001.o
+ .debug_line    0x00006094      0x3de Dave/Generated/src/UART001/UART001_Conf.o
+ .debug_line    0x00006472      0xaf4 Dave/Generated/src/SYSTM001/SYSTM001.o
+ .debug_line    0x00006f66      0x41e Dave/Generated/src/RESET001/RESET001.o
+ .debug_line    0x00007384      0x91e Dave/Generated/src/LIBS/CCU8PWMLIB.o
+ .debug_line    0x00007ca2      0x91a Dave/Generated/src/LIBS/MOTORLIB.o
+ .debug_line    0x000085bc      0x97d Dave/Generated/src/IO004/IO004.o
+ .debug_line    0x00008f39      0x8e5 Dave/Generated/src/IO004/IO004_Conf.o
+ .debug_line    0x0000981e      0xa29 Dave/Generated/src/I2C001/I2C001.o
+ .debug_line    0x0000a247      0x8e7 Dave/Generated/src/I2C001/I2C001_Conf.o
+ .debug_line    0x0000ab2e      0x876 Dave/Generated/src/DAVESupport/DAVE3.o
+ .debug_line    0x0000b3a4      0x878 Dave/Generated/src/DAVESupport/MULTIPLEXER.o
+ .debug_line    0x0000bc1c      0x4af Dave/Generated/src/CLK001/CLK001.o
 
 .debug_frame    0x00000000     0x2854
  *(.debug_frame)

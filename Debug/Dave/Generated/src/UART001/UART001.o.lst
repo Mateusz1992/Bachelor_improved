@@ -2916,32 +2916,32 @@
  1830              		.file 9 "../Dave/Generated/src/UART001/../../inc/UART001/UART001_Extern.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 UART001.c
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:20     .text.UART001_lInit:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:25     .text.UART001_lInit:00000000 UART001_lInit
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:257    .text.UART001_lConfigTXPin:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:262    .text.UART001_lConfigTXPin:00000000 UART001_lConfigTXPin
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:418    .text.UART001_labsRealType:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:423    .text.UART001_labsRealType:00000000 UART001_labsRealType
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:469    .text.UART001_lConfigureBaudRate:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:474    .text.UART001_lConfigureBaudRate:00000000 UART001_lConfigureBaudRate
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:972    .text.UART001_Init:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:977    .text.UART001_Init:00000000 UART001_Init
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:1043   .text.UART001_DeInit:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:1048   .text.UART001_DeInit:00000000 UART001_DeInit
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:1075   .text.UART001_Configure:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:1080   .text.UART001_Configure:00000000 UART001_Configure
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:1237   .text.UART001_ReadDataMultiple:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:1242   .text.UART001_ReadDataMultiple:00000000 UART001_ReadDataMultiple
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:1333   .text.UART001_ReadDataBytes:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:1338   .text.UART001_ReadDataBytes:00000000 UART001_ReadDataBytes
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:1429   .text.UART001_WriteDataMultiple:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:1434   .text.UART001_WriteDataMultiple:00000000 UART001_WriteDataMultiple
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:1531   .text.UART001_WriteDataBytes:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:1536   .text.UART001_WriteDataBytes:00000000 UART001_WriteDataBytes
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:1633   .text.UART001_GetFlagStatus:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:1638   .text.UART001_GetFlagStatus:00000000 UART001_GetFlagStatus
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:1738   .text.UART001_ClearFlag:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccuE36WH.s:1743   .text.UART001_ClearFlag:00000000 UART001_ClearFlag
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:20     .text.UART001_lInit:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:25     .text.UART001_lInit:00000000 UART001_lInit
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:257    .text.UART001_lConfigTXPin:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:262    .text.UART001_lConfigTXPin:00000000 UART001_lConfigTXPin
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:418    .text.UART001_labsRealType:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:423    .text.UART001_labsRealType:00000000 UART001_labsRealType
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:469    .text.UART001_lConfigureBaudRate:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:474    .text.UART001_lConfigureBaudRate:00000000 UART001_lConfigureBaudRate
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:972    .text.UART001_Init:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:977    .text.UART001_Init:00000000 UART001_Init
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:1043   .text.UART001_DeInit:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:1048   .text.UART001_DeInit:00000000 UART001_DeInit
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:1075   .text.UART001_Configure:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:1080   .text.UART001_Configure:00000000 UART001_Configure
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:1237   .text.UART001_ReadDataMultiple:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:1242   .text.UART001_ReadDataMultiple:00000000 UART001_ReadDataMultiple
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:1333   .text.UART001_ReadDataBytes:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:1338   .text.UART001_ReadDataBytes:00000000 UART001_ReadDataBytes
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:1429   .text.UART001_WriteDataMultiple:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:1434   .text.UART001_WriteDataMultiple:00000000 UART001_WriteDataMultiple
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:1531   .text.UART001_WriteDataBytes:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:1536   .text.UART001_WriteDataBytes:00000000 UART001_WriteDataBytes
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:1633   .text.UART001_GetFlagStatus:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:1638   .text.UART001_GetFlagStatus:00000000 UART001_GetFlagStatus
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:1738   .text.UART001_ClearFlag:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccvSI5bk.s:1743   .text.UART001_ClearFlag:00000000 UART001_ClearFlag
                      .debug_frame:00000010 $d
                            .group:00000000 wm4.1.35166846b5321d4273ad8c4248893ac3
                            .group:00000000 wm4.uc_id.h.35.fa57ecd9f559d2767f56c96da2848c12

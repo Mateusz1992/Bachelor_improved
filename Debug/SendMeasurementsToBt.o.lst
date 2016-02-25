@@ -1137,8 +1137,8 @@ DEFINED SYMBOLS
                             *COM*:00000002 mz
                             *COM*:00000002 temperature
                             *COM*:00000014 device
-C:\Users\Mateusz\AppData\Local\Temp\ccNbWAxc.s:54     .bss:00000000 turnedOn
-C:\Users\Mateusz\AppData\Local\Temp\ccNbWAxc.s:51     .bss:00000000 $d
+C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:54     .bss:00000000 turnedOn
+C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:51     .bss:00000000 $d
                             *COM*:0000000a xAxis
                             *COM*:0000000a yAxis
                             *COM*:0000000a zAxis
@@ -1150,20 +1150,20 @@ C:\Users\Mateusz\AppData\Local\Temp\ccNbWAxc.s:51     .bss:00000000 $d
                             *COM*:00000004 turnedOnSentTimer
                             *COM*:00000001 copied
                             *COM*:000004b0 copiedData
-C:\Users\Mateusz\AppData\Local\Temp\ccNbWAxc.s:68     .rodata:00000000 $d
-C:\Users\Mateusz\AppData\Local\Temp\ccNbWAxc.s:69     .rodata:00000000 .LC0
-C:\Users\Mateusz\AppData\Local\Temp\ccNbWAxc.s:73     .rodata:00000008 .LC1
-C:\Users\Mateusz\AppData\Local\Temp\ccNbWAxc.s:76     .rodata:00000010 .LC2
-C:\Users\Mateusz\AppData\Local\Temp\ccNbWAxc.s:79     .rodata:00000018 .LC3
-C:\Users\Mateusz\AppData\Local\Temp\ccNbWAxc.s:82     .rodata:00000020 .LC4
-C:\Users\Mateusz\AppData\Local\Temp\ccNbWAxc.s:85     .rodata:00000028 .LC5
-C:\Users\Mateusz\AppData\Local\Temp\ccNbWAxc.s:88     .rodata:00000034 .LC6
-C:\Users\Mateusz\AppData\Local\Temp\ccNbWAxc.s:91     .text.sendMeasurementsToBt:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccNbWAxc.s:96     .text.sendMeasurementsToBt:00000000 sendMeasurementsToBt
-C:\Users\Mateusz\AppData\Local\Temp\ccNbWAxc.s:832    .bss:00000008 i.9006
-C:\Users\Mateusz\AppData\Local\Temp\ccNbWAxc.s:725    .text.sendMsgLSM9DS1:00000000 sendMsgLSM9DS1
-C:\Users\Mateusz\AppData\Local\Temp\ccNbWAxc.s:720    .text.sendMsgLSM9DS1:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccNbWAxc.s:829    .bss:00000004 i.9010
+C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:68     .rodata:00000000 $d
+C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:69     .rodata:00000000 .LC0
+C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:73     .rodata:00000008 .LC1
+C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:76     .rodata:00000010 .LC2
+C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:79     .rodata:00000018 .LC3
+C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:82     .rodata:00000020 .LC4
+C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:85     .rodata:00000028 .LC5
+C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:88     .rodata:00000034 .LC6
+C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:91     .text.sendMeasurementsToBt:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:96     .text.sendMeasurementsToBt:00000000 sendMeasurementsToBt
+C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:832    .bss:00000008 i.9006
+C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:725    .text.sendMsgLSM9DS1:00000000 sendMsgLSM9DS1
+C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:720    .text.sendMsgLSM9DS1:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:829    .bss:00000004 i.9010
                      .debug_frame:00000010 $d
                            .group:00000000 wm4.1.35166846b5321d4273ad8c4248893ac3
                            .group:00000000 wm4.LSM9DS1_Driver.h.9.225085f752270af24a0df342ed7d3479

@@ -214,11 +214,11 @@ void readAndSendMeasurements(void (*sendFunction)(char *str, int len))
 		pomiaryAccel[counter].az = accelZ;
 
 
-		gyroX = (adrAndData.dane[7] << 1) | adrAndData.dane[6];
+		gyroX = (adrAndData.dane[7] << 8) | adrAndData.dane[6];
 
-		gyroY = (adrAndData.dane[9] << 1) | adrAndData.dane[8];
+		gyroY = (adrAndData.dane[9] << 8) | adrAndData.dane[8];
 
-		gyroZ = (adrAndData.dane[11] << 1) | adrAndData.dane[10];
+		gyroZ = (adrAndData.dane[11] << 8) | adrAndData.dane[10];
 
 
 		if (_autoCalc) //kalibracja
@@ -242,11 +242,11 @@ void readAndSendMeasurements(void (*sendFunction)(char *str, int len))
 
 
 
-		magnetX = (adrAndData.dane[13] << 1) | adrAndData.dane[12];
+		magnetX = (adrAndData.dane[13] << 8) | adrAndData.dane[12];
 
-		magnetY = (adrAndData.dane[15] << 1) | adrAndData.dane[14];
+		magnetY = (adrAndData.dane[15] << 8) | adrAndData.dane[14];
 
-		magnetY = (adrAndData.dane[17] << 1) | adrAndData.dane[16];
+		magnetZ = (adrAndData.dane[17] << 8) | adrAndData.dane[16];
 
 
 		magnetXf = calcMag(magnetX);
@@ -684,9 +684,10 @@ void xgWriteByte(uint8_t subAddress, uint8_t data)
 void I2CwriteByte(uint8_t address, uint8_t subAddress, uint8_t data)
 {
 
+		uint8_t c = (address<<1);
 		I2C001_DataType data1;
 		data1.Data1.TDF_Type = I2C_TDF_MStart;
-		data1.Data1.Data = ((address<<1) | I2C_WRITE);
+		data1.Data1.Data = (c | I2C_WRITE);
 		while(!I2C001_WriteData(&I2C001_Handle0,&data1));
 
 		delay(DELAY);

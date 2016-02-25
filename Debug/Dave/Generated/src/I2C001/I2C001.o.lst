@@ -1851,25 +1851,25 @@
  1193              		.file 9 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
 DEFINED SYMBOLS
                             *ABS*:00000000 I2C001.c
-C:\Users\Mateusz\AppData\Local\Temp\ccrCbYOa.s:20     .text.I2C001_lInit:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccrCbYOa.s:25     .text.I2C001_lInit:00000000 I2C001_lInit
-C:\Users\Mateusz\AppData\Local\Temp\ccrCbYOa.s:284    .text.I2C001_lConfigureBitRate:00000000 I2C001_lConfigureBitRate
-C:\Users\Mateusz\AppData\Local\Temp\ccrCbYOa.s:279    .text.I2C001_lConfigureBitRate:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccrCbYOa.s:450    .text.I2C001_lConfigureBitRate:00000180 $d
-C:\Users\Mateusz\AppData\Local\Temp\ccrCbYOa.s:462    .text.I2C001_Init:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccrCbYOa.s:467    .text.I2C001_Init:00000000 I2C001_Init
-C:\Users\Mateusz\AppData\Local\Temp\ccrCbYOa.s:628    .text.I2C001_DeInit:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccrCbYOa.s:633    .text.I2C001_DeInit:00000000 I2C001_DeInit
-C:\Users\Mateusz\AppData\Local\Temp\ccrCbYOa.s:655    .text.I2C001_Configure:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccrCbYOa.s:660    .text.I2C001_Configure:00000000 I2C001_Configure
-C:\Users\Mateusz\AppData\Local\Temp\ccrCbYOa.s:808    .text.I2C001_ReadData:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccrCbYOa.s:813    .text.I2C001_ReadData:00000000 I2C001_ReadData
-C:\Users\Mateusz\AppData\Local\Temp\ccrCbYOa.s:874    .text.I2C001_WriteData:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccrCbYOa.s:879    .text.I2C001_WriteData:00000000 I2C001_WriteData
-C:\Users\Mateusz\AppData\Local\Temp\ccrCbYOa.s:955    .text.I2C001_GetFlagStatus:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccrCbYOa.s:960    .text.I2C001_GetFlagStatus:00000000 I2C001_GetFlagStatus
-C:\Users\Mateusz\AppData\Local\Temp\ccrCbYOa.s:1089   .text.I2C001_ClearFlag:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccrCbYOa.s:1094   .text.I2C001_ClearFlag:00000000 I2C001_ClearFlag
+C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:20     .text.I2C001_lInit:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:25     .text.I2C001_lInit:00000000 I2C001_lInit
+C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:284    .text.I2C001_lConfigureBitRate:00000000 I2C001_lConfigureBitRate
+C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:279    .text.I2C001_lConfigureBitRate:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:450    .text.I2C001_lConfigureBitRate:00000180 $d
+C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:462    .text.I2C001_Init:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:467    .text.I2C001_Init:00000000 I2C001_Init
+C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:628    .text.I2C001_DeInit:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:633    .text.I2C001_DeInit:00000000 I2C001_DeInit
+C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:655    .text.I2C001_Configure:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:660    .text.I2C001_Configure:00000000 I2C001_Configure
+C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:808    .text.I2C001_ReadData:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:813    .text.I2C001_ReadData:00000000 I2C001_ReadData
+C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:874    .text.I2C001_WriteData:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:879    .text.I2C001_WriteData:00000000 I2C001_WriteData
+C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:955    .text.I2C001_GetFlagStatus:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:960    .text.I2C001_GetFlagStatus:00000000 I2C001_GetFlagStatus
+C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:1089   .text.I2C001_ClearFlag:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:1094   .text.I2C001_ClearFlag:00000000 I2C001_ClearFlag
                      .debug_frame:00000010 $d
                            .group:00000000 wm4.1.35166846b5321d4273ad8c4248893ac3
                            .group:00000000 wm4.XMC4500.h.45.215f4b8c79f46c7645c15373868d08c0
