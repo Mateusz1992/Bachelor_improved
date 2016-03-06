@@ -32,42 +32,43 @@
    6:../FIFO_functions.c ****  */
    7:../FIFO_functions.c **** #include "FIFO_functions.h"
    8:../FIFO_functions.c **** 
-   9:../FIFO_functions.c **** void flushFIFO(void)
+   9:../FIFO_functions.c **** void flushFIFO(const I2C001Handle_type *  I2CHandle)
   10:../FIFO_functions.c **** {
   28              		.loc 1 10 0
   29              		.cfi_startproc
-  30              		@ args = 0, pretend = 0, frame = 8
+  30              		@ args = 0, pretend = 0, frame = 16
   31              		@ frame_needed = 1, uses_anonymous_args = 0
   32              		@ link register save eliminated.
   33 0000 80B4     		push	{r7}
   34              	.LCFI0:
   35              		.cfi_def_cfa_offset 4
   36              		.cfi_offset 7, -4
-  37 0002 83B0     		sub	sp, sp, #12
+  37 0002 85B0     		sub	sp, sp, #20
   38              	.LCFI1:
-  39              		.cfi_def_cfa_offset 16
+  39              		.cfi_def_cfa_offset 24
   40 0004 00AF     		add	r7, sp, #0
   41              	.LCFI2:
   42              		.cfi_def_cfa_register 7
-  11:../FIFO_functions.c **** 	USIC_CH_TypeDef* I2CRegs = I2C001_Handle0.I2CRegs;
-  43              		.loc 1 11 0
-  44 0006 40F20003 		movw	r3, #:lower16:I2C001_Handle0
-  45 000a C0F20003 		movt	r3, #:upper16:I2C001_Handle0
-  46 000e 5B68     		ldr	r3, [r3, #4]
-  47 0010 7B60     		str	r3, [r7, #4]
-  12:../FIFO_functions.c **** 	USIC_FlushTxFIFO(I2CRegs);
-  48              		.loc 1 12 0
-  49 0012 7B68     		ldr	r3, [r7, #4]
-  50 0014 D3F81831 		ldr	r3, [r3, #280]
-  51 0018 43F40042 		orr	r2, r3, #32768
-  52 001c 7B68     		ldr	r3, [r7, #4]
-  53 001e C3F81821 		str	r2, [r3, #280]
-  13:../FIFO_functions.c **** }
-  54              		.loc 1 13 0
-  55 0022 07F10C07 		add	r7, r7, #12
-  56 0026 BD46     		mov	sp, r7
-  57 0028 80BC     		pop	{r7}
-  58 002a 7047     		bx	lr
+  43 0006 7860     		str	r0, [r7, #4]
+  11:../FIFO_functions.c **** 	//USIC_CH_TypeDef* I2CRegs = I2C001_Handle0.I2CRegs;
+  12:../FIFO_functions.c **** 	USIC_CH_TypeDef* I2CRegs = I2CHandle->I2CRegs;
+  44              		.loc 1 12 0
+  45 0008 7B68     		ldr	r3, [r7, #4]
+  46 000a 5B68     		ldr	r3, [r3, #4]
+  47 000c FB60     		str	r3, [r7, #12]
+  13:../FIFO_functions.c **** 	USIC_FlushTxFIFO(I2CRegs);
+  48              		.loc 1 13 0
+  49 000e FB68     		ldr	r3, [r7, #12]
+  50 0010 D3F81831 		ldr	r3, [r3, #280]
+  51 0014 43F40042 		orr	r2, r3, #32768
+  52 0018 FB68     		ldr	r3, [r7, #12]
+  53 001a C3F81821 		str	r2, [r3, #280]
+  14:../FIFO_functions.c **** }
+  54              		.loc 1 14 0
+  55 001e 07F11407 		add	r7, r7, #20
+  56 0022 BD46     		mov	sp, r7
+  57 0024 80BC     		pop	{r7}
+  58 0026 7047     		bx	lr
   59              		.cfi_endproc
   60              	.LFE112:
   62              		.section	.text.clearErrorFlags,"ax",%progbits
@@ -77,10 +78,10 @@
   66              		.thumb_func
   68              	clearErrorFlags:
   69              	.LFB113:
-  14:../FIFO_functions.c **** 
-  15:../FIFO_functions.c **** void clearErrorFlags(void)
-  16:../FIFO_functions.c **** {
-  70              		.loc 1 16 0
+  15:../FIFO_functions.c **** 
+  16:../FIFO_functions.c **** void clearErrorFlags(void)
+  17:../FIFO_functions.c **** {
+  70              		.loc 1 17 0
   71              		.cfi_startproc
   72              		@ args = 0, pretend = 0, frame = 0
   73              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -92,18 +93,18 @@
   79 0002 00AF     		add	r7, sp, #0
   80              	.LCFI4:
   81              		.cfi_def_cfa_register 7
-  17:../FIFO_functions.c **** 	if(USIC1_CH1->PSR_IICMode & (USIC_CH_PSR_IICMode_ERR_Msk | USIC_CH_PSR_IICMode_NACK_Msk))
-  82              		.loc 1 17 0
+  18:../FIFO_functions.c **** 	if(USIC1_CH1->PSR_IICMode & (USIC_CH_PSR_IICMode_ERR_Msk | USIC_CH_PSR_IICMode_NACK_Msk))
+  82              		.loc 1 18 0
   83 0004 4FF40073 		mov	r3, #512
   84 0008 C4F60203 		movt	r3, 18434
   85 000c 9B6C     		ldr	r3, [r3, #72]
   86 000e 03F49073 		and	r3, r3, #288
   87 0012 002B     		cmp	r3, #0
   88 0014 29D0     		beq	.L2
-  18:../FIFO_functions.c **** 	{
-  19:../FIFO_functions.c **** 		// Clear error bits
-  20:../FIFO_functions.c **** 		USIC1_CH1->PSCR |= 0x3FF;
-  89              		.loc 1 20 0
+  19:../FIFO_functions.c **** 	{
+  20:../FIFO_functions.c **** 		// Clear error bits
+  21:../FIFO_functions.c **** 		USIC1_CH1->PSCR |= 0x3FF;
+  89              		.loc 1 21 0
   90 0016 4FF40073 		mov	r3, #512
   91 001a C4F60203 		movt	r3, 18434
   92 001e 4FF40072 		mov	r2, #512
@@ -112,9 +113,9 @@
   95 0028 6FEA9222 		mvn	r2, r2, lsr #10
   96 002c 6FEA8222 		mvn	r2, r2, lsl #10
   97 0030 DA64     		str	r2, [r3, #76]
-  21:../FIFO_functions.c **** 		// Flush transmit FIFO buffer
-  22:../FIFO_functions.c **** 		USIC1_CH1->TRBSCR |= USIC_CH_TRBSCR_FLUSHTB_Msk;
-  98              		.loc 1 22 0
+  22:../FIFO_functions.c **** 		// Flush transmit FIFO buffer
+  23:../FIFO_functions.c **** 		USIC1_CH1->TRBSCR |= USIC_CH_TRBSCR_FLUSHTB_Msk;
+  98              		.loc 1 23 0
   99 0032 4FF40073 		mov	r3, #512
  100 0036 C4F60203 		movt	r3, 18434
  101 003a 4FF40072 		mov	r2, #512
@@ -122,9 +123,9 @@
  103 0042 D2F81821 		ldr	r2, [r2, #280]
  104 0046 42F40042 		orr	r2, r2, #32768
  105 004a C3F81821 		str	r2, [r3, #280]
-  23:../FIFO_functions.c **** 		// Modify Transmit Data Valid
-  24:../FIFO_functions.c **** 		WR_REG(USIC1_CH1->FMR, USIC_CH_FMR_MTDV_Msk, USIC_CH_FMR_MTDV_Pos, 2);
- 106              		.loc 1 24 0
+  24:../FIFO_functions.c **** 		// Modify Transmit Data Valid
+  25:../FIFO_functions.c **** 		WR_REG(USIC1_CH1->FMR, USIC_CH_FMR_MTDV_Msk, USIC_CH_FMR_MTDV_Pos, 2);
+ 106              		.loc 1 25 0
  107 004e 4FF40073 		mov	r3, #512
  108 0052 C4F60203 		movt	r3, 18434
  109 0056 4FF40072 		mov	r2, #512
@@ -134,9 +135,9 @@
  113 0064 42F00202 		orr	r2, r2, #2
  114 0068 9A66     		str	r2, [r3, #104]
  115              	.L2:
-  25:../FIFO_functions.c **** 	}
-  26:../FIFO_functions.c **** }
- 116              		.loc 1 26 0
+  26:../FIFO_functions.c **** 	}
+  27:../FIFO_functions.c **** }
+ 116              		.loc 1 27 0
  117 006a BD46     		mov	sp, r7
  118 006c 80BC     		pop	{r7}
  119 006e 7047     		bx	lr
@@ -150,13 +151,12 @@
  128              		.file 5 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
  129              		.file 6 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
  130              		.file 7 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Include/core_cm4.h"
- 131              		.file 8 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
 DEFINED SYMBOLS
                             *ABS*:00000000 FIFO_functions.c
-C:\Users\Mateusz\AppData\Local\Temp\cc99FgKe.s:20     .text.flushFIFO:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\cc99FgKe.s:25     .text.flushFIFO:00000000 flushFIFO
-C:\Users\Mateusz\AppData\Local\Temp\cc99FgKe.s:63     .text.clearErrorFlags:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\cc99FgKe.s:68     .text.clearErrorFlags:00000000 clearErrorFlags
+C:\Users\Mateusz\AppData\Local\Temp\ccBRO7Jn.s:20     .text.flushFIFO:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccBRO7Jn.s:25     .text.flushFIFO:00000000 flushFIFO
+C:\Users\Mateusz\AppData\Local\Temp\ccBRO7Jn.s:63     .text.clearErrorFlags:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccBRO7Jn.s:68     .text.clearErrorFlags:00000000 clearErrorFlags
                      .debug_frame:00000010 $d
                            .group:00000000 wm4.1.35166846b5321d4273ad8c4248893ac3
                            .group:00000000 wm4.XMC4500.h.45.215f4b8c79f46c7645c15373868d08c0
@@ -187,5 +187,4 @@ C:\Users\Mateusz\AppData\Local\Temp\cc99FgKe.s:68     .text.clearErrorFlags:0000
                            .group:00000000 wm4.I2C001.h.97.5277d52889d6c741e048ea45ee1277b5
                            .group:00000000 wm4.I2C001_Conf.h.58.e3e909c2ec9c29fee288b93938e533a2
 
-UNDEFINED SYMBOLS
-I2C001_Handle0
+NO UNDEFINED SYMBOLS

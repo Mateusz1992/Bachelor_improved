@@ -37,9 +37,6 @@
     <resource xsi:type="ResourceModel:Peripheral" href="USIC1/USIC1_1.dd#/"/>
   </nodes>
   <nodes xsi:type="DaveExpert:PeripheralNode">
-    <resource xsi:type="ResourceModel:Peripheral" href="P1/P1_1.dd#/"/>
-  </nodes>
-  <nodes xsi:type="DaveExpert:PeripheralNode">
     <resource xsi:type="ResourceModel:Peripheral" href="P5/P5_5.dd#/"/>
   </nodes>
   <nodes xsi:type="DaveExpert:PeripheralNode">
@@ -66,24 +63,28 @@
   <nodes xsi:type="DaveExpert:PeripheralNode">
     <resource xsi:type="ResourceModel:Peripheral" href="USIC0/USIC0_0.dd#/"/>
   </nodes>
+  <nodes xsi:type="DaveExpert:PeripheralNode">
+    <resource xsi:type="ResourceModel:Peripheral" href="P1/P1_1.dd#/"/>
+  </nodes>
   <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.5" target="//@nodes.6"/>
   <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.5" target="//@nodes.7"/>
   <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.6" target="//@nodes.10"/>
   <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.7" target="//@nodes.10"/>
   <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.5" target="//@nodes.11"/>
-  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.8" target="//@nodes.12"/>
-  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.4" target="//@nodes.13"/>
-  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.9" target="//@nodes.12"/>
-  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.5" target="//@nodes.14"/>
-  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.15" target="//@nodes.6"/>
-  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.15" target="//@nodes.16"/>
-  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.17" target="//@nodes.6"/>
-  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.17" target="//@nodes.7"/>
-  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.17" target="//@nodes.18"/>
-  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.17" target="//@nodes.13"/>
-  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.19" target="//@nodes.12"/>
-  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.20" target="//@nodes.6"/>
-  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.20" target="//@nodes.7"/>
-  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.20" target="//@nodes.21"/>
-  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.20" target="//@nodes.12"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.4" target="//@nodes.12"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.5" target="//@nodes.13"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.14" target="//@nodes.6"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.14" target="//@nodes.15"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.16" target="//@nodes.6"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.16" target="//@nodes.7"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.16" target="//@nodes.17"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.16" target="//@nodes.12"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.19" target="//@nodes.6"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.19" target="//@nodes.7"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.19" target="//@nodes.20"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.19" target="//@nodes.13"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.19" target="//@nodes.21"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.8" target="//@nodes.21"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.9" target="//@nodes.21"/>
+  <connections xsi:type="DaveExpert:NodeConnection" source="//@nodes.18" target="//@nodes.21"/>
 </DaveExpert:ApplicationModelData>

@@ -111,13 +111,15 @@ void DAVE_MUX_Init(void)
       
       
     						
-   /*USIC 0 Channel 0 Mux Related SFR/Bitfields Configurations*/ 									  					 				 				 		       				              				  					    					 					   				  					 				 				       				  										 									 					 					  									      					              					  						    					      
+   /*USIC 0 Channel 0 Mux Related SFR/Bitfields Configurations*/ 									                  
+ WR_REG(USIC0_CH0->DX1CR, USIC_CH_DX1CR_DSEL_Msk, USIC_CH_DX1CR_DSEL_Pos,1);  
+  					 				 				 		       				              				  					    					 					   				  					 				 				       				  										 									 					 					  									      					              					  						    					      
                  
    // Data Pointer & Buffer Size for Transmitter Buffer Control  
- WR_REG(USIC0_CH0->TBCTR, USIC_CH_TBCTR_DPTRSIZE_Msk, USIC_CH_TBCTR_DPTRSIZE_Pos,0x01000002);		/*    DPTR = 2,  SIZE = 1 */ 
+ WR_REG(USIC0_CH0->TBCTR, USIC_CH_TBCTR_DPTRSIZE_Msk, USIC_CH_TBCTR_DPTRSIZE_Pos,0x01000010);		/*    DPTR = 16,  SIZE = 1 */ 
          
   // Data Pointer & Buffer Size for Receiver Buffer Control  
- WR_REG(USIC0_CH0->RBCTR, USIC_CH_RBCTR_DPTRSIZE_Msk, USIC_CH_RBCTR_DPTRSIZE_Pos,0x01000000);		/*    DPTR = 0,  SIZE = 1 */ 
+ WR_REG(USIC0_CH0->RBCTR, USIC_CH_RBCTR_DPTRSIZE_Msk, USIC_CH_RBCTR_DPTRSIZE_Pos,0x04000000);		/*    DPTR = 0,  SIZE = 4 */ 
  						
    /*USIC 0 Channel 1 Mux Related SFR/Bitfields Configurations*/ 									  					 				 				 		       				              				  					    					 					   				  					 				 				       				  										 									 					 					  									      					              					  						    					      
          						
@@ -159,10 +161,12 @@ void DAVE_MUX_Init(void)
 
 /*        PORT Macro definitions for IOCR_OE, IOCR_PCR & HWSEL_HW     */                                      
   WR_REG(PORT0->IOCR4, 0xb800U, PORT_IOCR_PC1_PCR_Pos, 0x12U);                /*P0.5 : PORT0_IOCR4_PC5_PCR and PORT0_IOCR4_PC5_OE */					   
+					   
+              
+  WR_REG(PORT0->HWSEL, PORT0_HWSEL_HW8_Msk, PORT0_HWSEL_HW8_Pos, PORT_HWSEL_SW);                    /*    P0.8 : PORT0_HWSEL_HW8 */                         
+  WR_REG(PORT0->IOCR8, 0xb8U, PORT_IOCR_PC0_PCR_Pos, 0x12U);                /*P0.8 : PORT0_IOCR8_PC8_PCR and PORT0_IOCR8_PC8_OE */					   
 					                         
   WR_REG(PORT1->IOCR0, PORT_IOCR_PC0_OE_Msk, PORT_IOCR_PC0_OE_Pos, PORT_IOCR_OE1);                /*    P1.0 : PORT1_IOCR0_PC0_OE */					   
-					                         
-  WR_REG(PORT1->IOCR0, 0xb800U, PORT_IOCR_PC1_PCR_Pos, 0x12U);                /*P1.1 : PORT1_IOCR0_PC1_PCR and PORT1_IOCR0_PC1_OE */					   
 					                         
   WR_REG(PORT1->IOCR4, 0xb800U, PORT_IOCR_PC1_PCR_Pos, 0x12U);                /*P1.5 : PORT1_IOCR4_PC5_PCR and PORT1_IOCR4_PC5_OE */					   
 					                         

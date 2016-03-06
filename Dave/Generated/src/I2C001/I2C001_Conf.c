@@ -106,11 +106,11 @@ const I2C001Handle_type I2C001_Handle1  =
 
    .USICChannel = USIC_U0C0,/* USIC Channel No */
    .I2CRegs = USIC0_CH0, /* Register Base address */
-   .BitRate  = (uint32_t) 100,/* Bit Rate */
+   .BitRate  = (uint32_t) 50,/* Bit Rate */
    .TxLimit = (uint8_t) 1,/* FIFO Tigger Level */
    .RxLimit = (uint8_t) 0,/* FIFO Tigger Level */
    .TxFifoSize = (uint8_t) 1,/* Tx FIFO Size */
-   .RxFifoSize = (uint8_t) 1,/* Rx FIFO Size */
+   .RxFifoSize = (uint8_t) 4,/* Rx FIFO Size */
    .StartCondRecvIntEn = (bool) 0, /* Protocol specific interrupt enable */
    .RepStartCondRecvIntEn = (bool) 0, /* Protocol specific interrupt enable */
    .StopCondRecvIntEn = (bool) 0, /* Protocol specific interrupt enable */

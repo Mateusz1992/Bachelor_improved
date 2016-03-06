@@ -1,0 +1,1692 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 3
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 6
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"HTU21D.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.comm	TimerRdHumid,4,4
+  20              		.comm	TimerRdTmp,4,4
+  21              		.global	errorCounter
+  22              		.bss
+  23              		.align	2
+  26              	errorCounter:
+  27 0000 00000000 		.space	4
+  28              		.global	errorCounterTmp
+  29              		.align	2
+  32              	errorCounterTmp:
+  33 0004 00000000 		.space	4
+  34              		.global	wrong_checksum
+  35              		.align	2
+  38              	wrong_checksum:
+  39 0008 00000000 		.space	4
+  40              		.global	readHumid
+  41              		.align	2
+  44              	readHumid:
+  45 000c 00000000 		.space	4
+  46              		.global	readTmp
+  47              		.align	2
+  50              	readTmp:
+  51 0010 00000000 		.space	4
+  52              		.global	timerHumidOn
+  53              		.align	2
+  56              	timerHumidOn:
+  57 0014 00000000 		.space	4
+  58              		.global	timerTmpOn
+  59              		.align	2
+  62              	timerTmpOn:
+  63 0018 00000000 		.space	4
+  64              		.global	rh
+  65              		.align	2
+  68              	rh:
+  69 001c 00000000 		.space	4
+  70              		.global	realTemperature
+  71              		.align	2
+  74              	realTemperature:
+  75 0020 00000000 		.space	4
+  76              		.global	canH
+  77              		.data
+  78              		.align	2
+  81              	canH:
+  82 0000 01000000 		.word	1
+  83              		.global	canT
+  84              		.align	2
+  87              	canT:
+  88 0004 01000000 		.word	1
+  89              		.section	.text.readHumidity,"ax",%progbits
+  90              		.align	2
+  91              		.global	readHumidity
+  92              		.thumb
+  93              		.thumb_func
+  95              	readHumidity:
+  96              	.LFB112:
+  97              		.file 1 "../HTU21D.c"
+   1:../HTU21D.c   **** /*
+   2:../HTU21D.c   ****  * HTU21D.c
+   3:../HTU21D.c   ****  *
+   4:../HTU21D.c   ****  *  Created on: 28-02-2016
+   5:../HTU21D.c   ****  *      Author: Mateusz
+   6:../HTU21D.c   ****  */
+   7:../HTU21D.c   **** #include "HTU21D.h"
+   8:../HTU21D.c   **** #include "FIFO_functions.h"
+   9:../HTU21D.c   **** 
+  10:../HTU21D.c   **** #define DELAY 12000
+  11:../HTU21D.c   **** #define SHIFTED_DIVISOR 0x988000
+  12:../HTU21D.c   **** 
+  13:../HTU21D.c   **** 
+  14:../HTU21D.c   **** handle_t TimerRdHumid;
+  15:../HTU21D.c   **** handle_t TimerRdTmp;
+  16:../HTU21D.c   **** 
+  17:../HTU21D.c   **** int errorCounter = 0;
+  18:../HTU21D.c   **** int errorCounterTmp = 0;
+  19:../HTU21D.c   **** 
+  20:../HTU21D.c   **** 
+  21:../HTU21D.c   **** 
+  22:../HTU21D.c   **** int wrong_checksum = 0;
+  23:../HTU21D.c   **** 
+  24:../HTU21D.c   **** int readHumid = 0;
+  25:../HTU21D.c   **** int readTmp = 0;
+  26:../HTU21D.c   **** 
+  27:../HTU21D.c   **** int timerHumidOn = 0;
+  28:../HTU21D.c   **** int timerTmpOn = 0;
+  29:../HTU21D.c   **** 
+  30:../HTU21D.c   **** float rh = 0;
+  31:../HTU21D.c   **** float realTemperature = 0;
+  32:../HTU21D.c   **** 
+  33:../HTU21D.c   **** int canH = 1;
+  34:../HTU21D.c   **** int canT = 1;
+  35:../HTU21D.c   **** 
+  36:../HTU21D.c   **** float readHumidity(void)
+  37:../HTU21D.c   **** {
+  98              		.loc 1 37 0
+  99              		.cfi_startproc
+ 100              		@ args = 0, pretend = 0, frame = 8
+ 101              		@ frame_needed = 1, uses_anonymous_args = 0
+ 102 0000 80B5     		push	{r7, lr}
+ 103              	.LCFI0:
+ 104              		.cfi_def_cfa_offset 8
+ 105              		.cfi_offset 7, -8
+ 106              		.cfi_offset 14, -4
+ 107 0002 82B0     		sub	sp, sp, #8
+ 108              	.LCFI1:
+ 109              		.cfi_def_cfa_offset 16
+ 110 0004 00AF     		add	r7, sp, #0
+ 111              	.LCFI2:
+ 112              		.cfi_def_cfa_register 7
+  38:../HTU21D.c   **** 	if(canH)
+ 113              		.loc 1 38 0
+ 114 0006 40F20003 		movw	r3, #:lower16:canH
+ 115 000a C0F20003 		movt	r3, #:upper16:canH
+ 116 000e 1B68     		ldr	r3, [r3, #0]
+ 117 0010 002B     		cmp	r3, #0
+ 118 0012 00F0FA80 		beq	.L2
+ 119              	.LBB2:
+  39:../HTU21D.c   **** 	{
+  40:../HTU21D.c   **** 		canH = 0;
+ 120              		.loc 1 40 0
+ 121 0016 40F20003 		movw	r3, #:lower16:canH
+ 122 001a C0F20003 		movt	r3, #:upper16:canH
+ 123 001e 4FF00002 		mov	r2, #0
+ 124 0022 1A60     		str	r2, [r3, #0]
+  41:../HTU21D.c   **** 		I2C001_DataType data1;
+  42:../HTU21D.c   **** 		data1.Data1.TDF_Type = I2C_TDF_MStart;
+ 125              		.loc 1 42 0
+ 126 0024 4FF00403 		mov	r3, #4
+ 127 0028 7B71     		strb	r3, [r7, #5]
+  43:../HTU21D.c   **** 		data1.Data1.Data = ((HTDU21D_ADDRESS << 1) | I2C_WRITE);
+ 128              		.loc 1 43 0
+ 129 002a 4FF08003 		mov	r3, #128
+ 130 002e 3B71     		strb	r3, [r7, #4]
+  44:../HTU21D.c   **** 		I2C001_WriteData(&I2C001_Handle1,&data1);
+ 131              		.loc 1 44 0
+ 132 0030 07F10403 		add	r3, r7, #4
+ 133 0034 40F20000 		movw	r0, #:lower16:I2C001_Handle1
+ 134 0038 C0F20000 		movt	r0, #:upper16:I2C001_Handle1
+ 135 003c 1946     		mov	r1, r3
+ 136 003e FFF7FEFF 		bl	I2C001_WriteData
+  45:../HTU21D.c   **** 
+  46:../HTU21D.c   **** 		delay11(DELAY);
+ 137              		.loc 1 46 0
+ 138 0042 42F6E060 		movw	r0, #12000
+ 139 0046 FFF7FEFF 		bl	delay11
+  47:../HTU21D.c   **** 
+  48:../HTU21D.c   **** 		I2C001_DataType data2;
+  49:../HTU21D.c   **** 		data2.Data1.TDF_Type = I2C_TDF_MTxData;
+ 140              		.loc 1 49 0
+ 141 004a 4FF00003 		mov	r3, #0
+ 142 004e 7B70     		strb	r3, [r7, #1]
+  50:../HTU21D.c   **** 		data2.Data1.Data = TRIGGER_HUMD_MEASURE_NOHOLD;
+ 143              		.loc 1 50 0
+ 144 0050 4FF0F503 		mov	r3, #245
+ 145 0054 3B70     		strb	r3, [r7, #0]
+  51:../HTU21D.c   **** 		I2C001_WriteData(&I2C001_Handle1,&data2);
+ 146              		.loc 1 51 0
+ 147 0056 3B46     		mov	r3, r7
+ 148 0058 40F20000 		movw	r0, #:lower16:I2C001_Handle1
+ 149 005c C0F20000 		movt	r0, #:upper16:I2C001_Handle1
+ 150 0060 1946     		mov	r1, r3
+ 151 0062 FFF7FEFF 		bl	I2C001_WriteData
+  52:../HTU21D.c   **** 
+  53:../HTU21D.c   **** 		delay11(DELAY);
+ 152              		.loc 1 53 0
+ 153 0066 42F6E060 		movw	r0, #12000
+ 154 006a FFF7FEFF 		bl	delay11
+  54:../HTU21D.c   **** 
+  55:../HTU21D.c   **** 		if(timerHumidOn == 0)
+ 155              		.loc 1 55 0
+ 156 006e 40F20003 		movw	r3, #:lower16:timerHumidOn
+ 157 0072 C0F20003 		movt	r3, #:upper16:timerHumidOn
+ 158 0076 1B68     		ldr	r3, [r3, #0]
+ 159 0078 002B     		cmp	r3, #0
+ 160 007a 22D1     		bne	.L3
+  56:../HTU21D.c   **** 		{
+  57:../HTU21D.c   **** 			TimerRdHumid = SYSTM001_CreateTimer(55, SYSTM001_PERIODIC, readHumidTimerHandler, NULL);
+ 161              		.loc 1 57 0
+ 162 007c 4FF03700 		mov	r0, #55
+ 163 0080 4FF00101 		mov	r1, #1
+ 164 0084 40F20002 		movw	r2, #:lower16:readHumidTimerHandler
+ 165 0088 C0F20002 		movt	r2, #:upper16:readHumidTimerHandler
+ 166 008c 4FF00003 		mov	r3, #0
+ 167 0090 FFF7FEFF 		bl	SYSTM001_CreateTimer
+ 168 0094 0246     		mov	r2, r0
+ 169 0096 40F20003 		movw	r3, #:lower16:TimerRdHumid
+ 170 009a C0F20003 		movt	r3, #:upper16:TimerRdHumid
+ 171 009e 1A60     		str	r2, [r3, #0]
+  58:../HTU21D.c   **** 			SYSTM001_StartTimer(TimerRdHumid);
+ 172              		.loc 1 58 0
+ 173 00a0 40F20003 		movw	r3, #:lower16:TimerRdHumid
+ 174 00a4 C0F20003 		movt	r3, #:upper16:TimerRdHumid
+ 175 00a8 1B68     		ldr	r3, [r3, #0]
+ 176 00aa 1846     		mov	r0, r3
+ 177 00ac FFF7FEFF 		bl	SYSTM001_StartTimer
+  59:../HTU21D.c   **** 			timerHumidOn = 1;
+ 178              		.loc 1 59 0
+ 179 00b0 40F20003 		movw	r3, #:lower16:timerHumidOn
+ 180 00b4 C0F20003 		movt	r3, #:upper16:timerHumidOn
+ 181 00b8 4FF00102 		mov	r2, #1
+ 182 00bc 1A60     		str	r2, [r3, #0]
+ 183 00be 00E0     		b	.L3
+ 184              	.L10:
+  60:../HTU21D.c   **** 		}
+  61:../HTU21D.c   **** 
+  62:../HTU21D.c   **** 		while(TRUE)
+  63:../HTU21D.c   **** 		{
+  64:../HTU21D.c   **** 			if(errorCounter > 3)
+  65:../HTU21D.c   **** 			{
+  66:../HTU21D.c   **** 				errorCounter = 0;
+  67:../HTU21D.c   **** 				SYSTM001_StopTimer(TimerRdHumid);
+  68:../HTU21D.c   **** 				SYSTM001_DeleteTimer(TimerRdHumid);
+  69:../HTU21D.c   **** 				TimerRdHumid = 0;
+  70:../HTU21D.c   **** 				timerHumidOn = 0;
+  71:../HTU21D.c   **** 				canH = 1;
+  72:../HTU21D.c   **** 				return 998;
+  73:../HTU21D.c   **** 			}
+  74:../HTU21D.c   **** 			else if(1 == wrong_checksum)
+  75:../HTU21D.c   **** 			{
+  76:../HTU21D.c   **** 				wrong_checksum = 0;
+  77:../HTU21D.c   **** 				SYSTM001_StopTimer(TimerRdHumid);
+  78:../HTU21D.c   **** 				SYSTM001_DeleteTimer(TimerRdHumid);
+  79:../HTU21D.c   **** 				TimerRdHumid = 0;
+  80:../HTU21D.c   **** 				timerHumidOn = 0;
+  81:../HTU21D.c   **** 				canH = 1;
+  82:../HTU21D.c   **** 				return 999;
+  83:../HTU21D.c   **** 			}
+  84:../HTU21D.c   **** 			else if(1 == readHumid)
+  85:../HTU21D.c   **** 			{
+  86:../HTU21D.c   **** 				readHumid = 0;
+  87:../HTU21D.c   **** 				SYSTM001_StopTimer(TimerRdHumid);
+  88:../HTU21D.c   **** 				SYSTM001_DeleteTimer(TimerRdHumid);
+  89:../HTU21D.c   **** 				TimerRdHumid = 0;
+  90:../HTU21D.c   **** 				timerHumidOn = 0;
+  91:../HTU21D.c   **** 				canH = 1;
+  92:../HTU21D.c   **** 				break;
+  93:../HTU21D.c   **** 			}
+  94:../HTU21D.c   **** 		}
+ 185              		.loc 1 94 0
+ 186 00c0 00BF     		nop
+ 187              	.L3:
+  64:../HTU21D.c   **** 			if(errorCounter > 3)
+ 188              		.loc 1 64 0
+ 189 00c2 40F20003 		movw	r3, #:lower16:errorCounter
+ 190 00c6 C0F20003 		movt	r3, #:upper16:errorCounter
+ 191 00ca 1B68     		ldr	r3, [r3, #0]
+ 192 00cc 032B     		cmp	r3, #3
+ 193 00ce 30DD     		ble	.L4
+  66:../HTU21D.c   **** 				errorCounter = 0;
+ 194              		.loc 1 66 0
+ 195 00d0 40F20003 		movw	r3, #:lower16:errorCounter
+ 196 00d4 C0F20003 		movt	r3, #:upper16:errorCounter
+ 197 00d8 4FF00002 		mov	r2, #0
+ 198 00dc 1A60     		str	r2, [r3, #0]
+  67:../HTU21D.c   **** 				SYSTM001_StopTimer(TimerRdHumid);
+ 199              		.loc 1 67 0
+ 200 00de 40F20003 		movw	r3, #:lower16:TimerRdHumid
+ 201 00e2 C0F20003 		movt	r3, #:upper16:TimerRdHumid
+ 202 00e6 1B68     		ldr	r3, [r3, #0]
+ 203 00e8 1846     		mov	r0, r3
+ 204 00ea FFF7FEFF 		bl	SYSTM001_StopTimer
+  68:../HTU21D.c   **** 				SYSTM001_DeleteTimer(TimerRdHumid);
+ 205              		.loc 1 68 0
+ 206 00ee 40F20003 		movw	r3, #:lower16:TimerRdHumid
+ 207 00f2 C0F20003 		movt	r3, #:upper16:TimerRdHumid
+ 208 00f6 1B68     		ldr	r3, [r3, #0]
+ 209 00f8 1846     		mov	r0, r3
+ 210 00fa FFF7FEFF 		bl	SYSTM001_DeleteTimer
+  69:../HTU21D.c   **** 				TimerRdHumid = 0;
+ 211              		.loc 1 69 0
+ 212 00fe 40F20003 		movw	r3, #:lower16:TimerRdHumid
+ 213 0102 C0F20003 		movt	r3, #:upper16:TimerRdHumid
+ 214 0106 4FF00002 		mov	r2, #0
+ 215 010a 1A60     		str	r2, [r3, #0]
+  70:../HTU21D.c   **** 				timerHumidOn = 0;
+ 216              		.loc 1 70 0
+ 217 010c 40F20003 		movw	r3, #:lower16:timerHumidOn
+ 218 0110 C0F20003 		movt	r3, #:upper16:timerHumidOn
+ 219 0114 4FF00002 		mov	r2, #0
+ 220 0118 1A60     		str	r2, [r3, #0]
+  71:../HTU21D.c   **** 				canH = 1;
+ 221              		.loc 1 71 0
+ 222 011a 40F20003 		movw	r3, #:lower16:canH
+ 223 011e C0F20003 		movt	r3, #:upper16:canH
+ 224 0122 4FF00102 		mov	r2, #1
+ 225 0126 1A60     		str	r2, [r3, #0]
+  72:../HTU21D.c   **** 				return 998;
+ 226              		.loc 1 72 0
+ 227 0128 4FF40043 		mov	r3, #32768
+ 228 012c C4F27943 		movt	r3, 17529
+ 229 0130 70E0     		b	.L9
+ 230              	.L4:
+  74:../HTU21D.c   **** 			else if(1 == wrong_checksum)
+ 231              		.loc 1 74 0
+ 232 0132 40F20003 		movw	r3, #:lower16:wrong_checksum
+ 233 0136 C0F20003 		movt	r3, #:upper16:wrong_checksum
+ 234 013a 1B68     		ldr	r3, [r3, #0]
+ 235 013c 012B     		cmp	r3, #1
+ 236 013e 30D1     		bne	.L6
+  76:../HTU21D.c   **** 				wrong_checksum = 0;
+ 237              		.loc 1 76 0
+ 238 0140 40F20003 		movw	r3, #:lower16:wrong_checksum
+ 239 0144 C0F20003 		movt	r3, #:upper16:wrong_checksum
+ 240 0148 4FF00002 		mov	r2, #0
+ 241 014c 1A60     		str	r2, [r3, #0]
+  77:../HTU21D.c   **** 				SYSTM001_StopTimer(TimerRdHumid);
+ 242              		.loc 1 77 0
+ 243 014e 40F20003 		movw	r3, #:lower16:TimerRdHumid
+ 244 0152 C0F20003 		movt	r3, #:upper16:TimerRdHumid
+ 245 0156 1B68     		ldr	r3, [r3, #0]
+ 246 0158 1846     		mov	r0, r3
+ 247 015a FFF7FEFF 		bl	SYSTM001_StopTimer
+  78:../HTU21D.c   **** 				SYSTM001_DeleteTimer(TimerRdHumid);
+ 248              		.loc 1 78 0
+ 249 015e 40F20003 		movw	r3, #:lower16:TimerRdHumid
+ 250 0162 C0F20003 		movt	r3, #:upper16:TimerRdHumid
+ 251 0166 1B68     		ldr	r3, [r3, #0]
+ 252 0168 1846     		mov	r0, r3
+ 253 016a FFF7FEFF 		bl	SYSTM001_DeleteTimer
+  79:../HTU21D.c   **** 				TimerRdHumid = 0;
+ 254              		.loc 1 79 0
+ 255 016e 40F20003 		movw	r3, #:lower16:TimerRdHumid
+ 256 0172 C0F20003 		movt	r3, #:upper16:TimerRdHumid
+ 257 0176 4FF00002 		mov	r2, #0
+ 258 017a 1A60     		str	r2, [r3, #0]
+  80:../HTU21D.c   **** 				timerHumidOn = 0;
+ 259              		.loc 1 80 0
+ 260 017c 40F20003 		movw	r3, #:lower16:timerHumidOn
+ 261 0180 C0F20003 		movt	r3, #:upper16:timerHumidOn
+ 262 0184 4FF00002 		mov	r2, #0
+ 263 0188 1A60     		str	r2, [r3, #0]
+  81:../HTU21D.c   **** 				canH = 1;
+ 264              		.loc 1 81 0
+ 265 018a 40F20003 		movw	r3, #:lower16:canH
+ 266 018e C0F20003 		movt	r3, #:upper16:canH
+ 267 0192 4FF00102 		mov	r2, #1
+ 268 0196 1A60     		str	r2, [r3, #0]
+  82:../HTU21D.c   **** 				return 999;
+ 269              		.loc 1 82 0
+ 270 0198 4FF44043 		mov	r3, #49152
+ 271 019c C4F27943 		movt	r3, 17529
+ 272 01a0 38E0     		b	.L9
+ 273              	.L6:
+  84:../HTU21D.c   **** 			else if(1 == readHumid)
+ 274              		.loc 1 84 0
+ 275 01a2 40F20003 		movw	r3, #:lower16:readHumid
+ 276 01a6 C0F20003 		movt	r3, #:upper16:readHumid
+ 277 01aa 1B68     		ldr	r3, [r3, #0]
+ 278 01ac 012B     		cmp	r3, #1
+ 279 01ae 87D1     		bne	.L10
+  86:../HTU21D.c   **** 				readHumid = 0;
+ 280              		.loc 1 86 0
+ 281 01b0 40F20003 		movw	r3, #:lower16:readHumid
+ 282 01b4 C0F20003 		movt	r3, #:upper16:readHumid
+ 283 01b8 4FF00002 		mov	r2, #0
+ 284 01bc 1A60     		str	r2, [r3, #0]
+  87:../HTU21D.c   **** 				SYSTM001_StopTimer(TimerRdHumid);
+ 285              		.loc 1 87 0
+ 286 01be 40F20003 		movw	r3, #:lower16:TimerRdHumid
+ 287 01c2 C0F20003 		movt	r3, #:upper16:TimerRdHumid
+ 288 01c6 1B68     		ldr	r3, [r3, #0]
+ 289 01c8 1846     		mov	r0, r3
+ 290 01ca FFF7FEFF 		bl	SYSTM001_StopTimer
+  88:../HTU21D.c   **** 				SYSTM001_DeleteTimer(TimerRdHumid);
+ 291              		.loc 1 88 0
+ 292 01ce 40F20003 		movw	r3, #:lower16:TimerRdHumid
+ 293 01d2 C0F20003 		movt	r3, #:upper16:TimerRdHumid
+ 294 01d6 1B68     		ldr	r3, [r3, #0]
+ 295 01d8 1846     		mov	r0, r3
+ 296 01da FFF7FEFF 		bl	SYSTM001_DeleteTimer
+  89:../HTU21D.c   **** 				TimerRdHumid = 0;
+ 297              		.loc 1 89 0
+ 298 01de 40F20003 		movw	r3, #:lower16:TimerRdHumid
+ 299 01e2 C0F20003 		movt	r3, #:upper16:TimerRdHumid
+ 300 01e6 4FF00002 		mov	r2, #0
+ 301 01ea 1A60     		str	r2, [r3, #0]
+  90:../HTU21D.c   **** 				timerHumidOn = 0;
+ 302              		.loc 1 90 0
+ 303 01ec 40F20003 		movw	r3, #:lower16:timerHumidOn
+ 304 01f0 C0F20003 		movt	r3, #:upper16:timerHumidOn
+ 305 01f4 4FF00002 		mov	r2, #0
+ 306 01f8 1A60     		str	r2, [r3, #0]
+  91:../HTU21D.c   **** 				canH = 1;
+ 307              		.loc 1 91 0
+ 308 01fa 40F20003 		movw	r3, #:lower16:canH
+ 309 01fe C0F20003 		movt	r3, #:upper16:canH
+ 310 0202 4FF00102 		mov	r2, #1
+ 311 0206 1A60     		str	r2, [r3, #0]
+  92:../HTU21D.c   **** 				break;
+ 312              		.loc 1 92 0
+ 313 0208 00BF     		nop
+ 314              	.L2:
+ 315              	.LBE2:
+  95:../HTU21D.c   **** 	}
+  96:../HTU21D.c   **** 	return rh;
+ 316              		.loc 1 96 0
+ 317 020a 40F20003 		movw	r3, #:lower16:rh
+ 318 020e C0F20003 		movt	r3, #:upper16:rh
+ 319 0212 1B68     		ldr	r3, [r3, #0]	@ float
+ 320              	.L9:
+  97:../HTU21D.c   **** }
+ 321              		.loc 1 97 0
+ 322 0214 1846     		mov	r0, r3	@ float
+ 323 0216 07F10807 		add	r7, r7, #8
+ 324 021a BD46     		mov	sp, r7
+ 325 021c 80BD     		pop	{r7, pc}
+ 326              		.cfi_endproc
+ 327              	.LFE112:
+ 329 021e 00BF     		.section	.text.readHumidTimerHandler,"ax",%progbits
+ 330              		.align	2
+ 331              		.global	readHumidTimerHandler
+ 332              		.thumb
+ 333              		.thumb_func
+ 335              	readHumidTimerHandler:
+ 336              	.LFB113:
+  98:../HTU21D.c   **** 
+  99:../HTU21D.c   **** void readHumidTimerHandler(void *T)
+ 100:../HTU21D.c   **** {
+ 337              		.loc 1 100 0
+ 338              		.cfi_startproc
+ 339              		@ args = 0, pretend = 0, frame = 48
+ 340              		@ frame_needed = 1, uses_anonymous_args = 0
+ 341 0000 80B5     		push	{r7, lr}
+ 342              	.LCFI3:
+ 343              		.cfi_def_cfa_offset 8
+ 344              		.cfi_offset 7, -8
+ 345              		.cfi_offset 14, -4
+ 346 0002 8CB0     		sub	sp, sp, #48
+ 347              	.LCFI4:
+ 348              		.cfi_def_cfa_offset 56
+ 349 0004 00AF     		add	r7, sp, #0
+ 350              	.LCFI5:
+ 351              		.cfi_def_cfa_register 7
+ 352 0006 7860     		str	r0, [r7, #4]
+ 101:../HTU21D.c   **** 	I2C001_DataType data1;
+ 102:../HTU21D.c   **** 	data1.Data1.TDF_Type = I2C_TDF_MRStart;
+ 353              		.loc 1 102 0
+ 354 0008 4FF00503 		mov	r3, #5
+ 355 000c 7B76     		strb	r3, [r7, #25]
+ 103:../HTU21D.c   **** 	data1.Data1.Data = ((HTDU21D_ADDRESS << 1) | I2C_READ);
+ 356              		.loc 1 103 0
+ 357 000e 4FF08103 		mov	r3, #129
+ 358 0012 3B76     		strb	r3, [r7, #24]
+ 104:../HTU21D.c   **** 	I2C001_WriteData(&I2C001_Handle1,&data1);
+ 359              		.loc 1 104 0
+ 360 0014 07F11803 		add	r3, r7, #24
+ 361 0018 40F20000 		movw	r0, #:lower16:I2C001_Handle1
+ 362 001c C0F20000 		movt	r0, #:upper16:I2C001_Handle1
+ 363 0020 1946     		mov	r1, r3
+ 364 0022 FFF7FEFF 		bl	I2C001_WriteData
+ 105:../HTU21D.c   **** 
+ 106:../HTU21D.c   **** 	delay11(DELAY);
+ 365              		.loc 1 106 0
+ 366 0026 42F6E060 		movw	r0, #12000
+ 367 002a FFF7FEFF 		bl	delay11
+ 107:../HTU21D.c   **** 
+ 108:../HTU21D.c   **** 	if(I2C001_GetFlagStatus(&I2C001_Handle1,I2C001_FLAG_NACK_RECEIVED) == I2C001_SET)
+ 368              		.loc 1 108 0
+ 369 002e 40F20000 		movw	r0, #:lower16:I2C001_Handle1
+ 370 0032 C0F20000 		movt	r0, #:upper16:I2C001_Handle1
+ 371 0036 4FF00601 		mov	r1, #6
+ 372 003a FFF7FEFF 		bl	I2C001_GetFlagStatus
+ 373 003e 0346     		mov	r3, r0
+ 374 0040 032B     		cmp	r3, #3
+ 375 0042 14D1     		bne	.L12
+ 109:../HTU21D.c   **** 	{
+ 110:../HTU21D.c   **** 		I2C001_ClearFlag(&I2C001_Handle1,I2C001_FLAG_NACK_RECEIVED);
+ 376              		.loc 1 110 0
+ 377 0044 40F20000 		movw	r0, #:lower16:I2C001_Handle1
+ 378 0048 C0F20000 		movt	r0, #:upper16:I2C001_Handle1
+ 379 004c 4FF00601 		mov	r1, #6
+ 380 0050 FFF7FEFF 		bl	I2C001_ClearFlag
+ 111:../HTU21D.c   **** 		errorCounter++;
+ 381              		.loc 1 111 0
+ 382 0054 40F20003 		movw	r3, #:lower16:errorCounter
+ 383 0058 C0F20003 		movt	r3, #:upper16:errorCounter
+ 384 005c 1B68     		ldr	r3, [r3, #0]
+ 385 005e 03F10102 		add	r2, r3, #1
+ 386 0062 40F20003 		movw	r3, #:lower16:errorCounter
+ 387 0066 C0F20003 		movt	r3, #:upper16:errorCounter
+ 388 006a 1A60     		str	r2, [r3, #0]
+ 389 006c CFE0     		b	.L11
+ 390              	.L12:
+ 391              	.LBB3:
+ 112:../HTU21D.c   **** 	}
+ 113:../HTU21D.c   **** 	else
+ 114:../HTU21D.c   **** 	{
+ 115:../HTU21D.c   **** 		uint8_t msb = 0x00;
+ 392              		.loc 1 115 0
+ 393 006e 4FF00003 		mov	r3, #0
+ 394 0072 87F82F30 		strb	r3, [r7, #47]
+ 116:../HTU21D.c   **** 		uint8_t lsb = 0x00;
+ 395              		.loc 1 116 0
+ 396 0076 4FF00003 		mov	r3, #0
+ 397 007a 87F82E30 		strb	r3, [r7, #46]
+ 117:../HTU21D.c   **** 		uint8_t checksum = 0x00;
+ 398              		.loc 1 117 0
+ 399 007e 4FF00003 		mov	r3, #0
+ 400 0082 87F82D30 		strb	r3, [r7, #45]
+ 118:../HTU21D.c   **** 
+ 119:../HTU21D.c   **** 		USIC_CH_TypeDef* I2CRegs = I2C001_Handle1.I2CRegs;
+ 401              		.loc 1 119 0
+ 402 0086 40F20003 		movw	r3, #:lower16:I2C001_Handle1
+ 403 008a C0F20003 		movt	r3, #:upper16:I2C001_Handle1
+ 404 008e 5B68     		ldr	r3, [r3, #4]
+ 405 0090 BB62     		str	r3, [r7, #40]
+ 120:../HTU21D.c   **** 
+ 121:../HTU21D.c   **** 		I2C001_DataType data2;
+ 122:../HTU21D.c   **** 		data2.Data1.TDF_Type = I2C_TDF_MRxAck0;
+ 406              		.loc 1 122 0
+ 407 0092 4FF00203 		mov	r3, #2
+ 408 0096 7B75     		strb	r3, [r7, #21]
+ 123:../HTU21D.c   **** 		data2.Data1.Data = ubyteFF;
+ 409              		.loc 1 123 0
+ 410 0098 4FF0FF03 		mov	r3, #255
+ 411 009c 3B75     		strb	r3, [r7, #20]
+ 124:../HTU21D.c   **** 		I2C001_WriteData(&I2C001_Handle1,&data2);
+ 412              		.loc 1 124 0
+ 413 009e 07F11403 		add	r3, r7, #20
+ 414 00a2 40F20000 		movw	r0, #:lower16:I2C001_Handle1
+ 415 00a6 C0F20000 		movt	r0, #:upper16:I2C001_Handle1
+ 416 00aa 1946     		mov	r1, r3
+ 417 00ac FFF7FEFF 		bl	I2C001_WriteData
+ 125:../HTU21D.c   **** 
+ 126:../HTU21D.c   **** 		delay11(DELAY);
+ 418              		.loc 1 126 0
+ 419 00b0 42F6E060 		movw	r0, #12000
+ 420 00b4 FFF7FEFF 		bl	delay11
+ 127:../HTU21D.c   **** 
+ 128:../HTU21D.c   **** 		if(!USIC_ubIsRxFIFOempty(I2CRegs))
+ 421              		.loc 1 128 0
+ 422 00b8 BB6A     		ldr	r3, [r7, #40]
+ 423 00ba D3F81431 		ldr	r3, [r3, #276]
+ 424 00be 03F00803 		and	r3, r3, #8
+ 425 00c2 4FEAD303 		lsr	r3, r3, #3
+ 426 00c6 002B     		cmp	r3, #0
+ 427 00c8 04D1     		bne	.L14
+ 129:../HTU21D.c   **** 		{
+ 130:../HTU21D.c   **** 			msb = (uint8_t)I2CRegs->OUTR;
+ 428              		.loc 1 130 0
+ 429 00ca BB6A     		ldr	r3, [r7, #40]
+ 430 00cc D3F81C31 		ldr	r3, [r3, #284]
+ 431 00d0 87F82F30 		strb	r3, [r7, #47]
+ 432              	.L14:
+ 131:../HTU21D.c   **** 			//Result = (bool)TRUE;
+ 132:../HTU21D.c   **** 		}
+ 133:../HTU21D.c   **** 
+ 134:../HTU21D.c   **** 		I2C001_DataType data3;
+ 135:../HTU21D.c   **** 		data3.Data1.TDF_Type = I2C_TDF_MRxAck0;
+ 433              		.loc 1 135 0
+ 434 00d4 4FF00203 		mov	r3, #2
+ 435 00d8 7B74     		strb	r3, [r7, #17]
+ 136:../HTU21D.c   **** 		data3.Data1.Data = ubyteFF;
+ 436              		.loc 1 136 0
+ 437 00da 4FF0FF03 		mov	r3, #255
+ 438 00de 3B74     		strb	r3, [r7, #16]
+ 137:../HTU21D.c   **** 		I2C001_WriteData(&I2C001_Handle1,&data3);
+ 439              		.loc 1 137 0
+ 440 00e0 07F11003 		add	r3, r7, #16
+ 441 00e4 40F20000 		movw	r0, #:lower16:I2C001_Handle1
+ 442 00e8 C0F20000 		movt	r0, #:upper16:I2C001_Handle1
+ 443 00ec 1946     		mov	r1, r3
+ 444 00ee FFF7FEFF 		bl	I2C001_WriteData
+ 138:../HTU21D.c   **** 
+ 139:../HTU21D.c   **** 		delay11(DELAY);
+ 445              		.loc 1 139 0
+ 446 00f2 42F6E060 		movw	r0, #12000
+ 447 00f6 FFF7FEFF 		bl	delay11
+ 140:../HTU21D.c   **** 
+ 141:../HTU21D.c   **** 		if(!USIC_ubIsRxFIFOempty(I2CRegs))
+ 448              		.loc 1 141 0
+ 449 00fa BB6A     		ldr	r3, [r7, #40]
+ 450 00fc D3F81431 		ldr	r3, [r3, #276]
+ 451 0100 03F00803 		and	r3, r3, #8
+ 452 0104 4FEAD303 		lsr	r3, r3, #3
+ 453 0108 002B     		cmp	r3, #0
+ 454 010a 04D1     		bne	.L15
+ 142:../HTU21D.c   **** 		{
+ 143:../HTU21D.c   **** 			lsb = (uint8_t)I2CRegs->OUTR;
+ 455              		.loc 1 143 0
+ 456 010c BB6A     		ldr	r3, [r7, #40]
+ 457 010e D3F81C31 		ldr	r3, [r3, #284]
+ 458 0112 87F82E30 		strb	r3, [r7, #46]
+ 459              	.L15:
+ 144:../HTU21D.c   **** 			//Result = (bool)TRUE;
+ 145:../HTU21D.c   **** 		}
+ 146:../HTU21D.c   **** 
+ 147:../HTU21D.c   **** 		I2C001_DataType data4;
+ 148:../HTU21D.c   **** 		data4.Data1.TDF_Type = I2C_TDF_MRxAck1;
+ 460              		.loc 1 148 0
+ 461 0116 4FF00303 		mov	r3, #3
+ 462 011a 7B73     		strb	r3, [r7, #13]
+ 149:../HTU21D.c   **** 		data4.Data1.Data = ubyteFF;
+ 463              		.loc 1 149 0
+ 464 011c 4FF0FF03 		mov	r3, #255
+ 465 0120 3B73     		strb	r3, [r7, #12]
+ 150:../HTU21D.c   **** 		I2C001_WriteData(&I2C001_Handle1,&data4);
+ 466              		.loc 1 150 0
+ 467 0122 07F10C03 		add	r3, r7, #12
+ 468 0126 40F20000 		movw	r0, #:lower16:I2C001_Handle1
+ 469 012a C0F20000 		movt	r0, #:upper16:I2C001_Handle1
+ 470 012e 1946     		mov	r1, r3
+ 471 0130 FFF7FEFF 		bl	I2C001_WriteData
+ 151:../HTU21D.c   **** 
+ 152:../HTU21D.c   **** 		delay11(DELAY);
+ 472              		.loc 1 152 0
+ 473 0134 42F6E060 		movw	r0, #12000
+ 474 0138 FFF7FEFF 		bl	delay11
+ 153:../HTU21D.c   **** 
+ 154:../HTU21D.c   **** 		I2C001_DataType data5;
+ 155:../HTU21D.c   **** 		data5.Data1.TDF_Type = I2C_TDF_MStop;
+ 475              		.loc 1 155 0
+ 476 013c 4FF00603 		mov	r3, #6
+ 477 0140 7B72     		strb	r3, [r7, #9]
+ 156:../HTU21D.c   **** 		data5.Data1.Data = ubyteFF;
+ 478              		.loc 1 156 0
+ 479 0142 4FF0FF03 		mov	r3, #255
+ 480 0146 3B72     		strb	r3, [r7, #8]
+ 157:../HTU21D.c   **** 		I2C001_WriteData(&I2C001_Handle1,&data5);
+ 481              		.loc 1 157 0
+ 482 0148 07F10803 		add	r3, r7, #8
+ 483 014c 40F20000 		movw	r0, #:lower16:I2C001_Handle1
+ 484 0150 C0F20000 		movt	r0, #:upper16:I2C001_Handle1
+ 485 0154 1946     		mov	r1, r3
+ 486 0156 FFF7FEFF 		bl	I2C001_WriteData
+ 158:../HTU21D.c   **** 
+ 159:../HTU21D.c   **** 		delay11(DELAY);
+ 487              		.loc 1 159 0
+ 488 015a 42F6E060 		movw	r0, #12000
+ 489 015e FFF7FEFF 		bl	delay11
+ 160:../HTU21D.c   **** 
+ 161:../HTU21D.c   **** 
+ 162:../HTU21D.c   **** 
+ 163:../HTU21D.c   **** 		int d = USIC_GetRxFIFOFillingLevel(I2CRegs);
+ 490              		.loc 1 163 0
+ 491 0162 BB6A     		ldr	r3, [r7, #40]
+ 492 0164 D3F81431 		ldr	r3, [r3, #276]
+ 493 0168 03F4FE03 		and	r3, r3, #8323072
+ 494 016c 4FEA1343 		lsr	r3, r3, #16
+ 495 0170 7B62     		str	r3, [r7, #36]
+ 164:../HTU21D.c   **** 		// Read receive buffer, put the data in DataReceive1
+ 165:../HTU21D.c   **** 
+ 166:../HTU21D.c   **** 
+ 167:../HTU21D.c   **** 		if(!USIC_ubIsRxFIFOempty(I2CRegs))
+ 496              		.loc 1 167 0
+ 497 0172 BB6A     		ldr	r3, [r7, #40]
+ 498 0174 D3F81431 		ldr	r3, [r3, #276]
+ 499 0178 03F00803 		and	r3, r3, #8
+ 500 017c 4FEAD303 		lsr	r3, r3, #3
+ 501 0180 002B     		cmp	r3, #0
+ 502 0182 04D1     		bne	.L16
+ 168:../HTU21D.c   **** 		{
+ 169:../HTU21D.c   **** 			checksum = (uint8_t)I2CRegs->OUTR;
+ 503              		.loc 1 169 0
+ 504 0184 BB6A     		ldr	r3, [r7, #40]
+ 505 0186 D3F81C31 		ldr	r3, [r3, #284]
+ 506 018a 87F82D30 		strb	r3, [r7, #45]
+ 507              	.L16:
+ 170:../HTU21D.c   **** 			//Result = (bool)TRUE;
+ 171:../HTU21D.c   **** 		}
+ 172:../HTU21D.c   **** 
+ 173:../HTU21D.c   **** 
+ 174:../HTU21D.c   **** 		unsigned int rawHumid = ((unsigned int) msb << 8) | (unsigned int) lsb;
+ 508              		.loc 1 174 0
+ 509 018e 97F82F30 		ldrb	r3, [r7, #47]	@ zero_extendqisi2
+ 510 0192 4FEA0322 		lsl	r2, r3, #8
+ 511 0196 97F82E30 		ldrb	r3, [r7, #46]	@ zero_extendqisi2
+ 512 019a 1343     		orrs	r3, r3, r2
+ 513 019c 3B62     		str	r3, [r7, #32]
+ 175:../HTU21D.c   **** 
+ 176:../HTU21D.c   **** 		if(check_crc(rawHumid, checksum) != 0)
+ 514              		.loc 1 176 0
+ 515 019e 3B6A     		ldr	r3, [r7, #32]
+ 516 01a0 9AB2     		uxth	r2, r3
+ 517 01a2 97F82D30 		ldrb	r3, [r7, #45]	@ zero_extendqisi2
+ 518 01a6 1046     		mov	r0, r2
+ 519 01a8 1946     		mov	r1, r3
+ 520 01aa FFF7FEFF 		bl	check_crc
+ 521 01ae 0346     		mov	r3, r0
+ 522 01b0 002B     		cmp	r3, #0
+ 523 01b2 06D0     		beq	.L17
+ 177:../HTU21D.c   **** 		{
+ 178:../HTU21D.c   **** 			wrong_checksum = 1;
+ 524              		.loc 1 178 0
+ 525 01b4 40F20003 		movw	r3, #:lower16:wrong_checksum
+ 526 01b8 C0F20003 		movt	r3, #:upper16:wrong_checksum
+ 527 01bc 4FF00102 		mov	r2, #1
+ 528 01c0 1A60     		str	r2, [r3, #0]
+ 529              	.L17:
+ 179:../HTU21D.c   **** 		}
+ 180:../HTU21D.c   **** 
+ 181:../HTU21D.c   **** 		rawHumid &= 0xFFFC; //Zero out the status bits but keep them in place
+ 530              		.loc 1 181 0
+ 531 01c2 3A6A     		ldr	r2, [r7, #32]
+ 532 01c4 4FF6FC73 		movw	r3, #65532
+ 533 01c8 1340     		ands	r3, r3, r2
+ 534 01ca 3B62     		str	r3, [r7, #32]
+ 182:../HTU21D.c   **** 
+ 183:../HTU21D.c   **** 		//Given the raw temperature data, calculate the actual temperature
+ 184:../HTU21D.c   **** 		float tempRH = rawHumid / (float)65536; //2^16 = 65536
+ 535              		.loc 1 184 0
+ 536 01cc D7ED087A 		flds	s15, [r7, #32]	@ int
+ 537 01d0 B8EE677A 		fuitos	s14, s15
+ 538 01d4 DFED107A 		flds	s15, .L18
+ 539 01d8 C7EE277A 		fdivs	s15, s14, s15
+ 540 01dc C7ED077A 		fsts	s15, [r7, #28]
+ 185:../HTU21D.c   **** 		rh = -6 + (125 * tempRH); //From page 14
+ 541              		.loc 1 185 0
+ 542 01e0 97ED077A 		flds	s14, [r7, #28]
+ 543 01e4 DFED0D7A 		flds	s15, .L18+4
+ 544 01e8 27EE277A 		fmuls	s14, s14, s15
+ 545 01ec F1EE087A 		fconsts	s15, #24
+ 546 01f0 77EE677A 		fsubs	s15, s14, s15
+ 547 01f4 40F20003 		movw	r3, #:lower16:rh
+ 548 01f8 C0F20003 		movt	r3, #:upper16:rh
+ 549 01fc C3ED007A 		fsts	s15, [r3, #0]
+ 186:../HTU21D.c   **** 
+ 187:../HTU21D.c   **** 		readHumid = 1;
+ 550              		.loc 1 187 0
+ 551 0200 40F20003 		movw	r3, #:lower16:readHumid
+ 552 0204 C0F20003 		movt	r3, #:upper16:readHumid
+ 553 0208 4FF00102 		mov	r2, #1
+ 554 020c 1A60     		str	r2, [r3, #0]
+ 555              	.L11:
+ 556              	.LBE3:
+ 188:../HTU21D.c   **** 	}
+ 189:../HTU21D.c   **** }
+ 557              		.loc 1 189 0
+ 558 020e 07F13007 		add	r7, r7, #48
+ 559 0212 BD46     		mov	sp, r7
+ 560 0214 80BD     		pop	{r7, pc}
+ 561              	.L19:
+ 562 0216 00BF     		.align	2
+ 563              	.L18:
+ 564 0218 00008047 		.word	1199570944
+ 565 021c 0000FA42 		.word	1123680256
+ 566              		.cfi_endproc
+ 567              	.LFE113:
+ 569              		.section	.text.readTemperature,"ax",%progbits
+ 570              		.align	2
+ 571              		.global	readTemperature
+ 572              		.thumb
+ 573              		.thumb_func
+ 575              	readTemperature:
+ 576              	.LFB114:
+ 190:../HTU21D.c   **** 
+ 191:../HTU21D.c   **** float readTemperature(void)
+ 192:../HTU21D.c   **** {
+ 577              		.loc 1 192 0
+ 578              		.cfi_startproc
+ 579              		@ args = 0, pretend = 0, frame = 8
+ 580              		@ frame_needed = 1, uses_anonymous_args = 0
+ 581 0000 80B5     		push	{r7, lr}
+ 582              	.LCFI6:
+ 583              		.cfi_def_cfa_offset 8
+ 584              		.cfi_offset 7, -8
+ 585              		.cfi_offset 14, -4
+ 586 0002 82B0     		sub	sp, sp, #8
+ 587              	.LCFI7:
+ 588              		.cfi_def_cfa_offset 16
+ 589 0004 00AF     		add	r7, sp, #0
+ 590              	.LCFI8:
+ 591              		.cfi_def_cfa_register 7
+ 193:../HTU21D.c   **** 	if(canT){
+ 592              		.loc 1 193 0
+ 593 0006 40F20003 		movw	r3, #:lower16:canT
+ 594 000a C0F20003 		movt	r3, #:upper16:canT
+ 595 000e 1B68     		ldr	r3, [r3, #0]
+ 596 0010 002B     		cmp	r3, #0
+ 597 0012 00F0FA80 		beq	.L21
+ 598              	.LBB4:
+ 194:../HTU21D.c   **** 		canT = 0;
+ 599              		.loc 1 194 0
+ 600 0016 40F20003 		movw	r3, #:lower16:canT
+ 601 001a C0F20003 		movt	r3, #:upper16:canT
+ 602 001e 4FF00002 		mov	r2, #0
+ 603 0022 1A60     		str	r2, [r3, #0]
+ 195:../HTU21D.c   **** 
+ 196:../HTU21D.c   **** 		I2C001_DataType data1;
+ 197:../HTU21D.c   **** 		data1.Data1.TDF_Type = I2C_TDF_MStart;
+ 604              		.loc 1 197 0
+ 605 0024 4FF00403 		mov	r3, #4
+ 606 0028 7B71     		strb	r3, [r7, #5]
+ 198:../HTU21D.c   **** 		data1.Data1.Data = ((HTDU21D_ADDRESS << 1) | I2C_WRITE);
+ 607              		.loc 1 198 0
+ 608 002a 4FF08003 		mov	r3, #128
+ 609 002e 3B71     		strb	r3, [r7, #4]
+ 199:../HTU21D.c   **** 		I2C001_WriteData(&I2C001_Handle1,&data1);
+ 610              		.loc 1 199 0
+ 611 0030 07F10403 		add	r3, r7, #4
+ 612 0034 40F20000 		movw	r0, #:lower16:I2C001_Handle1
+ 613 0038 C0F20000 		movt	r0, #:upper16:I2C001_Handle1
+ 614 003c 1946     		mov	r1, r3
+ 615 003e FFF7FEFF 		bl	I2C001_WriteData
+ 200:../HTU21D.c   **** 
+ 201:../HTU21D.c   **** 		delay11(DELAY);
+ 616              		.loc 1 201 0
+ 617 0042 42F6E060 		movw	r0, #12000
+ 618 0046 FFF7FEFF 		bl	delay11
+ 202:../HTU21D.c   **** 
+ 203:../HTU21D.c   **** 		I2C001_DataType data2;
+ 204:../HTU21D.c   **** 		data2.Data1.TDF_Type = I2C_TDF_MTxData;
+ 619              		.loc 1 204 0
+ 620 004a 4FF00003 		mov	r3, #0
+ 621 004e 7B70     		strb	r3, [r7, #1]
+ 205:../HTU21D.c   **** 		data2.Data1.Data = TRIGGER_TEMP_MEASURE_NOHOLD;
+ 622              		.loc 1 205 0
+ 623 0050 4FF0F303 		mov	r3, #243
+ 624 0054 3B70     		strb	r3, [r7, #0]
+ 206:../HTU21D.c   **** 		I2C001_WriteData(&I2C001_Handle1,&data2);
+ 625              		.loc 1 206 0
+ 626 0056 3B46     		mov	r3, r7
+ 627 0058 40F20000 		movw	r0, #:lower16:I2C001_Handle1
+ 628 005c C0F20000 		movt	r0, #:upper16:I2C001_Handle1
+ 629 0060 1946     		mov	r1, r3
+ 630 0062 FFF7FEFF 		bl	I2C001_WriteData
+ 207:../HTU21D.c   **** 
+ 208:../HTU21D.c   **** 		delay11(DELAY);
+ 631              		.loc 1 208 0
+ 632 0066 42F6E060 		movw	r0, #12000
+ 633 006a FFF7FEFF 		bl	delay11
+ 209:../HTU21D.c   **** 
+ 210:../HTU21D.c   **** 		if(timerTmpOn == 0)
+ 634              		.loc 1 210 0
+ 635 006e 40F20003 		movw	r3, #:lower16:timerTmpOn
+ 636 0072 C0F20003 		movt	r3, #:upper16:timerTmpOn
+ 637 0076 1B68     		ldr	r3, [r3, #0]
+ 638 0078 002B     		cmp	r3, #0
+ 639 007a 22D1     		bne	.L22
+ 211:../HTU21D.c   **** 		{
+ 212:../HTU21D.c   **** 			TimerRdTmp = SYSTM001_CreateTimer(55, SYSTM001_PERIODIC, readTmpTimerHandler, NULL);
+ 640              		.loc 1 212 0
+ 641 007c 4FF03700 		mov	r0, #55
+ 642 0080 4FF00101 		mov	r1, #1
+ 643 0084 40F20002 		movw	r2, #:lower16:readTmpTimerHandler
+ 644 0088 C0F20002 		movt	r2, #:upper16:readTmpTimerHandler
+ 645 008c 4FF00003 		mov	r3, #0
+ 646 0090 FFF7FEFF 		bl	SYSTM001_CreateTimer
+ 647 0094 0246     		mov	r2, r0
+ 648 0096 40F20003 		movw	r3, #:lower16:TimerRdTmp
+ 649 009a C0F20003 		movt	r3, #:upper16:TimerRdTmp
+ 650 009e 1A60     		str	r2, [r3, #0]
+ 213:../HTU21D.c   **** 			SYSTM001_StartTimer(TimerRdTmp);
+ 651              		.loc 1 213 0
+ 652 00a0 40F20003 		movw	r3, #:lower16:TimerRdTmp
+ 653 00a4 C0F20003 		movt	r3, #:upper16:TimerRdTmp
+ 654 00a8 1B68     		ldr	r3, [r3, #0]
+ 655 00aa 1846     		mov	r0, r3
+ 656 00ac FFF7FEFF 		bl	SYSTM001_StartTimer
+ 214:../HTU21D.c   **** 			timerTmpOn = 1;
+ 657              		.loc 1 214 0
+ 658 00b0 40F20003 		movw	r3, #:lower16:timerTmpOn
+ 659 00b4 C0F20003 		movt	r3, #:upper16:timerTmpOn
+ 660 00b8 4FF00102 		mov	r2, #1
+ 661 00bc 1A60     		str	r2, [r3, #0]
+ 662 00be 00E0     		b	.L22
+ 663              	.L29:
+ 215:../HTU21D.c   **** 		}
+ 216:../HTU21D.c   **** 
+ 217:../HTU21D.c   **** 		while(TRUE)
+ 218:../HTU21D.c   **** 		{
+ 219:../HTU21D.c   **** 			if(errorCounterTmp > 3)
+ 220:../HTU21D.c   **** 			{
+ 221:../HTU21D.c   **** 				errorCounterTmp = 0;
+ 222:../HTU21D.c   **** 				SYSTM001_StopTimer(TimerRdTmp);
+ 223:../HTU21D.c   **** 				SYSTM001_DeleteTimer(TimerRdTmp);
+ 224:../HTU21D.c   **** 				TimerRdTmp = 0;
+ 225:../HTU21D.c   **** 				timerTmpOn = 0;
+ 226:../HTU21D.c   **** 				canT = 1;
+ 227:../HTU21D.c   **** 				return 998;
+ 228:../HTU21D.c   **** 			}
+ 229:../HTU21D.c   **** 			else if(1 == wrong_checksum)
+ 230:../HTU21D.c   **** 			{
+ 231:../HTU21D.c   **** 				wrong_checksum = 0;
+ 232:../HTU21D.c   **** 				SYSTM001_StopTimer(TimerRdTmp);
+ 233:../HTU21D.c   **** 				SYSTM001_DeleteTimer(TimerRdTmp);
+ 234:../HTU21D.c   **** 				TimerRdTmp = 0;
+ 235:../HTU21D.c   **** 				timerTmpOn = 0;
+ 236:../HTU21D.c   **** 				canT = 1;
+ 237:../HTU21D.c   **** 				return 999;
+ 238:../HTU21D.c   **** 			}
+ 239:../HTU21D.c   **** 			else if(1 == readTmp)
+ 240:../HTU21D.c   **** 			{
+ 241:../HTU21D.c   **** 				readTmp = 0;
+ 242:../HTU21D.c   **** 				SYSTM001_StopTimer(TimerRdTmp);
+ 243:../HTU21D.c   **** 				SYSTM001_DeleteTimer(TimerRdTmp);
+ 244:../HTU21D.c   **** 				TimerRdTmp = 0;
+ 245:../HTU21D.c   **** 				timerTmpOn = 0;
+ 246:../HTU21D.c   **** 				canT = 1;
+ 247:../HTU21D.c   **** 				break;
+ 248:../HTU21D.c   **** 			}
+ 249:../HTU21D.c   **** 		}
+ 664              		.loc 1 249 0
+ 665 00c0 00BF     		nop
+ 666              	.L22:
+ 219:../HTU21D.c   **** 			if(errorCounterTmp > 3)
+ 667              		.loc 1 219 0
+ 668 00c2 40F20003 		movw	r3, #:lower16:errorCounterTmp
+ 669 00c6 C0F20003 		movt	r3, #:upper16:errorCounterTmp
+ 670 00ca 1B68     		ldr	r3, [r3, #0]
+ 671 00cc 032B     		cmp	r3, #3
+ 672 00ce 30DD     		ble	.L23
+ 221:../HTU21D.c   **** 				errorCounterTmp = 0;
+ 673              		.loc 1 221 0
+ 674 00d0 40F20003 		movw	r3, #:lower16:errorCounterTmp
+ 675 00d4 C0F20003 		movt	r3, #:upper16:errorCounterTmp
+ 676 00d8 4FF00002 		mov	r2, #0
+ 677 00dc 1A60     		str	r2, [r3, #0]
+ 222:../HTU21D.c   **** 				SYSTM001_StopTimer(TimerRdTmp);
+ 678              		.loc 1 222 0
+ 679 00de 40F20003 		movw	r3, #:lower16:TimerRdTmp
+ 680 00e2 C0F20003 		movt	r3, #:upper16:TimerRdTmp
+ 681 00e6 1B68     		ldr	r3, [r3, #0]
+ 682 00e8 1846     		mov	r0, r3
+ 683 00ea FFF7FEFF 		bl	SYSTM001_StopTimer
+ 223:../HTU21D.c   **** 				SYSTM001_DeleteTimer(TimerRdTmp);
+ 684              		.loc 1 223 0
+ 685 00ee 40F20003 		movw	r3, #:lower16:TimerRdTmp
+ 686 00f2 C0F20003 		movt	r3, #:upper16:TimerRdTmp
+ 687 00f6 1B68     		ldr	r3, [r3, #0]
+ 688 00f8 1846     		mov	r0, r3
+ 689 00fa FFF7FEFF 		bl	SYSTM001_DeleteTimer
+ 224:../HTU21D.c   **** 				TimerRdTmp = 0;
+ 690              		.loc 1 224 0
+ 691 00fe 40F20003 		movw	r3, #:lower16:TimerRdTmp
+ 692 0102 C0F20003 		movt	r3, #:upper16:TimerRdTmp
+ 693 0106 4FF00002 		mov	r2, #0
+ 694 010a 1A60     		str	r2, [r3, #0]
+ 225:../HTU21D.c   **** 				timerTmpOn = 0;
+ 695              		.loc 1 225 0
+ 696 010c 40F20003 		movw	r3, #:lower16:timerTmpOn
+ 697 0110 C0F20003 		movt	r3, #:upper16:timerTmpOn
+ 698 0114 4FF00002 		mov	r2, #0
+ 699 0118 1A60     		str	r2, [r3, #0]
+ 226:../HTU21D.c   **** 				canT = 1;
+ 700              		.loc 1 226 0
+ 701 011a 40F20003 		movw	r3, #:lower16:canT
+ 702 011e C0F20003 		movt	r3, #:upper16:canT
+ 703 0122 4FF00102 		mov	r2, #1
+ 704 0126 1A60     		str	r2, [r3, #0]
+ 227:../HTU21D.c   **** 				return 998;
+ 705              		.loc 1 227 0
+ 706 0128 4FF40043 		mov	r3, #32768
+ 707 012c C4F27943 		movt	r3, 17529
+ 708 0130 70E0     		b	.L28
+ 709              	.L23:
+ 229:../HTU21D.c   **** 			else if(1 == wrong_checksum)
+ 710              		.loc 1 229 0
+ 711 0132 40F20003 		movw	r3, #:lower16:wrong_checksum
+ 712 0136 C0F20003 		movt	r3, #:upper16:wrong_checksum
+ 713 013a 1B68     		ldr	r3, [r3, #0]
+ 714 013c 012B     		cmp	r3, #1
+ 715 013e 30D1     		bne	.L25
+ 231:../HTU21D.c   **** 				wrong_checksum = 0;
+ 716              		.loc 1 231 0
+ 717 0140 40F20003 		movw	r3, #:lower16:wrong_checksum
+ 718 0144 C0F20003 		movt	r3, #:upper16:wrong_checksum
+ 719 0148 4FF00002 		mov	r2, #0
+ 720 014c 1A60     		str	r2, [r3, #0]
+ 232:../HTU21D.c   **** 				SYSTM001_StopTimer(TimerRdTmp);
+ 721              		.loc 1 232 0
+ 722 014e 40F20003 		movw	r3, #:lower16:TimerRdTmp
+ 723 0152 C0F20003 		movt	r3, #:upper16:TimerRdTmp
+ 724 0156 1B68     		ldr	r3, [r3, #0]
+ 725 0158 1846     		mov	r0, r3
+ 726 015a FFF7FEFF 		bl	SYSTM001_StopTimer
+ 233:../HTU21D.c   **** 				SYSTM001_DeleteTimer(TimerRdTmp);
+ 727              		.loc 1 233 0
+ 728 015e 40F20003 		movw	r3, #:lower16:TimerRdTmp
+ 729 0162 C0F20003 		movt	r3, #:upper16:TimerRdTmp
+ 730 0166 1B68     		ldr	r3, [r3, #0]
+ 731 0168 1846     		mov	r0, r3
+ 732 016a FFF7FEFF 		bl	SYSTM001_DeleteTimer
+ 234:../HTU21D.c   **** 				TimerRdTmp = 0;
+ 733              		.loc 1 234 0
+ 734 016e 40F20003 		movw	r3, #:lower16:TimerRdTmp
+ 735 0172 C0F20003 		movt	r3, #:upper16:TimerRdTmp
+ 736 0176 4FF00002 		mov	r2, #0
+ 737 017a 1A60     		str	r2, [r3, #0]
+ 235:../HTU21D.c   **** 				timerTmpOn = 0;
+ 738              		.loc 1 235 0
+ 739 017c 40F20003 		movw	r3, #:lower16:timerTmpOn
+ 740 0180 C0F20003 		movt	r3, #:upper16:timerTmpOn
+ 741 0184 4FF00002 		mov	r2, #0
+ 742 0188 1A60     		str	r2, [r3, #0]
+ 236:../HTU21D.c   **** 				canT = 1;
+ 743              		.loc 1 236 0
+ 744 018a 40F20003 		movw	r3, #:lower16:canT
+ 745 018e C0F20003 		movt	r3, #:upper16:canT
+ 746 0192 4FF00102 		mov	r2, #1
+ 747 0196 1A60     		str	r2, [r3, #0]
+ 237:../HTU21D.c   **** 				return 999;
+ 748              		.loc 1 237 0
+ 749 0198 4FF44043 		mov	r3, #49152
+ 750 019c C4F27943 		movt	r3, 17529
+ 751 01a0 38E0     		b	.L28
+ 752              	.L25:
+ 239:../HTU21D.c   **** 			else if(1 == readTmp)
+ 753              		.loc 1 239 0
+ 754 01a2 40F20003 		movw	r3, #:lower16:readTmp
+ 755 01a6 C0F20003 		movt	r3, #:upper16:readTmp
+ 756 01aa 1B68     		ldr	r3, [r3, #0]
+ 757 01ac 012B     		cmp	r3, #1
+ 758 01ae 87D1     		bne	.L29
+ 241:../HTU21D.c   **** 				readTmp = 0;
+ 759              		.loc 1 241 0
+ 760 01b0 40F20003 		movw	r3, #:lower16:readTmp
+ 761 01b4 C0F20003 		movt	r3, #:upper16:readTmp
+ 762 01b8 4FF00002 		mov	r2, #0
+ 763 01bc 1A60     		str	r2, [r3, #0]
+ 242:../HTU21D.c   **** 				SYSTM001_StopTimer(TimerRdTmp);
+ 764              		.loc 1 242 0
+ 765 01be 40F20003 		movw	r3, #:lower16:TimerRdTmp
+ 766 01c2 C0F20003 		movt	r3, #:upper16:TimerRdTmp
+ 767 01c6 1B68     		ldr	r3, [r3, #0]
+ 768 01c8 1846     		mov	r0, r3
+ 769 01ca FFF7FEFF 		bl	SYSTM001_StopTimer
+ 243:../HTU21D.c   **** 				SYSTM001_DeleteTimer(TimerRdTmp);
+ 770              		.loc 1 243 0
+ 771 01ce 40F20003 		movw	r3, #:lower16:TimerRdTmp
+ 772 01d2 C0F20003 		movt	r3, #:upper16:TimerRdTmp
+ 773 01d6 1B68     		ldr	r3, [r3, #0]
+ 774 01d8 1846     		mov	r0, r3
+ 775 01da FFF7FEFF 		bl	SYSTM001_DeleteTimer
+ 244:../HTU21D.c   **** 				TimerRdTmp = 0;
+ 776              		.loc 1 244 0
+ 777 01de 40F20003 		movw	r3, #:lower16:TimerRdTmp
+ 778 01e2 C0F20003 		movt	r3, #:upper16:TimerRdTmp
+ 779 01e6 4FF00002 		mov	r2, #0
+ 780 01ea 1A60     		str	r2, [r3, #0]
+ 245:../HTU21D.c   **** 				timerTmpOn = 0;
+ 781              		.loc 1 245 0
+ 782 01ec 40F20003 		movw	r3, #:lower16:timerTmpOn
+ 783 01f0 C0F20003 		movt	r3, #:upper16:timerTmpOn
+ 784 01f4 4FF00002 		mov	r2, #0
+ 785 01f8 1A60     		str	r2, [r3, #0]
+ 246:../HTU21D.c   **** 				canT = 1;
+ 786              		.loc 1 246 0
+ 787 01fa 40F20003 		movw	r3, #:lower16:canT
+ 788 01fe C0F20003 		movt	r3, #:upper16:canT
+ 789 0202 4FF00102 		mov	r2, #1
+ 790 0206 1A60     		str	r2, [r3, #0]
+ 247:../HTU21D.c   **** 				break;
+ 791              		.loc 1 247 0
+ 792 0208 00BF     		nop
+ 793              	.L21:
+ 794              	.LBE4:
+ 250:../HTU21D.c   **** 	}
+ 251:../HTU21D.c   **** 	return realTemperature;
+ 795              		.loc 1 251 0
+ 796 020a 40F20003 		movw	r3, #:lower16:realTemperature
+ 797 020e C0F20003 		movt	r3, #:upper16:realTemperature
+ 798 0212 1B68     		ldr	r3, [r3, #0]	@ float
+ 799              	.L28:
+ 252:../HTU21D.c   **** }
+ 800              		.loc 1 252 0
+ 801 0214 1846     		mov	r0, r3	@ float
+ 802 0216 07F10807 		add	r7, r7, #8
+ 803 021a BD46     		mov	sp, r7
+ 804 021c 80BD     		pop	{r7, pc}
+ 805              		.cfi_endproc
+ 806              	.LFE114:
+ 808              		.global	__aeabi_f2d
+ 809              		.global	__aeabi_dmul
+ 810              		.global	__aeabi_dsub
+ 811              		.global	__aeabi_d2f
+ 812 021e 00BF     		.section	.text.readTmpTimerHandler,"ax",%progbits
+ 813              		.align	2
+ 814              		.global	readTmpTimerHandler
+ 815              		.thumb
+ 816              		.thumb_func
+ 818              	readTmpTimerHandler:
+ 819              	.LFB115:
+ 253:../HTU21D.c   **** 
+ 254:../HTU21D.c   **** void readTmpTimerHandler(void *T)
+ 255:../HTU21D.c   **** {
+ 820              		.loc 1 255 0
+ 821              		.cfi_startproc
+ 822              		@ args = 0, pretend = 0, frame = 48
+ 823              		@ frame_needed = 1, uses_anonymous_args = 0
+ 824 0000 80B5     		push	{r7, lr}
+ 825              	.LCFI9:
+ 826              		.cfi_def_cfa_offset 8
+ 827              		.cfi_offset 7, -8
+ 828              		.cfi_offset 14, -4
+ 829 0002 8CB0     		sub	sp, sp, #48
+ 830              	.LCFI10:
+ 831              		.cfi_def_cfa_offset 56
+ 832 0004 00AF     		add	r7, sp, #0
+ 833              	.LCFI11:
+ 834              		.cfi_def_cfa_register 7
+ 835 0006 7860     		str	r0, [r7, #4]
+ 256:../HTU21D.c   **** 	I2C001_DataType data1;
+ 257:../HTU21D.c   **** 	data1.Data1.TDF_Type = I2C_TDF_MRStart;
+ 836              		.loc 1 257 0
+ 837 0008 4FF00503 		mov	r3, #5
+ 838 000c 7B76     		strb	r3, [r7, #25]
+ 258:../HTU21D.c   **** 	data1.Data1.Data = ((HTDU21D_ADDRESS << 1) | I2C_READ);
+ 839              		.loc 1 258 0
+ 840 000e 4FF08103 		mov	r3, #129
+ 841 0012 3B76     		strb	r3, [r7, #24]
+ 259:../HTU21D.c   **** 	I2C001_WriteData(&I2C001_Handle1,&data1);
+ 842              		.loc 1 259 0
+ 843 0014 07F11803 		add	r3, r7, #24
+ 844 0018 40F20000 		movw	r0, #:lower16:I2C001_Handle1
+ 845 001c C0F20000 		movt	r0, #:upper16:I2C001_Handle1
+ 846 0020 1946     		mov	r1, r3
+ 847 0022 FFF7FEFF 		bl	I2C001_WriteData
+ 260:../HTU21D.c   **** 
+ 261:../HTU21D.c   **** 	delay11(DELAY);
+ 848              		.loc 1 261 0
+ 849 0026 42F6E060 		movw	r0, #12000
+ 850 002a FFF7FEFF 		bl	delay11
+ 262:../HTU21D.c   **** 
+ 263:../HTU21D.c   **** 	if(I2C001_GetFlagStatus(&I2C001_Handle1,I2C001_FLAG_NACK_RECEIVED) == I2C001_SET)
+ 851              		.loc 1 263 0
+ 852 002e 40F20000 		movw	r0, #:lower16:I2C001_Handle1
+ 853 0032 C0F20000 		movt	r0, #:upper16:I2C001_Handle1
+ 854 0036 4FF00601 		mov	r1, #6
+ 855 003a FFF7FEFF 		bl	I2C001_GetFlagStatus
+ 856 003e 0346     		mov	r3, r0
+ 857 0040 032B     		cmp	r3, #3
+ 858 0042 14D1     		bne	.L31
+ 264:../HTU21D.c   **** 	{
+ 265:../HTU21D.c   **** 		I2C001_ClearFlag(&I2C001_Handle1,I2C001_FLAG_NACK_RECEIVED);
+ 859              		.loc 1 265 0
+ 860 0044 40F20000 		movw	r0, #:lower16:I2C001_Handle1
+ 861 0048 C0F20000 		movt	r0, #:upper16:I2C001_Handle1
+ 862 004c 4FF00601 		mov	r1, #6
+ 863 0050 FFF7FEFF 		bl	I2C001_ClearFlag
+ 266:../HTU21D.c   **** 		errorCounterTmp++;
+ 864              		.loc 1 266 0
+ 865 0054 40F20003 		movw	r3, #:lower16:errorCounterTmp
+ 866 0058 C0F20003 		movt	r3, #:upper16:errorCounterTmp
+ 867 005c 1B68     		ldr	r3, [r3, #0]
+ 868 005e 03F10102 		add	r2, r3, #1
+ 869 0062 40F20003 		movw	r3, #:lower16:errorCounterTmp
+ 870 0066 C0F20003 		movt	r3, #:upper16:errorCounterTmp
+ 871 006a 1A60     		str	r2, [r3, #0]
+ 872 006c E0E0     		b	.L30
+ 873              	.L31:
+ 874              	.LBB5:
+ 267:../HTU21D.c   **** 	}
+ 268:../HTU21D.c   **** 	else
+ 269:../HTU21D.c   **** 	{
+ 270:../HTU21D.c   **** 		uint8_t msb = 0x00;
+ 875              		.loc 1 270 0
+ 876 006e 4FF00003 		mov	r3, #0
+ 877 0072 87F82F30 		strb	r3, [r7, #47]
+ 271:../HTU21D.c   **** 		uint8_t lsb = 0x00;
+ 878              		.loc 1 271 0
+ 879 0076 4FF00003 		mov	r3, #0
+ 880 007a 87F82E30 		strb	r3, [r7, #46]
+ 272:../HTU21D.c   **** 		uint8_t checksum = 0x00;
+ 881              		.loc 1 272 0
+ 882 007e 4FF00003 		mov	r3, #0
+ 883 0082 87F82D30 		strb	r3, [r7, #45]
+ 273:../HTU21D.c   **** 
+ 274:../HTU21D.c   **** 		USIC_CH_TypeDef* I2CRegs = I2C001_Handle1.I2CRegs;
+ 884              		.loc 1 274 0
+ 885 0086 40F20003 		movw	r3, #:lower16:I2C001_Handle1
+ 886 008a C0F20003 		movt	r3, #:upper16:I2C001_Handle1
+ 887 008e 5B68     		ldr	r3, [r3, #4]
+ 888 0090 BB62     		str	r3, [r7, #40]
+ 275:../HTU21D.c   **** 
+ 276:../HTU21D.c   **** 		I2C001_DataType data2;
+ 277:../HTU21D.c   **** 		data2.Data1.TDF_Type = I2C_TDF_MRxAck0;
+ 889              		.loc 1 277 0
+ 890 0092 4FF00203 		mov	r3, #2
+ 891 0096 7B75     		strb	r3, [r7, #21]
+ 278:../HTU21D.c   **** 		data2.Data1.Data = ubyteFF;
+ 892              		.loc 1 278 0
+ 893 0098 4FF0FF03 		mov	r3, #255
+ 894 009c 3B75     		strb	r3, [r7, #20]
+ 279:../HTU21D.c   **** 		I2C001_WriteData(&I2C001_Handle1,&data2);
+ 895              		.loc 1 279 0
+ 896 009e 07F11403 		add	r3, r7, #20
+ 897 00a2 40F20000 		movw	r0, #:lower16:I2C001_Handle1
+ 898 00a6 C0F20000 		movt	r0, #:upper16:I2C001_Handle1
+ 899 00aa 1946     		mov	r1, r3
+ 900 00ac FFF7FEFF 		bl	I2C001_WriteData
+ 280:../HTU21D.c   **** 
+ 281:../HTU21D.c   **** 		delay11(DELAY);
+ 901              		.loc 1 281 0
+ 902 00b0 42F6E060 		movw	r0, #12000
+ 903 00b4 FFF7FEFF 		bl	delay11
+ 282:../HTU21D.c   **** 
+ 283:../HTU21D.c   **** 		if(!USIC_ubIsRxFIFOempty(I2CRegs))
+ 904              		.loc 1 283 0
+ 905 00b8 BB6A     		ldr	r3, [r7, #40]
+ 906 00ba D3F81431 		ldr	r3, [r3, #276]
+ 907 00be 03F00803 		and	r3, r3, #8
+ 908 00c2 4FEAD303 		lsr	r3, r3, #3
+ 909 00c6 002B     		cmp	r3, #0
+ 910 00c8 04D1     		bne	.L33
+ 284:../HTU21D.c   **** 		{
+ 285:../HTU21D.c   **** 			msb = (uint8_t)I2CRegs->OUTR;
+ 911              		.loc 1 285 0
+ 912 00ca BB6A     		ldr	r3, [r7, #40]
+ 913 00cc D3F81C31 		ldr	r3, [r3, #284]
+ 914 00d0 87F82F30 		strb	r3, [r7, #47]
+ 915              	.L33:
+ 286:../HTU21D.c   **** 			//Result = (bool)TRUE;
+ 287:../HTU21D.c   **** 		}
+ 288:../HTU21D.c   **** 
+ 289:../HTU21D.c   **** 		I2C001_DataType data3;
+ 290:../HTU21D.c   **** 		data3.Data1.TDF_Type = I2C_TDF_MRxAck0;
+ 916              		.loc 1 290 0
+ 917 00d4 4FF00203 		mov	r3, #2
+ 918 00d8 7B74     		strb	r3, [r7, #17]
+ 291:../HTU21D.c   **** 		data3.Data1.Data = ubyteFF;
+ 919              		.loc 1 291 0
+ 920 00da 4FF0FF03 		mov	r3, #255
+ 921 00de 3B74     		strb	r3, [r7, #16]
+ 292:../HTU21D.c   **** 		I2C001_WriteData(&I2C001_Handle1,&data3);
+ 922              		.loc 1 292 0
+ 923 00e0 07F11003 		add	r3, r7, #16
+ 924 00e4 40F20000 		movw	r0, #:lower16:I2C001_Handle1
+ 925 00e8 C0F20000 		movt	r0, #:upper16:I2C001_Handle1
+ 926 00ec 1946     		mov	r1, r3
+ 927 00ee FFF7FEFF 		bl	I2C001_WriteData
+ 293:../HTU21D.c   **** 
+ 294:../HTU21D.c   **** 		delay11(DELAY);
+ 928              		.loc 1 294 0
+ 929 00f2 42F6E060 		movw	r0, #12000
+ 930 00f6 FFF7FEFF 		bl	delay11
+ 295:../HTU21D.c   **** 
+ 296:../HTU21D.c   **** 		if(!USIC_ubIsRxFIFOempty(I2CRegs))
+ 931              		.loc 1 296 0
+ 932 00fa BB6A     		ldr	r3, [r7, #40]
+ 933 00fc D3F81431 		ldr	r3, [r3, #276]
+ 934 0100 03F00803 		and	r3, r3, #8
+ 935 0104 4FEAD303 		lsr	r3, r3, #3
+ 936 0108 002B     		cmp	r3, #0
+ 937 010a 04D1     		bne	.L34
+ 297:../HTU21D.c   **** 		{
+ 298:../HTU21D.c   **** 			lsb = (uint8_t)I2CRegs->OUTR;
+ 938              		.loc 1 298 0
+ 939 010c BB6A     		ldr	r3, [r7, #40]
+ 940 010e D3F81C31 		ldr	r3, [r3, #284]
+ 941 0112 87F82E30 		strb	r3, [r7, #46]
+ 942              	.L34:
+ 299:../HTU21D.c   **** 			//Result = (bool)TRUE;
+ 300:../HTU21D.c   **** 		}
+ 301:../HTU21D.c   **** 
+ 302:../HTU21D.c   **** 		I2C001_DataType data4;
+ 303:../HTU21D.c   **** 		data4.Data1.TDF_Type = I2C_TDF_MRxAck1;
+ 943              		.loc 1 303 0
+ 944 0116 4FF00303 		mov	r3, #3
+ 945 011a 7B73     		strb	r3, [r7, #13]
+ 304:../HTU21D.c   **** 		data4.Data1.Data = ubyteFF;
+ 946              		.loc 1 304 0
+ 947 011c 4FF0FF03 		mov	r3, #255
+ 948 0120 3B73     		strb	r3, [r7, #12]
+ 305:../HTU21D.c   **** 		I2C001_WriteData(&I2C001_Handle1,&data4);
+ 949              		.loc 1 305 0
+ 950 0122 07F10C03 		add	r3, r7, #12
+ 951 0126 40F20000 		movw	r0, #:lower16:I2C001_Handle1
+ 952 012a C0F20000 		movt	r0, #:upper16:I2C001_Handle1
+ 953 012e 1946     		mov	r1, r3
+ 954 0130 FFF7FEFF 		bl	I2C001_WriteData
+ 306:../HTU21D.c   **** 
+ 307:../HTU21D.c   **** 		delay11(DELAY);
+ 955              		.loc 1 307 0
+ 956 0134 42F6E060 		movw	r0, #12000
+ 957 0138 FFF7FEFF 		bl	delay11
+ 308:../HTU21D.c   **** 
+ 309:../HTU21D.c   **** 		I2C001_DataType data5;
+ 310:../HTU21D.c   **** 		data5.Data1.TDF_Type = I2C_TDF_MStop;
+ 958              		.loc 1 310 0
+ 959 013c 4FF00603 		mov	r3, #6
+ 960 0140 7B72     		strb	r3, [r7, #9]
+ 311:../HTU21D.c   **** 		data5.Data1.Data = ubyteFF;
+ 961              		.loc 1 311 0
+ 962 0142 4FF0FF03 		mov	r3, #255
+ 963 0146 3B72     		strb	r3, [r7, #8]
+ 312:../HTU21D.c   **** 		I2C001_WriteData(&I2C001_Handle1,&data5);
+ 964              		.loc 1 312 0
+ 965 0148 07F10803 		add	r3, r7, #8
+ 966 014c 40F20000 		movw	r0, #:lower16:I2C001_Handle1
+ 967 0150 C0F20000 		movt	r0, #:upper16:I2C001_Handle1
+ 968 0154 1946     		mov	r1, r3
+ 969 0156 FFF7FEFF 		bl	I2C001_WriteData
+ 313:../HTU21D.c   **** 
+ 314:../HTU21D.c   **** 		delay11(DELAY);
+ 970              		.loc 1 314 0
+ 971 015a 42F6E060 		movw	r0, #12000
+ 972 015e FFF7FEFF 		bl	delay11
+ 315:../HTU21D.c   **** 
+ 316:../HTU21D.c   **** 
+ 317:../HTU21D.c   **** 
+ 318:../HTU21D.c   **** 		int d = USIC_GetRxFIFOFillingLevel(I2CRegs);
+ 973              		.loc 1 318 0
+ 974 0162 BB6A     		ldr	r3, [r7, #40]
+ 975 0164 D3F81431 		ldr	r3, [r3, #276]
+ 976 0168 03F4FE03 		and	r3, r3, #8323072
+ 977 016c 4FEA1343 		lsr	r3, r3, #16
+ 978 0170 7B62     		str	r3, [r7, #36]
+ 319:../HTU21D.c   **** 		// Read receive buffer, put the data in DataReceive1
+ 320:../HTU21D.c   **** 
+ 321:../HTU21D.c   **** 
+ 322:../HTU21D.c   **** 		if(!USIC_ubIsRxFIFOempty(I2CRegs))
+ 979              		.loc 1 322 0
+ 980 0172 BB6A     		ldr	r3, [r7, #40]
+ 981 0174 D3F81431 		ldr	r3, [r3, #276]
+ 982 0178 03F00803 		and	r3, r3, #8
+ 983 017c 4FEAD303 		lsr	r3, r3, #3
+ 984 0180 002B     		cmp	r3, #0
+ 985 0182 04D1     		bne	.L35
+ 323:../HTU21D.c   **** 		{
+ 324:../HTU21D.c   **** 			checksum = (uint8_t)I2CRegs->OUTR;
+ 986              		.loc 1 324 0
+ 987 0184 BB6A     		ldr	r3, [r7, #40]
+ 988 0186 D3F81C31 		ldr	r3, [r3, #284]
+ 989 018a 87F82D30 		strb	r3, [r7, #45]
+ 990              	.L35:
+ 325:../HTU21D.c   **** 			//Result = (bool)TRUE;
+ 326:../HTU21D.c   **** 		}
+ 327:../HTU21D.c   **** 
+ 328:../HTU21D.c   **** 
+ 329:../HTU21D.c   **** 		unsigned int rawTmp = ((unsigned int) msb << 8) | (unsigned int) lsb;
+ 991              		.loc 1 329 0
+ 992 018e 97F82F30 		ldrb	r3, [r7, #47]	@ zero_extendqisi2
+ 993 0192 4FEA0322 		lsl	r2, r3, #8
+ 994 0196 97F82E30 		ldrb	r3, [r7, #46]	@ zero_extendqisi2
+ 995 019a 1343     		orrs	r3, r3, r2
+ 996 019c 3B62     		str	r3, [r7, #32]
+ 330:../HTU21D.c   **** 
+ 331:../HTU21D.c   **** 		if(check_crc(rawTmp, checksum) != 0)
+ 997              		.loc 1 331 0
+ 998 019e 3B6A     		ldr	r3, [r7, #32]
+ 999 01a0 9AB2     		uxth	r2, r3
+ 1000 01a2 97F82D30 		ldrb	r3, [r7, #45]	@ zero_extendqisi2
+ 1001 01a6 1046     		mov	r0, r2
+ 1002 01a8 1946     		mov	r1, r3
+ 1003 01aa FFF7FEFF 		bl	check_crc
+ 1004 01ae 0346     		mov	r3, r0
+ 1005 01b0 002B     		cmp	r3, #0
+ 1006 01b2 06D0     		beq	.L36
+ 332:../HTU21D.c   **** 		{
+ 333:../HTU21D.c   **** 			wrong_checksum = 1;
+ 1007              		.loc 1 333 0
+ 1008 01b4 40F20003 		movw	r3, #:lower16:wrong_checksum
+ 1009 01b8 C0F20003 		movt	r3, #:upper16:wrong_checksum
+ 1010 01bc 4FF00102 		mov	r2, #1
+ 1011 01c0 1A60     		str	r2, [r3, #0]
+ 1012              	.L36:
+ 334:../HTU21D.c   **** 		}
+ 335:../HTU21D.c   **** 
+ 336:../HTU21D.c   **** 		rawTmp &= 0xFFFC; //Zero out the status bits but keep them in place
+ 1013              		.loc 1 336 0
+ 1014 01c2 3A6A     		ldr	r2, [r7, #32]
+ 1015 01c4 4FF6FC73 		movw	r3, #65532
+ 1016 01c8 1340     		ands	r3, r3, r2
+ 1017 01ca 3B62     		str	r3, [r7, #32]
+ 337:../HTU21D.c   **** 
+ 338:../HTU21D.c   **** 		//Given the raw temperature data, calculate the actual temperature
+ 339:../HTU21D.c   **** 		float temp = rawTmp / (float)65536; //2^16 = 65536
+ 1018              		.loc 1 339 0
+ 1019 01cc D7ED087A 		flds	s15, [r7, #32]	@ int
+ 1020 01d0 B8EE677A 		fuitos	s14, s15
+ 1021 01d4 DFED1C7A 		flds	s15, .L37+16
+ 1022 01d8 C7EE277A 		fdivs	s15, s14, s15
+ 1023 01dc C7ED077A 		fsts	s15, [r7, #28]
+ 340:../HTU21D.c   **** 		realTemperature = (float)(-46.85 + (175.72 * temp)); //From page 14
+ 1024              		.loc 1 340 0
+ 1025 01e0 F869     		ldr	r0, [r7, #28]	@ float
+ 1026 01e2 FFF7FEFF 		bl	__aeabi_f2d
+ 1027 01e6 0246     		mov	r2, r0
+ 1028 01e8 0B46     		mov	r3, r1
+ 1029 01ea 1046     		mov	r0, r2
+ 1030 01ec 1946     		mov	r1, r3
+ 1031 01ee 12A3     		adr	r3, .L37
+ 1032 01f0 D3E90023 		ldrd	r2, [r3]
+ 1033 01f4 FFF7FEFF 		bl	__aeabi_dmul
+ 1034 01f8 0246     		mov	r2, r0
+ 1035 01fa 0B46     		mov	r3, r1
+ 1036 01fc 1046     		mov	r0, r2
+ 1037 01fe 1946     		mov	r1, r3
+ 1038 0200 0FA3     		adr	r3, .L37+8
+ 1039 0202 D3E90023 		ldrd	r2, [r3]
+ 1040 0206 FFF7FEFF 		bl	__aeabi_dsub
+ 1041 020a 0246     		mov	r2, r0
+ 1042 020c 0B46     		mov	r3, r1
+ 1043 020e 1046     		mov	r0, r2
+ 1044 0210 1946     		mov	r1, r3
+ 1045 0212 FFF7FEFF 		bl	__aeabi_d2f
+ 1046 0216 0246     		mov	r2, r0	@ float
+ 1047 0218 40F20003 		movw	r3, #:lower16:realTemperature
+ 1048 021c C0F20003 		movt	r3, #:upper16:realTemperature
+ 1049 0220 1A60     		str	r2, [r3, #0]	@ float
+ 341:../HTU21D.c   **** 
+ 342:../HTU21D.c   **** 		readTmp = 1;
+ 1050              		.loc 1 342 0
+ 1051 0222 40F20003 		movw	r3, #:lower16:readTmp
+ 1052 0226 C0F20003 		movt	r3, #:upper16:readTmp
+ 1053 022a 4FF00102 		mov	r2, #1
+ 1054 022e 1A60     		str	r2, [r3, #0]
+ 1055              	.L30:
+ 1056              	.LBE5:
+ 343:../HTU21D.c   **** 	}
+ 344:../HTU21D.c   **** }
+ 1057              		.loc 1 344 0
+ 1058 0230 07F13007 		add	r7, r7, #48
+ 1059 0234 BD46     		mov	sp, r7
+ 1060 0236 80BD     		pop	{r7, pc}
+ 1061              	.L38:
+ 1062              		.align	3
+ 1063              	.L37:
+ 1064 0238 D7A3703D 		.word	1030792151
+ 1065 023c 0AF76540 		.word	1080424202
+ 1066 0240 CDCCCCCC 		.word	-858993459
+ 1067 0244 CC6C4740 		.word	1078422732
+ 1068 0248 00008047 		.word	1199570944
+ 1069              		.cfi_endproc
+ 1070              	.LFE115:
+ 1072 024c AFF30080 		.section	.text.delay11,"ax",%progbits
+ 1073              		.align	2
+ 1074              		.global	delay11
+ 1075              		.thumb
+ 1076              		.thumb_func
+ 1078              	delay11:
+ 1079              	.LFB116:
+ 345:../HTU21D.c   **** 
+ 346:../HTU21D.c   **** /*void flushFIFO(void)
+ 347:../HTU21D.c   **** {
+ 348:../HTU21D.c   **** 	USIC_CH_TypeDef* I2CRegs = I2C001_Handle0.I2CRegs;
+ 349:../HTU21D.c   **** 	USIC_FlushTxFIFO(I2CRegs);
+ 350:../HTU21D.c   **** }*/
+ 351:../HTU21D.c   **** 
+ 352:../HTU21D.c   **** 
+ 353:../HTU21D.c   **** void delay11(int delay)
+ 354:../HTU21D.c   **** {
+ 1080              		.loc 1 354 0
+ 1081              		.cfi_startproc
+ 1082              		@ args = 0, pretend = 0, frame = 16
+ 1083              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1084              		@ link register save eliminated.
+ 1085 0000 80B4     		push	{r7}
+ 1086              	.LCFI12:
+ 1087              		.cfi_def_cfa_offset 4
+ 1088              		.cfi_offset 7, -4
+ 1089 0002 85B0     		sub	sp, sp, #20
+ 1090              	.LCFI13:
+ 1091              		.cfi_def_cfa_offset 24
+ 1092 0004 00AF     		add	r7, sp, #0
+ 1093              	.LCFI14:
+ 1094              		.cfi_def_cfa_register 7
+ 1095 0006 7860     		str	r0, [r7, #4]
+ 1096              	.LBB6:
+ 355:../HTU21D.c   **** 	for(int i = 0; i < delay; i++)
+ 1097              		.loc 1 355 0
+ 1098 0008 4FF00003 		mov	r3, #0
+ 1099 000c FB60     		str	r3, [r7, #12]
+ 1100 000e 03E0     		b	.L40
+ 1101              	.L41:
+ 1102              		.loc 1 355 0 is_stmt 0 discriminator 2
+ 1103 0010 FB68     		ldr	r3, [r7, #12]
+ 1104 0012 03F10103 		add	r3, r3, #1
+ 1105 0016 FB60     		str	r3, [r7, #12]
+ 1106              	.L40:
+ 1107              		.loc 1 355 0 discriminator 1
+ 1108 0018 FA68     		ldr	r2, [r7, #12]
+ 1109 001a 7B68     		ldr	r3, [r7, #4]
+ 1110 001c 9A42     		cmp	r2, r3
+ 1111 001e F7DB     		blt	.L41
+ 1112              	.LBE6:
+ 356:../HTU21D.c   **** 	{
+ 357:../HTU21D.c   **** 		;
+ 358:../HTU21D.c   **** 	}
+ 359:../HTU21D.c   **** }
+ 1113              		.loc 1 359 0 is_stmt 1
+ 1114 0020 07F11407 		add	r7, r7, #20
+ 1115 0024 BD46     		mov	sp, r7
+ 1116 0026 80BC     		pop	{r7}
+ 1117 0028 7047     		bx	lr
+ 1118              		.cfi_endproc
+ 1119              	.LFE116:
+ 1121 002a 00BF     		.section	.text.check_crc,"ax",%progbits
+ 1122              		.align	2
+ 1123              		.global	check_crc
+ 1124              		.thumb
+ 1125              		.thumb_func
+ 1127              	check_crc:
+ 1128              	.LFB117:
+ 360:../HTU21D.c   **** 
+ 361:../HTU21D.c   **** 
+ 362:../HTU21D.c   **** uint8_t check_crc(uint16_t message_from_sensor, uint8_t check_value_from_sensor)
+ 363:../HTU21D.c   **** {
+ 1129              		.loc 1 363 0
+ 1130              		.cfi_startproc
+ 1131              		@ args = 0, pretend = 0, frame = 24
+ 1132              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1133              		@ link register save eliminated.
+ 1134 0000 80B4     		push	{r7}
+ 1135              	.LCFI15:
+ 1136              		.cfi_def_cfa_offset 4
+ 1137              		.cfi_offset 7, -4
+ 1138 0002 87B0     		sub	sp, sp, #28
+ 1139              	.LCFI16:
+ 1140              		.cfi_def_cfa_offset 32
+ 1141 0004 00AF     		add	r7, sp, #0
+ 1142              	.LCFI17:
+ 1143              		.cfi_def_cfa_register 7
+ 1144 0006 0246     		mov	r2, r0
+ 1145 0008 0B46     		mov	r3, r1
+ 1146 000a FA80     		strh	r2, [r7, #6]	@ movhi
+ 1147 000c 7B71     		strb	r3, [r7, #5]
+ 364:../HTU21D.c   **** 	  uint32_t remainder = (uint32_t)message_from_sensor << 8; //Pad with 8 bits because we have to ad
+ 1148              		.loc 1 364 0
+ 1149 000e FB88     		ldrh	r3, [r7, #6]
+ 1150 0010 4FEA0323 		lsl	r3, r3, #8
+ 1151 0014 7B61     		str	r3, [r7, #20]
+ 365:../HTU21D.c   **** 	  remainder |= check_value_from_sensor; //Add on the check value
+ 1152              		.loc 1 365 0
+ 1153 0016 7B79     		ldrb	r3, [r7, #5]	@ zero_extendqisi2
+ 1154 0018 7A69     		ldr	r2, [r7, #20]
+ 1155 001a 1343     		orrs	r3, r3, r2
+ 1156 001c 7B61     		str	r3, [r7, #20]
+ 366:../HTU21D.c   **** 
+ 367:../HTU21D.c   **** 	  uint32_t divsor = (uint32_t)SHIFTED_DIVISOR;
+ 1157              		.loc 1 367 0
+ 1158 001e 4FF40043 		mov	r3, #32768
+ 1159 0022 C0F29803 		movt	r3, 152
+ 1160 0026 3B61     		str	r3, [r7, #16]
+ 1161              	.LBB7:
+ 368:../HTU21D.c   **** 
+ 369:../HTU21D.c   **** 	  for (int i = 0 ; i < 16 ; i++) //Operate on only 16 positions of max 24. The remaining 8 are our
+ 1162              		.loc 1 369 0
+ 1163 0028 4FF00003 		mov	r3, #0
+ 1164 002c FB60     		str	r3, [r7, #12]
+ 1165 002e 15E0     		b	.L43
+ 1166              	.L45:
+ 370:../HTU21D.c   **** 	  {
+ 371:../HTU21D.c   **** 	    //Serial.print("remainder: ");
+ 372:../HTU21D.c   **** 	    //Serial.println(remainder, BIN);
+ 373:../HTU21D.c   **** 	    //Serial.print("divsor:    ");
+ 374:../HTU21D.c   **** 	    //Serial.println(divsor, BIN);
+ 375:../HTU21D.c   **** 	    //Serial.println();
+ 376:../HTU21D.c   **** 
+ 377:../HTU21D.c   **** 	    if( remainder & (uint32_t)1<<(23 - i) ) //Check if there is a one in the left position
+ 1167              		.loc 1 377 0
+ 1168 0030 FB68     		ldr	r3, [r7, #12]
+ 1169 0032 C3F11703 		rsb	r3, r3, #23
+ 1170 0036 7A69     		ldr	r2, [r7, #20]
+ 1171 0038 22FA03F3 		lsr	r3, r2, r3
+ 1172 003c 03F00103 		and	r3, r3, #1
+ 1173 0040 002B     		cmp	r3, #0
+ 1174 0042 03D0     		beq	.L44
+ 378:../HTU21D.c   **** 	      remainder ^= divsor;
+ 1175              		.loc 1 378 0
+ 1176 0044 7A69     		ldr	r2, [r7, #20]
+ 1177 0046 3B69     		ldr	r3, [r7, #16]
+ 1178 0048 5340     		eors	r3, r3, r2
+ 1179 004a 7B61     		str	r3, [r7, #20]
+ 1180              	.L44:
+ 379:../HTU21D.c   **** 
+ 380:../HTU21D.c   **** 	    divsor >>= 1; //Rotate the divsor max 16 times so that we have 8 bits left of a remainder
+ 1181              		.loc 1 380 0
+ 1182 004c 3B69     		ldr	r3, [r7, #16]
+ 1183 004e 4FEA5303 		lsr	r3, r3, #1
+ 1184 0052 3B61     		str	r3, [r7, #16]
+ 369:../HTU21D.c   **** 	  for (int i = 0 ; i < 16 ; i++) //Operate on only 16 positions of max 24. The remaining 8 are our
+ 1185              		.loc 1 369 0
+ 1186 0054 FB68     		ldr	r3, [r7, #12]
+ 1187 0056 03F10103 		add	r3, r3, #1
+ 1188 005a FB60     		str	r3, [r7, #12]
+ 1189              	.L43:
+ 369:../HTU21D.c   **** 	  for (int i = 0 ; i < 16 ; i++) //Operate on only 16 positions of max 24. The remaining 8 are our
+ 1190              		.loc 1 369 0 is_stmt 0 discriminator 1
+ 1191 005c FB68     		ldr	r3, [r7, #12]
+ 1192 005e 0F2B     		cmp	r3, #15
+ 1193 0060 E6DD     		ble	.L45
+ 1194              	.LBE7:
+ 381:../HTU21D.c   **** 	  }
+ 382:../HTU21D.c   **** 
+ 383:../HTU21D.c   **** 	  return (uint8_t)remainder;
+ 1195              		.loc 1 383 0 is_stmt 1
+ 1196 0062 7B69     		ldr	r3, [r7, #20]
+ 1197 0064 DBB2     		uxtb	r3, r3
+ 384:../HTU21D.c   **** }
+ 1198              		.loc 1 384 0
+ 1199 0066 1846     		mov	r0, r3
+ 1200 0068 07F11C07 		add	r7, r7, #28
+ 1201 006c BD46     		mov	sp, r7
+ 1202 006e 80BC     		pop	{r7}
+ 1203 0070 7047     		bx	lr
+ 1204              		.cfi_endproc
+ 1205              	.LFE117:
+ 1207 0072 00BF     		.text
+ 1208              	.Letext0:
+ 1209              		.file 2 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+ 1210              		.file 3 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Infineon/XMC4500_series/Include/XMC4500.h"
+ 1211              		.file 4 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 1212              		.file 5 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 1213              		.file 6 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 1214              		.file 7 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 1215              		.file 8 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Include/core_cm4.h"
+ 1216              		.file 9 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+DEFINED SYMBOLS
+                            *ABS*:00000000 HTU21D.c
+                            *COM*:00000004 TimerRdHumid
+                            *COM*:00000004 TimerRdTmp
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:26     .bss:00000000 errorCounter
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:23     .bss:00000000 $d
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:32     .bss:00000004 errorCounterTmp
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:38     .bss:00000008 wrong_checksum
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:44     .bss:0000000c readHumid
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:50     .bss:00000010 readTmp
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:56     .bss:00000014 timerHumidOn
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:62     .bss:00000018 timerTmpOn
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:68     .bss:0000001c rh
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:74     .bss:00000020 realTemperature
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:81     .data:00000000 canH
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:78     .data:00000000 $d
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:87     .data:00000004 canT
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:90     .text.readHumidity:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:95     .text.readHumidity:00000000 readHumidity
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:1078   .text.delay11:00000000 delay11
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:335    .text.readHumidTimerHandler:00000000 readHumidTimerHandler
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:330    .text.readHumidTimerHandler:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:1127   .text.check_crc:00000000 check_crc
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:564    .text.readHumidTimerHandler:00000218 $d
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:570    .text.readTemperature:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:575    .text.readTemperature:00000000 readTemperature
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:818    .text.readTmpTimerHandler:00000000 readTmpTimerHandler
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:813    .text.readTmpTimerHandler:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:1064   .text.readTmpTimerHandler:00000238 $d
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:1073   .text.delay11:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:1122   .text.check_crc:00000000 $t
+                     .debug_frame:00000010 $d
+C:\Users\Mateusz\AppData\Local\Temp\ccnh0E0Z.s:1072   .text.readTmpTimerHandler:0000024c $t
+                           .group:00000000 wm4.1.35166846b5321d4273ad8c4248893ac3
+                           .group:00000000 wm4.XMC4500.h.45.215f4b8c79f46c7645c15373868d08c0
+                           .group:00000000 wm4.core_cm4.h.47.41af406cb4cda82c972f112a9cd0a024
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.39.3d3d1b4a79aef37532666dc6ee87c6ac
+                           .group:00000000 wm4.core_cm4_simd.h.43.b5d1d38735af6366227b4256d330cf13
+                           .group:00000000 wm4.core_cm4.h.178.e5ef5ce66d198d7f00f9d0076e267c41
+                           .group:00000000 wm4.system_XMC4500.h.29.827f68baa362c84f2abae4ab67dde7c9
+                           .group:00000000 wm4.XMC4500.h.198.8e022f279ff353ed081df898dc7b9cf3
+                           .group:00000000 wm4.stddef.h.40.50cf36416e06376af8a9dca28536f2e4
+                           .group:00000000 wm4.types.h.60.e75c47576398c648cdcf9000ace5e3d8
+                           .group:00000000 wm4.MULTIPLEXER.h.46.4a863fbae1c79f0db26da3ce2dc30d02
+                           .group:00000000 wm4.CCU8PWMLIB.h.74.725ec81203769525cc7a424597055f47
+                           .group:00000000 wm4.MOTORLIB.h.62.951091d95913dd2ff36d761323a1771d
+                           .group:00000000 wm4.DBG001.h.116.d6d9e7459a0faa3905c97c1d2edb339d
+                           .group:00000000 wm4.IO004.h.53.442ea5eb47ad9eedc675253aa35f3107
+                           .group:00000000 wm4.uc_id.h.35.fa57ecd9f559d2767f56c96da2848c12
+                           .group:00000000 wm4.CLK001_Const.h.50.e5e9c2ddc89f4cc9e7b93e9648fa94e4
+                           .group:00000000 wm4.CLK001_Conf.h.81.82a8db895dc146da001475dd68223522
+                           .group:00000000 wm4.Usic.h.54.8af9f733ba5771eeb374435d205ea54b
+                           .group:00000000 wm4.UART001_Conf.h.53.ea28968cb6c53b1be9f53a4d9f42a86f
+                           .group:00000000 wm4.SYSTM001.h.64.6ecb31c49bc3e7691644fdcdfc11b5cd
+                           .group:00000000 wm4.I2C001.h.97.5277d52889d6c741e048ea45ee1277b5
+                           .group:00000000 wm4.I2C001_Conf.h.58.e3e909c2ec9c29fee288b93938e533a2
+                           .group:00000000 wm4.HTU21D.h.12.d96a0853aa5893562ec45a067b1de976
+
+UNDEFINED SYMBOLS
+I2C001_Handle1
+I2C001_WriteData
+SYSTM001_CreateTimer
+SYSTM001_StartTimer
+SYSTM001_StopTimer
+SYSTM001_DeleteTimer
+I2C001_GetFlagStatus
+I2C001_ClearFlag
+__aeabi_f2d
+__aeabi_dmul
+__aeabi_dsub
+__aeabi_d2f

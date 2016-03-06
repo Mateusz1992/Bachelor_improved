@@ -431,18 +431,19 @@ void I2C001_Init(void)
 
   RESET001_DeassertReset(PER0_USIC0);
   I2C001_lInit(&I2C001_Handle1);        
-     /* Configuration of SCL Pin 1.1 based on User configuration */
-  PORT1->PDR0  &= (~(PORT1_PDR0_PD1_Msk));
-  PORT1->PDR0  |= (((uint32_t)0 << PORT1_PDR0_PD1_Pos) & PORT1_PDR0_PD1_Msk);       
-  PORT1->IOCR0 |= ((uint32_t)24 << 11);
+     /* Configuration of SCL Pin 0.8 based on User configuration */
+  PORT0->PDR1 &= (~(PORT0_PDR1_PD8_Msk));
+  PORT0->PDR1 |= (((uint32_t)4 << PORT0_PDR1_PD8_Pos) & PORT0_PDR1_PD8_Msk);    
+ 	       
+  PORT0->IOCR8 |= ((uint32_t)16 << 3);
  	 
-  PORT1->OMR |= ((uint32_t)0x01 << 1);          
+  PORT0->OMR |= ((uint32_t)0x01 << 8);          
      /* Configuration of SDA Pin 1.5 based on User configuration */
   PORT1->PDR0  &= (~(PORT1_PDR0_PD5_Msk));
-  PORT1->PDR0  |= (((uint32_t)0 << PORT1_PDR0_PD5_Pos) & PORT1_PDR0_PD5_Msk);
+  PORT1->PDR0  |= (((uint32_t)4 << PORT1_PDR0_PD5_Pos) & PORT1_PDR0_PD5_Msk);
  	
  	
-  PORT1->IOCR4 |= ((uint32_t)24 << 11);
+  PORT1->IOCR4 |= ((uint32_t)16 << 11);
  	 
   PORT1->OMR |= ((uint32_t)0x01 << 5);
 

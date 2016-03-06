@@ -12,4 +12,8 @@ void sendMeasurementsToBt(void);
 
 void sendMsgLSM9DS1(void *T);
 
+void sendMsgHTU21D(void *T);
+
+void sendAllSensors(void *T);
+
 #endif /* SENDMEASUREMENTSTOBT_H_ */

@@ -54,7 +54,7 @@
             <BindMap MUri="port/p/5/pad/0" Proxy="app/i2c001/0/i2c_sda"/>
             <BindMap MUri="peripheral/scu/0/rstctrl/0/dmareset/1" Proxy="app/reset001/0/dmareset1"/>
             <BindMap MUri="peripheral/scu/0/rstctrl/0/dmareset/0" Proxy="app/reset001/0/dmareset0"/>
-            <BindMap MUri="port/p/1/pad/1" Proxy="app/i2c001/1/i2c_scl"/>
+            <BindMap MUri="port/p/0/pad/8" Proxy="app/i2c001/1/i2c_scl"/>
             <BindMap MUri="peripheral/usic/2/channel/0" Proxy="app/i2c001/0/channel"/>
             <BindMap MUri="peripheral/scu/0/rstctrl/0/fcereset" Proxy="app/reset001/0/fcereset"/>
             <BindMap MUri="peripheral/scu/0/rstctrl/0/ccu4reset/0" Proxy="app/reset001/0/ccu4reset0"/>

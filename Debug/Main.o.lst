@@ -271,42 +271,40 @@
   80:../Main.c     **** 	initBluetooth();
  195              		.loc 1 80 0
  196 0020 FFF7FEFF 		bl	initBluetooth
-  81:../Main.c     **** 	startMeasurements();
- 197              		.loc 1 81 0
- 198 0024 FFF7FEFF 		bl	startMeasurements
- 199              	.L4:
+ 197              	.L4:
+  81:../Main.c     **** 	//startMeasurements();
   82:../Main.c     **** 
   83:../Main.c     **** 	while(1)
   84:../Main.c     **** 	{
   85:../Main.c     **** 		//if(siema == 0 && )
   86:../Main.c     **** 		sendMeasurementsToBt();
- 200              		.loc 1 86 0 discriminator 1
- 201 0028 FFF7FEFF 		bl	sendMeasurementsToBt
+ 198              		.loc 1 86 0 discriminator 1
+ 199 0024 FFF7FEFF 		bl	sendMeasurementsToBt
   87:../Main.c     **** 		manageConnection();
- 202              		.loc 1 87 0 discriminator 1
- 203 002c FFF7FEFF 		bl	manageConnection
+ 200              		.loc 1 87 0 discriminator 1
+ 201 0028 FFF7FEFF 		bl	manageConnection
   88:../Main.c     **** 
   89:../Main.c     **** 		check();
- 204              		.loc 1 89 0 discriminator 1
- 205 0030 FFF7FEFF 		bl	check
+ 202              		.loc 1 89 0 discriminator 1
+ 203 002c FFF7FEFF 		bl	check
   90:../Main.c     **** 
   91:../Main.c     **** 
   92:../Main.c     **** 	}
- 206              		.loc 1 92 0 discriminator 1
- 207 0034 F8E7     		b	.L4
- 208              		.cfi_endproc
- 209              	.LFE113:
- 211 0036 00BF     		.text
- 212              	.Letext0:
- 213              		.file 2 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
- 214              		.file 3 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Infineon/XMC4500_series/Include/XMC4500.h"
- 215              		.file 4 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
- 216              		.file 5 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
- 217              		.file 6 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
- 218              		.file 7 "../LSM9DS1_Types.h"
- 219              		.file 8 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Include/core_cm4.h"
- 220              		.file 9 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
- 221              		.file 10 "../LSM9DS1_Driver.h"
+ 204              		.loc 1 92 0 discriminator 1
+ 205 0030 F8E7     		b	.L4
+ 206              		.cfi_endproc
+ 207              	.LFE113:
+ 209 0032 00BF     		.text
+ 210              	.Letext0:
+ 211              		.file 2 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+ 212              		.file 3 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Infineon/XMC4500_series/Include/XMC4500.h"
+ 213              		.file 4 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 214              		.file 5 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 215              		.file 6 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 216              		.file 7 "../LSM9DS1_Types.h"
+ 217              		.file 8 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Include/core_cm4.h"
+ 218              		.file 9 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 219              		.file 10 "../LSM9DS1_Driver.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 Main.c
                             *COM*:00000004 TimerId
@@ -338,10 +336,10 @@ DEFINED SYMBOLS
                             *COM*:00000002 my
                             *COM*:00000002 mz
                             *COM*:00000002 temperature
-C:\Users\Mateusz\AppData\Local\Temp\ccN9uBoI.s:49     .text.check:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccN9uBoI.s:54     .text.check:00000000 check
-C:\Users\Mateusz\AppData\Local\Temp\ccN9uBoI.s:161    .text.main:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccN9uBoI.s:166    .text.main:00000000 main
+C:\Users\Mateusz\AppData\Local\Temp\ccTKzRe3.s:49     .text.check:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccTKzRe3.s:54     .text.check:00000000 check
+C:\Users\Mateusz\AppData\Local\Temp\ccTKzRe3.s:161    .text.main:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccTKzRe3.s:166    .text.main:00000000 main
                      .debug_frame:00000010 $d
                            .group:00000000 wm4.1.35166846b5321d4273ad8c4248893ac3
                            .group:00000000 wm4.XMC4500.h.45.215f4b8c79f46c7645c15373868d08c0
@@ -399,6 +397,5 @@ initLSM9DS1
 calibrate
 resetConnectionIndicator
 initBluetooth
-startMeasurements
 sendMeasurementsToBt
 manageConnection

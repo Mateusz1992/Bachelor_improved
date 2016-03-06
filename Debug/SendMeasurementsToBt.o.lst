@@ -57,52 +57,116 @@
   59              		.comm	xAxisf,30,4
   60              		.comm	yAxisf,30,4
   61              		.comm	zAxisf,30,4
-  62              		.comm	connectionFailure,1,1
-  63              		.comm	TimerIdSentMsg,4,4
-  64              		.comm	turnedOnSentTimer,4,4
-  65              		.comm	copied,1,1
-  66              		.comm	copiedData,1200,4
-  67              		.section	.rodata
-  68              		.align	2
-  69              	.LC0:
-  70 0000 4C534D39 		.ascii	"LSM9DS1\000"
-  70      44533100 
-  71              		.global	__aeabi_f2d
-  72              		.align	2
-  73              	.LC1:
-  74 0008 78252E32 		.ascii	"x%.2f\000"
-  74      6600
-  75 000e 0000     		.align	2
-  76              	.LC2:
-  77 0010 79252E32 		.ascii	"y%.2f\000"
-  77      6600
-  78 0016 0000     		.align	2
-  79              	.LC3:
-  80 0018 7A252E32 		.ascii	"z%.2f\000"
-  80      6600
-  81 001e 0000     		.align	2
-  82              	.LC4:
-  83 0020 44757061 		.ascii	"Dupa\000"
-  83      00
-  84 0025 000000   		.align	2
-  85              	.LC5:
-  86 0028 4779726F 		.ascii	"Gyroscope\000"
-  86      73636F70 
-  86      6500
-  87 0032 0000     		.align	2
-  88              	.LC6:
-  89 0034 4D61676E 		.ascii	"Magnetometer\000"
-  89      65746F6D 
-  89      65746572 
-  89      00
-  90 0041 000000   		.section	.text.sendMeasurementsToBt,"ax",%progbits
-  91              		.align	2
-  92              		.global	sendMeasurementsToBt
-  93              		.thumb
-  94              		.thumb_func
-  96              	sendMeasurementsToBt:
-  97              	.LFB112:
-  98              		.file 1 "../SendMeasurementsToBt.c"
+  62              		.comm	accX,20,4
+  63              		.comm	accY,20,4
+  64              		.comm	accZ,20,4
+  65              		.comm	gyrX,20,4
+  66              		.comm	gyrY,20,4
+  67              		.comm	gyrZ,20,4
+  68              		.comm	magX,20,4
+  69              		.comm	magY,20,4
+  70              		.comm	magZ,20,4
+  71              		.comm	humidity,30,4
+  72              		.comm	json_data,300,4
+  73              		.comm	connectionFailure,1,1
+  74              		.comm	TimerIdSentMsg,4,4
+  75              		.comm	turnedOnSentTimer,4,4
+  76              		.comm	copied,1,1
+  77              		.comm	copiedData,1200,4
+  78              		.section	.rodata
+  79              		.align	2
+  80              	.LC0:
+  81 0000 4C534D39 		.ascii	"LSM9DS1\000"
+  81      44533100 
+  82              		.global	__aeabi_f2d
+  83              		.align	2
+  84              	.LC1:
+  85 0008 78252E32 		.ascii	"x%.2f\000"
+  85      6600
+  86 000e 0000     		.align	2
+  87              	.LC2:
+  88 0010 79252E32 		.ascii	"y%.2f\000"
+  88      6600
+  89 0016 0000     		.align	2
+  90              	.LC3:
+  91 0018 7A252E32 		.ascii	"z%.2f\000"
+  91      6600
+  92 001e 0000     		.align	2
+  93              	.LC4:
+  94 0020 44757061 		.ascii	"Dupa\000"
+  94      00
+  95 0025 000000   		.align	2
+  96              	.LC5:
+  97 0028 4779726F 		.ascii	"Gyroscope\000"
+  97      73636F70 
+  97      6500
+  98 0032 0000     		.align	2
+  99              	.LC6:
+ 100 0034 4D61676E 		.ascii	"Magnetometer\000"
+ 100      65746F6D 
+ 100      65746572 
+ 100      00
+ 101 0041 000000   		.align	2
+ 102              	.LC7:
+ 103 0044 54656D70 		.ascii	"Temperature\000"
+ 103      65726174 
+ 103      75726500 
+ 104              		.align	2
+ 105              	.LC8:
+ 106 0050 252E3266 		.ascii	"%.2f \000"
+ 106      2000
+ 107 0056 0000     		.align	2
+ 108              	.LC9:
+ 109 0058 48756D69 		.ascii	"Humidity\000"
+ 109      64697479 
+ 109      00
+ 110 0061 000000   		.align	2
+ 111              	.LC10:
+ 112 0064 416C6C5F 		.ascii	"All_sens\000"
+ 112      73656E73 
+ 112      00
+ 113 006d 000000   		.align	2
+ 114              	.LC11:
+ 115 0070 78252E32 		.ascii	"x%.2f \000"
+ 115      662000
+ 116 0077 00       		.align	2
+ 117              	.LC12:
+ 118 0078 79252E32 		.ascii	"y%.2f \000"
+ 118      662000
+ 119 007f 00       		.align	2
+ 120              	.LC13:
+ 121 0080 7A252E32 		.ascii	"z%.2f \000"
+ 121      662000
+ 122 0087 00       		.align	2
+ 123              	.LC14:
+ 124 0088 7B226D22 		.ascii	"{\"m\":[{\"id\":a,\"x\":%.2f,\"y\":%.2f,\"z\":%.2f}"
+ 124      3A5B7B22 
+ 124      6964223A 
+ 124      612C2278 
+ 124      223A252E 
+ 125 00b1 2C7B2269 		.ascii	",{\"id\":g,\"x\":%.2f,\"y\":%.2f,\"z\":%.2f},{\"id\""
+ 125      64223A67 
+ 125      2C227822 
+ 125      3A252E32 
+ 125      662C2279 
+ 126 00db 3A6D2C22 		.ascii	":m,\"x\":%.2f,\"y\":%.2f,\"z\":%.2f},{\"id\":t,\"x\""
+ 126      78223A25 
+ 126      2E32662C 
+ 126      2279223A 
+ 126      252E3266 
+ 127 0105 3A252E32 		.ascii	":%.2f},{\"id\":h,\"x\":%.2f}]}\000"
+ 127      667D2C7B 
+ 127      22696422 
+ 127      3A682C22 
+ 127      78223A25 
+ 128              		.section	.text.sendMeasurementsToBt,"ax",%progbits
+ 129              		.align	2
+ 130              		.global	sendMeasurementsToBt
+ 131              		.thumb
+ 132              		.thumb_func
+ 134              	sendMeasurementsToBt:
+ 135              	.LFB112:
+ 136              		.file 1 "../SendMeasurementsToBt.c"
    1:../SendMeasurementsToBt.c **** /*
    2:../SendMeasurementsToBt.c ****  * SendMeasurementsToBt.c
    3:../SendMeasurementsToBt.c ****  *
@@ -115,996 +179,1901 @@
   10:../SendMeasurementsToBt.c **** #include "SendMeasurementsToBt.h"
   11:../SendMeasurementsToBt.c **** #include <DAVE3.h>
   12:../SendMeasurementsToBt.c **** #include <string.h>
-  13:../SendMeasurementsToBt.c **** 
-  14:../SendMeasurementsToBt.c **** char device[20]; //tablica w ktorej przechowujemy wybrany sensor
-  15:../SendMeasurementsToBt.c **** int turnedOn = 0; //czy ktorys timer jest wlaczony
-  16:../SendMeasurementsToBt.c **** 
-  17:../SendMeasurementsToBt.c **** char xAxis[10]/*[50]*/;
-  18:../SendMeasurementsToBt.c **** char yAxis[10]/*[50]*/;
-  19:../SendMeasurementsToBt.c **** char zAxis[10]/*[50]*/;
-  20:../SendMeasurementsToBt.c **** 
-  21:../SendMeasurementsToBt.c **** char xAxisf[30]/*[50]*/;
-  22:../SendMeasurementsToBt.c **** char yAxisf[30]/*[50]*/;
-  23:../SendMeasurementsToBt.c **** char zAxisf[30]/*[50]*/;
-  24:../SendMeasurementsToBt.c **** 
-  25:../SendMeasurementsToBt.c **** bool connectionFailure; //jesli wystapil problem z polaczeniem bluetooth to trzeba usunac timer, zm
-  26:../SendMeasurementsToBt.c **** 
-  27:../SendMeasurementsToBt.c **** handle_t TimerIdSentMsg; //id timera do
-  28:../SendMeasurementsToBt.c **** int turnedOnSentTimer;
-  29:../SendMeasurementsToBt.c **** char copied;
-  30:../SendMeasurementsToBt.c **** accel copiedData[100];
-  31:../SendMeasurementsToBt.c **** 
-  32:../SendMeasurementsToBt.c **** void sendMeasurementsToBt(void)
-  33:../SendMeasurementsToBt.c **** {
-  99              		.loc 1 33 0
- 100              		.cfi_startproc
- 101              		@ args = 0, pretend = 0, frame = 0
- 102              		@ frame_needed = 1, uses_anonymous_args = 0
- 103 0000 80B5     		push	{r7, lr}
- 104              	.LCFI0:
- 105              		.cfi_def_cfa_offset 8
- 106              		.cfi_offset 7, -8
- 107              		.cfi_offset 14, -4
- 108 0002 00AF     		add	r7, sp, #0
- 109              	.LCFI1:
- 110              		.cfi_def_cfa_register 7
-  34:../SendMeasurementsToBt.c **** 	static i = 0;
-  35:../SendMeasurementsToBt.c **** 	if(!strcmp(device, "LSM9DS1"))
- 111              		.loc 1 35 0
- 112 0004 40F20000 		movw	r0, #:lower16:device
- 113 0008 C0F20000 		movt	r0, #:upper16:device
- 114 000c 40F20001 		movw	r1, #:lower16:.LC0
- 115 0010 C0F20001 		movt	r1, #:upper16:.LC0
- 116 0014 FFF7FEFF 		bl	strcmp
- 117 0018 0346     		mov	r3, r0
- 118 001a 002B     		cmp	r3, #0
- 119 001c 40F0B781 		bne	.L2
-  36:../SendMeasurementsToBt.c **** 	{
-  37:../SendMeasurementsToBt.c **** 		if(0 == i){
- 120              		.loc 1 37 0
- 121 0020 40F20003 		movw	r3, #:lower16:i.9006
- 122 0024 C0F20003 		movt	r3, #:upper16:i.9006
- 123 0028 1B68     		ldr	r3, [r3, #0]
- 124 002a 002B     		cmp	r3, #0
- 125 002c 0DD1     		bne	.L3
-  38:../SendMeasurementsToBt.c **** 			startMeasurements();
- 126              		.loc 1 38 0
- 127 002e FFF7FEFF 		bl	startMeasurements
-  39:../SendMeasurementsToBt.c **** 			++i;
- 128              		.loc 1 39 0
- 129 0032 40F20003 		movw	r3, #:lower16:i.9006
- 130 0036 C0F20003 		movt	r3, #:upper16:i.9006
- 131 003a 1B68     		ldr	r3, [r3, #0]
- 132 003c 03F10102 		add	r2, r3, #1
- 133 0040 40F20003 		movw	r3, #:lower16:i.9006
- 134 0044 C0F20003 		movt	r3, #:upper16:i.9006
- 135 0048 1A60     		str	r2, [r3, #0]
- 136              	.L3:
-  40:../SendMeasurementsToBt.c **** 		}
-  41:../SendMeasurementsToBt.c **** 		readAndSendMeasurements(NULL);
- 137              		.loc 1 41 0
- 138 004a 4FF00000 		mov	r0, #0
- 139 004e FFF7FEFF 		bl	readAndSendMeasurements
-  42:../SendMeasurementsToBt.c **** 
+  13:../SendMeasurementsToBt.c **** #include "HTU21D.h"
+  14:../SendMeasurementsToBt.c **** 
+  15:../SendMeasurementsToBt.c **** char device[20]; //tablica w ktorej przechowujemy wybrany sensor
+  16:../SendMeasurementsToBt.c **** int turnedOn = 0; //czy ktorys timer jest wlaczony
+  17:../SendMeasurementsToBt.c **** 
+  18:../SendMeasurementsToBt.c **** char xAxis[10]/*[50]*/;
+  19:../SendMeasurementsToBt.c **** char yAxis[10]/*[50]*/;
+  20:../SendMeasurementsToBt.c **** char zAxis[10]/*[50]*/;
+  21:../SendMeasurementsToBt.c **** 
+  22:../SendMeasurementsToBt.c **** char xAxisf[30]/*[50]*/;
+  23:../SendMeasurementsToBt.c **** char yAxisf[30]/*[50]*/;
+  24:../SendMeasurementsToBt.c **** char zAxisf[30]/*[50]*/;
+  25:../SendMeasurementsToBt.c **** 
+  26:../SendMeasurementsToBt.c **** //all sensors
+  27:../SendMeasurementsToBt.c **** char accX[20];
+  28:../SendMeasurementsToBt.c **** char accY[20];
+  29:../SendMeasurementsToBt.c **** char accZ[20];
+  30:../SendMeasurementsToBt.c **** 
+  31:../SendMeasurementsToBt.c **** char gyrX[20];
+  32:../SendMeasurementsToBt.c **** char gyrY[20];
+  33:../SendMeasurementsToBt.c **** char gyrZ[20];
+  34:../SendMeasurementsToBt.c **** 
+  35:../SendMeasurementsToBt.c **** char magX[20];
+  36:../SendMeasurementsToBt.c **** char magY[20];
+  37:../SendMeasurementsToBt.c **** char magZ[20];
+  38:../SendMeasurementsToBt.c **** //all sensors
+  39:../SendMeasurementsToBt.c **** 
+  40:../SendMeasurementsToBt.c **** char humidity[30];
+  41:../SendMeasurementsToBt.c **** 
+  42:../SendMeasurementsToBt.c **** char json_data[300];
   43:../SendMeasurementsToBt.c **** 
-  44:../SendMeasurementsToBt.c **** 		if(getAccelX() >= 0)
- 140              		.loc 1 44 0
- 141 0052 FFF7FEFF 		bl	getAccelX
- 142 0056 0346     		mov	r3, r0
- 143 0058 002B     		cmp	r3, #0
- 144 005a 2CDB     		blt	.L4
-  45:../SendMeasurementsToBt.c **** 		{
-  46:../SendMeasurementsToBt.c **** 			xAxis[0] = 'x';
- 145              		.loc 1 46 0
- 146 005c 40F20003 		movw	r3, #:lower16:xAxis
- 147 0060 C0F20003 		movt	r3, #:upper16:xAxis
- 148 0064 4FF07802 		mov	r2, #120
- 149 0068 1A70     		strb	r2, [r3, #0]
-  47:../SendMeasurementsToBt.c **** 			xAxis[1] = getAccelX() + 48;
- 150              		.loc 1 47 0
- 151 006a FFF7FEFF 		bl	getAccelX
- 152 006e 0346     		mov	r3, r0
- 153 0070 DBB2     		uxtb	r3, r3
- 154 0072 03F13003 		add	r3, r3, #48
- 155 0076 DAB2     		uxtb	r2, r3
- 156 0078 40F20003 		movw	r3, #:lower16:xAxis
- 157 007c C0F20003 		movt	r3, #:upper16:xAxis
- 158 0080 5A70     		strb	r2, [r3, #1]
-  48:../SendMeasurementsToBt.c **** 			xAxis[2] = '\0';
- 159              		.loc 1 48 0
- 160 0082 40F20003 		movw	r3, #:lower16:xAxis
- 161 0086 C0F20003 		movt	r3, #:upper16:xAxis
- 162 008a 4FF00002 		mov	r2, #0
- 163 008e 9A70     		strb	r2, [r3, #2]
-  49:../SendMeasurementsToBt.c **** 
-  50:../SendMeasurementsToBt.c **** 			sprintf(xAxisf, "x%.2f", getAccelXf());
- 164              		.loc 1 50 0
- 165 0090 FFF7FEFF 		bl	getAccelXf
- 166 0094 0346     		mov	r3, r0	@ float
- 167 0096 1846     		mov	r0, r3	@ float
- 168 0098 FFF7FEFF 		bl	__aeabi_f2d
- 169 009c 0246     		mov	r2, r0
- 170 009e 0B46     		mov	r3, r1
- 171 00a0 40F20000 		movw	r0, #:lower16:xAxisf
- 172 00a4 C0F20000 		movt	r0, #:upper16:xAxisf
- 173 00a8 40F20001 		movw	r1, #:lower16:.LC1
- 174 00ac C0F20001 		movt	r1, #:upper16:.LC1
- 175 00b0 FFF7FEFF 		bl	sprintf
- 176 00b4 35E0     		b	.L5
- 177              	.L4:
-  51:../SendMeasurementsToBt.c **** 		}
-  52:../SendMeasurementsToBt.c **** 		else
-  53:../SendMeasurementsToBt.c **** 		{
-  54:../SendMeasurementsToBt.c **** 			xAxis[0] = 'x';
- 178              		.loc 1 54 0
- 179 00b6 40F20003 		movw	r3, #:lower16:xAxis
- 180 00ba C0F20003 		movt	r3, #:upper16:xAxis
- 181 00be 4FF07802 		mov	r2, #120
- 182 00c2 1A70     		strb	r2, [r3, #0]
-  55:../SendMeasurementsToBt.c **** 			xAxis[1] = '-';
- 183              		.loc 1 55 0
- 184 00c4 40F20003 		movw	r3, #:lower16:xAxis
- 185 00c8 C0F20003 		movt	r3, #:upper16:xAxis
- 186 00cc 4FF02D02 		mov	r2, #45
- 187 00d0 5A70     		strb	r2, [r3, #1]
-  56:../SendMeasurementsToBt.c **** 			xAxis[2] = abs(getAccelX()) + 48;
- 188              		.loc 1 56 0
- 189 00d2 FFF7FEFF 		bl	getAccelX
- 190 00d6 0346     		mov	r3, r0
- 191 00d8 002B     		cmp	r3, #0
- 192 00da B8BF     		it	lt
- 193 00dc 5B42     		rsblt	r3, r3, #0
- 194 00de DBB2     		uxtb	r3, r3
- 195 00e0 03F13003 		add	r3, r3, #48
- 196 00e4 DAB2     		uxtb	r2, r3
- 197 00e6 40F20003 		movw	r3, #:lower16:xAxis
- 198 00ea C0F20003 		movt	r3, #:upper16:xAxis
- 199 00ee 9A70     		strb	r2, [r3, #2]
-  57:../SendMeasurementsToBt.c **** 			xAxis[3] = '\0';
- 200              		.loc 1 57 0
- 201 00f0 40F20003 		movw	r3, #:lower16:xAxis
- 202 00f4 C0F20003 		movt	r3, #:upper16:xAxis
- 203 00f8 4FF00002 		mov	r2, #0
- 204 00fc DA70     		strb	r2, [r3, #3]
-  58:../SendMeasurementsToBt.c **** 
-  59:../SendMeasurementsToBt.c **** 			sprintf(xAxisf, "x%.2f", getAccelXf());
- 205              		.loc 1 59 0
- 206 00fe FFF7FEFF 		bl	getAccelXf
- 207 0102 0346     		mov	r3, r0	@ float
- 208 0104 1846     		mov	r0, r3	@ float
- 209 0106 FFF7FEFF 		bl	__aeabi_f2d
- 210 010a 0246     		mov	r2, r0
- 211 010c 0B46     		mov	r3, r1
- 212 010e 40F20000 		movw	r0, #:lower16:xAxisf
- 213 0112 C0F20000 		movt	r0, #:upper16:xAxisf
- 214 0116 40F20001 		movw	r1, #:lower16:.LC1
- 215 011a C0F20001 		movt	r1, #:upper16:.LC1
- 216 011e FFF7FEFF 		bl	sprintf
- 217              	.L5:
-  60:../SendMeasurementsToBt.c **** 		}
+  44:../SendMeasurementsToBt.c **** bool connectionFailure; //jesli wystapil problem z polaczeniem bluetooth to trzeba usunac timer, zm
+  45:../SendMeasurementsToBt.c **** 
+  46:../SendMeasurementsToBt.c **** handle_t TimerIdSentMsg; //id timera do
+  47:../SendMeasurementsToBt.c **** int turnedOnSentTimer;
+  48:../SendMeasurementsToBt.c **** char copied;
+  49:../SendMeasurementsToBt.c **** accel copiedData[100];
+  50:../SendMeasurementsToBt.c **** 
+  51:../SendMeasurementsToBt.c **** void sendMeasurementsToBt(void)
+  52:../SendMeasurementsToBt.c **** {
+ 137              		.loc 1 52 0
+ 138              		.cfi_startproc
+ 139              		@ args = 0, pretend = 0, frame = 8
+ 140              		@ frame_needed = 1, uses_anonymous_args = 0
+ 141 0000 2DE9B04F 		push	{r4, r5, r7, r8, r9, sl, fp, lr}
+ 142              	.LCFI0:
+ 143              		.cfi_def_cfa_offset 32
+ 144              		.cfi_offset 4, -32
+ 145              		.cfi_offset 5, -28
+ 146              		.cfi_offset 7, -24
+ 147              		.cfi_offset 8, -20
+ 148              		.cfi_offset 9, -16
+ 149              		.cfi_offset 10, -12
+ 150              		.cfi_offset 11, -8
+ 151              		.cfi_offset 14, -4
+ 152 0004 2DED0E8B 		fstmfdd	sp!, {d8, d9, d10, d11, d12, d13, d14}
+ 153              	.LCFI1:
+ 154              		.cfi_def_cfa_offset 88
+ 155              		.cfi_offset 80, -88
+ 156              		.cfi_offset 82, -80
+ 157              		.cfi_offset 84, -72
+ 158              		.cfi_offset 86, -64
+ 159              		.cfi_offset 88, -56
+ 160              		.cfi_offset 90, -48
+ 161              		.cfi_offset 92, -40
+ 162 0008 96B0     		sub	sp, sp, #88
+ 163              	.LCFI2:
+ 164              		.cfi_def_cfa_offset 176
+ 165 000a 14AF     		add	r7, sp, #80
+ 166              	.LCFI3:
+ 167              		.cfi_def_cfa 7, 96
+  53:../SendMeasurementsToBt.c **** 	static int i = 0;
+  54:../SendMeasurementsToBt.c **** 	if(!strcmp(device, "LSM9DS1"))
+ 168              		.loc 1 54 0
+ 169 000c 40F20000 		movw	r0, #:lower16:device
+ 170 0010 C0F20000 		movt	r0, #:upper16:device
+ 171 0014 40F20001 		movw	r1, #:lower16:.LC0
+ 172 0018 C0F20001 		movt	r1, #:upper16:.LC0
+ 173 001c FFF7FEFF 		bl	strcmp
+ 174 0020 0346     		mov	r3, r0
+ 175 0022 002B     		cmp	r3, #0
+ 176 0024 40F0B881 		bne	.L2
+  55:../SendMeasurementsToBt.c **** 	{
+  56:../SendMeasurementsToBt.c **** 		if(0 == i){
+ 177              		.loc 1 56 0
+ 178 0028 40F20003 		movw	r3, #:lower16:i.9036
+ 179 002c C0F20003 		movt	r3, #:upper16:i.9036
+ 180 0030 1B68     		ldr	r3, [r3, #0]
+ 181 0032 002B     		cmp	r3, #0
+ 182 0034 0DD1     		bne	.L3
+  57:../SendMeasurementsToBt.c **** 			startMeasurements();
+ 183              		.loc 1 57 0
+ 184 0036 FFF7FEFF 		bl	startMeasurements
+  58:../SendMeasurementsToBt.c **** 			++i;
+ 185              		.loc 1 58 0
+ 186 003a 40F20003 		movw	r3, #:lower16:i.9036
+ 187 003e C0F20003 		movt	r3, #:upper16:i.9036
+ 188 0042 1B68     		ldr	r3, [r3, #0]
+ 189 0044 03F10102 		add	r2, r3, #1
+ 190 0048 40F20003 		movw	r3, #:lower16:i.9036
+ 191 004c C0F20003 		movt	r3, #:upper16:i.9036
+ 192 0050 1A60     		str	r2, [r3, #0]
+ 193              	.L3:
+  59:../SendMeasurementsToBt.c **** 		}
+  60:../SendMeasurementsToBt.c **** 		readAndSendMeasurements(NULL);
+ 194              		.loc 1 60 0
+ 195 0052 4FF00000 		mov	r0, #0
+ 196 0056 FFF7FEFF 		bl	readAndSendMeasurements
   61:../SendMeasurementsToBt.c **** 
-  62:../SendMeasurementsToBt.c **** 		if(getAccelY() >= 0)
- 218              		.loc 1 62 0
- 219 0122 FFF7FEFF 		bl	getAccelY
- 220 0126 0346     		mov	r3, r0
- 221 0128 002B     		cmp	r3, #0
- 222 012a 2CDB     		blt	.L6
-  63:../SendMeasurementsToBt.c **** 		{
-  64:../SendMeasurementsToBt.c **** 			yAxis[0] = 'y';
- 223              		.loc 1 64 0
- 224 012c 40F20003 		movw	r3, #:lower16:yAxis
- 225 0130 C0F20003 		movt	r3, #:upper16:yAxis
- 226 0134 4FF07902 		mov	r2, #121
- 227 0138 1A70     		strb	r2, [r3, #0]
-  65:../SendMeasurementsToBt.c **** 			yAxis[1] = getAccelY() + 48;
- 228              		.loc 1 65 0
- 229 013a FFF7FEFF 		bl	getAccelY
- 230 013e 0346     		mov	r3, r0
- 231 0140 DBB2     		uxtb	r3, r3
- 232 0142 03F13003 		add	r3, r3, #48
- 233 0146 DAB2     		uxtb	r2, r3
- 234 0148 40F20003 		movw	r3, #:lower16:yAxis
- 235 014c C0F20003 		movt	r3, #:upper16:yAxis
- 236 0150 5A70     		strb	r2, [r3, #1]
-  66:../SendMeasurementsToBt.c **** 			yAxis[2] = '\0';
- 237              		.loc 1 66 0
- 238 0152 40F20003 		movw	r3, #:lower16:yAxis
- 239 0156 C0F20003 		movt	r3, #:upper16:yAxis
- 240 015a 4FF00002 		mov	r2, #0
- 241 015e 9A70     		strb	r2, [r3, #2]
-  67:../SendMeasurementsToBt.c **** 
-  68:../SendMeasurementsToBt.c **** 			sprintf(yAxisf, "y%.2f", getAccelYf());
- 242              		.loc 1 68 0
- 243 0160 FFF7FEFF 		bl	getAccelYf
- 244 0164 0346     		mov	r3, r0	@ float
- 245 0166 1846     		mov	r0, r3	@ float
- 246 0168 FFF7FEFF 		bl	__aeabi_f2d
- 247 016c 0246     		mov	r2, r0
- 248 016e 0B46     		mov	r3, r1
- 249 0170 40F20000 		movw	r0, #:lower16:yAxisf
- 250 0174 C0F20000 		movt	r0, #:upper16:yAxisf
- 251 0178 40F20001 		movw	r1, #:lower16:.LC2
- 252 017c C0F20001 		movt	r1, #:upper16:.LC2
- 253 0180 FFF7FEFF 		bl	sprintf
- 254 0184 35E0     		b	.L7
- 255              	.L6:
-  69:../SendMeasurementsToBt.c **** 		}
-  70:../SendMeasurementsToBt.c **** 		else
-  71:../SendMeasurementsToBt.c **** 		{
-  72:../SendMeasurementsToBt.c **** 			yAxis[0] = 'y';
- 256              		.loc 1 72 0
- 257 0186 40F20003 		movw	r3, #:lower16:yAxis
- 258 018a C0F20003 		movt	r3, #:upper16:yAxis
- 259 018e 4FF07902 		mov	r2, #121
- 260 0192 1A70     		strb	r2, [r3, #0]
-  73:../SendMeasurementsToBt.c **** 			yAxis[1] = '-';
- 261              		.loc 1 73 0
- 262 0194 40F20003 		movw	r3, #:lower16:yAxis
- 263 0198 C0F20003 		movt	r3, #:upper16:yAxis
- 264 019c 4FF02D02 		mov	r2, #45
- 265 01a0 5A70     		strb	r2, [r3, #1]
-  74:../SendMeasurementsToBt.c **** 			yAxis[2] = abs(getAccelY()) + 48;
- 266              		.loc 1 74 0
- 267 01a2 FFF7FEFF 		bl	getAccelY
- 268 01a6 0346     		mov	r3, r0
- 269 01a8 002B     		cmp	r3, #0
- 270 01aa B8BF     		it	lt
- 271 01ac 5B42     		rsblt	r3, r3, #0
- 272 01ae DBB2     		uxtb	r3, r3
- 273 01b0 03F13003 		add	r3, r3, #48
- 274 01b4 DAB2     		uxtb	r2, r3
- 275 01b6 40F20003 		movw	r3, #:lower16:yAxis
- 276 01ba C0F20003 		movt	r3, #:upper16:yAxis
- 277 01be 9A70     		strb	r2, [r3, #2]
-  75:../SendMeasurementsToBt.c **** 			yAxis[3] = '\0';
- 278              		.loc 1 75 0
- 279 01c0 40F20003 		movw	r3, #:lower16:yAxis
- 280 01c4 C0F20003 		movt	r3, #:upper16:yAxis
- 281 01c8 4FF00002 		mov	r2, #0
- 282 01cc DA70     		strb	r2, [r3, #3]
-  76:../SendMeasurementsToBt.c **** 
-  77:../SendMeasurementsToBt.c **** 			sprintf(yAxisf, "y%.2f", getAccelYf());
- 283              		.loc 1 77 0
- 284 01ce FFF7FEFF 		bl	getAccelYf
- 285 01d2 0346     		mov	r3, r0	@ float
- 286 01d4 1846     		mov	r0, r3	@ float
- 287 01d6 FFF7FEFF 		bl	__aeabi_f2d
- 288 01da 0246     		mov	r2, r0
- 289 01dc 0B46     		mov	r3, r1
- 290 01de 40F20000 		movw	r0, #:lower16:yAxisf
- 291 01e2 C0F20000 		movt	r0, #:upper16:yAxisf
- 292 01e6 40F20001 		movw	r1, #:lower16:.LC2
- 293 01ea C0F20001 		movt	r1, #:upper16:.LC2
- 294 01ee FFF7FEFF 		bl	sprintf
- 295              	.L7:
-  78:../SendMeasurementsToBt.c **** 		}
-  79:../SendMeasurementsToBt.c **** 
-  80:../SendMeasurementsToBt.c **** 		if(getAccelZ() >= 0)
- 296              		.loc 1 80 0
- 297 01f2 FFF7FEFF 		bl	getAccelZ
- 298 01f6 0346     		mov	r3, r0
- 299 01f8 002B     		cmp	r3, #0
- 300 01fa 39DB     		blt	.L8
-  81:../SendMeasurementsToBt.c **** 		{
-  82:../SendMeasurementsToBt.c **** 			zAxis[0] = 'z';
- 301              		.loc 1 82 0
- 302 01fc 40F20003 		movw	r3, #:lower16:zAxis
- 303 0200 C0F20003 		movt	r3, #:upper16:zAxis
- 304 0204 4FF07A02 		mov	r2, #122
- 305 0208 1A70     		strb	r2, [r3, #0]
-  83:../SendMeasurementsToBt.c **** 			zAxis[1] = getAccelZ() + 48;
- 306              		.loc 1 83 0
- 307 020a FFF7FEFF 		bl	getAccelZ
- 308 020e 0346     		mov	r3, r0
- 309 0210 DBB2     		uxtb	r3, r3
- 310 0212 03F13003 		add	r3, r3, #48
- 311 0216 DAB2     		uxtb	r2, r3
- 312 0218 40F20003 		movw	r3, #:lower16:zAxis
- 313 021c C0F20003 		movt	r3, #:upper16:zAxis
- 314 0220 5A70     		strb	r2, [r3, #1]
-  84:../SendMeasurementsToBt.c **** 			zAxis[2] = '\0';
- 315              		.loc 1 84 0
- 316 0222 40F20003 		movw	r3, #:lower16:zAxis
- 317 0226 C0F20003 		movt	r3, #:upper16:zAxis
- 318 022a 4FF00002 		mov	r2, #0
- 319 022e 9A70     		strb	r2, [r3, #2]
-  85:../SendMeasurementsToBt.c **** 
+  62:../SendMeasurementsToBt.c **** 
+  63:../SendMeasurementsToBt.c **** 		if(getAccelX() >= 0)
+ 197              		.loc 1 63 0
+ 198 005a FFF7FEFF 		bl	getAccelX
+ 199 005e 0346     		mov	r3, r0
+ 200 0060 002B     		cmp	r3, #0
+ 201 0062 2CDB     		blt	.L4
+  64:../SendMeasurementsToBt.c **** 		{
+  65:../SendMeasurementsToBt.c **** 			xAxis[0] = 'x';
+ 202              		.loc 1 65 0
+ 203 0064 40F20003 		movw	r3, #:lower16:xAxis
+ 204 0068 C0F20003 		movt	r3, #:upper16:xAxis
+ 205 006c 4FF07802 		mov	r2, #120
+ 206 0070 1A70     		strb	r2, [r3, #0]
+  66:../SendMeasurementsToBt.c **** 			xAxis[1] = getAccelX() + 48;
+ 207              		.loc 1 66 0
+ 208 0072 FFF7FEFF 		bl	getAccelX
+ 209 0076 0346     		mov	r3, r0
+ 210 0078 DBB2     		uxtb	r3, r3
+ 211 007a 03F13003 		add	r3, r3, #48
+ 212 007e DAB2     		uxtb	r2, r3
+ 213 0080 40F20003 		movw	r3, #:lower16:xAxis
+ 214 0084 C0F20003 		movt	r3, #:upper16:xAxis
+ 215 0088 5A70     		strb	r2, [r3, #1]
+  67:../SendMeasurementsToBt.c **** 			xAxis[2] = '\0';
+ 216              		.loc 1 67 0
+ 217 008a 40F20003 		movw	r3, #:lower16:xAxis
+ 218 008e C0F20003 		movt	r3, #:upper16:xAxis
+ 219 0092 4FF00002 		mov	r2, #0
+ 220 0096 9A70     		strb	r2, [r3, #2]
+  68:../SendMeasurementsToBt.c **** 
+  69:../SendMeasurementsToBt.c **** 			sprintf(xAxisf, "x%.2f", getAccelXf());
+ 221              		.loc 1 69 0
+ 222 0098 FFF7FEFF 		bl	getAccelXf
+ 223 009c 0346     		mov	r3, r0	@ float
+ 224 009e 1846     		mov	r0, r3	@ float
+ 225 00a0 FFF7FEFF 		bl	__aeabi_f2d
+ 226 00a4 0246     		mov	r2, r0
+ 227 00a6 0B46     		mov	r3, r1
+ 228 00a8 40F20000 		movw	r0, #:lower16:xAxisf
+ 229 00ac C0F20000 		movt	r0, #:upper16:xAxisf
+ 230 00b0 40F20001 		movw	r1, #:lower16:.LC1
+ 231 00b4 C0F20001 		movt	r1, #:upper16:.LC1
+ 232 00b8 FFF7FEFF 		bl	sprintf
+ 233 00bc 35E0     		b	.L5
+ 234              	.L4:
+  70:../SendMeasurementsToBt.c **** 		}
+  71:../SendMeasurementsToBt.c **** 		else
+  72:../SendMeasurementsToBt.c **** 		{
+  73:../SendMeasurementsToBt.c **** 			xAxis[0] = 'x';
+ 235              		.loc 1 73 0
+ 236 00be 40F20003 		movw	r3, #:lower16:xAxis
+ 237 00c2 C0F20003 		movt	r3, #:upper16:xAxis
+ 238 00c6 4FF07802 		mov	r2, #120
+ 239 00ca 1A70     		strb	r2, [r3, #0]
+  74:../SendMeasurementsToBt.c **** 			xAxis[1] = '-';
+ 240              		.loc 1 74 0
+ 241 00cc 40F20003 		movw	r3, #:lower16:xAxis
+ 242 00d0 C0F20003 		movt	r3, #:upper16:xAxis
+ 243 00d4 4FF02D02 		mov	r2, #45
+ 244 00d8 5A70     		strb	r2, [r3, #1]
+  75:../SendMeasurementsToBt.c **** 			xAxis[2] = abs(getAccelX()) + 48;
+ 245              		.loc 1 75 0
+ 246 00da FFF7FEFF 		bl	getAccelX
+ 247 00de 0346     		mov	r3, r0
+ 248 00e0 002B     		cmp	r3, #0
+ 249 00e2 B8BF     		it	lt
+ 250 00e4 5B42     		rsblt	r3, r3, #0
+ 251 00e6 DBB2     		uxtb	r3, r3
+ 252 00e8 03F13003 		add	r3, r3, #48
+ 253 00ec DAB2     		uxtb	r2, r3
+ 254 00ee 40F20003 		movw	r3, #:lower16:xAxis
+ 255 00f2 C0F20003 		movt	r3, #:upper16:xAxis
+ 256 00f6 9A70     		strb	r2, [r3, #2]
+  76:../SendMeasurementsToBt.c **** 			xAxis[3] = '\0';
+ 257              		.loc 1 76 0
+ 258 00f8 40F20003 		movw	r3, #:lower16:xAxis
+ 259 00fc C0F20003 		movt	r3, #:upper16:xAxis
+ 260 0100 4FF00002 		mov	r2, #0
+ 261 0104 DA70     		strb	r2, [r3, #3]
+  77:../SendMeasurementsToBt.c **** 
+  78:../SendMeasurementsToBt.c **** 			sprintf(xAxisf, "x%.2f", getAccelXf());
+ 262              		.loc 1 78 0
+ 263 0106 FFF7FEFF 		bl	getAccelXf
+ 264 010a 0346     		mov	r3, r0	@ float
+ 265 010c 1846     		mov	r0, r3	@ float
+ 266 010e FFF7FEFF 		bl	__aeabi_f2d
+ 267 0112 0246     		mov	r2, r0
+ 268 0114 0B46     		mov	r3, r1
+ 269 0116 40F20000 		movw	r0, #:lower16:xAxisf
+ 270 011a C0F20000 		movt	r0, #:upper16:xAxisf
+ 271 011e 40F20001 		movw	r1, #:lower16:.LC1
+ 272 0122 C0F20001 		movt	r1, #:upper16:.LC1
+ 273 0126 FFF7FEFF 		bl	sprintf
+ 274              	.L5:
+  79:../SendMeasurementsToBt.c **** 		}
+  80:../SendMeasurementsToBt.c **** 
+  81:../SendMeasurementsToBt.c **** 		if(getAccelY() >= 0)
+ 275              		.loc 1 81 0
+ 276 012a FFF7FEFF 		bl	getAccelY
+ 277 012e 0346     		mov	r3, r0
+ 278 0130 002B     		cmp	r3, #0
+ 279 0132 2CDB     		blt	.L6
+  82:../SendMeasurementsToBt.c **** 		{
+  83:../SendMeasurementsToBt.c **** 			yAxis[0] = 'y';
+ 280              		.loc 1 83 0
+ 281 0134 40F20003 		movw	r3, #:lower16:yAxis
+ 282 0138 C0F20003 		movt	r3, #:upper16:yAxis
+ 283 013c 4FF07902 		mov	r2, #121
+ 284 0140 1A70     		strb	r2, [r3, #0]
+  84:../SendMeasurementsToBt.c **** 			yAxis[1] = getAccelY() + 48;
+ 285              		.loc 1 84 0
+ 286 0142 FFF7FEFF 		bl	getAccelY
+ 287 0146 0346     		mov	r3, r0
+ 288 0148 DBB2     		uxtb	r3, r3
+ 289 014a 03F13003 		add	r3, r3, #48
+ 290 014e DAB2     		uxtb	r2, r3
+ 291 0150 40F20003 		movw	r3, #:lower16:yAxis
+ 292 0154 C0F20003 		movt	r3, #:upper16:yAxis
+ 293 0158 5A70     		strb	r2, [r3, #1]
+  85:../SendMeasurementsToBt.c **** 			yAxis[2] = '\0';
+ 294              		.loc 1 85 0
+ 295 015a 40F20003 		movw	r3, #:lower16:yAxis
+ 296 015e C0F20003 		movt	r3, #:upper16:yAxis
+ 297 0162 4FF00002 		mov	r2, #0
+ 298 0166 9A70     		strb	r2, [r3, #2]
   86:../SendMeasurementsToBt.c **** 
-  87:../SendMeasurementsToBt.c **** 			sprintf(zAxisf, "z%.2f", getAccelZf());
- 320              		.loc 1 87 0
- 321 0230 FFF7FEFF 		bl	getAccelZf
- 322 0234 0346     		mov	r3, r0	@ float
- 323 0236 1846     		mov	r0, r3	@ float
- 324 0238 FFF7FEFF 		bl	__aeabi_f2d
- 325 023c 0246     		mov	r2, r0
- 326 023e 0B46     		mov	r3, r1
- 327 0240 40F20000 		movw	r0, #:lower16:zAxisf
- 328 0244 C0F20000 		movt	r0, #:upper16:zAxisf
- 329 0248 40F20001 		movw	r1, #:lower16:.LC3
- 330 024c C0F20001 		movt	r1, #:upper16:.LC3
- 331 0250 FFF7FEFF 		bl	sprintf
-  88:../SendMeasurementsToBt.c **** 			if(zAxis[1] == 48)
- 332              		.loc 1 88 0
- 333 0254 40F20003 		movw	r3, #:lower16:zAxis
- 334 0258 C0F20003 		movt	r3, #:upper16:zAxis
- 335 025c 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
- 336 025e 302B     		cmp	r3, #48
- 337 0260 3CD1     		bne	.L9
-  89:../SendMeasurementsToBt.c **** 			{
-  90:../SendMeasurementsToBt.c **** 				printf("Dupa");
- 338              		.loc 1 90 0
- 339 0262 40F20000 		movw	r0, #:lower16:.LC4
- 340 0266 C0F20000 		movt	r0, #:upper16:.LC4
- 341 026a FFF7FEFF 		bl	printf
- 342 026e 35E0     		b	.L9
- 343              	.L8:
-  91:../SendMeasurementsToBt.c **** 			}
-  92:../SendMeasurementsToBt.c **** 		}
-  93:../SendMeasurementsToBt.c **** 		else
-  94:../SendMeasurementsToBt.c **** 		{
-  95:../SendMeasurementsToBt.c **** 			zAxis[0] = 'z';
- 344              		.loc 1 95 0
- 345 0270 40F20003 		movw	r3, #:lower16:zAxis
- 346 0274 C0F20003 		movt	r3, #:upper16:zAxis
- 347 0278 4FF07A02 		mov	r2, #122
- 348 027c 1A70     		strb	r2, [r3, #0]
-  96:../SendMeasurementsToBt.c **** 			zAxis[1] = '-';
- 349              		.loc 1 96 0
- 350 027e 40F20003 		movw	r3, #:lower16:zAxis
- 351 0282 C0F20003 		movt	r3, #:upper16:zAxis
- 352 0286 4FF02D02 		mov	r2, #45
- 353 028a 5A70     		strb	r2, [r3, #1]
-  97:../SendMeasurementsToBt.c **** 			zAxis[2] = abs(getAccelZ()) + 48;
- 354              		.loc 1 97 0
- 355 028c FFF7FEFF 		bl	getAccelZ
- 356 0290 0346     		mov	r3, r0
- 357 0292 002B     		cmp	r3, #0
- 358 0294 B8BF     		it	lt
- 359 0296 5B42     		rsblt	r3, r3, #0
- 360 0298 DBB2     		uxtb	r3, r3
- 361 029a 03F13003 		add	r3, r3, #48
- 362 029e DAB2     		uxtb	r2, r3
- 363 02a0 40F20003 		movw	r3, #:lower16:zAxis
- 364 02a4 C0F20003 		movt	r3, #:upper16:zAxis
- 365 02a8 9A70     		strb	r2, [r3, #2]
-  98:../SendMeasurementsToBt.c **** 			zAxis[3] = '\0';
- 366              		.loc 1 98 0
- 367 02aa 40F20003 		movw	r3, #:lower16:zAxis
- 368 02ae C0F20003 		movt	r3, #:upper16:zAxis
- 369 02b2 4FF00002 		mov	r2, #0
- 370 02b6 DA70     		strb	r2, [r3, #3]
-  99:../SendMeasurementsToBt.c **** 
- 100:../SendMeasurementsToBt.c **** 			sprintf(zAxisf, "z%.2f", getAccelZf());
- 371              		.loc 1 100 0
- 372 02b8 FFF7FEFF 		bl	getAccelZf
- 373 02bc 0346     		mov	r3, r0	@ float
- 374 02be 1846     		mov	r0, r3	@ float
- 375 02c0 FFF7FEFF 		bl	__aeabi_f2d
- 376 02c4 0246     		mov	r2, r0
- 377 02c6 0B46     		mov	r3, r1
- 378 02c8 40F20000 		movw	r0, #:lower16:zAxisf
- 379 02cc C0F20000 		movt	r0, #:upper16:zAxisf
- 380 02d0 40F20001 		movw	r1, #:lower16:.LC3
- 381 02d4 C0F20001 		movt	r1, #:upper16:.LC3
- 382 02d8 FFF7FEFF 		bl	sprintf
- 383              	.L9:
- 101:../SendMeasurementsToBt.c **** 		}
- 102:../SendMeasurementsToBt.c **** 
- 103:../SendMeasurementsToBt.c **** 		/*xAxis = getAccelX() + 48;
- 104:../SendMeasurementsToBt.c **** 		yAxis = getAccelY() + 48;
- 105:../SendMeasurementsToBt.c **** 		zAxis = getAccelZ() + 48;*/
- 106:../SendMeasurementsToBt.c **** 
- 107:../SendMeasurementsToBt.c **** 		if(0 == turnedOnSentTimer)
- 384              		.loc 1 107 0
- 385 02dc 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
- 386 02e0 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
- 387 02e4 1B68     		ldr	r3, [r3, #0]
- 388 02e6 002B     		cmp	r3, #0
- 389 02e8 20D1     		bne	.L10
- 108:../SendMeasurementsToBt.c **** 		{
- 109:../SendMeasurementsToBt.c **** 			TimerIdSentMsg = SYSTM001_CreateTimer(30,SYSTM001_PERIODIC,sendMsgLSM9DS1,NULL);
- 390              		.loc 1 109 0
- 391 02ea 4FF01E00 		mov	r0, #30
- 392 02ee 4FF00101 		mov	r1, #1
- 393 02f2 40F20002 		movw	r2, #:lower16:sendMsgLSM9DS1
- 394 02f6 C0F20002 		movt	r2, #:upper16:sendMsgLSM9DS1
- 395 02fa 4FF00003 		mov	r3, #0
- 396 02fe FFF7FEFF 		bl	SYSTM001_CreateTimer
- 397 0302 0246     		mov	r2, r0
- 398 0304 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
- 399 0308 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
- 400 030c 1A60     		str	r2, [r3, #0]
- 110:../SendMeasurementsToBt.c **** 			SYSTM001_StartTimer(TimerIdSentMsg);
- 401              		.loc 1 110 0
- 402 030e 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
- 403 0312 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
- 404 0316 1B68     		ldr	r3, [r3, #0]
- 405 0318 1846     		mov	r0, r3
- 406 031a FFF7FEFF 		bl	SYSTM001_StartTimer
- 111:../SendMeasurementsToBt.c **** 			turnedOnSentTimer = 1;
- 407              		.loc 1 111 0
- 408 031e 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
- 409 0322 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
- 410 0326 4FF00102 		mov	r2, #1
- 411 032a 1A60     		str	r2, [r3, #0]
- 412              	.L10:
- 112:../SendMeasurementsToBt.c **** 		}
- 113:../SendMeasurementsToBt.c **** 
- 114:../SendMeasurementsToBt.c **** 		if(1 == turnedOnSentTimer)
- 413              		.loc 1 114 0
- 414 032c 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
- 415 0330 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
- 416 0334 1B68     		ldr	r3, [r3, #0]
- 417 0336 012B     		cmp	r3, #1
- 418 0338 40F09281 		bne	.L1
- 115:../SendMeasurementsToBt.c **** 		{
- 116:../SendMeasurementsToBt.c **** 			if(TRUE == connectionFailure)
- 419              		.loc 1 116 0
- 420 033c 40F20003 		movw	r3, #:lower16:connectionFailure
- 421 0340 C0F20003 		movt	r3, #:upper16:connectionFailure
- 422 0344 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
- 423 0346 012B     		cmp	r3, #1
- 424 0348 40F08A81 		bne	.L1
- 117:../SendMeasurementsToBt.c **** 			{
- 118:../SendMeasurementsToBt.c **** 				connectionFailure = FALSE;
- 425              		.loc 1 118 0
- 426 034c 40F20003 		movw	r3, #:lower16:connectionFailure
- 427 0350 C0F20003 		movt	r3, #:upper16:connectionFailure
- 428 0354 4FF00002 		mov	r2, #0
- 429 0358 1A70     		strb	r2, [r3, #0]
- 119:../SendMeasurementsToBt.c **** 				SYSTM001_StopTimer(TimerIdSentMsg);
- 430              		.loc 1 119 0
- 431 035a 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
- 432 035e C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
- 433 0362 1B68     		ldr	r3, [r3, #0]
- 434 0364 1846     		mov	r0, r3
- 435 0366 FFF7FEFF 		bl	SYSTM001_StopTimer
- 120:../SendMeasurementsToBt.c **** 
- 121:../SendMeasurementsToBt.c **** 				SYSTM001_DeleteTimer(TimerIdSentMsg);
- 436              		.loc 1 121 0
- 437 036a 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
- 438 036e C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
- 439 0372 1B68     		ldr	r3, [r3, #0]
- 440 0374 1846     		mov	r0, r3
- 441 0376 FFF7FEFF 		bl	SYSTM001_DeleteTimer
- 122:../SendMeasurementsToBt.c **** 
- 123:../SendMeasurementsToBt.c **** 				TimerIdSentMsg = 0;
- 442              		.loc 1 123 0
- 443 037a 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
- 444 037e C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
- 445 0382 4FF00002 		mov	r2, #0
- 446 0386 1A60     		str	r2, [r3, #0]
- 124:../SendMeasurementsToBt.c **** 				cleanArray();
- 447              		.loc 1 124 0
- 448 0388 FFF7FEFF 		bl	cleanArray
- 449 038c 68E1     		b	.L1
- 450              	.L2:
+  87:../SendMeasurementsToBt.c **** 			sprintf(yAxisf, "y%.2f", getAccelYf());
+ 299              		.loc 1 87 0
+ 300 0168 FFF7FEFF 		bl	getAccelYf
+ 301 016c 0346     		mov	r3, r0	@ float
+ 302 016e 1846     		mov	r0, r3	@ float
+ 303 0170 FFF7FEFF 		bl	__aeabi_f2d
+ 304 0174 0246     		mov	r2, r0
+ 305 0176 0B46     		mov	r3, r1
+ 306 0178 40F20000 		movw	r0, #:lower16:yAxisf
+ 307 017c C0F20000 		movt	r0, #:upper16:yAxisf
+ 308 0180 40F20001 		movw	r1, #:lower16:.LC2
+ 309 0184 C0F20001 		movt	r1, #:upper16:.LC2
+ 310 0188 FFF7FEFF 		bl	sprintf
+ 311 018c 35E0     		b	.L7
+ 312              	.L6:
+  88:../SendMeasurementsToBt.c **** 		}
+  89:../SendMeasurementsToBt.c **** 		else
+  90:../SendMeasurementsToBt.c **** 		{
+  91:../SendMeasurementsToBt.c **** 			yAxis[0] = 'y';
+ 313              		.loc 1 91 0
+ 314 018e 40F20003 		movw	r3, #:lower16:yAxis
+ 315 0192 C0F20003 		movt	r3, #:upper16:yAxis
+ 316 0196 4FF07902 		mov	r2, #121
+ 317 019a 1A70     		strb	r2, [r3, #0]
+  92:../SendMeasurementsToBt.c **** 			yAxis[1] = '-';
+ 318              		.loc 1 92 0
+ 319 019c 40F20003 		movw	r3, #:lower16:yAxis
+ 320 01a0 C0F20003 		movt	r3, #:upper16:yAxis
+ 321 01a4 4FF02D02 		mov	r2, #45
+ 322 01a8 5A70     		strb	r2, [r3, #1]
+  93:../SendMeasurementsToBt.c **** 			yAxis[2] = abs(getAccelY()) + 48;
+ 323              		.loc 1 93 0
+ 324 01aa FFF7FEFF 		bl	getAccelY
+ 325 01ae 0346     		mov	r3, r0
+ 326 01b0 002B     		cmp	r3, #0
+ 327 01b2 B8BF     		it	lt
+ 328 01b4 5B42     		rsblt	r3, r3, #0
+ 329 01b6 DBB2     		uxtb	r3, r3
+ 330 01b8 03F13003 		add	r3, r3, #48
+ 331 01bc DAB2     		uxtb	r2, r3
+ 332 01be 40F20003 		movw	r3, #:lower16:yAxis
+ 333 01c2 C0F20003 		movt	r3, #:upper16:yAxis
+ 334 01c6 9A70     		strb	r2, [r3, #2]
+  94:../SendMeasurementsToBt.c **** 			yAxis[3] = '\0';
+ 335              		.loc 1 94 0
+ 336 01c8 40F20003 		movw	r3, #:lower16:yAxis
+ 337 01cc C0F20003 		movt	r3, #:upper16:yAxis
+ 338 01d0 4FF00002 		mov	r2, #0
+ 339 01d4 DA70     		strb	r2, [r3, #3]
+  95:../SendMeasurementsToBt.c **** 
+  96:../SendMeasurementsToBt.c **** 			sprintf(yAxisf, "y%.2f", getAccelYf());
+ 340              		.loc 1 96 0
+ 341 01d6 FFF7FEFF 		bl	getAccelYf
+ 342 01da 0346     		mov	r3, r0	@ float
+ 343 01dc 1846     		mov	r0, r3	@ float
+ 344 01de FFF7FEFF 		bl	__aeabi_f2d
+ 345 01e2 0246     		mov	r2, r0
+ 346 01e4 0B46     		mov	r3, r1
+ 347 01e6 40F20000 		movw	r0, #:lower16:yAxisf
+ 348 01ea C0F20000 		movt	r0, #:upper16:yAxisf
+ 349 01ee 40F20001 		movw	r1, #:lower16:.LC2
+ 350 01f2 C0F20001 		movt	r1, #:upper16:.LC2
+ 351 01f6 FFF7FEFF 		bl	sprintf
+ 352              	.L7:
+  97:../SendMeasurementsToBt.c **** 		}
+  98:../SendMeasurementsToBt.c **** 
+  99:../SendMeasurementsToBt.c **** 		if(getAccelZ() >= 0)
+ 353              		.loc 1 99 0
+ 354 01fa FFF7FEFF 		bl	getAccelZ
+ 355 01fe 0346     		mov	r3, r0
+ 356 0200 002B     		cmp	r3, #0
+ 357 0202 39DB     		blt	.L8
+ 100:../SendMeasurementsToBt.c **** 		{
+ 101:../SendMeasurementsToBt.c **** 			zAxis[0] = 'z';
+ 358              		.loc 1 101 0
+ 359 0204 40F20003 		movw	r3, #:lower16:zAxis
+ 360 0208 C0F20003 		movt	r3, #:upper16:zAxis
+ 361 020c 4FF07A02 		mov	r2, #122
+ 362 0210 1A70     		strb	r2, [r3, #0]
+ 102:../SendMeasurementsToBt.c **** 			zAxis[1] = getAccelZ() + 48;
+ 363              		.loc 1 102 0
+ 364 0212 FFF7FEFF 		bl	getAccelZ
+ 365 0216 0346     		mov	r3, r0
+ 366 0218 DBB2     		uxtb	r3, r3
+ 367 021a 03F13003 		add	r3, r3, #48
+ 368 021e DAB2     		uxtb	r2, r3
+ 369 0220 40F20003 		movw	r3, #:lower16:zAxis
+ 370 0224 C0F20003 		movt	r3, #:upper16:zAxis
+ 371 0228 5A70     		strb	r2, [r3, #1]
+ 103:../SendMeasurementsToBt.c **** 			zAxis[2] = '\0';
+ 372              		.loc 1 103 0
+ 373 022a 40F20003 		movw	r3, #:lower16:zAxis
+ 374 022e C0F20003 		movt	r3, #:upper16:zAxis
+ 375 0232 4FF00002 		mov	r2, #0
+ 376 0236 9A70     		strb	r2, [r3, #2]
+ 104:../SendMeasurementsToBt.c **** 
+ 105:../SendMeasurementsToBt.c **** 
+ 106:../SendMeasurementsToBt.c **** 			sprintf(zAxisf, "z%.2f", getAccelZf());
+ 377              		.loc 1 106 0
+ 378 0238 FFF7FEFF 		bl	getAccelZf
+ 379 023c 0346     		mov	r3, r0	@ float
+ 380 023e 1846     		mov	r0, r3	@ float
+ 381 0240 FFF7FEFF 		bl	__aeabi_f2d
+ 382 0244 0246     		mov	r2, r0
+ 383 0246 0B46     		mov	r3, r1
+ 384 0248 40F20000 		movw	r0, #:lower16:zAxisf
+ 385 024c C0F20000 		movt	r0, #:upper16:zAxisf
+ 386 0250 40F20001 		movw	r1, #:lower16:.LC3
+ 387 0254 C0F20001 		movt	r1, #:upper16:.LC3
+ 388 0258 FFF7FEFF 		bl	sprintf
+ 107:../SendMeasurementsToBt.c **** 			if(zAxis[1] == 48)
+ 389              		.loc 1 107 0
+ 390 025c 40F20003 		movw	r3, #:lower16:zAxis
+ 391 0260 C0F20003 		movt	r3, #:upper16:zAxis
+ 392 0264 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 393 0266 302B     		cmp	r3, #48
+ 394 0268 3CD1     		bne	.L9
+ 108:../SendMeasurementsToBt.c **** 			{
+ 109:../SendMeasurementsToBt.c **** 				printf("Dupa");
+ 395              		.loc 1 109 0
+ 396 026a 40F20000 		movw	r0, #:lower16:.LC4
+ 397 026e C0F20000 		movt	r0, #:upper16:.LC4
+ 398 0272 FFF7FEFF 		bl	printf
+ 399 0276 35E0     		b	.L9
+ 400              	.L8:
+ 110:../SendMeasurementsToBt.c **** 			}
+ 111:../SendMeasurementsToBt.c **** 		}
+ 112:../SendMeasurementsToBt.c **** 		else
+ 113:../SendMeasurementsToBt.c **** 		{
+ 114:../SendMeasurementsToBt.c **** 			zAxis[0] = 'z';
+ 401              		.loc 1 114 0
+ 402 0278 40F20003 		movw	r3, #:lower16:zAxis
+ 403 027c C0F20003 		movt	r3, #:upper16:zAxis
+ 404 0280 4FF07A02 		mov	r2, #122
+ 405 0284 1A70     		strb	r2, [r3, #0]
+ 115:../SendMeasurementsToBt.c **** 			zAxis[1] = '-';
+ 406              		.loc 1 115 0
+ 407 0286 40F20003 		movw	r3, #:lower16:zAxis
+ 408 028a C0F20003 		movt	r3, #:upper16:zAxis
+ 409 028e 4FF02D02 		mov	r2, #45
+ 410 0292 5A70     		strb	r2, [r3, #1]
+ 116:../SendMeasurementsToBt.c **** 			zAxis[2] = abs(getAccelZ()) + 48;
+ 411              		.loc 1 116 0
+ 412 0294 FFF7FEFF 		bl	getAccelZ
+ 413 0298 0346     		mov	r3, r0
+ 414 029a 002B     		cmp	r3, #0
+ 415 029c B8BF     		it	lt
+ 416 029e 5B42     		rsblt	r3, r3, #0
+ 417 02a0 DBB2     		uxtb	r3, r3
+ 418 02a2 03F13003 		add	r3, r3, #48
+ 419 02a6 DAB2     		uxtb	r2, r3
+ 420 02a8 40F20003 		movw	r3, #:lower16:zAxis
+ 421 02ac C0F20003 		movt	r3, #:upper16:zAxis
+ 422 02b0 9A70     		strb	r2, [r3, #2]
+ 117:../SendMeasurementsToBt.c **** 			zAxis[3] = '\0';
+ 423              		.loc 1 117 0
+ 424 02b2 40F20003 		movw	r3, #:lower16:zAxis
+ 425 02b6 C0F20003 		movt	r3, #:upper16:zAxis
+ 426 02ba 4FF00002 		mov	r2, #0
+ 427 02be DA70     		strb	r2, [r3, #3]
+ 118:../SendMeasurementsToBt.c **** 
+ 119:../SendMeasurementsToBt.c **** 			sprintf(zAxisf, "z%.2f", getAccelZf());
+ 428              		.loc 1 119 0
+ 429 02c0 FFF7FEFF 		bl	getAccelZf
+ 430 02c4 0346     		mov	r3, r0	@ float
+ 431 02c6 1846     		mov	r0, r3	@ float
+ 432 02c8 FFF7FEFF 		bl	__aeabi_f2d
+ 433 02cc 0246     		mov	r2, r0
+ 434 02ce 0B46     		mov	r3, r1
+ 435 02d0 40F20000 		movw	r0, #:lower16:zAxisf
+ 436 02d4 C0F20000 		movt	r0, #:upper16:zAxisf
+ 437 02d8 40F20001 		movw	r1, #:lower16:.LC3
+ 438 02dc C0F20001 		movt	r1, #:upper16:.LC3
+ 439 02e0 FFF7FEFF 		bl	sprintf
+ 440              	.L9:
+ 120:../SendMeasurementsToBt.c **** 		}
+ 121:../SendMeasurementsToBt.c **** 
+ 122:../SendMeasurementsToBt.c **** 		/*xAxis = getAccelX() + 48;
+ 123:../SendMeasurementsToBt.c **** 		yAxis = getAccelY() + 48;
+ 124:../SendMeasurementsToBt.c **** 		zAxis = getAccelZ() + 48;*/
  125:../SendMeasurementsToBt.c **** 
- 126:../SendMeasurementsToBt.c **** 			}
- 127:../SendMeasurementsToBt.c **** 		}
- 128:../SendMeasurementsToBt.c **** 	}
- 129:../SendMeasurementsToBt.c **** 	else if(!strcmp(device, "Gyroscope"))
- 451              		.loc 1 129 0
- 452 038e 40F20000 		movw	r0, #:lower16:device
- 453 0392 C0F20000 		movt	r0, #:upper16:device
- 454 0396 40F20001 		movw	r1, #:lower16:.LC5
- 455 039a C0F20001 		movt	r1, #:upper16:.LC5
- 456 039e FFF7FEFF 		bl	strcmp
- 457 03a2 0346     		mov	r3, r0
- 458 03a4 002B     		cmp	r3, #0
- 459 03a6 40F0A880 		bne	.L12
- 130:../SendMeasurementsToBt.c **** 	{
- 131:../SendMeasurementsToBt.c **** 		if(0 == i){
- 460              		.loc 1 131 0
- 461 03aa 40F20003 		movw	r3, #:lower16:i.9006
- 462 03ae C0F20003 		movt	r3, #:upper16:i.9006
- 463 03b2 1B68     		ldr	r3, [r3, #0]
- 464 03b4 002B     		cmp	r3, #0
- 465 03b6 0DD1     		bne	.L13
- 132:../SendMeasurementsToBt.c **** 			startMeasurements();
- 466              		.loc 1 132 0
- 467 03b8 FFF7FEFF 		bl	startMeasurements
- 133:../SendMeasurementsToBt.c **** 			++i;
- 468              		.loc 1 133 0
- 469 03bc 40F20003 		movw	r3, #:lower16:i.9006
- 470 03c0 C0F20003 		movt	r3, #:upper16:i.9006
- 471 03c4 1B68     		ldr	r3, [r3, #0]
- 472 03c6 03F10102 		add	r2, r3, #1
- 473 03ca 40F20003 		movw	r3, #:lower16:i.9006
- 474 03ce C0F20003 		movt	r3, #:upper16:i.9006
- 475 03d2 1A60     		str	r2, [r3, #0]
- 476              	.L13:
- 134:../SendMeasurementsToBt.c **** 		}
- 135:../SendMeasurementsToBt.c **** 		readAndSendMeasurements(NULL);
- 477              		.loc 1 135 0
- 478 03d4 4FF00000 		mov	r0, #0
- 479 03d8 FFF7FEFF 		bl	readAndSendMeasurements
- 136:../SendMeasurementsToBt.c **** 
- 137:../SendMeasurementsToBt.c **** 
- 138:../SendMeasurementsToBt.c **** 		sprintf(xAxisf, "x%.2f", getGyroXf());
- 480              		.loc 1 138 0
- 481 03dc FFF7FEFF 		bl	getGyroXf
- 482 03e0 0346     		mov	r3, r0	@ float
- 483 03e2 1846     		mov	r0, r3	@ float
- 484 03e4 FFF7FEFF 		bl	__aeabi_f2d
- 485 03e8 0246     		mov	r2, r0
- 486 03ea 0B46     		mov	r3, r1
- 487 03ec 40F20000 		movw	r0, #:lower16:xAxisf
- 488 03f0 C0F20000 		movt	r0, #:upper16:xAxisf
- 489 03f4 40F20001 		movw	r1, #:lower16:.LC1
- 490 03f8 C0F20001 		movt	r1, #:upper16:.LC1
- 491 03fc FFF7FEFF 		bl	sprintf
+ 126:../SendMeasurementsToBt.c **** 		if(0 == turnedOnSentTimer)
+ 441              		.loc 1 126 0
+ 442 02e4 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 443 02e8 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 444 02ec 1B68     		ldr	r3, [r3, #0]
+ 445 02ee 002B     		cmp	r3, #0
+ 446 02f0 20D1     		bne	.L10
+ 127:../SendMeasurementsToBt.c **** 		{
+ 128:../SendMeasurementsToBt.c **** 			TimerIdSentMsg = SYSTM001_CreateTimer(30,SYSTM001_PERIODIC,sendMsgLSM9DS1,NULL);
+ 447              		.loc 1 128 0
+ 448 02f2 4FF01E00 		mov	r0, #30
+ 449 02f6 4FF00101 		mov	r1, #1
+ 450 02fa 40F20002 		movw	r2, #:lower16:sendMsgLSM9DS1
+ 451 02fe C0F20002 		movt	r2, #:upper16:sendMsgLSM9DS1
+ 452 0302 4FF00003 		mov	r3, #0
+ 453 0306 FFF7FEFF 		bl	SYSTM001_CreateTimer
+ 454 030a 0246     		mov	r2, r0
+ 455 030c 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 456 0310 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 457 0314 1A60     		str	r2, [r3, #0]
+ 129:../SendMeasurementsToBt.c **** 			SYSTM001_StartTimer(TimerIdSentMsg);
+ 458              		.loc 1 129 0
+ 459 0316 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 460 031a C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 461 031e 1B68     		ldr	r3, [r3, #0]
+ 462 0320 1846     		mov	r0, r3
+ 463 0322 FFF7FEFF 		bl	SYSTM001_StartTimer
+ 130:../SendMeasurementsToBt.c **** 			turnedOnSentTimer = 1;
+ 464              		.loc 1 130 0
+ 465 0326 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 466 032a C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 467 032e 4FF00102 		mov	r2, #1
+ 468 0332 1A60     		str	r2, [r3, #0]
+ 469              	.L10:
+ 131:../SendMeasurementsToBt.c **** 		}
+ 132:../SendMeasurementsToBt.c **** 
+ 133:../SendMeasurementsToBt.c **** 		if(1 == turnedOnSentTimer)
+ 470              		.loc 1 133 0
+ 471 0334 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 472 0338 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 473 033c 1B68     		ldr	r3, [r3, #0]
+ 474 033e 012B     		cmp	r3, #1
+ 475 0340 40F04384 		bne	.L1
+ 134:../SendMeasurementsToBt.c **** 		{
+ 135:../SendMeasurementsToBt.c **** 			if(TRUE == connectionFailure)
+ 476              		.loc 1 135 0
+ 477 0344 40F20003 		movw	r3, #:lower16:connectionFailure
+ 478 0348 C0F20003 		movt	r3, #:upper16:connectionFailure
+ 479 034c 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 480 034e 012B     		cmp	r3, #1
+ 481 0350 40F03B84 		bne	.L1
+ 136:../SendMeasurementsToBt.c **** 			{
+ 137:../SendMeasurementsToBt.c **** 				connectionFailure = FALSE;
+ 482              		.loc 1 137 0
+ 483 0354 40F20003 		movw	r3, #:lower16:connectionFailure
+ 484 0358 C0F20003 		movt	r3, #:upper16:connectionFailure
+ 485 035c 4FF00002 		mov	r2, #0
+ 486 0360 1A70     		strb	r2, [r3, #0]
+ 138:../SendMeasurementsToBt.c **** 				SYSTM001_StopTimer(TimerIdSentMsg);
+ 487              		.loc 1 138 0
+ 488 0362 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 489 0366 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 490 036a 1B68     		ldr	r3, [r3, #0]
+ 491 036c 1846     		mov	r0, r3
+ 492 036e FFF7FEFF 		bl	SYSTM001_StopTimer
  139:../SendMeasurementsToBt.c **** 
- 140:../SendMeasurementsToBt.c **** 		sprintf(yAxisf, "y%.2f", getGyroYf());
- 492              		.loc 1 140 0
- 493 0400 FFF7FEFF 		bl	getGyroYf
- 494 0404 0346     		mov	r3, r0	@ float
- 495 0406 1846     		mov	r0, r3	@ float
- 496 0408 FFF7FEFF 		bl	__aeabi_f2d
- 497 040c 0246     		mov	r2, r0
- 498 040e 0B46     		mov	r3, r1
- 499 0410 40F20000 		movw	r0, #:lower16:yAxisf
- 500 0414 C0F20000 		movt	r0, #:upper16:yAxisf
- 501 0418 40F20001 		movw	r1, #:lower16:.LC2
- 502 041c C0F20001 		movt	r1, #:upper16:.LC2
- 503 0420 FFF7FEFF 		bl	sprintf
+ 140:../SendMeasurementsToBt.c **** 				SYSTM001_DeleteTimer(TimerIdSentMsg);
+ 493              		.loc 1 140 0
+ 494 0372 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 495 0376 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 496 037a 1B68     		ldr	r3, [r3, #0]
+ 497 037c 1846     		mov	r0, r3
+ 498 037e FFF7FEFF 		bl	SYSTM001_DeleteTimer
  141:../SendMeasurementsToBt.c **** 
- 142:../SendMeasurementsToBt.c **** 		sprintf(zAxisf, "z%.2f", getGyroZf());
- 504              		.loc 1 142 0
- 505 0424 FFF7FEFF 		bl	getGyroZf
- 506 0428 0346     		mov	r3, r0	@ float
- 507 042a 1846     		mov	r0, r3	@ float
- 508 042c FFF7FEFF 		bl	__aeabi_f2d
- 509 0430 0246     		mov	r2, r0
- 510 0432 0B46     		mov	r3, r1
- 511 0434 40F20000 		movw	r0, #:lower16:zAxisf
- 512 0438 C0F20000 		movt	r0, #:upper16:zAxisf
- 513 043c 40F20001 		movw	r1, #:lower16:.LC3
- 514 0440 C0F20001 		movt	r1, #:upper16:.LC3
- 515 0444 FFF7FEFF 		bl	sprintf
- 143:../SendMeasurementsToBt.c **** 
- 144:../SendMeasurementsToBt.c **** 		if(0 == turnedOnSentTimer)
- 516              		.loc 1 144 0
- 517 0448 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
- 518 044c C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
- 519 0450 1B68     		ldr	r3, [r3, #0]
- 520 0452 002B     		cmp	r3, #0
- 521 0454 20D1     		bne	.L14
- 145:../SendMeasurementsToBt.c **** 		{
- 146:../SendMeasurementsToBt.c **** 			TimerIdSentMsg = SYSTM001_CreateTimer(30,SYSTM001_PERIODIC,sendMsgLSM9DS1,NULL);
- 522              		.loc 1 146 0
- 523 0456 4FF01E00 		mov	r0, #30
- 524 045a 4FF00101 		mov	r1, #1
- 525 045e 40F20002 		movw	r2, #:lower16:sendMsgLSM9DS1
- 526 0462 C0F20002 		movt	r2, #:upper16:sendMsgLSM9DS1
- 527 0466 4FF00003 		mov	r3, #0
- 528 046a FFF7FEFF 		bl	SYSTM001_CreateTimer
- 529 046e 0246     		mov	r2, r0
- 530 0470 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
- 531 0474 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
- 532 0478 1A60     		str	r2, [r3, #0]
- 147:../SendMeasurementsToBt.c **** 			SYSTM001_StartTimer(TimerIdSentMsg);
- 533              		.loc 1 147 0
- 534 047a 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
- 535 047e C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
- 536 0482 1B68     		ldr	r3, [r3, #0]
- 537 0484 1846     		mov	r0, r3
- 538 0486 FFF7FEFF 		bl	SYSTM001_StartTimer
- 148:../SendMeasurementsToBt.c **** 			turnedOnSentTimer = 1;
- 539              		.loc 1 148 0
- 540 048a 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
- 541 048e C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
- 542 0492 4FF00102 		mov	r2, #1
- 543 0496 1A60     		str	r2, [r3, #0]
- 544              	.L14:
- 149:../SendMeasurementsToBt.c **** 		}
- 150:../SendMeasurementsToBt.c **** 
- 151:../SendMeasurementsToBt.c **** 		if(1 == turnedOnSentTimer)
- 545              		.loc 1 151 0
- 546 0498 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
- 547 049c C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
- 548 04a0 1B68     		ldr	r3, [r3, #0]
- 549 04a2 012B     		cmp	r3, #1
- 550 04a4 40F0DC80 		bne	.L1
- 152:../SendMeasurementsToBt.c **** 		{
- 153:../SendMeasurementsToBt.c **** 			if(TRUE == connectionFailure)
- 551              		.loc 1 153 0
- 552 04a8 40F20003 		movw	r3, #:lower16:connectionFailure
- 553 04ac C0F20003 		movt	r3, #:upper16:connectionFailure
- 554 04b0 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
- 555 04b2 012B     		cmp	r3, #1
- 556 04b4 40F0D480 		bne	.L1
- 154:../SendMeasurementsToBt.c **** 			{
- 155:../SendMeasurementsToBt.c **** 				connectionFailure = FALSE;
- 557              		.loc 1 155 0
- 558 04b8 40F20003 		movw	r3, #:lower16:connectionFailure
- 559 04bc C0F20003 		movt	r3, #:upper16:connectionFailure
- 560 04c0 4FF00002 		mov	r2, #0
- 561 04c4 1A70     		strb	r2, [r3, #0]
- 156:../SendMeasurementsToBt.c **** 				SYSTM001_StopTimer(TimerIdSentMsg);
- 562              		.loc 1 156 0
- 563 04c6 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
- 564 04ca C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
- 565 04ce 1B68     		ldr	r3, [r3, #0]
- 566 04d0 1846     		mov	r0, r3
- 567 04d2 FFF7FEFF 		bl	SYSTM001_StopTimer
- 157:../SendMeasurementsToBt.c **** 
- 158:../SendMeasurementsToBt.c **** 				SYSTM001_DeleteTimer(TimerIdSentMsg);
- 568              		.loc 1 158 0
- 569 04d6 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
- 570 04da C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
- 571 04de 1B68     		ldr	r3, [r3, #0]
- 572 04e0 1846     		mov	r0, r3
- 573 04e2 FFF7FEFF 		bl	SYSTM001_DeleteTimer
- 159:../SendMeasurementsToBt.c **** 
- 160:../SendMeasurementsToBt.c **** 				TimerIdSentMsg = 0;
- 574              		.loc 1 160 0
- 575 04e6 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
- 576 04ea C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
- 577 04ee 4FF00002 		mov	r2, #0
- 578 04f2 1A60     		str	r2, [r3, #0]
- 161:../SendMeasurementsToBt.c **** 				cleanArray();
- 579              		.loc 1 161 0
- 580 04f4 FFF7FEFF 		bl	cleanArray
- 581 04f8 B2E0     		b	.L1
- 582              	.L12:
+ 142:../SendMeasurementsToBt.c **** 				TimerIdSentMsg = 0;
+ 499              		.loc 1 142 0
+ 500 0382 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 501 0386 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 502 038a 4FF00002 		mov	r2, #0
+ 503 038e 1A60     		str	r2, [r3, #0]
+ 143:../SendMeasurementsToBt.c **** 				cleanArray();
+ 504              		.loc 1 143 0
+ 505 0390 FFF7FEFF 		bl	cleanArray
+ 506 0394 00F019BC 		b	.L1
+ 507              	.L2:
+ 144:../SendMeasurementsToBt.c **** 
+ 145:../SendMeasurementsToBt.c **** 			}
+ 146:../SendMeasurementsToBt.c **** 		}
+ 147:../SendMeasurementsToBt.c **** 	}
+ 148:../SendMeasurementsToBt.c **** 	else if(!strcmp(device, "Gyroscope"))
+ 508              		.loc 1 148 0
+ 509 0398 40F20000 		movw	r0, #:lower16:device
+ 510 039c C0F20000 		movt	r0, #:upper16:device
+ 511 03a0 40F20001 		movw	r1, #:lower16:.LC5
+ 512 03a4 C0F20001 		movt	r1, #:upper16:.LC5
+ 513 03a8 FFF7FEFF 		bl	strcmp
+ 514 03ac 0346     		mov	r3, r0
+ 515 03ae 002B     		cmp	r3, #0
+ 516 03b0 40F0A880 		bne	.L12
+ 149:../SendMeasurementsToBt.c **** 	{
+ 150:../SendMeasurementsToBt.c **** 		if(0 == i){
+ 517              		.loc 1 150 0
+ 518 03b4 40F20003 		movw	r3, #:lower16:i.9036
+ 519 03b8 C0F20003 		movt	r3, #:upper16:i.9036
+ 520 03bc 1B68     		ldr	r3, [r3, #0]
+ 521 03be 002B     		cmp	r3, #0
+ 522 03c0 0DD1     		bne	.L13
+ 151:../SendMeasurementsToBt.c **** 			startMeasurements();
+ 523              		.loc 1 151 0
+ 524 03c2 FFF7FEFF 		bl	startMeasurements
+ 152:../SendMeasurementsToBt.c **** 			++i;
+ 525              		.loc 1 152 0
+ 526 03c6 40F20003 		movw	r3, #:lower16:i.9036
+ 527 03ca C0F20003 		movt	r3, #:upper16:i.9036
+ 528 03ce 1B68     		ldr	r3, [r3, #0]
+ 529 03d0 03F10102 		add	r2, r3, #1
+ 530 03d4 40F20003 		movw	r3, #:lower16:i.9036
+ 531 03d8 C0F20003 		movt	r3, #:upper16:i.9036
+ 532 03dc 1A60     		str	r2, [r3, #0]
+ 533              	.L13:
+ 153:../SendMeasurementsToBt.c **** 		}
+ 154:../SendMeasurementsToBt.c **** 		readAndSendMeasurements(NULL);
+ 534              		.loc 1 154 0
+ 535 03de 4FF00000 		mov	r0, #0
+ 536 03e2 FFF7FEFF 		bl	readAndSendMeasurements
+ 155:../SendMeasurementsToBt.c **** 
+ 156:../SendMeasurementsToBt.c **** 
+ 157:../SendMeasurementsToBt.c **** 		sprintf(xAxisf, "x%.2f", getGyroXf());
+ 537              		.loc 1 157 0
+ 538 03e6 FFF7FEFF 		bl	getGyroXf
+ 539 03ea 0346     		mov	r3, r0	@ float
+ 540 03ec 1846     		mov	r0, r3	@ float
+ 541 03ee FFF7FEFF 		bl	__aeabi_f2d
+ 542 03f2 0246     		mov	r2, r0
+ 543 03f4 0B46     		mov	r3, r1
+ 544 03f6 40F20000 		movw	r0, #:lower16:xAxisf
+ 545 03fa C0F20000 		movt	r0, #:upper16:xAxisf
+ 546 03fe 40F20001 		movw	r1, #:lower16:.LC1
+ 547 0402 C0F20001 		movt	r1, #:upper16:.LC1
+ 548 0406 FFF7FEFF 		bl	sprintf
+ 158:../SendMeasurementsToBt.c **** 
+ 159:../SendMeasurementsToBt.c **** 		sprintf(yAxisf, "y%.2f", getGyroYf());
+ 549              		.loc 1 159 0
+ 550 040a FFF7FEFF 		bl	getGyroYf
+ 551 040e 0346     		mov	r3, r0	@ float
+ 552 0410 1846     		mov	r0, r3	@ float
+ 553 0412 FFF7FEFF 		bl	__aeabi_f2d
+ 554 0416 0246     		mov	r2, r0
+ 555 0418 0B46     		mov	r3, r1
+ 556 041a 40F20000 		movw	r0, #:lower16:yAxisf
+ 557 041e C0F20000 		movt	r0, #:upper16:yAxisf
+ 558 0422 40F20001 		movw	r1, #:lower16:.LC2
+ 559 0426 C0F20001 		movt	r1, #:upper16:.LC2
+ 560 042a FFF7FEFF 		bl	sprintf
+ 160:../SendMeasurementsToBt.c **** 
+ 161:../SendMeasurementsToBt.c **** 		sprintf(zAxisf, "z%.2f", getGyroZf());
+ 561              		.loc 1 161 0
+ 562 042e FFF7FEFF 		bl	getGyroZf
+ 563 0432 0346     		mov	r3, r0	@ float
+ 564 0434 1846     		mov	r0, r3	@ float
+ 565 0436 FFF7FEFF 		bl	__aeabi_f2d
+ 566 043a 0246     		mov	r2, r0
+ 567 043c 0B46     		mov	r3, r1
+ 568 043e 40F20000 		movw	r0, #:lower16:zAxisf
+ 569 0442 C0F20000 		movt	r0, #:upper16:zAxisf
+ 570 0446 40F20001 		movw	r1, #:lower16:.LC3
+ 571 044a C0F20001 		movt	r1, #:upper16:.LC3
+ 572 044e FFF7FEFF 		bl	sprintf
  162:../SendMeasurementsToBt.c **** 
- 163:../SendMeasurementsToBt.c **** 			}
- 164:../SendMeasurementsToBt.c **** 		}
- 165:../SendMeasurementsToBt.c **** 	}
- 166:../SendMeasurementsToBt.c **** 	else if(!strcmp(device, "Magnetometer"))
- 583              		.loc 1 166 0
- 584 04fa 40F20000 		movw	r0, #:lower16:device
- 585 04fe C0F20000 		movt	r0, #:upper16:device
- 586 0502 40F20001 		movw	r1, #:lower16:.LC6
- 587 0506 C0F20001 		movt	r1, #:upper16:.LC6
- 588 050a FFF7FEFF 		bl	strcmp
- 589 050e 0346     		mov	r3, r0
- 590 0510 002B     		cmp	r3, #0
- 591 0512 40F0A580 		bne	.L1
- 167:../SendMeasurementsToBt.c **** 	{
- 168:../SendMeasurementsToBt.c **** 		if(0 == i){
- 592              		.loc 1 168 0
- 593 0516 40F20003 		movw	r3, #:lower16:i.9006
- 594 051a C0F20003 		movt	r3, #:upper16:i.9006
- 595 051e 1B68     		ldr	r3, [r3, #0]
- 596 0520 002B     		cmp	r3, #0
- 597 0522 0DD1     		bne	.L15
- 169:../SendMeasurementsToBt.c **** 			startMeasurements();
- 598              		.loc 1 169 0
- 599 0524 FFF7FEFF 		bl	startMeasurements
- 170:../SendMeasurementsToBt.c **** 			++i;
- 600              		.loc 1 170 0
- 601 0528 40F20003 		movw	r3, #:lower16:i.9006
- 602 052c C0F20003 		movt	r3, #:upper16:i.9006
- 603 0530 1B68     		ldr	r3, [r3, #0]
- 604 0532 03F10102 		add	r2, r3, #1
- 605 0536 40F20003 		movw	r3, #:lower16:i.9006
- 606 053a C0F20003 		movt	r3, #:upper16:i.9006
- 607 053e 1A60     		str	r2, [r3, #0]
- 608              	.L15:
- 171:../SendMeasurementsToBt.c **** 		}
- 172:../SendMeasurementsToBt.c **** 		readAndSendMeasurements(NULL);
- 609              		.loc 1 172 0
- 610 0540 4FF00000 		mov	r0, #0
- 611 0544 FFF7FEFF 		bl	readAndSendMeasurements
- 173:../SendMeasurementsToBt.c **** 
- 174:../SendMeasurementsToBt.c **** 
- 175:../SendMeasurementsToBt.c **** 		sprintf(xAxisf, "x%.2f", getMagnetXf());
- 612              		.loc 1 175 0
- 613 0548 FFF7FEFF 		bl	getMagnetXf
- 614 054c 0346     		mov	r3, r0	@ float
- 615 054e 1846     		mov	r0, r3	@ float
- 616 0550 FFF7FEFF 		bl	__aeabi_f2d
- 617 0554 0246     		mov	r2, r0
- 618 0556 0B46     		mov	r3, r1
- 619 0558 40F20000 		movw	r0, #:lower16:xAxisf
- 620 055c C0F20000 		movt	r0, #:upper16:xAxisf
- 621 0560 40F20001 		movw	r1, #:lower16:.LC1
- 622 0564 C0F20001 		movt	r1, #:upper16:.LC1
- 623 0568 FFF7FEFF 		bl	sprintf
+ 163:../SendMeasurementsToBt.c **** 		if(0 == turnedOnSentTimer)
+ 573              		.loc 1 163 0
+ 574 0452 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 575 0456 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 576 045a 1B68     		ldr	r3, [r3, #0]
+ 577 045c 002B     		cmp	r3, #0
+ 578 045e 20D1     		bne	.L14
+ 164:../SendMeasurementsToBt.c **** 		{
+ 165:../SendMeasurementsToBt.c **** 			TimerIdSentMsg = SYSTM001_CreateTimer(30,SYSTM001_PERIODIC,sendMsgLSM9DS1,NULL);
+ 579              		.loc 1 165 0
+ 580 0460 4FF01E00 		mov	r0, #30
+ 581 0464 4FF00101 		mov	r1, #1
+ 582 0468 40F20002 		movw	r2, #:lower16:sendMsgLSM9DS1
+ 583 046c C0F20002 		movt	r2, #:upper16:sendMsgLSM9DS1
+ 584 0470 4FF00003 		mov	r3, #0
+ 585 0474 FFF7FEFF 		bl	SYSTM001_CreateTimer
+ 586 0478 0246     		mov	r2, r0
+ 587 047a 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 588 047e C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 589 0482 1A60     		str	r2, [r3, #0]
+ 166:../SendMeasurementsToBt.c **** 			SYSTM001_StartTimer(TimerIdSentMsg);
+ 590              		.loc 1 166 0
+ 591 0484 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 592 0488 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 593 048c 1B68     		ldr	r3, [r3, #0]
+ 594 048e 1846     		mov	r0, r3
+ 595 0490 FFF7FEFF 		bl	SYSTM001_StartTimer
+ 167:../SendMeasurementsToBt.c **** 			turnedOnSentTimer = 1;
+ 596              		.loc 1 167 0
+ 597 0494 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 598 0498 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 599 049c 4FF00102 		mov	r2, #1
+ 600 04a0 1A60     		str	r2, [r3, #0]
+ 601              	.L14:
+ 168:../SendMeasurementsToBt.c **** 		}
+ 169:../SendMeasurementsToBt.c **** 
+ 170:../SendMeasurementsToBt.c **** 		if(1 == turnedOnSentTimer)
+ 602              		.loc 1 170 0
+ 603 04a2 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 604 04a6 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 605 04aa 1B68     		ldr	r3, [r3, #0]
+ 606 04ac 012B     		cmp	r3, #1
+ 607 04ae 40F08C83 		bne	.L1
+ 171:../SendMeasurementsToBt.c **** 		{
+ 172:../SendMeasurementsToBt.c **** 			if(TRUE == connectionFailure)
+ 608              		.loc 1 172 0
+ 609 04b2 40F20003 		movw	r3, #:lower16:connectionFailure
+ 610 04b6 C0F20003 		movt	r3, #:upper16:connectionFailure
+ 611 04ba 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 612 04bc 012B     		cmp	r3, #1
+ 613 04be 40F08483 		bne	.L1
+ 173:../SendMeasurementsToBt.c **** 			{
+ 174:../SendMeasurementsToBt.c **** 				connectionFailure = FALSE;
+ 614              		.loc 1 174 0
+ 615 04c2 40F20003 		movw	r3, #:lower16:connectionFailure
+ 616 04c6 C0F20003 		movt	r3, #:upper16:connectionFailure
+ 617 04ca 4FF00002 		mov	r2, #0
+ 618 04ce 1A70     		strb	r2, [r3, #0]
+ 175:../SendMeasurementsToBt.c **** 				SYSTM001_StopTimer(TimerIdSentMsg);
+ 619              		.loc 1 175 0
+ 620 04d0 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 621 04d4 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 622 04d8 1B68     		ldr	r3, [r3, #0]
+ 623 04da 1846     		mov	r0, r3
+ 624 04dc FFF7FEFF 		bl	SYSTM001_StopTimer
  176:../SendMeasurementsToBt.c **** 
- 177:../SendMeasurementsToBt.c **** 		sprintf(yAxisf, "y%.2f", getMagnetYf());
- 624              		.loc 1 177 0
- 625 056c FFF7FEFF 		bl	getMagnetYf
- 626 0570 0346     		mov	r3, r0	@ float
- 627 0572 1846     		mov	r0, r3	@ float
- 628 0574 FFF7FEFF 		bl	__aeabi_f2d
- 629 0578 0246     		mov	r2, r0
- 630 057a 0B46     		mov	r3, r1
- 631 057c 40F20000 		movw	r0, #:lower16:yAxisf
- 632 0580 C0F20000 		movt	r0, #:upper16:yAxisf
- 633 0584 40F20001 		movw	r1, #:lower16:.LC2
- 634 0588 C0F20001 		movt	r1, #:upper16:.LC2
- 635 058c FFF7FEFF 		bl	sprintf
+ 177:../SendMeasurementsToBt.c **** 				SYSTM001_DeleteTimer(TimerIdSentMsg);
+ 625              		.loc 1 177 0
+ 626 04e0 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 627 04e4 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 628 04e8 1B68     		ldr	r3, [r3, #0]
+ 629 04ea 1846     		mov	r0, r3
+ 630 04ec FFF7FEFF 		bl	SYSTM001_DeleteTimer
  178:../SendMeasurementsToBt.c **** 
- 179:../SendMeasurementsToBt.c **** 		sprintf(zAxisf, "z%.2f", getMagnetZf());
- 636              		.loc 1 179 0
- 637 0590 FFF7FEFF 		bl	getMagnetZf
- 638 0594 0346     		mov	r3, r0	@ float
- 639 0596 1846     		mov	r0, r3	@ float
- 640 0598 FFF7FEFF 		bl	__aeabi_f2d
- 641 059c 0246     		mov	r2, r0
- 642 059e 0B46     		mov	r3, r1
- 643 05a0 40F20000 		movw	r0, #:lower16:zAxisf
- 644 05a4 C0F20000 		movt	r0, #:upper16:zAxisf
- 645 05a8 40F20001 		movw	r1, #:lower16:.LC3
- 646 05ac C0F20001 		movt	r1, #:upper16:.LC3
- 647 05b0 FFF7FEFF 		bl	sprintf
- 180:../SendMeasurementsToBt.c **** 
- 181:../SendMeasurementsToBt.c **** 		if(0 == turnedOnSentTimer)
- 648              		.loc 1 181 0
- 649 05b4 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
- 650 05b8 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
- 651 05bc 1B68     		ldr	r3, [r3, #0]
- 652 05be 002B     		cmp	r3, #0
- 653 05c0 20D1     		bne	.L16
- 182:../SendMeasurementsToBt.c **** 		{
- 183:../SendMeasurementsToBt.c **** 			TimerIdSentMsg = SYSTM001_CreateTimer(30,SYSTM001_PERIODIC,sendMsgLSM9DS1,NULL);
- 654              		.loc 1 183 0
- 655 05c2 4FF01E00 		mov	r0, #30
- 656 05c6 4FF00101 		mov	r1, #1
- 657 05ca 40F20002 		movw	r2, #:lower16:sendMsgLSM9DS1
- 658 05ce C0F20002 		movt	r2, #:upper16:sendMsgLSM9DS1
- 659 05d2 4FF00003 		mov	r3, #0
- 660 05d6 FFF7FEFF 		bl	SYSTM001_CreateTimer
- 661 05da 0246     		mov	r2, r0
- 662 05dc 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
- 663 05e0 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
- 664 05e4 1A60     		str	r2, [r3, #0]
- 184:../SendMeasurementsToBt.c **** 			SYSTM001_StartTimer(TimerIdSentMsg);
- 665              		.loc 1 184 0
- 666 05e6 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
- 667 05ea C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
- 668 05ee 1B68     		ldr	r3, [r3, #0]
- 669 05f0 1846     		mov	r0, r3
- 670 05f2 FFF7FEFF 		bl	SYSTM001_StartTimer
- 185:../SendMeasurementsToBt.c **** 			turnedOnSentTimer = 1;
- 671              		.loc 1 185 0
- 672 05f6 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
- 673 05fa C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
- 674 05fe 4FF00102 		mov	r2, #1
- 675 0602 1A60     		str	r2, [r3, #0]
- 676              	.L16:
- 186:../SendMeasurementsToBt.c **** 		}
- 187:../SendMeasurementsToBt.c **** 
- 188:../SendMeasurementsToBt.c **** 		if(1 == turnedOnSentTimer)
- 677              		.loc 1 188 0
- 678 0604 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
- 679 0608 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
- 680 060c 1B68     		ldr	r3, [r3, #0]
- 681 060e 012B     		cmp	r3, #1
- 682 0610 26D1     		bne	.L1
- 189:../SendMeasurementsToBt.c **** 		{
- 190:../SendMeasurementsToBt.c **** 			if(TRUE == connectionFailure)
- 683              		.loc 1 190 0
- 684 0612 40F20003 		movw	r3, #:lower16:connectionFailure
- 685 0616 C0F20003 		movt	r3, #:upper16:connectionFailure
- 686 061a 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
- 687 061c 012B     		cmp	r3, #1
- 688 061e 1FD1     		bne	.L1
- 191:../SendMeasurementsToBt.c **** 			{
- 192:../SendMeasurementsToBt.c **** 				connectionFailure = FALSE;
- 689              		.loc 1 192 0
- 690 0620 40F20003 		movw	r3, #:lower16:connectionFailure
- 691 0624 C0F20003 		movt	r3, #:upper16:connectionFailure
- 692 0628 4FF00002 		mov	r2, #0
- 693 062c 1A70     		strb	r2, [r3, #0]
- 193:../SendMeasurementsToBt.c **** 				SYSTM001_StopTimer(TimerIdSentMsg);
- 694              		.loc 1 193 0
- 695 062e 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
- 696 0632 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
- 697 0636 1B68     		ldr	r3, [r3, #0]
- 698 0638 1846     		mov	r0, r3
- 699 063a FFF7FEFF 		bl	SYSTM001_StopTimer
- 194:../SendMeasurementsToBt.c **** 
- 195:../SendMeasurementsToBt.c **** 				SYSTM001_DeleteTimer(TimerIdSentMsg);
- 700              		.loc 1 195 0
- 701 063e 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
- 702 0642 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
- 703 0646 1B68     		ldr	r3, [r3, #0]
- 704 0648 1846     		mov	r0, r3
- 705 064a FFF7FEFF 		bl	SYSTM001_DeleteTimer
- 196:../SendMeasurementsToBt.c **** 
- 197:../SendMeasurementsToBt.c **** 				TimerIdSentMsg = 0;
- 706              		.loc 1 197 0
- 707 064e 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
- 708 0652 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
- 709 0656 4FF00002 		mov	r2, #0
- 710 065a 1A60     		str	r2, [r3, #0]
- 198:../SendMeasurementsToBt.c **** 				cleanArray();
- 711              		.loc 1 198 0
- 712 065c FFF7FEFF 		bl	cleanArray
- 713              	.L1:
+ 179:../SendMeasurementsToBt.c **** 				TimerIdSentMsg = 0;
+ 631              		.loc 1 179 0
+ 632 04f0 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 633 04f4 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 634 04f8 4FF00002 		mov	r2, #0
+ 635 04fc 1A60     		str	r2, [r3, #0]
+ 180:../SendMeasurementsToBt.c **** 				cleanArray();
+ 636              		.loc 1 180 0
+ 637 04fe FFF7FEFF 		bl	cleanArray
+ 638 0502 62E3     		b	.L1
+ 639              	.L12:
+ 181:../SendMeasurementsToBt.c **** 
+ 182:../SendMeasurementsToBt.c **** 			}
+ 183:../SendMeasurementsToBt.c **** 		}
+ 184:../SendMeasurementsToBt.c **** 	}
+ 185:../SendMeasurementsToBt.c **** 	else if(!strcmp(device, "Magnetometer"))
+ 640              		.loc 1 185 0
+ 641 0504 40F20000 		movw	r0, #:lower16:device
+ 642 0508 C0F20000 		movt	r0, #:upper16:device
+ 643 050c 40F20001 		movw	r1, #:lower16:.LC6
+ 644 0510 C0F20001 		movt	r1, #:upper16:.LC6
+ 645 0514 FFF7FEFF 		bl	strcmp
+ 646 0518 0346     		mov	r3, r0
+ 647 051a 002B     		cmp	r3, #0
+ 648 051c 40F0A880 		bne	.L15
+ 186:../SendMeasurementsToBt.c **** 	{
+ 187:../SendMeasurementsToBt.c **** 		if(0 == i){
+ 649              		.loc 1 187 0
+ 650 0520 40F20003 		movw	r3, #:lower16:i.9036
+ 651 0524 C0F20003 		movt	r3, #:upper16:i.9036
+ 652 0528 1B68     		ldr	r3, [r3, #0]
+ 653 052a 002B     		cmp	r3, #0
+ 654 052c 0DD1     		bne	.L16
+ 188:../SendMeasurementsToBt.c **** 			startMeasurements();
+ 655              		.loc 1 188 0
+ 656 052e FFF7FEFF 		bl	startMeasurements
+ 189:../SendMeasurementsToBt.c **** 			++i;
+ 657              		.loc 1 189 0
+ 658 0532 40F20003 		movw	r3, #:lower16:i.9036
+ 659 0536 C0F20003 		movt	r3, #:upper16:i.9036
+ 660 053a 1B68     		ldr	r3, [r3, #0]
+ 661 053c 03F10102 		add	r2, r3, #1
+ 662 0540 40F20003 		movw	r3, #:lower16:i.9036
+ 663 0544 C0F20003 		movt	r3, #:upper16:i.9036
+ 664 0548 1A60     		str	r2, [r3, #0]
+ 665              	.L16:
+ 190:../SendMeasurementsToBt.c **** 		}
+ 191:../SendMeasurementsToBt.c **** 		readAndSendMeasurements(NULL);
+ 666              		.loc 1 191 0
+ 667 054a 4FF00000 		mov	r0, #0
+ 668 054e FFF7FEFF 		bl	readAndSendMeasurements
+ 192:../SendMeasurementsToBt.c **** 
+ 193:../SendMeasurementsToBt.c **** 
+ 194:../SendMeasurementsToBt.c **** 		sprintf(xAxisf, "x%.2f", getMagnetXf());
+ 669              		.loc 1 194 0
+ 670 0552 FFF7FEFF 		bl	getMagnetXf
+ 671 0556 0346     		mov	r3, r0	@ float
+ 672 0558 1846     		mov	r0, r3	@ float
+ 673 055a FFF7FEFF 		bl	__aeabi_f2d
+ 674 055e 0246     		mov	r2, r0
+ 675 0560 0B46     		mov	r3, r1
+ 676 0562 40F20000 		movw	r0, #:lower16:xAxisf
+ 677 0566 C0F20000 		movt	r0, #:upper16:xAxisf
+ 678 056a 40F20001 		movw	r1, #:lower16:.LC1
+ 679 056e C0F20001 		movt	r1, #:upper16:.LC1
+ 680 0572 FFF7FEFF 		bl	sprintf
+ 195:../SendMeasurementsToBt.c **** 
+ 196:../SendMeasurementsToBt.c **** 		sprintf(yAxisf, "y%.2f", getMagnetYf());
+ 681              		.loc 1 196 0
+ 682 0576 FFF7FEFF 		bl	getMagnetYf
+ 683 057a 0346     		mov	r3, r0	@ float
+ 684 057c 1846     		mov	r0, r3	@ float
+ 685 057e FFF7FEFF 		bl	__aeabi_f2d
+ 686 0582 0246     		mov	r2, r0
+ 687 0584 0B46     		mov	r3, r1
+ 688 0586 40F20000 		movw	r0, #:lower16:yAxisf
+ 689 058a C0F20000 		movt	r0, #:upper16:yAxisf
+ 690 058e 40F20001 		movw	r1, #:lower16:.LC2
+ 691 0592 C0F20001 		movt	r1, #:upper16:.LC2
+ 692 0596 FFF7FEFF 		bl	sprintf
+ 197:../SendMeasurementsToBt.c **** 
+ 198:../SendMeasurementsToBt.c **** 		sprintf(zAxisf, "z%.2f", getMagnetZf());
+ 693              		.loc 1 198 0
+ 694 059a FFF7FEFF 		bl	getMagnetZf
+ 695 059e 0346     		mov	r3, r0	@ float
+ 696 05a0 1846     		mov	r0, r3	@ float
+ 697 05a2 FFF7FEFF 		bl	__aeabi_f2d
+ 698 05a6 0246     		mov	r2, r0
+ 699 05a8 0B46     		mov	r3, r1
+ 700 05aa 40F20000 		movw	r0, #:lower16:zAxisf
+ 701 05ae C0F20000 		movt	r0, #:upper16:zAxisf
+ 702 05b2 40F20001 		movw	r1, #:lower16:.LC3
+ 703 05b6 C0F20001 		movt	r1, #:upper16:.LC3
+ 704 05ba FFF7FEFF 		bl	sprintf
  199:../SendMeasurementsToBt.c **** 
- 200:../SendMeasurementsToBt.c **** 			}
- 201:../SendMeasurementsToBt.c **** 		}
- 202:../SendMeasurementsToBt.c **** 	}
- 203:../SendMeasurementsToBt.c **** }
- 714              		.loc 1 203 0
- 715 0660 80BD     		pop	{r7, pc}
- 716              		.cfi_endproc
- 717              	.LFE112:
- 719 0662 00BF     		.section	.text.sendMsgLSM9DS1,"ax",%progbits
- 720              		.align	2
- 721              		.global	sendMsgLSM9DS1
- 722              		.thumb
- 723              		.thumb_func
- 725              	sendMsgLSM9DS1:
- 726              	.LFB113:
- 204:../SendMeasurementsToBt.c **** 
- 205:../SendMeasurementsToBt.c **** 
- 206:../SendMeasurementsToBt.c **** void sendMsgLSM9DS1(void *T)
- 207:../SendMeasurementsToBt.c **** {
- 727              		.loc 1 207 0
- 728              		.cfi_startproc
- 729              		@ args = 0, pretend = 0, frame = 8
- 730              		@ frame_needed = 1, uses_anonymous_args = 0
- 731 0000 80B5     		push	{r7, lr}
- 732              	.LCFI2:
- 733              		.cfi_def_cfa_offset 8
- 734              		.cfi_offset 7, -8
- 735              		.cfi_offset 14, -4
- 736 0002 82B0     		sub	sp, sp, #8
- 737              	.LCFI3:
- 738              		.cfi_def_cfa_offset 16
- 739 0004 00AF     		add	r7, sp, #0
- 740              	.LCFI4:
- 741              		.cfi_def_cfa_register 7
- 742 0006 7860     		str	r0, [r7, #4]
- 208:../SendMeasurementsToBt.c **** 	static int i = 0;
- 209:../SendMeasurementsToBt.c **** 
- 210:../SendMeasurementsToBt.c **** 	if(copied == 1){
- 743              		.loc 1 210 0
- 744 0008 40F20003 		movw	r3, #:lower16:copied
- 745 000c C0F20003 		movt	r3, #:upper16:copied
- 746 0010 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
- 747 0012 012B     		cmp	r3, #1
- 748 0014 5FD1     		bne	.L17
- 211:../SendMeasurementsToBt.c **** 		if(0 == i){/*
- 749              		.loc 1 211 0
- 750 0016 40F20003 		movw	r3, #:lower16:i.9010
- 751 001a C0F20003 		movt	r3, #:upper16:i.9010
- 752 001e 1B68     		ldr	r3, [r3, #0]
- 753 0020 002B     		cmp	r3, #0
- 754 0022 1AD1     		bne	.L19
- 212:../SendMeasurementsToBt.c **** 			char xMs[51];
+ 200:../SendMeasurementsToBt.c **** 		if(0 == turnedOnSentTimer)
+ 705              		.loc 1 200 0
+ 706 05be 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 707 05c2 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 708 05c6 1B68     		ldr	r3, [r3, #0]
+ 709 05c8 002B     		cmp	r3, #0
+ 710 05ca 20D1     		bne	.L17
+ 201:../SendMeasurementsToBt.c **** 		{
+ 202:../SendMeasurementsToBt.c **** 			TimerIdSentMsg = SYSTM001_CreateTimer(30,SYSTM001_PERIODIC,sendMsgLSM9DS1,NULL);
+ 711              		.loc 1 202 0
+ 712 05cc 4FF01E00 		mov	r0, #30
+ 713 05d0 4FF00101 		mov	r1, #1
+ 714 05d4 40F20002 		movw	r2, #:lower16:sendMsgLSM9DS1
+ 715 05d8 C0F20002 		movt	r2, #:upper16:sendMsgLSM9DS1
+ 716 05dc 4FF00003 		mov	r3, #0
+ 717 05e0 FFF7FEFF 		bl	SYSTM001_CreateTimer
+ 718 05e4 0246     		mov	r2, r0
+ 719 05e6 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 720 05ea C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 721 05ee 1A60     		str	r2, [r3, #0]
+ 203:../SendMeasurementsToBt.c **** 			SYSTM001_StartTimer(TimerIdSentMsg);
+ 722              		.loc 1 203 0
+ 723 05f0 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 724 05f4 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 725 05f8 1B68     		ldr	r3, [r3, #0]
+ 726 05fa 1846     		mov	r0, r3
+ 727 05fc FFF7FEFF 		bl	SYSTM001_StartTimer
+ 204:../SendMeasurementsToBt.c **** 			turnedOnSentTimer = 1;
+ 728              		.loc 1 204 0
+ 729 0600 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 730 0604 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 731 0608 4FF00102 		mov	r2, #1
+ 732 060c 1A60     		str	r2, [r3, #0]
+ 733              	.L17:
+ 205:../SendMeasurementsToBt.c **** 		}
+ 206:../SendMeasurementsToBt.c **** 
+ 207:../SendMeasurementsToBt.c **** 		if(1 == turnedOnSentTimer)
+ 734              		.loc 1 207 0
+ 735 060e 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 736 0612 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 737 0616 1B68     		ldr	r3, [r3, #0]
+ 738 0618 012B     		cmp	r3, #1
+ 739 061a 40F0D682 		bne	.L1
+ 208:../SendMeasurementsToBt.c **** 		{
+ 209:../SendMeasurementsToBt.c **** 			if(TRUE == connectionFailure)
+ 740              		.loc 1 209 0
+ 741 061e 40F20003 		movw	r3, #:lower16:connectionFailure
+ 742 0622 C0F20003 		movt	r3, #:upper16:connectionFailure
+ 743 0626 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 744 0628 012B     		cmp	r3, #1
+ 745 062a 40F0CE82 		bne	.L1
+ 210:../SendMeasurementsToBt.c **** 			{
+ 211:../SendMeasurementsToBt.c **** 				connectionFailure = FALSE;
+ 746              		.loc 1 211 0
+ 747 062e 40F20003 		movw	r3, #:lower16:connectionFailure
+ 748 0632 C0F20003 		movt	r3, #:upper16:connectionFailure
+ 749 0636 4FF00002 		mov	r2, #0
+ 750 063a 1A70     		strb	r2, [r3, #0]
+ 212:../SendMeasurementsToBt.c **** 				SYSTM001_StopTimer(TimerIdSentMsg);
+ 751              		.loc 1 212 0
+ 752 063c 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 753 0640 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 754 0644 1B68     		ldr	r3, [r3, #0]
+ 755 0646 1846     		mov	r0, r3
+ 756 0648 FFF7FEFF 		bl	SYSTM001_StopTimer
  213:../SendMeasurementsToBt.c **** 
- 214:../SendMeasurementsToBt.c **** 			for(int i = 0; i < 50; i++){
- 215:../SendMeasurementsToBt.c **** 				xMs[i] = copiedData[i].ax;
- 216:../SendMeasurementsToBt.c **** 				xMs[i] += 48; //to 48 to offset
- 217:../SendMeasurementsToBt.c **** 			}
- 218:../SendMeasurementsToBt.c **** 			xMs[i] = '\0';*/
- 219:../SendMeasurementsToBt.c **** 
- 220:../SendMeasurementsToBt.c **** 			//send(xAxis, strlen((const char*)xAxis));
- 221:../SendMeasurementsToBt.c **** 
- 222:../SendMeasurementsToBt.c **** 			send(xAxisf, strlen((const char*)xAxisf));
- 755              		.loc 1 222 0
- 756 0024 40F20000 		movw	r0, #:lower16:xAxisf
- 757 0028 C0F20000 		movt	r0, #:upper16:xAxisf
- 758 002c FFF7FEFF 		bl	strlen
- 759 0030 0346     		mov	r3, r0
- 760 0032 40F20000 		movw	r0, #:lower16:xAxisf
- 761 0036 C0F20000 		movt	r0, #:upper16:xAxisf
- 762 003a 1946     		mov	r1, r3
- 763 003c FFF7FEFF 		bl	send
- 223:../SendMeasurementsToBt.c **** 
- 224:../SendMeasurementsToBt.c **** 			//send(xMs, strlen(xMs));
- 225:../SendMeasurementsToBt.c **** 
- 226:../SendMeasurementsToBt.c **** 			i++;
- 764              		.loc 1 226 0
- 765 0040 40F20003 		movw	r3, #:lower16:i.9010
- 766 0044 C0F20003 		movt	r3, #:upper16:i.9010
- 767 0048 1B68     		ldr	r3, [r3, #0]
- 768 004a 03F10102 		add	r2, r3, #1
- 769 004e 40F20003 		movw	r3, #:lower16:i.9010
- 770 0052 C0F20003 		movt	r3, #:upper16:i.9010
- 771 0056 1A60     		str	r2, [r3, #0]
- 772 0058 3DE0     		b	.L17
- 773              	.L19:
+ 214:../SendMeasurementsToBt.c **** 				SYSTM001_DeleteTimer(TimerIdSentMsg);
+ 757              		.loc 1 214 0
+ 758 064c 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 759 0650 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 760 0654 1B68     		ldr	r3, [r3, #0]
+ 761 0656 1846     		mov	r0, r3
+ 762 0658 FFF7FEFF 		bl	SYSTM001_DeleteTimer
+ 215:../SendMeasurementsToBt.c **** 
+ 216:../SendMeasurementsToBt.c **** 				TimerIdSentMsg = 0;
+ 763              		.loc 1 216 0
+ 764 065c 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 765 0660 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 766 0664 4FF00002 		mov	r2, #0
+ 767 0668 1A60     		str	r2, [r3, #0]
+ 217:../SendMeasurementsToBt.c **** 				cleanArray();
+ 768              		.loc 1 217 0
+ 769 066a FFF7FEFF 		bl	cleanArray
+ 770 066e ACE2     		b	.L1
+ 771              	.L15:
+ 218:../SendMeasurementsToBt.c **** 
+ 219:../SendMeasurementsToBt.c **** 			}
+ 220:../SendMeasurementsToBt.c **** 		}
+ 221:../SendMeasurementsToBt.c **** 	}
+ 222:../SendMeasurementsToBt.c **** 	else if(!strcmp(device, "Temperature"))
+ 772              		.loc 1 222 0
+ 773 0670 40F20000 		movw	r0, #:lower16:device
+ 774 0674 C0F20000 		movt	r0, #:upper16:device
+ 775 0678 40F20001 		movw	r1, #:lower16:.LC7
+ 776 067c C0F20001 		movt	r1, #:upper16:.LC7
+ 777 0680 FFF7FEFF 		bl	strcmp
+ 778 0684 0346     		mov	r3, r0
+ 779 0686 002B     		cmp	r3, #0
+ 780 0688 7DD1     		bne	.L18
+ 781              	.LBB2:
+ 223:../SendMeasurementsToBt.c **** 	{
+ 224:../SendMeasurementsToBt.c **** 		if(0 == i){
+ 782              		.loc 1 224 0
+ 783 068a 40F20003 		movw	r3, #:lower16:i.9036
+ 784 068e C0F20003 		movt	r3, #:upper16:i.9036
+ 785 0692 1B68     		ldr	r3, [r3, #0]
+ 786 0694 002B     		cmp	r3, #0
+ 787 0696 0BD1     		bne	.L19
+ 225:../SendMeasurementsToBt.c **** 			//startMeasurements();
+ 226:../SendMeasurementsToBt.c **** 			++i;
+ 788              		.loc 1 226 0
+ 789 0698 40F20003 		movw	r3, #:lower16:i.9036
+ 790 069c C0F20003 		movt	r3, #:upper16:i.9036
+ 791 06a0 1B68     		ldr	r3, [r3, #0]
+ 792 06a2 03F10102 		add	r2, r3, #1
+ 793 06a6 40F20003 		movw	r3, #:lower16:i.9036
+ 794 06aa C0F20003 		movt	r3, #:upper16:i.9036
+ 795 06ae 1A60     		str	r2, [r3, #0]
+ 796              	.L19:
  227:../SendMeasurementsToBt.c **** 		}
- 228:../SendMeasurementsToBt.c **** 		else if(1 == i)
- 774              		.loc 1 228 0
- 775 005a 40F20003 		movw	r3, #:lower16:i.9010
- 776 005e C0F20003 		movt	r3, #:upper16:i.9010
- 777 0062 1B68     		ldr	r3, [r3, #0]
- 778 0064 012B     		cmp	r3, #1
- 779 0066 1AD1     		bne	.L20
- 229:../SendMeasurementsToBt.c **** 		{
- 230:../SendMeasurementsToBt.c **** 			/*char yMs[51];
+ 228:../SendMeasurementsToBt.c **** 		//readAndSendMeasurements(NULL);
+ 229:../SendMeasurementsToBt.c **** 
+ 230:../SendMeasurementsToBt.c **** 		float temp = readTemperature();
+ 797              		.loc 1 230 0
+ 798 06b0 FFF7FEFF 		bl	readTemperature
+ 799 06b4 7860     		str	r0, [r7, #4]	@ float
  231:../SendMeasurementsToBt.c **** 
- 232:../SendMeasurementsToBt.c **** 			for(int i = 0; i < 50; i++){
- 233:../SendMeasurementsToBt.c **** 				yMs[i] = copiedData[i].ay;
- 234:../SendMeasurementsToBt.c **** 				yMs[i] += 48; //to 48 to offset
- 235:../SendMeasurementsToBt.c **** 			}
- 236:../SendMeasurementsToBt.c **** 			yMs[i] = '\0';*/
- 237:../SendMeasurementsToBt.c **** 
- 238:../SendMeasurementsToBt.c **** 			//send(yAxis, strlen((const char*)yAxis));
- 239:../SendMeasurementsToBt.c **** 
- 240:../SendMeasurementsToBt.c **** 			send(yAxisf, strlen((const char*)yAxisf));
- 780              		.loc 1 240 0
- 781 0068 40F20000 		movw	r0, #:lower16:yAxisf
- 782 006c C0F20000 		movt	r0, #:upper16:yAxisf
- 783 0070 FFF7FEFF 		bl	strlen
- 784 0074 0346     		mov	r3, r0
- 785 0076 40F20000 		movw	r0, #:lower16:yAxisf
- 786 007a C0F20000 		movt	r0, #:upper16:yAxisf
- 787 007e 1946     		mov	r1, r3
- 788 0080 FFF7FEFF 		bl	send
- 241:../SendMeasurementsToBt.c **** 			/*send(yMs,strlen(yMs));*/
- 242:../SendMeasurementsToBt.c **** 
- 243:../SendMeasurementsToBt.c **** 			i++;
- 789              		.loc 1 243 0
- 790 0084 40F20003 		movw	r3, #:lower16:i.9010
- 791 0088 C0F20003 		movt	r3, #:upper16:i.9010
- 792 008c 1B68     		ldr	r3, [r3, #0]
- 793 008e 03F10102 		add	r2, r3, #1
- 794 0092 40F20003 		movw	r3, #:lower16:i.9010
- 795 0096 C0F20003 		movt	r3, #:upper16:i.9010
- 796 009a 1A60     		str	r2, [r3, #0]
- 797 009c 1BE0     		b	.L17
- 798              	.L20:
- 244:../SendMeasurementsToBt.c **** 		}
- 245:../SendMeasurementsToBt.c **** 		else if(2 == i)
- 799              		.loc 1 245 0
- 800 009e 40F20003 		movw	r3, #:lower16:i.9010
- 801 00a2 C0F20003 		movt	r3, #:upper16:i.9010
- 802 00a6 1B68     		ldr	r3, [r3, #0]
- 803 00a8 022B     		cmp	r3, #2
- 804 00aa 14D1     		bne	.L17
- 246:../SendMeasurementsToBt.c **** 		{
- 247:../SendMeasurementsToBt.c **** 			/*char zMs[51];
+ 232:../SendMeasurementsToBt.c **** 		sprintf(humidity, "%.2f ", temp);
+ 800              		.loc 1 232 0
+ 801 06b6 7868     		ldr	r0, [r7, #4]	@ float
+ 802 06b8 FFF7FEFF 		bl	__aeabi_f2d
+ 803 06bc 0246     		mov	r2, r0
+ 804 06be 0B46     		mov	r3, r1
+ 805 06c0 40F20000 		movw	r0, #:lower16:humidity
+ 806 06c4 C0F20000 		movt	r0, #:upper16:humidity
+ 807 06c8 40F20001 		movw	r1, #:lower16:.LC8
+ 808 06cc C0F20001 		movt	r1, #:upper16:.LC8
+ 809 06d0 FFF7FEFF 		bl	sprintf
+ 233:../SendMeasurementsToBt.c **** 
+ 234:../SendMeasurementsToBt.c **** 		if(0 == turnedOnSentTimer)
+ 810              		.loc 1 234 0
+ 811 06d4 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 812 06d8 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 813 06dc 1B68     		ldr	r3, [r3, #0]
+ 814 06de 002B     		cmp	r3, #0
+ 815 06e0 20D1     		bne	.L20
+ 235:../SendMeasurementsToBt.c **** 		{
+ 236:../SendMeasurementsToBt.c **** 			//TimerIdSentMsg = SYSTM001_CreateTimer(30,SYSTM001_PERIODIC,sendMsgLSM9DS1,NULL);
+ 237:../SendMeasurementsToBt.c **** 			TimerIdSentMsg = SYSTM001_CreateTimer(30,SYSTM001_PERIODIC,sendMsgHTU21D,NULL);
+ 816              		.loc 1 237 0
+ 817 06e2 4FF01E00 		mov	r0, #30
+ 818 06e6 4FF00101 		mov	r1, #1
+ 819 06ea 40F20002 		movw	r2, #:lower16:sendMsgHTU21D
+ 820 06ee C0F20002 		movt	r2, #:upper16:sendMsgHTU21D
+ 821 06f2 4FF00003 		mov	r3, #0
+ 822 06f6 FFF7FEFF 		bl	SYSTM001_CreateTimer
+ 823 06fa 0246     		mov	r2, r0
+ 824 06fc 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 825 0700 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 826 0704 1A60     		str	r2, [r3, #0]
+ 238:../SendMeasurementsToBt.c **** 			SYSTM001_StartTimer(TimerIdSentMsg);
+ 827              		.loc 1 238 0
+ 828 0706 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 829 070a C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 830 070e 1B68     		ldr	r3, [r3, #0]
+ 831 0710 1846     		mov	r0, r3
+ 832 0712 FFF7FEFF 		bl	SYSTM001_StartTimer
+ 239:../SendMeasurementsToBt.c **** 			turnedOnSentTimer = 1;
+ 833              		.loc 1 239 0
+ 834 0716 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 835 071a C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 836 071e 4FF00102 		mov	r2, #1
+ 837 0722 1A60     		str	r2, [r3, #0]
+ 838              	.L20:
+ 240:../SendMeasurementsToBt.c **** 		}
+ 241:../SendMeasurementsToBt.c **** 
+ 242:../SendMeasurementsToBt.c **** 		if(1 == turnedOnSentTimer)
+ 839              		.loc 1 242 0
+ 840 0724 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 841 0728 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 842 072c 1B68     		ldr	r3, [r3, #0]
+ 843 072e 012B     		cmp	r3, #1
+ 844 0730 40F04B82 		bne	.L1
+ 243:../SendMeasurementsToBt.c **** 		{
+ 244:../SendMeasurementsToBt.c **** 			if(TRUE == connectionFailure)
+ 845              		.loc 1 244 0
+ 846 0734 40F20003 		movw	r3, #:lower16:connectionFailure
+ 847 0738 C0F20003 		movt	r3, #:upper16:connectionFailure
+ 848 073c 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 849 073e 012B     		cmp	r3, #1
+ 850 0740 40F04382 		bne	.L1
+ 245:../SendMeasurementsToBt.c **** 			{
+ 246:../SendMeasurementsToBt.c **** 				connectionFailure = FALSE;
+ 851              		.loc 1 246 0
+ 852 0744 40F20003 		movw	r3, #:lower16:connectionFailure
+ 853 0748 C0F20003 		movt	r3, #:upper16:connectionFailure
+ 854 074c 4FF00002 		mov	r2, #0
+ 855 0750 1A70     		strb	r2, [r3, #0]
+ 247:../SendMeasurementsToBt.c **** 				SYSTM001_StopTimer(TimerIdSentMsg);
+ 856              		.loc 1 247 0
+ 857 0752 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 858 0756 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 859 075a 1B68     		ldr	r3, [r3, #0]
+ 860 075c 1846     		mov	r0, r3
+ 861 075e FFF7FEFF 		bl	SYSTM001_StopTimer
  248:../SendMeasurementsToBt.c **** 
- 249:../SendMeasurementsToBt.c **** 			for(int i = 0; i < 50; i++){
- 250:../SendMeasurementsToBt.c **** 				zMs[i] = copiedData[i].az;
- 251:../SendMeasurementsToBt.c **** 				zMs[i] += 48; //to 48 to offset
- 252:../SendMeasurementsToBt.c **** 			}
- 253:../SendMeasurementsToBt.c **** 			zMs[i] = '\0';*/
- 254:../SendMeasurementsToBt.c **** 
- 255:../SendMeasurementsToBt.c **** 			//send(zAxis, strlen((const char*)zAxis));
- 256:../SendMeasurementsToBt.c **** 
- 257:../SendMeasurementsToBt.c **** 			send(zAxisf, strlen((const char*)zAxisf));
- 805              		.loc 1 257 0
- 806 00ac 40F20000 		movw	r0, #:lower16:zAxisf
- 807 00b0 C0F20000 		movt	r0, #:upper16:zAxisf
- 808 00b4 FFF7FEFF 		bl	strlen
- 809 00b8 0346     		mov	r3, r0
- 810 00ba 40F20000 		movw	r0, #:lower16:zAxisf
- 811 00be C0F20000 		movt	r0, #:upper16:zAxisf
- 812 00c2 1946     		mov	r1, r3
- 813 00c4 FFF7FEFF 		bl	send
- 258:../SendMeasurementsToBt.c **** 			//copied = 0;
- 259:../SendMeasurementsToBt.c **** 			i = 0;
- 814              		.loc 1 259 0
- 815 00c8 40F20003 		movw	r3, #:lower16:i.9010
- 816 00cc C0F20003 		movt	r3, #:upper16:i.9010
- 817 00d0 4FF00002 		mov	r2, #0
- 818 00d4 1A60     		str	r2, [r3, #0]
- 819              	.L17:
- 260:../SendMeasurementsToBt.c **** 		}
- 261:../SendMeasurementsToBt.c **** 	}
- 262:../SendMeasurementsToBt.c **** }
- 820              		.loc 1 262 0
- 821 00d6 07F10807 		add	r7, r7, #8
- 822 00da BD46     		mov	sp, r7
- 823 00dc 80BD     		pop	{r7, pc}
- 824              		.cfi_endproc
- 825              	.LFE113:
- 827 00de 00BF     		.bss
- 828              		.align	2
- 829              	i.9010:
- 830 0004 00000000 		.space	4
- 831              		.align	2
- 832              	i.9006:
- 833 0008 00000000 		.space	4
- 834              		.text
- 835              	.Letext0:
- 836              		.file 2 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
- 837              		.file 3 "../LSM9DS1_Types.h"
- 838              		.file 4 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
- 839              		.file 5 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
- 840              		.file 6 "../LSM9DS1_Driver.h"
- 841              		.file 7 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Include/core_cm4.h"
+ 249:../SendMeasurementsToBt.c **** 				SYSTM001_DeleteTimer(TimerIdSentMsg);
+ 862              		.loc 1 249 0
+ 863 0762 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 864 0766 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 865 076a 1B68     		ldr	r3, [r3, #0]
+ 866 076c 1846     		mov	r0, r3
+ 867 076e FFF7FEFF 		bl	SYSTM001_DeleteTimer
+ 250:../SendMeasurementsToBt.c **** 
+ 251:../SendMeasurementsToBt.c **** 				TimerIdSentMsg = 0;
+ 868              		.loc 1 251 0
+ 869 0772 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 870 0776 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 871 077a 4FF00002 		mov	r2, #0
+ 872 077e 1A60     		str	r2, [r3, #0]
+ 252:../SendMeasurementsToBt.c **** 				cleanArray();
+ 873              		.loc 1 252 0
+ 874 0780 FFF7FEFF 		bl	cleanArray
+ 875 0784 21E2     		b	.L1
+ 876              	.L18:
+ 877              	.LBE2:
+ 253:../SendMeasurementsToBt.c **** 
+ 254:../SendMeasurementsToBt.c **** 			}
+ 255:../SendMeasurementsToBt.c **** 		}
+ 256:../SendMeasurementsToBt.c **** 	}
+ 257:../SendMeasurementsToBt.c **** 	else if(!strcmp(device, "Humidity"))
+ 878              		.loc 1 257 0
+ 879 0786 40F20000 		movw	r0, #:lower16:device
+ 880 078a C0F20000 		movt	r0, #:upper16:device
+ 881 078e 40F20001 		movw	r1, #:lower16:.LC9
+ 882 0792 C0F20001 		movt	r1, #:upper16:.LC9
+ 883 0796 FFF7FEFF 		bl	strcmp
+ 884 079a 0346     		mov	r3, r0
+ 885 079c 002B     		cmp	r3, #0
+ 886 079e 7DD1     		bne	.L21
+ 887              	.LBB3:
+ 258:../SendMeasurementsToBt.c **** 	{
+ 259:../SendMeasurementsToBt.c **** 		if(0 == i){
+ 888              		.loc 1 259 0
+ 889 07a0 40F20003 		movw	r3, #:lower16:i.9036
+ 890 07a4 C0F20003 		movt	r3, #:upper16:i.9036
+ 891 07a8 1B68     		ldr	r3, [r3, #0]
+ 892 07aa 002B     		cmp	r3, #0
+ 893 07ac 0BD1     		bne	.L22
+ 260:../SendMeasurementsToBt.c **** 			//startMeasurements();
+ 261:../SendMeasurementsToBt.c **** 			++i;
+ 894              		.loc 1 261 0
+ 895 07ae 40F20003 		movw	r3, #:lower16:i.9036
+ 896 07b2 C0F20003 		movt	r3, #:upper16:i.9036
+ 897 07b6 1B68     		ldr	r3, [r3, #0]
+ 898 07b8 03F10102 		add	r2, r3, #1
+ 899 07bc 40F20003 		movw	r3, #:lower16:i.9036
+ 900 07c0 C0F20003 		movt	r3, #:upper16:i.9036
+ 901 07c4 1A60     		str	r2, [r3, #0]
+ 902              	.L22:
+ 262:../SendMeasurementsToBt.c **** 		}
+ 263:../SendMeasurementsToBt.c **** 		//readAndSendMeasurements(NULL);
+ 264:../SendMeasurementsToBt.c **** 
+ 265:../SendMeasurementsToBt.c **** 		float temp = readHumidity();
+ 903              		.loc 1 265 0
+ 904 07c6 FFF7FEFF 		bl	readHumidity
+ 905 07ca 3860     		str	r0, [r7, #0]	@ float
+ 266:../SendMeasurementsToBt.c **** 
+ 267:../SendMeasurementsToBt.c **** 		sprintf(humidity, "%.2f ", temp);
+ 906              		.loc 1 267 0
+ 907 07cc 3868     		ldr	r0, [r7, #0]	@ float
+ 908 07ce FFF7FEFF 		bl	__aeabi_f2d
+ 909 07d2 0246     		mov	r2, r0
+ 910 07d4 0B46     		mov	r3, r1
+ 911 07d6 40F20000 		movw	r0, #:lower16:humidity
+ 912 07da C0F20000 		movt	r0, #:upper16:humidity
+ 913 07de 40F20001 		movw	r1, #:lower16:.LC8
+ 914 07e2 C0F20001 		movt	r1, #:upper16:.LC8
+ 915 07e6 FFF7FEFF 		bl	sprintf
+ 268:../SendMeasurementsToBt.c **** 
+ 269:../SendMeasurementsToBt.c **** 		if(0 == turnedOnSentTimer)
+ 916              		.loc 1 269 0
+ 917 07ea 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 918 07ee C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 919 07f2 1B68     		ldr	r3, [r3, #0]
+ 920 07f4 002B     		cmp	r3, #0
+ 921 07f6 20D1     		bne	.L23
+ 270:../SendMeasurementsToBt.c **** 		{
+ 271:../SendMeasurementsToBt.c **** 			//TimerIdSentMsg = SYSTM001_CreateTimer(30,SYSTM001_PERIODIC,sendMsgLSM9DS1,NULL);
+ 272:../SendMeasurementsToBt.c **** 			TimerIdSentMsg = SYSTM001_CreateTimer(30,SYSTM001_PERIODIC,sendMsgHTU21D,NULL);
+ 922              		.loc 1 272 0
+ 923 07f8 4FF01E00 		mov	r0, #30
+ 924 07fc 4FF00101 		mov	r1, #1
+ 925 0800 40F20002 		movw	r2, #:lower16:sendMsgHTU21D
+ 926 0804 C0F20002 		movt	r2, #:upper16:sendMsgHTU21D
+ 927 0808 4FF00003 		mov	r3, #0
+ 928 080c FFF7FEFF 		bl	SYSTM001_CreateTimer
+ 929 0810 0246     		mov	r2, r0
+ 930 0812 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 931 0816 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 932 081a 1A60     		str	r2, [r3, #0]
+ 273:../SendMeasurementsToBt.c **** 			SYSTM001_StartTimer(TimerIdSentMsg);
+ 933              		.loc 1 273 0
+ 934 081c 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 935 0820 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 936 0824 1B68     		ldr	r3, [r3, #0]
+ 937 0826 1846     		mov	r0, r3
+ 938 0828 FFF7FEFF 		bl	SYSTM001_StartTimer
+ 274:../SendMeasurementsToBt.c **** 			turnedOnSentTimer = 1;
+ 939              		.loc 1 274 0
+ 940 082c 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 941 0830 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 942 0834 4FF00102 		mov	r2, #1
+ 943 0838 1A60     		str	r2, [r3, #0]
+ 944              	.L23:
+ 275:../SendMeasurementsToBt.c **** 		}
+ 276:../SendMeasurementsToBt.c **** 
+ 277:../SendMeasurementsToBt.c **** 		if(1 == turnedOnSentTimer)
+ 945              		.loc 1 277 0
+ 946 083a 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 947 083e C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 948 0842 1B68     		ldr	r3, [r3, #0]
+ 949 0844 012B     		cmp	r3, #1
+ 950 0846 40F0C081 		bne	.L1
+ 278:../SendMeasurementsToBt.c **** 		{
+ 279:../SendMeasurementsToBt.c **** 			if(TRUE == connectionFailure)
+ 951              		.loc 1 279 0
+ 952 084a 40F20003 		movw	r3, #:lower16:connectionFailure
+ 953 084e C0F20003 		movt	r3, #:upper16:connectionFailure
+ 954 0852 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 955 0854 012B     		cmp	r3, #1
+ 956 0856 40F0B881 		bne	.L1
+ 280:../SendMeasurementsToBt.c **** 			{
+ 281:../SendMeasurementsToBt.c **** 				connectionFailure = FALSE;
+ 957              		.loc 1 281 0
+ 958 085a 40F20003 		movw	r3, #:lower16:connectionFailure
+ 959 085e C0F20003 		movt	r3, #:upper16:connectionFailure
+ 960 0862 4FF00002 		mov	r2, #0
+ 961 0866 1A70     		strb	r2, [r3, #0]
+ 282:../SendMeasurementsToBt.c **** 				SYSTM001_StopTimer(TimerIdSentMsg);
+ 962              		.loc 1 282 0
+ 963 0868 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 964 086c C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 965 0870 1B68     		ldr	r3, [r3, #0]
+ 966 0872 1846     		mov	r0, r3
+ 967 0874 FFF7FEFF 		bl	SYSTM001_StopTimer
+ 283:../SendMeasurementsToBt.c **** 
+ 284:../SendMeasurementsToBt.c **** 				SYSTM001_DeleteTimer(TimerIdSentMsg);
+ 968              		.loc 1 284 0
+ 969 0878 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 970 087c C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 971 0880 1B68     		ldr	r3, [r3, #0]
+ 972 0882 1846     		mov	r0, r3
+ 973 0884 FFF7FEFF 		bl	SYSTM001_DeleteTimer
+ 285:../SendMeasurementsToBt.c **** 
+ 286:../SendMeasurementsToBt.c **** 				TimerIdSentMsg = 0;
+ 974              		.loc 1 286 0
+ 975 0888 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 976 088c C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 977 0890 4FF00002 		mov	r2, #0
+ 978 0894 1A60     		str	r2, [r3, #0]
+ 287:../SendMeasurementsToBt.c **** 				cleanArray();
+ 979              		.loc 1 287 0
+ 980 0896 FFF7FEFF 		bl	cleanArray
+ 981 089a 96E1     		b	.L1
+ 982              	.L21:
+ 983              	.LBE3:
+ 288:../SendMeasurementsToBt.c **** 
+ 289:../SendMeasurementsToBt.c **** 			}
+ 290:../SendMeasurementsToBt.c **** 		}
+ 291:../SendMeasurementsToBt.c **** 	}
+ 292:../SendMeasurementsToBt.c **** 	else if(!strcmp(device, "All_sens"))
+ 984              		.loc 1 292 0
+ 985 089c 40F20000 		movw	r0, #:lower16:device
+ 986 08a0 C0F20000 		movt	r0, #:upper16:device
+ 987 08a4 40F20001 		movw	r1, #:lower16:.LC10
+ 988 08a8 C0F20001 		movt	r1, #:upper16:.LC10
+ 989 08ac FFF7FEFF 		bl	strcmp
+ 990 08b0 0346     		mov	r3, r0
+ 991 08b2 002B     		cmp	r3, #0
+ 992 08b4 40F08981 		bne	.L1
+ 293:../SendMeasurementsToBt.c **** 	{
+ 294:../SendMeasurementsToBt.c **** 		if(0 == i){
+ 993              		.loc 1 294 0
+ 994 08b8 40F20003 		movw	r3, #:lower16:i.9036
+ 995 08bc C0F20003 		movt	r3, #:upper16:i.9036
+ 996 08c0 1B68     		ldr	r3, [r3, #0]
+ 997 08c2 002B     		cmp	r3, #0
+ 998 08c4 0DD1     		bne	.L24
+ 295:../SendMeasurementsToBt.c **** 			startMeasurements();
+ 999              		.loc 1 295 0
+ 1000 08c6 FFF7FEFF 		bl	startMeasurements
+ 296:../SendMeasurementsToBt.c **** 			++i;
+ 1001              		.loc 1 296 0
+ 1002 08ca 40F20003 		movw	r3, #:lower16:i.9036
+ 1003 08ce C0F20003 		movt	r3, #:upper16:i.9036
+ 1004 08d2 1B68     		ldr	r3, [r3, #0]
+ 1005 08d4 03F10102 		add	r2, r3, #1
+ 1006 08d8 40F20003 		movw	r3, #:lower16:i.9036
+ 1007 08dc C0F20003 		movt	r3, #:upper16:i.9036
+ 1008 08e0 1A60     		str	r2, [r3, #0]
+ 1009              	.L24:
+ 297:../SendMeasurementsToBt.c **** 		}
+ 298:../SendMeasurementsToBt.c **** 		readAndSendMeasurements(NULL);
+ 1010              		.loc 1 298 0
+ 1011 08e2 4FF00000 		mov	r0, #0
+ 1012 08e6 FFF7FEFF 		bl	readAndSendMeasurements
+ 299:../SendMeasurementsToBt.c **** 
+ 300:../SendMeasurementsToBt.c **** 		//acceleration all sensors
+ 301:../SendMeasurementsToBt.c **** 		sprintf(accX, "x%.2f ", getAccelXf());
+ 1013              		.loc 1 301 0
+ 1014 08ea FFF7FEFF 		bl	getAccelXf
+ 1015 08ee 0346     		mov	r3, r0	@ float
+ 1016 08f0 1846     		mov	r0, r3	@ float
+ 1017 08f2 FFF7FEFF 		bl	__aeabi_f2d
+ 1018 08f6 0246     		mov	r2, r0
+ 1019 08f8 0B46     		mov	r3, r1
+ 1020 08fa 40F20000 		movw	r0, #:lower16:accX
+ 1021 08fe C0F20000 		movt	r0, #:upper16:accX
+ 1022 0902 40F20001 		movw	r1, #:lower16:.LC11
+ 1023 0906 C0F20001 		movt	r1, #:upper16:.LC11
+ 1024 090a FFF7FEFF 		bl	sprintf
+ 302:../SendMeasurementsToBt.c **** 
+ 303:../SendMeasurementsToBt.c **** 		sprintf(accY, "y%.2f ", getAccelYf());
+ 1025              		.loc 1 303 0
+ 1026 090e FFF7FEFF 		bl	getAccelYf
+ 1027 0912 0346     		mov	r3, r0	@ float
+ 1028 0914 1846     		mov	r0, r3	@ float
+ 1029 0916 FFF7FEFF 		bl	__aeabi_f2d
+ 1030 091a 0246     		mov	r2, r0
+ 1031 091c 0B46     		mov	r3, r1
+ 1032 091e 40F20000 		movw	r0, #:lower16:accY
+ 1033 0922 C0F20000 		movt	r0, #:upper16:accY
+ 1034 0926 40F20001 		movw	r1, #:lower16:.LC12
+ 1035 092a C0F20001 		movt	r1, #:upper16:.LC12
+ 1036 092e FFF7FEFF 		bl	sprintf
+ 304:../SendMeasurementsToBt.c **** 
+ 305:../SendMeasurementsToBt.c **** 		sprintf(accZ, "z%.2f ", getAccelZf());
+ 1037              		.loc 1 305 0
+ 1038 0932 FFF7FEFF 		bl	getAccelZf
+ 1039 0936 0346     		mov	r3, r0	@ float
+ 1040 0938 1846     		mov	r0, r3	@ float
+ 1041 093a FFF7FEFF 		bl	__aeabi_f2d
+ 1042 093e 0246     		mov	r2, r0
+ 1043 0940 0B46     		mov	r3, r1
+ 1044 0942 40F20000 		movw	r0, #:lower16:accZ
+ 1045 0946 C0F20000 		movt	r0, #:upper16:accZ
+ 1046 094a 40F20001 		movw	r1, #:lower16:.LC13
+ 1047 094e C0F20001 		movt	r1, #:upper16:.LC13
+ 1048 0952 FFF7FEFF 		bl	sprintf
+ 306:../SendMeasurementsToBt.c **** 		//acceleration all sensors
+ 307:../SendMeasurementsToBt.c **** 
+ 308:../SendMeasurementsToBt.c **** 		//gyroscope all sensors
+ 309:../SendMeasurementsToBt.c **** 		sprintf(gyrX, "x%.2f ", getGyroXf());
+ 1049              		.loc 1 309 0
+ 1050 0956 FFF7FEFF 		bl	getGyroXf
+ 1051 095a 0346     		mov	r3, r0	@ float
+ 1052 095c 1846     		mov	r0, r3	@ float
+ 1053 095e FFF7FEFF 		bl	__aeabi_f2d
+ 1054 0962 0246     		mov	r2, r0
+ 1055 0964 0B46     		mov	r3, r1
+ 1056 0966 40F20000 		movw	r0, #:lower16:gyrX
+ 1057 096a C0F20000 		movt	r0, #:upper16:gyrX
+ 1058 096e 40F20001 		movw	r1, #:lower16:.LC11
+ 1059 0972 C0F20001 		movt	r1, #:upper16:.LC11
+ 1060 0976 FFF7FEFF 		bl	sprintf
+ 310:../SendMeasurementsToBt.c **** 
+ 311:../SendMeasurementsToBt.c **** 		sprintf(gyrY, "y%.2f ", getGyroYf());
+ 1061              		.loc 1 311 0
+ 1062 097a FFF7FEFF 		bl	getGyroYf
+ 1063 097e 0346     		mov	r3, r0	@ float
+ 1064 0980 1846     		mov	r0, r3	@ float
+ 1065 0982 FFF7FEFF 		bl	__aeabi_f2d
+ 1066 0986 0246     		mov	r2, r0
+ 1067 0988 0B46     		mov	r3, r1
+ 1068 098a 40F20000 		movw	r0, #:lower16:gyrY
+ 1069 098e C0F20000 		movt	r0, #:upper16:gyrY
+ 1070 0992 40F20001 		movw	r1, #:lower16:.LC12
+ 1071 0996 C0F20001 		movt	r1, #:upper16:.LC12
+ 1072 099a FFF7FEFF 		bl	sprintf
+ 312:../SendMeasurementsToBt.c **** 
+ 313:../SendMeasurementsToBt.c **** 		sprintf(gyrZ, "z%.2f ", getGyroZf());
+ 1073              		.loc 1 313 0
+ 1074 099e FFF7FEFF 		bl	getGyroZf
+ 1075 09a2 0346     		mov	r3, r0	@ float
+ 1076 09a4 1846     		mov	r0, r3	@ float
+ 1077 09a6 FFF7FEFF 		bl	__aeabi_f2d
+ 1078 09aa 0246     		mov	r2, r0
+ 1079 09ac 0B46     		mov	r3, r1
+ 1080 09ae 40F20000 		movw	r0, #:lower16:gyrZ
+ 1081 09b2 C0F20000 		movt	r0, #:upper16:gyrZ
+ 1082 09b6 40F20001 		movw	r1, #:lower16:.LC13
+ 1083 09ba C0F20001 		movt	r1, #:upper16:.LC13
+ 1084 09be FFF7FEFF 		bl	sprintf
+ 314:../SendMeasurementsToBt.c **** 		//gyroscope all sensors
+ 315:../SendMeasurementsToBt.c **** 
+ 316:../SendMeasurementsToBt.c **** 		//magnetometer all sensors
+ 317:../SendMeasurementsToBt.c **** 		sprintf(magX, "x%.2f ", getMagnetXf());
+ 1085              		.loc 1 317 0
+ 1086 09c2 FFF7FEFF 		bl	getMagnetXf
+ 1087 09c6 0346     		mov	r3, r0	@ float
+ 1088 09c8 1846     		mov	r0, r3	@ float
+ 1089 09ca FFF7FEFF 		bl	__aeabi_f2d
+ 1090 09ce 0246     		mov	r2, r0
+ 1091 09d0 0B46     		mov	r3, r1
+ 1092 09d2 40F20000 		movw	r0, #:lower16:magX
+ 1093 09d6 C0F20000 		movt	r0, #:upper16:magX
+ 1094 09da 40F20001 		movw	r1, #:lower16:.LC11
+ 1095 09de C0F20001 		movt	r1, #:upper16:.LC11
+ 1096 09e2 FFF7FEFF 		bl	sprintf
+ 318:../SendMeasurementsToBt.c **** 
+ 319:../SendMeasurementsToBt.c **** 		sprintf(magY, "y%.2f ", getMagnetYf());
+ 1097              		.loc 1 319 0
+ 1098 09e6 FFF7FEFF 		bl	getMagnetYf
+ 1099 09ea 0346     		mov	r3, r0	@ float
+ 1100 09ec 1846     		mov	r0, r3	@ float
+ 1101 09ee FFF7FEFF 		bl	__aeabi_f2d
+ 1102 09f2 0246     		mov	r2, r0
+ 1103 09f4 0B46     		mov	r3, r1
+ 1104 09f6 40F20000 		movw	r0, #:lower16:magY
+ 1105 09fa C0F20000 		movt	r0, #:upper16:magY
+ 1106 09fe 40F20001 		movw	r1, #:lower16:.LC12
+ 1107 0a02 C0F20001 		movt	r1, #:upper16:.LC12
+ 1108 0a06 FFF7FEFF 		bl	sprintf
+ 320:../SendMeasurementsToBt.c **** 
+ 321:../SendMeasurementsToBt.c **** 		sprintf(magZ, "z%.2f ", getMagnetZf());
+ 1109              		.loc 1 321 0
+ 1110 0a0a FFF7FEFF 		bl	getMagnetZf
+ 1111 0a0e 0346     		mov	r3, r0	@ float
+ 1112 0a10 1846     		mov	r0, r3	@ float
+ 1113 0a12 FFF7FEFF 		bl	__aeabi_f2d
+ 1114 0a16 0246     		mov	r2, r0
+ 1115 0a18 0B46     		mov	r3, r1
+ 1116 0a1a 40F20000 		movw	r0, #:lower16:magZ
+ 1117 0a1e C0F20000 		movt	r0, #:upper16:magZ
+ 1118 0a22 40F20001 		movw	r1, #:lower16:.LC13
+ 1119 0a26 C0F20001 		movt	r1, #:upper16:.LC13
+ 1120 0a2a FFF7FEFF 		bl	sprintf
+ 322:../SendMeasurementsToBt.c **** 		//magnetometer all sensors
+ 323:../SendMeasurementsToBt.c **** 
+ 324:../SendMeasurementsToBt.c **** 		sprintf(json_data, "{"
+ 325:../SendMeasurementsToBt.c **** 								"\"m\":"
+ 326:../SendMeasurementsToBt.c **** 								"["
+ 327:../SendMeasurementsToBt.c **** 										"{"
+ 328:../SendMeasurementsToBt.c **** 											"\"id\":a,"
+ 329:../SendMeasurementsToBt.c **** 											"\"x\":%.2f,"
+ 330:../SendMeasurementsToBt.c **** 											"\"y\":%.2f,"
+ 331:../SendMeasurementsToBt.c **** 											"\"z\":%.2f"
+ 332:../SendMeasurementsToBt.c **** 										"},"
+ 333:../SendMeasurementsToBt.c **** 										"{"
+ 334:../SendMeasurementsToBt.c **** 											"\"id\":g,"
+ 335:../SendMeasurementsToBt.c **** 											"\"x\":%.2f,"
+ 336:../SendMeasurementsToBt.c **** 											"\"y\":%.2f,"
+ 337:../SendMeasurementsToBt.c **** 											"\"z\":%.2f"
+ 338:../SendMeasurementsToBt.c **** 										"},"
+ 339:../SendMeasurementsToBt.c **** 										"{"
+ 340:../SendMeasurementsToBt.c **** 											"\"id\":m,"
+ 341:../SendMeasurementsToBt.c **** 											"\"x\":%.2f,"
+ 342:../SendMeasurementsToBt.c **** 											"\"y\":%.2f,"
+ 343:../SendMeasurementsToBt.c **** 											"\"z\":%.2f"
+ 344:../SendMeasurementsToBt.c **** 										"},"
+ 345:../SendMeasurementsToBt.c **** 										"{"
+ 346:../SendMeasurementsToBt.c **** 											"\"id\":t,"
+ 347:../SendMeasurementsToBt.c **** 											"\"x\":%.2f"
+ 348:../SendMeasurementsToBt.c **** 										"},"
+ 349:../SendMeasurementsToBt.c **** 										"{"
+ 350:../SendMeasurementsToBt.c **** 											"\"id\":h,"
+ 351:../SendMeasurementsToBt.c **** 											"\"x\":%.2f"
+ 352:../SendMeasurementsToBt.c **** 										"}"
+ 353:../SendMeasurementsToBt.c **** 								"]"
+ 354:../SendMeasurementsToBt.c **** 							"}", getAccelXf(), getAccelYf(), getAccelZf(), getGyroXf(), getGyroYf(), getGyroZf(), getMag
+ 1121              		.loc 1 354 0
+ 1122 0a2e FFF7FEFF 		bl	getAccelXf
+ 1123 0a32 0346     		mov	r3, r0	@ float
+ 324:../SendMeasurementsToBt.c **** 		sprintf(json_data, "{"
+ 1124              		.loc 1 324 0
+ 1125 0a34 1846     		mov	r0, r3	@ float
+ 1126 0a36 FFF7FEFF 		bl	__aeabi_f2d
+ 1127 0a3a 0446     		mov	r4, r0
+ 1128 0a3c 0D46     		mov	r5, r1
+ 1129              		.loc 1 354 0
+ 1130 0a3e FFF7FEFF 		bl	getAccelYf
+ 1131 0a42 0346     		mov	r3, r0	@ float
+ 324:../SendMeasurementsToBt.c **** 		sprintf(json_data, "{"
+ 1132              		.loc 1 324 0
+ 1133 0a44 1846     		mov	r0, r3	@ float
+ 1134 0a46 FFF7FEFF 		bl	__aeabi_f2d
+ 1135 0a4a 41EC1E0B 		fmdrr	d14, r0, r1
+ 1136              		.loc 1 354 0
+ 1137 0a4e FFF7FEFF 		bl	getAccelZf
+ 1138 0a52 0346     		mov	r3, r0	@ float
+ 324:../SendMeasurementsToBt.c **** 		sprintf(json_data, "{"
+ 1139              		.loc 1 324 0
+ 1140 0a54 1846     		mov	r0, r3	@ float
+ 1141 0a56 FFF7FEFF 		bl	__aeabi_f2d
+ 1142 0a5a 41EC1D0B 		fmdrr	d13, r0, r1
+ 1143              		.loc 1 354 0
+ 1144 0a5e FFF7FEFF 		bl	getGyroXf
+ 1145 0a62 0346     		mov	r3, r0	@ float
+ 324:../SendMeasurementsToBt.c **** 		sprintf(json_data, "{"
+ 1146              		.loc 1 324 0
+ 1147 0a64 1846     		mov	r0, r3	@ float
+ 1148 0a66 FFF7FEFF 		bl	__aeabi_f2d
+ 1149 0a6a 41EC1C0B 		fmdrr	d12, r0, r1
+ 1150              		.loc 1 354 0
+ 1151 0a6e FFF7FEFF 		bl	getGyroYf
+ 1152 0a72 0346     		mov	r3, r0	@ float
+ 324:../SendMeasurementsToBt.c **** 		sprintf(json_data, "{"
+ 1153              		.loc 1 324 0
+ 1154 0a74 1846     		mov	r0, r3	@ float
+ 1155 0a76 FFF7FEFF 		bl	__aeabi_f2d
+ 1156 0a7a 41EC1B0B 		fmdrr	d11, r0, r1
+ 1157              		.loc 1 354 0
+ 1158 0a7e FFF7FEFF 		bl	getGyroZf
+ 1159 0a82 0346     		mov	r3, r0	@ float
+ 324:../SendMeasurementsToBt.c **** 		sprintf(json_data, "{"
+ 1160              		.loc 1 324 0
+ 1161 0a84 1846     		mov	r0, r3	@ float
+ 1162 0a86 FFF7FEFF 		bl	__aeabi_f2d
+ 1163 0a8a 41EC1A0B 		fmdrr	d10, r0, r1
+ 1164              		.loc 1 354 0
+ 1165 0a8e FFF7FEFF 		bl	getMagnetXf
+ 1166 0a92 0346     		mov	r3, r0	@ float
+ 324:../SendMeasurementsToBt.c **** 		sprintf(json_data, "{"
+ 1167              		.loc 1 324 0
+ 1168 0a94 1846     		mov	r0, r3	@ float
+ 1169 0a96 FFF7FEFF 		bl	__aeabi_f2d
+ 1170 0a9a 41EC190B 		fmdrr	d9, r0, r1
+ 1171              		.loc 1 354 0
+ 1172 0a9e FFF7FEFF 		bl	getMagnetYf
+ 1173 0aa2 0346     		mov	r3, r0	@ float
+ 324:../SendMeasurementsToBt.c **** 		sprintf(json_data, "{"
+ 1174              		.loc 1 324 0
+ 1175 0aa4 1846     		mov	r0, r3	@ float
+ 1176 0aa6 FFF7FEFF 		bl	__aeabi_f2d
+ 1177 0aaa 41EC180B 		fmdrr	d8, r0, r1
+ 1178              		.loc 1 354 0
+ 1179 0aae FFF7FEFF 		bl	getMagnetZf
+ 1180 0ab2 0346     		mov	r3, r0	@ float
+ 324:../SendMeasurementsToBt.c **** 		sprintf(json_data, "{"
+ 1181              		.loc 1 324 0
+ 1182 0ab4 1846     		mov	r0, r3	@ float
+ 1183 0ab6 FFF7FEFF 		bl	__aeabi_f2d
+ 1184 0aba 8246     		mov	sl, r0
+ 1185 0abc 8B46     		mov	fp, r1
+ 355:../SendMeasurementsToBt.c **** 							readTemperature(), readHumidity());
+ 1186              		.loc 1 355 0
+ 1187 0abe FFF7FEFF 		bl	readTemperature
+ 1188 0ac2 0346     		mov	r3, r0	@ float
+ 324:../SendMeasurementsToBt.c **** 		sprintf(json_data, "{"
+ 1189              		.loc 1 324 0
+ 1190 0ac4 1846     		mov	r0, r3	@ float
+ 1191 0ac6 FFF7FEFF 		bl	__aeabi_f2d
+ 1192 0aca 8046     		mov	r8, r0
+ 1193 0acc 8946     		mov	r9, r1
+ 1194              		.loc 1 355 0
+ 1195 0ace FFF7FEFF 		bl	readHumidity
+ 1196 0ad2 0346     		mov	r3, r0	@ float
+ 324:../SendMeasurementsToBt.c **** 		sprintf(json_data, "{"
+ 1197              		.loc 1 324 0
+ 1198 0ad4 1846     		mov	r0, r3	@ float
+ 1199 0ad6 FFF7FEFF 		bl	__aeabi_f2d
+ 1200 0ada 0246     		mov	r2, r0
+ 1201 0adc 0B46     		mov	r3, r1
+ 1202 0ade 8DED00EB 		fstd	d14, [sp, #0]
+ 1203 0ae2 8DED02DB 		fstd	d13, [sp, #8]
+ 1204 0ae6 8DED04CB 		fstd	d12, [sp, #16]
+ 1205 0aea 8DED06BB 		fstd	d11, [sp, #24]
+ 1206 0aee 8DED08AB 		fstd	d10, [sp, #32]
+ 1207 0af2 8DED0A9B 		fstd	d9, [sp, #40]
+ 1208 0af6 8DED0C8B 		fstd	d8, [sp, #48]
+ 1209 0afa CDE90EAB 		strd	sl, [sp, #56]
+ 1210 0afe CDE91089 		strd	r8, [sp, #64]
+ 1211 0b02 CDE91223 		strd	r2, [sp, #72]
+ 1212 0b06 40F20000 		movw	r0, #:lower16:json_data
+ 1213 0b0a C0F20000 		movt	r0, #:upper16:json_data
+ 1214 0b0e 40F20001 		movw	r1, #:lower16:.LC14
+ 1215 0b12 C0F20001 		movt	r1, #:upper16:.LC14
+ 1216 0b16 2246     		mov	r2, r4
+ 1217 0b18 2B46     		mov	r3, r5
+ 1218 0b1a FFF7FEFF 		bl	sprintf
+ 356:../SendMeasurementsToBt.c **** 
+ 357:../SendMeasurementsToBt.c **** 		if(0 == turnedOnSentTimer)
+ 1219              		.loc 1 357 0
+ 1220 0b1e 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 1221 0b22 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 1222 0b26 1B68     		ldr	r3, [r3, #0]
+ 1223 0b28 002B     		cmp	r3, #0
+ 1224 0b2a 20D1     		bne	.L25
+ 358:../SendMeasurementsToBt.c **** 		{
+ 359:../SendMeasurementsToBt.c **** 			TimerIdSentMsg = SYSTM001_CreateTimer(50,SYSTM001_PERIODIC,sendAllSensors,NULL);
+ 1225              		.loc 1 359 0
+ 1226 0b2c 4FF03200 		mov	r0, #50
+ 1227 0b30 4FF00101 		mov	r1, #1
+ 1228 0b34 40F20002 		movw	r2, #:lower16:sendAllSensors
+ 1229 0b38 C0F20002 		movt	r2, #:upper16:sendAllSensors
+ 1230 0b3c 4FF00003 		mov	r3, #0
+ 1231 0b40 FFF7FEFF 		bl	SYSTM001_CreateTimer
+ 1232 0b44 0246     		mov	r2, r0
+ 1233 0b46 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 1234 0b4a C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 1235 0b4e 1A60     		str	r2, [r3, #0]
+ 360:../SendMeasurementsToBt.c **** 			SYSTM001_StartTimer(TimerIdSentMsg);
+ 1236              		.loc 1 360 0
+ 1237 0b50 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 1238 0b54 C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 1239 0b58 1B68     		ldr	r3, [r3, #0]
+ 1240 0b5a 1846     		mov	r0, r3
+ 1241 0b5c FFF7FEFF 		bl	SYSTM001_StartTimer
+ 361:../SendMeasurementsToBt.c **** 			turnedOnSentTimer = 1;
+ 1242              		.loc 1 361 0
+ 1243 0b60 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 1244 0b64 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 1245 0b68 4FF00102 		mov	r2, #1
+ 1246 0b6c 1A60     		str	r2, [r3, #0]
+ 1247              	.L25:
+ 362:../SendMeasurementsToBt.c **** 		}
+ 363:../SendMeasurementsToBt.c **** 
+ 364:../SendMeasurementsToBt.c **** 		if(1 == turnedOnSentTimer)
+ 1248              		.loc 1 364 0
+ 1249 0b6e 40F20003 		movw	r3, #:lower16:turnedOnSentTimer
+ 1250 0b72 C0F20003 		movt	r3, #:upper16:turnedOnSentTimer
+ 1251 0b76 1B68     		ldr	r3, [r3, #0]
+ 1252 0b78 012B     		cmp	r3, #1
+ 1253 0b7a 26D1     		bne	.L1
+ 365:../SendMeasurementsToBt.c **** 		{
+ 366:../SendMeasurementsToBt.c **** 			if(TRUE == connectionFailure)
+ 1254              		.loc 1 366 0
+ 1255 0b7c 40F20003 		movw	r3, #:lower16:connectionFailure
+ 1256 0b80 C0F20003 		movt	r3, #:upper16:connectionFailure
+ 1257 0b84 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 1258 0b86 012B     		cmp	r3, #1
+ 1259 0b88 1FD1     		bne	.L1
+ 367:../SendMeasurementsToBt.c **** 			{
+ 368:../SendMeasurementsToBt.c **** 				connectionFailure = FALSE;
+ 1260              		.loc 1 368 0
+ 1261 0b8a 40F20003 		movw	r3, #:lower16:connectionFailure
+ 1262 0b8e C0F20003 		movt	r3, #:upper16:connectionFailure
+ 1263 0b92 4FF00002 		mov	r2, #0
+ 1264 0b96 1A70     		strb	r2, [r3, #0]
+ 369:../SendMeasurementsToBt.c **** 				SYSTM001_StopTimer(TimerIdSentMsg);
+ 1265              		.loc 1 369 0
+ 1266 0b98 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 1267 0b9c C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 1268 0ba0 1B68     		ldr	r3, [r3, #0]
+ 1269 0ba2 1846     		mov	r0, r3
+ 1270 0ba4 FFF7FEFF 		bl	SYSTM001_StopTimer
+ 370:../SendMeasurementsToBt.c **** 
+ 371:../SendMeasurementsToBt.c **** 				SYSTM001_DeleteTimer(TimerIdSentMsg);
+ 1271              		.loc 1 371 0
+ 1272 0ba8 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 1273 0bac C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 1274 0bb0 1B68     		ldr	r3, [r3, #0]
+ 1275 0bb2 1846     		mov	r0, r3
+ 1276 0bb4 FFF7FEFF 		bl	SYSTM001_DeleteTimer
+ 372:../SendMeasurementsToBt.c **** 
+ 373:../SendMeasurementsToBt.c **** 				TimerIdSentMsg = 0;
+ 1277              		.loc 1 373 0
+ 1278 0bb8 40F20003 		movw	r3, #:lower16:TimerIdSentMsg
+ 1279 0bbc C0F20003 		movt	r3, #:upper16:TimerIdSentMsg
+ 1280 0bc0 4FF00002 		mov	r2, #0
+ 1281 0bc4 1A60     		str	r2, [r3, #0]
+ 374:../SendMeasurementsToBt.c **** 				cleanArray();
+ 1282              		.loc 1 374 0
+ 1283 0bc6 FFF7FEFF 		bl	cleanArray
+ 1284              	.L1:
+ 375:../SendMeasurementsToBt.c **** 
+ 376:../SendMeasurementsToBt.c **** 			}
+ 377:../SendMeasurementsToBt.c **** 		}
+ 378:../SendMeasurementsToBt.c **** 	}
+ 379:../SendMeasurementsToBt.c **** }
+ 1285              		.loc 1 379 0
+ 1286 0bca 07F10807 		add	r7, r7, #8
+ 1287 0bce BD46     		mov	sp, r7
+ 1288 0bd0 BDEC0E8B 		fldmfdd	sp!, {d8, d9, d10, d11, d12, d13, d14}
+ 1289 0bd4 BDE8B08F 		pop	{r4, r5, r7, r8, r9, sl, fp, pc}
+ 1290              		.cfi_endproc
+ 1291              	.LFE112:
+ 1293              		.section	.text.sendMsgLSM9DS1,"ax",%progbits
+ 1294              		.align	2
+ 1295              		.global	sendMsgLSM9DS1
+ 1296              		.thumb
+ 1297              		.thumb_func
+ 1299              	sendMsgLSM9DS1:
+ 1300              	.LFB113:
+ 380:../SendMeasurementsToBt.c **** 
+ 381:../SendMeasurementsToBt.c **** void sendMsgLSM9DS1(void *T)
+ 382:../SendMeasurementsToBt.c **** {
+ 1301              		.loc 1 382 0
+ 1302              		.cfi_startproc
+ 1303              		@ args = 0, pretend = 0, frame = 8
+ 1304              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1305 0000 80B5     		push	{r7, lr}
+ 1306              	.LCFI4:
+ 1307              		.cfi_def_cfa_offset 8
+ 1308              		.cfi_offset 7, -8
+ 1309              		.cfi_offset 14, -4
+ 1310 0002 82B0     		sub	sp, sp, #8
+ 1311              	.LCFI5:
+ 1312              		.cfi_def_cfa_offset 16
+ 1313 0004 00AF     		add	r7, sp, #0
+ 1314              	.LCFI6:
+ 1315              		.cfi_def_cfa_register 7
+ 1316 0006 7860     		str	r0, [r7, #4]
+ 383:../SendMeasurementsToBt.c **** 	static int i = 0;
+ 384:../SendMeasurementsToBt.c **** 
+ 385:../SendMeasurementsToBt.c **** 	if(copied == 1){
+ 1317              		.loc 1 385 0
+ 1318 0008 40F20003 		movw	r3, #:lower16:copied
+ 1319 000c C0F20003 		movt	r3, #:upper16:copied
+ 1320 0010 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 1321 0012 012B     		cmp	r3, #1
+ 1322 0014 5FD1     		bne	.L26
+ 386:../SendMeasurementsToBt.c **** 		if(0 == i){
+ 1323              		.loc 1 386 0
+ 1324 0016 40F20003 		movw	r3, #:lower16:i.9042
+ 1325 001a C0F20003 		movt	r3, #:upper16:i.9042
+ 1326 001e 1B68     		ldr	r3, [r3, #0]
+ 1327 0020 002B     		cmp	r3, #0
+ 1328 0022 1AD1     		bne	.L28
+ 387:../SendMeasurementsToBt.c **** 			//send("a", strlen("a"));
+ 388:../SendMeasurementsToBt.c **** 			//send("x", strlen("x"));
+ 389:../SendMeasurementsToBt.c **** 			send(xAxisf, strlen((const char*)xAxisf));
+ 1329              		.loc 1 389 0
+ 1330 0024 40F20000 		movw	r0, #:lower16:xAxisf
+ 1331 0028 C0F20000 		movt	r0, #:upper16:xAxisf
+ 1332 002c FFF7FEFF 		bl	strlen
+ 1333 0030 0346     		mov	r3, r0
+ 1334 0032 40F20000 		movw	r0, #:lower16:xAxisf
+ 1335 0036 C0F20000 		movt	r0, #:upper16:xAxisf
+ 1336 003a 1946     		mov	r1, r3
+ 1337 003c FFF7FEFF 		bl	send
+ 390:../SendMeasurementsToBt.c **** 
+ 391:../SendMeasurementsToBt.c **** 			i++;
+ 1338              		.loc 1 391 0
+ 1339 0040 40F20003 		movw	r3, #:lower16:i.9042
+ 1340 0044 C0F20003 		movt	r3, #:upper16:i.9042
+ 1341 0048 1B68     		ldr	r3, [r3, #0]
+ 1342 004a 03F10102 		add	r2, r3, #1
+ 1343 004e 40F20003 		movw	r3, #:lower16:i.9042
+ 1344 0052 C0F20003 		movt	r3, #:upper16:i.9042
+ 1345 0056 1A60     		str	r2, [r3, #0]
+ 1346 0058 3DE0     		b	.L26
+ 1347              	.L28:
+ 392:../SendMeasurementsToBt.c **** 		}
+ 393:../SendMeasurementsToBt.c **** 		else if(1 == i)
+ 1348              		.loc 1 393 0
+ 1349 005a 40F20003 		movw	r3, #:lower16:i.9042
+ 1350 005e C0F20003 		movt	r3, #:upper16:i.9042
+ 1351 0062 1B68     		ldr	r3, [r3, #0]
+ 1352 0064 012B     		cmp	r3, #1
+ 1353 0066 1AD1     		bne	.L29
+ 394:../SendMeasurementsToBt.c **** 		{
+ 395:../SendMeasurementsToBt.c **** 			//send("a", strlen("a"));
+ 396:../SendMeasurementsToBt.c **** 			//send("y", strlen("x"));
+ 397:../SendMeasurementsToBt.c **** 
+ 398:../SendMeasurementsToBt.c **** 			send(yAxisf, strlen((const char*)yAxisf));
+ 1354              		.loc 1 398 0
+ 1355 0068 40F20000 		movw	r0, #:lower16:yAxisf
+ 1356 006c C0F20000 		movt	r0, #:upper16:yAxisf
+ 1357 0070 FFF7FEFF 		bl	strlen
+ 1358 0074 0346     		mov	r3, r0
+ 1359 0076 40F20000 		movw	r0, #:lower16:yAxisf
+ 1360 007a C0F20000 		movt	r0, #:upper16:yAxisf
+ 1361 007e 1946     		mov	r1, r3
+ 1362 0080 FFF7FEFF 		bl	send
+ 399:../SendMeasurementsToBt.c **** 
+ 400:../SendMeasurementsToBt.c **** 			i++;
+ 1363              		.loc 1 400 0
+ 1364 0084 40F20003 		movw	r3, #:lower16:i.9042
+ 1365 0088 C0F20003 		movt	r3, #:upper16:i.9042
+ 1366 008c 1B68     		ldr	r3, [r3, #0]
+ 1367 008e 03F10102 		add	r2, r3, #1
+ 1368 0092 40F20003 		movw	r3, #:lower16:i.9042
+ 1369 0096 C0F20003 		movt	r3, #:upper16:i.9042
+ 1370 009a 1A60     		str	r2, [r3, #0]
+ 1371 009c 1BE0     		b	.L26
+ 1372              	.L29:
+ 401:../SendMeasurementsToBt.c **** 		}
+ 402:../SendMeasurementsToBt.c **** 		else if(2 == i)
+ 1373              		.loc 1 402 0
+ 1374 009e 40F20003 		movw	r3, #:lower16:i.9042
+ 1375 00a2 C0F20003 		movt	r3, #:upper16:i.9042
+ 1376 00a6 1B68     		ldr	r3, [r3, #0]
+ 1377 00a8 022B     		cmp	r3, #2
+ 1378 00aa 14D1     		bne	.L26
+ 403:../SendMeasurementsToBt.c **** 		{
+ 404:../SendMeasurementsToBt.c **** 			/*send("a", strlen("a"));
+ 405:../SendMeasurementsToBt.c **** 			send("z", strlen("x"));*/
+ 406:../SendMeasurementsToBt.c **** 
+ 407:../SendMeasurementsToBt.c **** 			send(zAxisf, strlen((const char*)zAxisf));
+ 1379              		.loc 1 407 0
+ 1380 00ac 40F20000 		movw	r0, #:lower16:zAxisf
+ 1381 00b0 C0F20000 		movt	r0, #:upper16:zAxisf
+ 1382 00b4 FFF7FEFF 		bl	strlen
+ 1383 00b8 0346     		mov	r3, r0
+ 1384 00ba 40F20000 		movw	r0, #:lower16:zAxisf
+ 1385 00be C0F20000 		movt	r0, #:upper16:zAxisf
+ 1386 00c2 1946     		mov	r1, r3
+ 1387 00c4 FFF7FEFF 		bl	send
+ 408:../SendMeasurementsToBt.c **** 
+ 409:../SendMeasurementsToBt.c **** 			i = 0;
+ 1388              		.loc 1 409 0
+ 1389 00c8 40F20003 		movw	r3, #:lower16:i.9042
+ 1390 00cc C0F20003 		movt	r3, #:upper16:i.9042
+ 1391 00d0 4FF00002 		mov	r2, #0
+ 1392 00d4 1A60     		str	r2, [r3, #0]
+ 1393              	.L26:
+ 410:../SendMeasurementsToBt.c **** 		}
+ 411:../SendMeasurementsToBt.c **** 	}
+ 412:../SendMeasurementsToBt.c **** }
+ 1394              		.loc 1 412 0
+ 1395 00d6 07F10807 		add	r7, r7, #8
+ 1396 00da BD46     		mov	sp, r7
+ 1397 00dc 80BD     		pop	{r7, pc}
+ 1398              		.cfi_endproc
+ 1399              	.LFE113:
+ 1401 00de 00BF     		.section	.text.sendMsgHTU21D,"ax",%progbits
+ 1402              		.align	2
+ 1403              		.global	sendMsgHTU21D
+ 1404              		.thumb
+ 1405              		.thumb_func
+ 1407              	sendMsgHTU21D:
+ 1408              	.LFB114:
+ 413:../SendMeasurementsToBt.c **** 
+ 414:../SendMeasurementsToBt.c **** 
+ 415:../SendMeasurementsToBt.c **** void sendMsgHTU21D(void *T)
+ 416:../SendMeasurementsToBt.c **** {
+ 1409              		.loc 1 416 0
+ 1410              		.cfi_startproc
+ 1411              		@ args = 0, pretend = 0, frame = 8
+ 1412              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1413 0000 80B5     		push	{r7, lr}
+ 1414              	.LCFI7:
+ 1415              		.cfi_def_cfa_offset 8
+ 1416              		.cfi_offset 7, -8
+ 1417              		.cfi_offset 14, -4
+ 1418 0002 82B0     		sub	sp, sp, #8
+ 1419              	.LCFI8:
+ 1420              		.cfi_def_cfa_offset 16
+ 1421 0004 00AF     		add	r7, sp, #0
+ 1422              	.LCFI9:
+ 1423              		.cfi_def_cfa_register 7
+ 1424 0006 7860     		str	r0, [r7, #4]
+ 417:../SendMeasurementsToBt.c **** 	static int i = 0;
+ 418:../SendMeasurementsToBt.c **** 
+ 419:../SendMeasurementsToBt.c **** 	/*if(copied == 1)
+ 420:../SendMeasurementsToBt.c **** 	{*/
+ 421:../SendMeasurementsToBt.c **** 		send(humidity, strlen((const char*)humidity));
+ 1425              		.loc 1 421 0
+ 1426 0008 40F20000 		movw	r0, #:lower16:humidity
+ 1427 000c C0F20000 		movt	r0, #:upper16:humidity
+ 1428 0010 FFF7FEFF 		bl	strlen
+ 1429 0014 0346     		mov	r3, r0
+ 1430 0016 40F20000 		movw	r0, #:lower16:humidity
+ 1431 001a C0F20000 		movt	r0, #:upper16:humidity
+ 1432 001e 1946     		mov	r1, r3
+ 1433 0020 FFF7FEFF 		bl	send
+ 422:../SendMeasurementsToBt.c **** 	//}
+ 423:../SendMeasurementsToBt.c **** }
+ 1434              		.loc 1 423 0
+ 1435 0024 07F10807 		add	r7, r7, #8
+ 1436 0028 BD46     		mov	sp, r7
+ 1437 002a 80BD     		pop	{r7, pc}
+ 1438              		.cfi_endproc
+ 1439              	.LFE114:
+ 1441              		.section	.text.sendAllSensors,"ax",%progbits
+ 1442              		.align	2
+ 1443              		.global	sendAllSensors
+ 1444              		.thumb
+ 1445              		.thumb_func
+ 1447              	sendAllSensors:
+ 1448              	.LFB115:
+ 424:../SendMeasurementsToBt.c **** 
+ 425:../SendMeasurementsToBt.c **** 
+ 426:../SendMeasurementsToBt.c **** void sendAllSensors(void *T)
+ 427:../SendMeasurementsToBt.c **** {
+ 1449              		.loc 1 427 0
+ 1450              		.cfi_startproc
+ 1451              		@ args = 0, pretend = 0, frame = 8
+ 1452              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1453 0000 80B5     		push	{r7, lr}
+ 1454              	.LCFI10:
+ 1455              		.cfi_def_cfa_offset 8
+ 1456              		.cfi_offset 7, -8
+ 1457              		.cfi_offset 14, -4
+ 1458 0002 82B0     		sub	sp, sp, #8
+ 1459              	.LCFI11:
+ 1460              		.cfi_def_cfa_offset 16
+ 1461 0004 00AF     		add	r7, sp, #0
+ 1462              	.LCFI12:
+ 1463              		.cfi_def_cfa_register 7
+ 1464 0006 7860     		str	r0, [r7, #4]
+ 428:../SendMeasurementsToBt.c **** 	static int i = 0;
+ 429:../SendMeasurementsToBt.c **** 
+ 430:../SendMeasurementsToBt.c **** 	if(copied == 1){
+ 1465              		.loc 1 430 0
+ 1466 0008 40F20003 		movw	r3, #:lower16:copied
+ 1467 000c C0F20003 		movt	r3, #:upper16:copied
+ 1468 0010 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 1469 0012 012B     		cmp	r3, #1
+ 1470 0014 0DD1     		bne	.L31
+ 431:../SendMeasurementsToBt.c **** 		send(json_data, strlen((const char*)json_data));
+ 1471              		.loc 1 431 0
+ 1472 0016 40F20000 		movw	r0, #:lower16:json_data
+ 1473 001a C0F20000 		movt	r0, #:upper16:json_data
+ 1474 001e FFF7FEFF 		bl	strlen
+ 1475 0022 0346     		mov	r3, r0
+ 1476 0024 40F20000 		movw	r0, #:lower16:json_data
+ 1477 0028 C0F20000 		movt	r0, #:upper16:json_data
+ 1478 002c 1946     		mov	r1, r3
+ 1479 002e FFF7FEFF 		bl	send
+ 1480              	.L31:
+ 432:../SendMeasurementsToBt.c **** 		/*if(0 == i)//accelerometer BEGIN
+ 433:../SendMeasurementsToBt.c **** 		{
+ 434:../SendMeasurementsToBt.c **** 			send("a", strlen("a"));
+ 435:../SendMeasurementsToBt.c **** 			i++;
+ 436:../SendMeasurementsToBt.c **** 		}
+ 437:../SendMeasurementsToBt.c **** 		else if(1 == i){
+ 438:../SendMeasurementsToBt.c **** 			send(accX, strlen((const char*)accX));
+ 439:../SendMeasurementsToBt.c **** 
+ 440:../SendMeasurementsToBt.c **** 			i++;
+ 441:../SendMeasurementsToBt.c **** 		}
+ 442:../SendMeasurementsToBt.c **** 		else if(2 == i)
+ 443:../SendMeasurementsToBt.c **** 		{
+ 444:../SendMeasurementsToBt.c **** 			send("a", strlen("a"));
+ 445:../SendMeasurementsToBt.c **** 			i++;
+ 446:../SendMeasurementsToBt.c **** 		}
+ 447:../SendMeasurementsToBt.c **** 		else if(3 == i)
+ 448:../SendMeasurementsToBt.c **** 		{
+ 449:../SendMeasurementsToBt.c **** 			send(accY, strlen((const char*)accY));
+ 450:../SendMeasurementsToBt.c **** 
+ 451:../SendMeasurementsToBt.c **** 			i++;
+ 452:../SendMeasurementsToBt.c **** 		}
+ 453:../SendMeasurementsToBt.c **** 		else if(4 == i)
+ 454:../SendMeasurementsToBt.c **** 		{
+ 455:../SendMeasurementsToBt.c **** 			send("a", strlen("a"));
+ 456:../SendMeasurementsToBt.c **** 			i++;
+ 457:../SendMeasurementsToBt.c **** 		}
+ 458:../SendMeasurementsToBt.c **** 		else if(5 == i)
+ 459:../SendMeasurementsToBt.c **** 		{
+ 460:../SendMeasurementsToBt.c **** 			send(accZ, strlen((const char*)accZ));
+ 461:../SendMeasurementsToBt.c **** 
+ 462:../SendMeasurementsToBt.c **** 			//i = 0;
+ 463:../SendMeasurementsToBt.c **** 			i++;
+ 464:../SendMeasurementsToBt.c **** 		}//accelerometer END
+ 465:../SendMeasurementsToBt.c **** 		else if(6 == i)//gyroscope BEGIN
+ 466:../SendMeasurementsToBt.c **** 		{
+ 467:../SendMeasurementsToBt.c **** 			send("g", strlen("g"));
+ 468:../SendMeasurementsToBt.c **** 			i++;
+ 469:../SendMeasurementsToBt.c **** 		}
+ 470:../SendMeasurementsToBt.c **** 		else if(7 == i)
+ 471:../SendMeasurementsToBt.c **** 		{
+ 472:../SendMeasurementsToBt.c **** 			send(gyrX, strlen((const char*)gyrX));
+ 473:../SendMeasurementsToBt.c **** 			i++;
+ 474:../SendMeasurementsToBt.c **** 		}
+ 475:../SendMeasurementsToBt.c **** 		else if(8 == i)
+ 476:../SendMeasurementsToBt.c **** 		{
+ 477:../SendMeasurementsToBt.c **** 			send("g", strlen("g"));
+ 478:../SendMeasurementsToBt.c **** 			i++;
+ 479:../SendMeasurementsToBt.c **** 		}
+ 480:../SendMeasurementsToBt.c **** 		else if(9 == i)
+ 481:../SendMeasurementsToBt.c **** 		{
+ 482:../SendMeasurementsToBt.c **** 			send(gyrY, strlen((const char*)gyrY));
+ 483:../SendMeasurementsToBt.c **** 			i++;
+ 484:../SendMeasurementsToBt.c **** 		}
+ 485:../SendMeasurementsToBt.c **** 		else if(10 == i)
+ 486:../SendMeasurementsToBt.c **** 		{
+ 487:../SendMeasurementsToBt.c **** 			send("g", strlen("g"));
+ 488:../SendMeasurementsToBt.c **** 			i++;
+ 489:../SendMeasurementsToBt.c **** 		}
+ 490:../SendMeasurementsToBt.c **** 		else if(11 == i)
+ 491:../SendMeasurementsToBt.c **** 		{
+ 492:../SendMeasurementsToBt.c **** 			send(gyrZ, strlen((const char*)gyrZ));
+ 493:../SendMeasurementsToBt.c **** 			i++;
+ 494:../SendMeasurementsToBt.c **** 		}//gyroscope END
+ 495:../SendMeasurementsToBt.c **** 		else if(12 == i) //magnetometer BEGIN
+ 496:../SendMeasurementsToBt.c **** 		{
+ 497:../SendMeasurementsToBt.c **** 			send("m", strlen("m"));
+ 498:../SendMeasurementsToBt.c **** 			i++;
+ 499:../SendMeasurementsToBt.c **** 		}
+ 500:../SendMeasurementsToBt.c **** 		else if(13 == i)
+ 501:../SendMeasurementsToBt.c **** 		{
+ 502:../SendMeasurementsToBt.c **** 			send(magX, strlen((const char*)magX));
+ 503:../SendMeasurementsToBt.c **** 			i++;
+ 504:../SendMeasurementsToBt.c **** 		}
+ 505:../SendMeasurementsToBt.c **** 		else if(14 == i)
+ 506:../SendMeasurementsToBt.c **** 		{
+ 507:../SendMeasurementsToBt.c **** 			send("m", strlen("m"));
+ 508:../SendMeasurementsToBt.c **** 			i++;
+ 509:../SendMeasurementsToBt.c **** 		}
+ 510:../SendMeasurementsToBt.c **** 		else if(15 == i)
+ 511:../SendMeasurementsToBt.c **** 		{
+ 512:../SendMeasurementsToBt.c **** 			send(magY, strlen((const char*)magY));
+ 513:../SendMeasurementsToBt.c **** 			i++;
+ 514:../SendMeasurementsToBt.c **** 		}
+ 515:../SendMeasurementsToBt.c **** 		else if(16 == i)
+ 516:../SendMeasurementsToBt.c **** 		{
+ 517:../SendMeasurementsToBt.c **** 			send("m", strlen("m"));
+ 518:../SendMeasurementsToBt.c **** 			i++;
+ 519:../SendMeasurementsToBt.c **** 		}
+ 520:../SendMeasurementsToBt.c **** 		else if(17 == i)
+ 521:../SendMeasurementsToBt.c **** 		{
+ 522:../SendMeasurementsToBt.c **** 			send(magZ, strlen((const char*)magZ));
+ 523:../SendMeasurementsToBt.c **** 			i++;
+ 524:../SendMeasurementsToBt.c **** 		} //magnetometer END
+ 525:../SendMeasurementsToBt.c **** 		else if(18 == i)
+ 526:../SendMeasurementsToBt.c **** 		{
+ 527:../SendMeasurementsToBt.c **** 			send(json_data, strlen((const char*)json_data));
+ 528:../SendMeasurementsToBt.c **** 			i = 0;
+ 529:../SendMeasurementsToBt.c **** 		}*/
+ 530:../SendMeasurementsToBt.c **** 	}
+ 531:../SendMeasurementsToBt.c **** }
+ 1481              		.loc 1 531 0
+ 1482 0032 07F10807 		add	r7, r7, #8
+ 1483 0036 BD46     		mov	sp, r7
+ 1484 0038 80BD     		pop	{r7, pc}
+ 1485              		.cfi_endproc
+ 1486              	.LFE115:
+ 1488 003a 00BF     		.bss
+ 1489              		.align	2
+ 1490              	i.9050:
+ 1491 0004 00000000 		.space	4
+ 1492              		.align	2
+ 1493              	i.9046:
+ 1494 0008 00000000 		.space	4
+ 1495              		.align	2
+ 1496              	i.9042:
+ 1497 000c 00000000 		.space	4
+ 1498              		.align	2
+ 1499              	i.9036:
+ 1500 0010 00000000 		.space	4
+ 1501              		.text
+ 1502              	.Letext0:
+ 1503              		.file 2 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+ 1504              		.file 3 "../LSM9DS1_Types.h"
+ 1505              		.file 4 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 1506              		.file 5 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 1507              		.file 6 "../LSM9DS1_Driver.h"
+ 1508              		.file 7 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Include/core_cm4.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 SendMeasurementsToBt.c
                             *COM*:00000004 TimerId
@@ -1137,33 +2106,58 @@ DEFINED SYMBOLS
                             *COM*:00000002 mz
                             *COM*:00000002 temperature
                             *COM*:00000014 device
-C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:54     .bss:00000000 turnedOn
-C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:51     .bss:00000000 $d
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:54     .bss:00000000 turnedOn
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:51     .bss:00000000 $d
                             *COM*:0000000a xAxis
                             *COM*:0000000a yAxis
                             *COM*:0000000a zAxis
                             *COM*:0000001e xAxisf
                             *COM*:0000001e yAxisf
                             *COM*:0000001e zAxisf
+                            *COM*:00000014 accX
+                            *COM*:00000014 accY
+                            *COM*:00000014 accZ
+                            *COM*:00000014 gyrX
+                            *COM*:00000014 gyrY
+                            *COM*:00000014 gyrZ
+                            *COM*:00000014 magX
+                            *COM*:00000014 magY
+                            *COM*:00000014 magZ
+                            *COM*:0000001e humidity
+                            *COM*:0000012c json_data
                             *COM*:00000001 connectionFailure
                             *COM*:00000004 TimerIdSentMsg
                             *COM*:00000004 turnedOnSentTimer
                             *COM*:00000001 copied
                             *COM*:000004b0 copiedData
-C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:68     .rodata:00000000 $d
-C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:69     .rodata:00000000 .LC0
-C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:73     .rodata:00000008 .LC1
-C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:76     .rodata:00000010 .LC2
-C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:79     .rodata:00000018 .LC3
-C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:82     .rodata:00000020 .LC4
-C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:85     .rodata:00000028 .LC5
-C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:88     .rodata:00000034 .LC6
-C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:91     .text.sendMeasurementsToBt:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:96     .text.sendMeasurementsToBt:00000000 sendMeasurementsToBt
-C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:832    .bss:00000008 i.9006
-C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:725    .text.sendMsgLSM9DS1:00000000 sendMsgLSM9DS1
-C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:720    .text.sendMsgLSM9DS1:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:829    .bss:00000004 i.9010
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:79     .rodata:00000000 $d
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:80     .rodata:00000000 .LC0
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:84     .rodata:00000008 .LC1
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:87     .rodata:00000010 .LC2
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:90     .rodata:00000018 .LC3
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:93     .rodata:00000020 .LC4
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:96     .rodata:00000028 .LC5
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:99     .rodata:00000034 .LC6
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:102    .rodata:00000044 .LC7
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:105    .rodata:00000050 .LC8
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:108    .rodata:00000058 .LC9
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:111    .rodata:00000064 .LC10
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:114    .rodata:00000070 .LC11
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:117    .rodata:00000078 .LC12
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:120    .rodata:00000080 .LC13
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:123    .rodata:00000088 .LC14
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:129    .text.sendMeasurementsToBt:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:134    .text.sendMeasurementsToBt:00000000 sendMeasurementsToBt
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:1499   .bss:00000010 i.9036
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:1299   .text.sendMsgLSM9DS1:00000000 sendMsgLSM9DS1
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:1407   .text.sendMsgHTU21D:00000000 sendMsgHTU21D
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:1447   .text.sendAllSensors:00000000 sendAllSensors
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:1294   .text.sendMsgLSM9DS1:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:1496   .bss:0000000c i.9042
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:1402   .text.sendMsgHTU21D:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:1442   .text.sendAllSensors:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:1490   .bss:00000004 i.9050
+C:\Users\Mateusz\AppData\Local\Temp\cc1jooie.s:1493   .bss:00000008 i.9046
                      .debug_frame:00000010 $d
                            .group:00000000 wm4.1.35166846b5321d4273ad8c4248893ac3
                            .group:00000000 wm4.LSM9DS1_Driver.h.9.225085f752270af24a0df342ed7d3479
@@ -1212,6 +2206,7 @@ C:\Users\Mateusz\AppData\Local\Temp\ccQbVefc.s:829    .bss:00000004 i.9010
                            .group:00000000 wm4.stdlib.h.53.c69c7609933ff56d59c757cec2d13230
                            .group:00000000 wm4.string.h.8.ef946ad0bc9ad5c970c365dcd1fc4b0a
                            .group:00000000 wm4.string.h.86.d5c872ff52e2712c985b588a0ef39f3c
+                           .group:00000000 wm4.HTU21D.h.9.a3202084292db5996b4062a4a172049d
 
 UNDEFINED SYMBOLS
 __aeabi_f2d
@@ -1237,5 +2232,7 @@ getGyroZf
 getMagnetXf
 getMagnetYf
 getMagnetZf
+readTemperature
+readHumidity
 strlen
 send

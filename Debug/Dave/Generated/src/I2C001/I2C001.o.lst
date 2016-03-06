@@ -994,882 +994,885 @@
  557 00e4 40F20000 		movw	r0, #:lower16:I2C001_Handle1
  558 00e8 C0F20000 		movt	r0, #:upper16:I2C001_Handle1
  559 00ec FFF7FEFF 		bl	I2C001_lInit
- 434:../Dave/Generated/src/I2C001/I2C001.c ****      /* Configuration of SCL Pin 1.1 based on User configuration */
- 435:../Dave/Generated/src/I2C001/I2C001.c ****   PORT1->PDR0  &= (~(PORT1_PDR0_PD1_Msk));
+ 434:../Dave/Generated/src/I2C001/I2C001.c ****      /* Configuration of SCL Pin 0.8 based on User configuration */
+ 435:../Dave/Generated/src/I2C001/I2C001.c ****   PORT0->PDR1 &= (~(PORT0_PDR1_PD8_Msk));
  560              		.loc 1 435 0
- 561 00f0 4FF40143 		mov	r3, #33024
+ 561 00f0 4FF40043 		mov	r3, #32768
  562 00f4 C4F60203 		movt	r3, 18434
- 563 00f8 4FF40142 		mov	r2, #33024
+ 563 00f8 4FF40042 		mov	r2, #32768
  564 00fc C4F60202 		movt	r2, 18434
- 565 0100 126C     		ldr	r2, [r2, #64]
- 566 0102 22F07002 		bic	r2, r2, #112
- 567 0106 1A64     		str	r2, [r3, #64]
- 436:../Dave/Generated/src/I2C001/I2C001.c ****   PORT1->PDR0  |= (((uint32_t)0 << PORT1_PDR0_PD1_Pos) & PORT1_PDR0_PD1_Msk);       
+ 565 0100 526C     		ldr	r2, [r2, #68]
+ 566 0102 22F00702 		bic	r2, r2, #7
+ 567 0106 5A64     		str	r2, [r3, #68]
+ 436:../Dave/Generated/src/I2C001/I2C001.c ****   PORT0->PDR1 |= (((uint32_t)4 << PORT0_PDR1_PD8_Pos) & PORT0_PDR1_PD8_Msk);    
  568              		.loc 1 436 0
- 569 0108 4FF40143 		mov	r3, #33024
+ 569 0108 4FF40043 		mov	r3, #32768
  570 010c C4F60203 		movt	r3, 18434
- 571 0110 4FF40142 		mov	r2, #33024
+ 571 0110 4FF40042 		mov	r2, #32768
  572 0114 C4F60202 		movt	r2, 18434
- 573 0118 126C     		ldr	r2, [r2, #64]
- 574 011a 1A64     		str	r2, [r3, #64]
- 437:../Dave/Generated/src/I2C001/I2C001.c ****   PORT1->IOCR0 |= ((uint32_t)24 << 11);
- 575              		.loc 1 437 0
- 576 011c 4FF40143 		mov	r3, #33024
- 577 0120 C4F60203 		movt	r3, 18434
- 578 0124 4FF40142 		mov	r2, #33024
- 579 0128 C4F60202 		movt	r2, 18434
- 580 012c 1269     		ldr	r2, [r2, #16]
- 581 012e 42F44042 		orr	r2, r2, #49152
- 582 0132 1A61     		str	r2, [r3, #16]
- 438:../Dave/Generated/src/I2C001/I2C001.c ****  	 
- 439:../Dave/Generated/src/I2C001/I2C001.c ****   PORT1->OMR |= ((uint32_t)0x01 << 1);          
- 583              		.loc 1 439 0
- 584 0134 4FF40143 		mov	r3, #33024
- 585 0138 C4F60203 		movt	r3, 18434
- 586 013c 4FF40142 		mov	r2, #33024
- 587 0140 C4F60202 		movt	r2, 18434
- 588 0144 5268     		ldr	r2, [r2, #4]
- 589 0146 42F00202 		orr	r2, r2, #2
- 590 014a 5A60     		str	r2, [r3, #4]
- 440:../Dave/Generated/src/I2C001/I2C001.c ****      /* Configuration of SDA Pin 1.5 based on User configuration */
- 441:../Dave/Generated/src/I2C001/I2C001.c ****   PORT1->PDR0  &= (~(PORT1_PDR0_PD5_Msk));
- 591              		.loc 1 441 0
- 592 014c 4FF40143 		mov	r3, #33024
- 593 0150 C4F60203 		movt	r3, 18434
- 594 0154 4FF40142 		mov	r2, #33024
- 595 0158 C4F60202 		movt	r2, 18434
- 596 015c 126C     		ldr	r2, [r2, #64]
- 597 015e 22F4E002 		bic	r2, r2, #7340032
- 598 0162 1A64     		str	r2, [r3, #64]
- 442:../Dave/Generated/src/I2C001/I2C001.c ****   PORT1->PDR0  |= (((uint32_t)0 << PORT1_PDR0_PD5_Pos) & PORT1_PDR0_PD5_Msk);
- 599              		.loc 1 442 0
- 600 0164 4FF40143 		mov	r3, #33024
- 601 0168 C4F60203 		movt	r3, 18434
- 602 016c 4FF40142 		mov	r2, #33024
- 603 0170 C4F60202 		movt	r2, 18434
- 604 0174 126C     		ldr	r2, [r2, #64]
- 605 0176 1A64     		str	r2, [r3, #64]
- 443:../Dave/Generated/src/I2C001/I2C001.c ****  	
+ 573 0118 526C     		ldr	r2, [r2, #68]
+ 574 011a 42F00402 		orr	r2, r2, #4
+ 575 011e 5A64     		str	r2, [r3, #68]
+ 437:../Dave/Generated/src/I2C001/I2C001.c ****  	       
+ 438:../Dave/Generated/src/I2C001/I2C001.c ****   PORT0->IOCR8 |= ((uint32_t)16 << 3);
+ 576              		.loc 1 438 0
+ 577 0120 4FF40043 		mov	r3, #32768
+ 578 0124 C4F60203 		movt	r3, 18434
+ 579 0128 4FF40042 		mov	r2, #32768
+ 580 012c C4F60202 		movt	r2, 18434
+ 581 0130 9269     		ldr	r2, [r2, #24]
+ 582 0132 42F08002 		orr	r2, r2, #128
+ 583 0136 9A61     		str	r2, [r3, #24]
+ 439:../Dave/Generated/src/I2C001/I2C001.c ****  	 
+ 440:../Dave/Generated/src/I2C001/I2C001.c ****   PORT0->OMR |= ((uint32_t)0x01 << 8);          
+ 584              		.loc 1 440 0
+ 585 0138 4FF40043 		mov	r3, #32768
+ 586 013c C4F60203 		movt	r3, 18434
+ 587 0140 4FF40042 		mov	r2, #32768
+ 588 0144 C4F60202 		movt	r2, 18434
+ 589 0148 5268     		ldr	r2, [r2, #4]
+ 590 014a 42F48072 		orr	r2, r2, #256
+ 591 014e 5A60     		str	r2, [r3, #4]
+ 441:../Dave/Generated/src/I2C001/I2C001.c ****      /* Configuration of SDA Pin 1.5 based on User configuration */
+ 442:../Dave/Generated/src/I2C001/I2C001.c ****   PORT1->PDR0  &= (~(PORT1_PDR0_PD5_Msk));
+ 592              		.loc 1 442 0
+ 593 0150 4FF40143 		mov	r3, #33024
+ 594 0154 C4F60203 		movt	r3, 18434
+ 595 0158 4FF40142 		mov	r2, #33024
+ 596 015c C4F60202 		movt	r2, 18434
+ 597 0160 126C     		ldr	r2, [r2, #64]
+ 598 0162 22F4E002 		bic	r2, r2, #7340032
+ 599 0166 1A64     		str	r2, [r3, #64]
+ 443:../Dave/Generated/src/I2C001/I2C001.c ****   PORT1->PDR0  |= (((uint32_t)4 << PORT1_PDR0_PD5_Pos) & PORT1_PDR0_PD5_Msk);
+ 600              		.loc 1 443 0
+ 601 0168 4FF40143 		mov	r3, #33024
+ 602 016c C4F60203 		movt	r3, 18434
+ 603 0170 4FF40142 		mov	r2, #33024
+ 604 0174 C4F60202 		movt	r2, 18434
+ 605 0178 126C     		ldr	r2, [r2, #64]
+ 606 017a 42F48002 		orr	r2, r2, #4194304
+ 607 017e 1A64     		str	r2, [r3, #64]
  444:../Dave/Generated/src/I2C001/I2C001.c ****  	
- 445:../Dave/Generated/src/I2C001/I2C001.c ****   PORT1->IOCR4 |= ((uint32_t)24 << 11);
- 606              		.loc 1 445 0
- 607 0178 4FF40143 		mov	r3, #33024
- 608 017c C4F60203 		movt	r3, 18434
- 609 0180 4FF40142 		mov	r2, #33024
- 610 0184 C4F60202 		movt	r2, 18434
- 611 0188 5269     		ldr	r2, [r2, #20]
- 612 018a 42F44042 		orr	r2, r2, #49152
- 613 018e 5A61     		str	r2, [r3, #20]
- 446:../Dave/Generated/src/I2C001/I2C001.c ****  	 
- 447:../Dave/Generated/src/I2C001/I2C001.c ****   PORT1->OMR |= ((uint32_t)0x01 << 5);
- 614              		.loc 1 447 0
- 615 0190 4FF40143 		mov	r3, #33024
- 616 0194 C4F60203 		movt	r3, 18434
- 617 0198 4FF40142 		mov	r2, #33024
- 618 019c C4F60202 		movt	r2, 18434
- 619 01a0 5268     		ldr	r2, [r2, #4]
- 620 01a2 42F02002 		orr	r2, r2, #32
- 621 01a6 5A60     		str	r2, [r3, #4]
- 448:../Dave/Generated/src/I2C001/I2C001.c **** 
- 449:../Dave/Generated/src/I2C001/I2C001.c **** }
- 622              		.loc 1 449 0
- 623 01a8 80BD     		pop	{r7, pc}
- 624              		.cfi_endproc
- 625              	.LFE114:
- 627 01aa 00BF     		.section	.text.I2C001_DeInit,"ax",%progbits
- 628              		.align	2
- 629              		.global	I2C001_DeInit
- 630              		.thumb
- 631              		.thumb_func
- 633              	I2C001_DeInit:
- 634              	.LFB115:
- 450:../Dave/Generated/src/I2C001/I2C001.c ****  /* Function provide to reset the App to default values. */
- 451:../Dave/Generated/src/I2C001/I2C001.c ****  
- 452:../Dave/Generated/src/I2C001/I2C001.c **** void  I2C001_DeInit (void)
- 453:../Dave/Generated/src/I2C001/I2C001.c **** {
- 635              		.loc 1 453 0
- 636              		.cfi_startproc
- 637              		@ args = 0, pretend = 0, frame = 0
- 638              		@ frame_needed = 1, uses_anonymous_args = 0
- 639              		@ link register save eliminated.
- 640 0000 80B4     		push	{r7}
- 641              	.LCFI8:
- 642              		.cfi_def_cfa_offset 4
- 643              		.cfi_offset 7, -4
- 644 0002 00AF     		add	r7, sp, #0
- 645              	.LCFI9:
- 646              		.cfi_def_cfa_register 7
- 454:../Dave/Generated/src/I2C001/I2C001.c ****   /* <<<DD_I2C001_API_2>>>*/
- 455:../Dave/Generated/src/I2C001/I2C001.c ****   /* Redundant Api */
- 456:../Dave/Generated/src/I2C001/I2C001.c **** }
- 647              		.loc 1 456 0
- 648 0004 BD46     		mov	sp, r7
- 649 0006 80BC     		pop	{r7}
- 650 0008 7047     		bx	lr
- 651              		.cfi_endproc
- 652              	.LFE115:
- 654 000a 00BF     		.section	.text.I2C001_Configure,"ax",%progbits
- 655              		.align	2
- 656              		.global	I2C001_Configure
- 657              		.thumb
- 658              		.thumb_func
- 660              	I2C001_Configure:
- 661              	.LFB116:
- 457:../Dave/Generated/src/I2C001/I2C001.c **** 
+ 445:../Dave/Generated/src/I2C001/I2C001.c ****  	
+ 446:../Dave/Generated/src/I2C001/I2C001.c ****   PORT1->IOCR4 |= ((uint32_t)16 << 11);
+ 608              		.loc 1 446 0
+ 609 0180 4FF40143 		mov	r3, #33024
+ 610 0184 C4F60203 		movt	r3, 18434
+ 611 0188 4FF40142 		mov	r2, #33024
+ 612 018c C4F60202 		movt	r2, 18434
+ 613 0190 5269     		ldr	r2, [r2, #20]
+ 614 0192 42F40042 		orr	r2, r2, #32768
+ 615 0196 5A61     		str	r2, [r3, #20]
+ 447:../Dave/Generated/src/I2C001/I2C001.c ****  	 
+ 448:../Dave/Generated/src/I2C001/I2C001.c ****   PORT1->OMR |= ((uint32_t)0x01 << 5);
+ 616              		.loc 1 448 0
+ 617 0198 4FF40143 		mov	r3, #33024
+ 618 019c C4F60203 		movt	r3, 18434
+ 619 01a0 4FF40142 		mov	r2, #33024
+ 620 01a4 C4F60202 		movt	r2, 18434
+ 621 01a8 5268     		ldr	r2, [r2, #4]
+ 622 01aa 42F02002 		orr	r2, r2, #32
+ 623 01ae 5A60     		str	r2, [r3, #4]
+ 449:../Dave/Generated/src/I2C001/I2C001.c **** 
+ 450:../Dave/Generated/src/I2C001/I2C001.c **** }
+ 624              		.loc 1 450 0
+ 625 01b0 80BD     		pop	{r7, pc}
+ 626              		.cfi_endproc
+ 627              	.LFE114:
+ 629 01b2 00BF     		.section	.text.I2C001_DeInit,"ax",%progbits
+ 630              		.align	2
+ 631              		.global	I2C001_DeInit
+ 632              		.thumb
+ 633              		.thumb_func
+ 635              	I2C001_DeInit:
+ 636              	.LFB115:
+ 451:../Dave/Generated/src/I2C001/I2C001.c ****  /* Function provide to reset the App to default values. */
+ 452:../Dave/Generated/src/I2C001/I2C001.c ****  
+ 453:../Dave/Generated/src/I2C001/I2C001.c **** void  I2C001_DeInit (void)
+ 454:../Dave/Generated/src/I2C001/I2C001.c **** {
+ 637              		.loc 1 454 0
+ 638              		.cfi_startproc
+ 639              		@ args = 0, pretend = 0, frame = 0
+ 640              		@ frame_needed = 1, uses_anonymous_args = 0
+ 641              		@ link register save eliminated.
+ 642 0000 80B4     		push	{r7}
+ 643              	.LCFI8:
+ 644              		.cfi_def_cfa_offset 4
+ 645              		.cfi_offset 7, -4
+ 646 0002 00AF     		add	r7, sp, #0
+ 647              	.LCFI9:
+ 648              		.cfi_def_cfa_register 7
+ 455:../Dave/Generated/src/I2C001/I2C001.c ****   /* <<<DD_I2C001_API_2>>>*/
+ 456:../Dave/Generated/src/I2C001/I2C001.c ****   /* Redundant Api */
+ 457:../Dave/Generated/src/I2C001/I2C001.c **** }
+ 649              		.loc 1 457 0
+ 650 0004 BD46     		mov	sp, r7
+ 651 0006 80BC     		pop	{r7}
+ 652 0008 7047     		bx	lr
+ 653              		.cfi_endproc
+ 654              	.LFE115:
+ 656 000a 00BF     		.section	.text.I2C001_Configure,"ax",%progbits
+ 657              		.align	2
+ 658              		.global	I2C001_Configure
+ 659              		.thumb
+ 660              		.thumb_func
+ 662              	I2C001_Configure:
+ 663              	.LFB116:
  458:../Dave/Generated/src/I2C001/I2C001.c **** 
- 459:../Dave/Generated/src/I2C001/I2C001.c **** /* Function which allows changing of bitrate at run time.*/
- 460:../Dave/Generated/src/I2C001/I2C001.c **** status_t  I2C001_Configure(const I2C001Handle_type* I2CHandle,uint32_t BitRate)
- 461:../Dave/Generated/src/I2C001/I2C001.c **** {
- 662              		.loc 1 461 0
- 663              		.cfi_startproc
- 664              		@ args = 0, pretend = 0, frame = 24
- 665              		@ frame_needed = 1, uses_anonymous_args = 0
- 666 0000 80B5     		push	{r7, lr}
- 667              	.LCFI10:
- 668              		.cfi_def_cfa_offset 8
- 669              		.cfi_offset 7, -8
- 670              		.cfi_offset 14, -4
- 671 0002 86B0     		sub	sp, sp, #24
- 672              	.LCFI11:
- 673              		.cfi_def_cfa_offset 32
- 674 0004 00AF     		add	r7, sp, #0
- 675              	.LCFI12:
- 676              		.cfi_def_cfa_register 7
- 677 0006 7860     		str	r0, [r7, #4]
- 678 0008 3960     		str	r1, [r7, #0]
- 462:../Dave/Generated/src/I2C001/I2C001.c ****   uint32_t Brg_PDivValue = 0x00U;
- 679              		.loc 1 462 0
- 680 000a 4FF00003 		mov	r3, #0
- 681 000e FB60     		str	r3, [r7, #12]
- 463:../Dave/Generated/src/I2C001/I2C001.c ****   uint32_t Fdr_StepValue = 0x00U;
- 682              		.loc 1 463 0
- 683 0010 4FF00003 		mov	r3, #0
- 684 0014 BB60     		str	r3, [r7, #8]
- 464:../Dave/Generated/src/I2C001/I2C001.c ****   USIC_CH_TypeDef* I2CRegs = I2CHandle->I2CRegs;
- 685              		.loc 1 464 0
- 686 0016 7B68     		ldr	r3, [r7, #4]
- 687 0018 5B68     		ldr	r3, [r3, #4]
- 688 001a 7B61     		str	r3, [r7, #20]
- 465:../Dave/Generated/src/I2C001/I2C001.c ****   status_t Status = (status_t)I2C001_FAIL; 
- 689              		.loc 1 465 0
- 690 001c 4FF00403 		mov	r3, #4
- 691 0020 3B61     		str	r3, [r7, #16]
- 466:../Dave/Generated/src/I2C001/I2C001.c ****  
- 467:../Dave/Generated/src/I2C001/I2C001.c ****   /* <<<DD_I2C001_API_3>>>*/    
- 468:../Dave/Generated/src/I2C001/I2C001.c ****   /* Disable I2C mode before configuring all USIC registers to avoid unintended edges */ 
- 469:../Dave/Generated/src/I2C001/I2C001.c ****   I2CRegs->CCR &= ~( ((uint32_t)(I2C_ENABLE  & USIC_CH_CCR_MODE_Msk)));
- 692              		.loc 1 469 0
- 693 0022 7B69     		ldr	r3, [r7, #20]
- 694 0024 1B6C     		ldr	r3, [r3, #64]
- 695 0026 23F00402 		bic	r2, r3, #4
- 696 002a 7B69     		ldr	r3, [r7, #20]
- 697 002c 1A64     		str	r2, [r3, #64]
- 470:../Dave/Generated/src/I2C001/I2C001.c **** 
- 471:../Dave/Generated/src/I2C001/I2C001.c ****   /* Configuration of USIC Channel Fractional Divider */
- 472:../Dave/Generated/src/I2C001/I2C001.c ****   /* Get the optimum PDIV and STEP value for the given bitrate */
- 473:../Dave/Generated/src/I2C001/I2C001.c ****   I2C001_lConfigureBitRate(BitRate,&Brg_PDivValue,&Fdr_StepValue);    
- 698              		.loc 1 473 0
- 699 002e 07F10C02 		add	r2, r7, #12
- 700 0032 07F10803 		add	r3, r7, #8
- 701 0036 3868     		ldr	r0, [r7, #0]
- 702 0038 1146     		mov	r1, r2
- 703 003a 1A46     		mov	r2, r3
- 704 003c FFF7FEFF 		bl	I2C001_lConfigureBitRate
- 474:../Dave/Generated/src/I2C001/I2C001.c ****       
- 475:../Dave/Generated/src/I2C001/I2C001.c ****   /* Fractional divider mode selected */
- 476:../Dave/Generated/src/I2C001/I2C001.c ****   I2CRegs->FDR &= ~(USIC_CH_FDR_STEP_Msk);
- 705              		.loc 1 476 0
- 706 0040 7B69     		ldr	r3, [r7, #20]
- 707 0042 1B69     		ldr	r3, [r3, #16]
- 708 0044 23F47F73 		bic	r3, r3, #1020
- 709 0048 23F00303 		bic	r3, r3, #3
- 710 004c 7A69     		ldr	r2, [r7, #20]
- 711 004e 1361     		str	r3, [r2, #16]
- 477:../Dave/Generated/src/I2C001/I2C001.c ****   I2CRegs->FDR |= (Fdr_StepValue & USIC_CH_FDR_STEP_Msk);
- 712              		.loc 1 477 0
- 713 0050 7B69     		ldr	r3, [r7, #20]
- 714 0052 1A69     		ldr	r2, [r3, #16]
- 715 0054 BB68     		ldr	r3, [r7, #8]
- 716 0056 4FEA8353 		lsl	r3, r3, #22
- 717 005a 4FEA9353 		lsr	r3, r3, #22
- 718 005e 1A43     		orrs	r2, r2, r3
- 719 0060 7B69     		ldr	r3, [r7, #20]
- 720 0062 1A61     		str	r2, [r3, #16]
- 478:../Dave/Generated/src/I2C001/I2C001.c ****               
- 479:../Dave/Generated/src/I2C001/I2C001.c ****   /* Configure BitRate */
- 480:../Dave/Generated/src/I2C001/I2C001.c ****   I2CRegs->BRG &= ~(USIC_CH_BRG_PDIV_Msk | USIC_CH_BRG_DCTQ_Msk | \
- 721              		.loc 1 480 0
- 722 0064 7B69     		ldr	r3, [r7, #20]
- 723 0066 5A69     		ldr	r2, [r3, #20]
- 724 0068 48F2FF03 		movw	r3, #33023
- 725 006c CFF60043 		movt	r3, 64512
- 726 0070 1340     		ands	r3, r3, r2
- 727 0072 7A69     		ldr	r2, [r7, #20]
- 728 0074 5361     		str	r3, [r2, #20]
- 481:../Dave/Generated/src/I2C001/I2C001.c **** 	                    USIC_CH_BRG_PCTQ_Msk);
- 482:../Dave/Generated/src/I2C001/I2C001.c ****     		                           
- 483:../Dave/Generated/src/I2C001/I2C001.c ****   if(BitRate <= I2C001_BITRATE)
- 729              		.loc 1 483 0
- 730 0076 3B68     		ldr	r3, [r7, #0]
- 731 0078 642B     		cmp	r3, #100
- 732 007a 0FD8     		bhi	.L39
- 484:../Dave/Generated/src/I2C001/I2C001.c ****   {  
- 485:../Dave/Generated/src/I2C001/I2C001.c ****      /* The PreDivider for CTQ, PCTQ = 0  */
- 486:../Dave/Generated/src/I2C001/I2C001.c ****      /* The Denominator for CTQ, DCTQ = 9 */
- 487:../Dave/Generated/src/I2C001/I2C001.c ****      I2CRegs->BRG |= ((I2C_DCTQ1_VALUE <<  USIC_CH_BRG_DCTQ_Pos) | \
- 733              		.loc 1 487 0
- 734 007c 7B69     		ldr	r3, [r7, #20]
- 735 007e 5A69     		ldr	r2, [r3, #20]
- 488:../Dave/Generated/src/I2C001/I2C001.c ****       (((uint32_t)Brg_PDivValue  <<  USIC_CH_BRG_PDIV_Pos) & \
- 736              		.loc 1 488 0
- 737 0080 FB68     		ldr	r3, [r7, #12]
- 738 0082 4FEA0341 		lsl	r1, r3, #16
- 739 0086 4FF00003 		mov	r3, #0
- 740 008a C0F2FF33 		movt	r3, 1023
- 741 008e 0B40     		ands	r3, r3, r1
- 487:../Dave/Generated/src/I2C001/I2C001.c ****      I2CRegs->BRG |= ((I2C_DCTQ1_VALUE <<  USIC_CH_BRG_DCTQ_Pos) | \
- 742              		.loc 1 487 0
- 743 0090 1343     		orrs	r3, r3, r2
- 744 0092 43F41052 		orr	r2, r3, #9216
- 745 0096 7B69     		ldr	r3, [r7, #20]
- 746 0098 5A61     		str	r2, [r3, #20]
- 747 009a 0EE0     		b	.L40
- 748              	.L39:
- 489:../Dave/Generated/src/I2C001/I2C001.c ****        USIC_CH_BRG_PDIV_Msk)); 
- 490:../Dave/Generated/src/I2C001/I2C001.c ****   }
- 491:../Dave/Generated/src/I2C001/I2C001.c ****   else
- 492:../Dave/Generated/src/I2C001/I2C001.c ****   {
- 493:../Dave/Generated/src/I2C001/I2C001.c ****      /* The PreDivider for CTQ, PCTQ = 0  */
- 494:../Dave/Generated/src/I2C001/I2C001.c ****      /* The Denominator for CTQ, DCTQ = 24 */
- 495:../Dave/Generated/src/I2C001/I2C001.c ****      I2CRegs->BRG |= ((I2C_DCTQ2_VALUE <<  USIC_CH_BRG_DCTQ_Pos) | \
- 749              		.loc 1 495 0
- 750 009c 7B69     		ldr	r3, [r7, #20]
- 751 009e 5A69     		ldr	r2, [r3, #20]
- 496:../Dave/Generated/src/I2C001/I2C001.c ****       (((uint32_t)Brg_PDivValue  <<  USIC_CH_BRG_PDIV_Pos) & \
- 752              		.loc 1 496 0
- 753 00a0 FB68     		ldr	r3, [r7, #12]
- 754 00a2 4FEA0341 		lsl	r1, r3, #16
- 755 00a6 4FF00003 		mov	r3, #0
- 756 00aa C0F2FF33 		movt	r3, 1023
- 757 00ae 0B40     		ands	r3, r3, r1
- 495:../Dave/Generated/src/I2C001/I2C001.c ****      I2CRegs->BRG |= ((I2C_DCTQ2_VALUE <<  USIC_CH_BRG_DCTQ_Pos) | \
- 758              		.loc 1 495 0
- 759 00b0 1343     		orrs	r3, r3, r2
- 760 00b2 43F4C042 		orr	r2, r3, #24576
- 761 00b6 7B69     		ldr	r3, [r7, #20]
- 762 00b8 5A61     		str	r2, [r3, #20]
- 763              	.L40:
- 497:../Dave/Generated/src/I2C001/I2C001.c ****         USIC_CH_BRG_PDIV_Msk));
- 498:../Dave/Generated/src/I2C001/I2C001.c ****   }
- 499:../Dave/Generated/src/I2C001/I2C001.c ****       	 
- 500:../Dave/Generated/src/I2C001/I2C001.c ****   I2CRegs->PCR_IICMode &= ~(USIC_CH_PCR_IICMode_STIM_Msk);    
- 764              		.loc 1 500 0
- 765 00ba 7B69     		ldr	r3, [r7, #20]
- 766 00bc DB6B     		ldr	r3, [r3, #60]
- 767 00be 23F40032 		bic	r2, r3, #131072
- 768 00c2 7B69     		ldr	r3, [r7, #20]
- 769 00c4 DA63     		str	r2, [r3, #60]
- 501:../Dave/Generated/src/I2C001/I2C001.c ****   /* Configuration of Protocol Control Register */ 
- 502:../Dave/Generated/src/I2C001/I2C001.c ****   if(BitRate <= I2C001_BITRATE)
- 770              		.loc 1 502 0
- 771 00c6 3B68     		ldr	r3, [r7, #0]
- 772 00c8 642B     		cmp	r3, #100
- 773 00ca 04D8     		bhi	.L41
- 503:../Dave/Generated/src/I2C001/I2C001.c ****   {
- 504:../Dave/Generated/src/I2C001/I2C001.c ****      /* Symbol timing = 10 time quanta */
- 505:../Dave/Generated/src/I2C001/I2C001.c ****      I2CRegs->PCR_IICMode |= \
- 774              		.loc 1 505 0
- 775 00cc 7B69     		ldr	r3, [r7, #20]
- 776 00ce DA6B     		ldr	r2, [r3, #60]
- 777 00d0 7B69     		ldr	r3, [r7, #20]
- 778 00d2 DA63     		str	r2, [r3, #60]
- 779 00d4 05E0     		b	.L42
- 780              	.L41:
- 506:../Dave/Generated/src/I2C001/I2C001.c ****               (((((uint32_t)0x0 << USIC_CH_PCR_IICMode_STIM_Pos)) & \
- 507:../Dave/Generated/src/I2C001/I2C001.c ****                                             USIC_CH_PCR_IICMode_STIM_Msk)); 
- 508:../Dave/Generated/src/I2C001/I2C001.c ****   }
- 509:../Dave/Generated/src/I2C001/I2C001.c ****   else
- 510:../Dave/Generated/src/I2C001/I2C001.c ****   {
- 511:../Dave/Generated/src/I2C001/I2C001.c ****      /* Symbol timing = 25 time quanta */
- 512:../Dave/Generated/src/I2C001/I2C001.c ****      I2CRegs->PCR_IICMode |= \
- 781              		.loc 1 512 0
- 782 00d6 7B69     		ldr	r3, [r7, #20]
- 783 00d8 DB6B     		ldr	r3, [r3, #60]
- 784 00da 43F40032 		orr	r2, r3, #131072
- 785 00de 7B69     		ldr	r3, [r7, #20]
- 786 00e0 DA63     		str	r2, [r3, #60]
- 787              	.L42:
- 513:../Dave/Generated/src/I2C001/I2C001.c ****                  (((((uint32_t)0x1 << USIC_CH_PCR_IICMode_STIM_Pos)) & \
- 514:../Dave/Generated/src/I2C001/I2C001.c ****                                              USIC_CH_PCR_IICMode_STIM_Msk));  
- 515:../Dave/Generated/src/I2C001/I2C001.c ****   }
- 516:../Dave/Generated/src/I2C001/I2C001.c ****       	                            
- 517:../Dave/Generated/src/I2C001/I2C001.c ****   Status = (status_t)DAVEApp_SUCCESS;
- 788              		.loc 1 517 0
- 789 00e2 4FF00003 		mov	r3, #0
- 790 00e6 3B61     		str	r3, [r7, #16]
- 518:../Dave/Generated/src/I2C001/I2C001.c ****   /* Enable I2C mode */
- 519:../Dave/Generated/src/I2C001/I2C001.c ****   I2CRegs->CCR |= ((I2C_ENABLE) & USIC_CH_CCR_MODE_Msk);
- 791              		.loc 1 519 0
- 792 00e8 7B69     		ldr	r3, [r7, #20]
- 793 00ea 1B6C     		ldr	r3, [r3, #64]
- 794 00ec 43F00402 		orr	r2, r3, #4
- 795 00f0 7B69     		ldr	r3, [r7, #20]
- 796 00f2 1A64     		str	r2, [r3, #64]
- 520:../Dave/Generated/src/I2C001/I2C001.c ****   
- 521:../Dave/Generated/src/I2C001/I2C001.c ****   return Status;
- 797              		.loc 1 521 0
- 798 00f4 3B69     		ldr	r3, [r7, #16]
- 522:../Dave/Generated/src/I2C001/I2C001.c **** }
+ 459:../Dave/Generated/src/I2C001/I2C001.c **** 
+ 460:../Dave/Generated/src/I2C001/I2C001.c **** /* Function which allows changing of bitrate at run time.*/
+ 461:../Dave/Generated/src/I2C001/I2C001.c **** status_t  I2C001_Configure(const I2C001Handle_type* I2CHandle,uint32_t BitRate)
+ 462:../Dave/Generated/src/I2C001/I2C001.c **** {
+ 664              		.loc 1 462 0
+ 665              		.cfi_startproc
+ 666              		@ args = 0, pretend = 0, frame = 24
+ 667              		@ frame_needed = 1, uses_anonymous_args = 0
+ 668 0000 80B5     		push	{r7, lr}
+ 669              	.LCFI10:
+ 670              		.cfi_def_cfa_offset 8
+ 671              		.cfi_offset 7, -8
+ 672              		.cfi_offset 14, -4
+ 673 0002 86B0     		sub	sp, sp, #24
+ 674              	.LCFI11:
+ 675              		.cfi_def_cfa_offset 32
+ 676 0004 00AF     		add	r7, sp, #0
+ 677              	.LCFI12:
+ 678              		.cfi_def_cfa_register 7
+ 679 0006 7860     		str	r0, [r7, #4]
+ 680 0008 3960     		str	r1, [r7, #0]
+ 463:../Dave/Generated/src/I2C001/I2C001.c ****   uint32_t Brg_PDivValue = 0x00U;
+ 681              		.loc 1 463 0
+ 682 000a 4FF00003 		mov	r3, #0
+ 683 000e FB60     		str	r3, [r7, #12]
+ 464:../Dave/Generated/src/I2C001/I2C001.c ****   uint32_t Fdr_StepValue = 0x00U;
+ 684              		.loc 1 464 0
+ 685 0010 4FF00003 		mov	r3, #0
+ 686 0014 BB60     		str	r3, [r7, #8]
+ 465:../Dave/Generated/src/I2C001/I2C001.c ****   USIC_CH_TypeDef* I2CRegs = I2CHandle->I2CRegs;
+ 687              		.loc 1 465 0
+ 688 0016 7B68     		ldr	r3, [r7, #4]
+ 689 0018 5B68     		ldr	r3, [r3, #4]
+ 690 001a 7B61     		str	r3, [r7, #20]
+ 466:../Dave/Generated/src/I2C001/I2C001.c ****   status_t Status = (status_t)I2C001_FAIL; 
+ 691              		.loc 1 466 0
+ 692 001c 4FF00403 		mov	r3, #4
+ 693 0020 3B61     		str	r3, [r7, #16]
+ 467:../Dave/Generated/src/I2C001/I2C001.c ****  
+ 468:../Dave/Generated/src/I2C001/I2C001.c ****   /* <<<DD_I2C001_API_3>>>*/    
+ 469:../Dave/Generated/src/I2C001/I2C001.c ****   /* Disable I2C mode before configuring all USIC registers to avoid unintended edges */ 
+ 470:../Dave/Generated/src/I2C001/I2C001.c ****   I2CRegs->CCR &= ~( ((uint32_t)(I2C_ENABLE  & USIC_CH_CCR_MODE_Msk)));
+ 694              		.loc 1 470 0
+ 695 0022 7B69     		ldr	r3, [r7, #20]
+ 696 0024 1B6C     		ldr	r3, [r3, #64]
+ 697 0026 23F00402 		bic	r2, r3, #4
+ 698 002a 7B69     		ldr	r3, [r7, #20]
+ 699 002c 1A64     		str	r2, [r3, #64]
+ 471:../Dave/Generated/src/I2C001/I2C001.c **** 
+ 472:../Dave/Generated/src/I2C001/I2C001.c ****   /* Configuration of USIC Channel Fractional Divider */
+ 473:../Dave/Generated/src/I2C001/I2C001.c ****   /* Get the optimum PDIV and STEP value for the given bitrate */
+ 474:../Dave/Generated/src/I2C001/I2C001.c ****   I2C001_lConfigureBitRate(BitRate,&Brg_PDivValue,&Fdr_StepValue);    
+ 700              		.loc 1 474 0
+ 701 002e 07F10C02 		add	r2, r7, #12
+ 702 0032 07F10803 		add	r3, r7, #8
+ 703 0036 3868     		ldr	r0, [r7, #0]
+ 704 0038 1146     		mov	r1, r2
+ 705 003a 1A46     		mov	r2, r3
+ 706 003c FFF7FEFF 		bl	I2C001_lConfigureBitRate
+ 475:../Dave/Generated/src/I2C001/I2C001.c ****       
+ 476:../Dave/Generated/src/I2C001/I2C001.c ****   /* Fractional divider mode selected */
+ 477:../Dave/Generated/src/I2C001/I2C001.c ****   I2CRegs->FDR &= ~(USIC_CH_FDR_STEP_Msk);
+ 707              		.loc 1 477 0
+ 708 0040 7B69     		ldr	r3, [r7, #20]
+ 709 0042 1B69     		ldr	r3, [r3, #16]
+ 710 0044 23F47F73 		bic	r3, r3, #1020
+ 711 0048 23F00303 		bic	r3, r3, #3
+ 712 004c 7A69     		ldr	r2, [r7, #20]
+ 713 004e 1361     		str	r3, [r2, #16]
+ 478:../Dave/Generated/src/I2C001/I2C001.c ****   I2CRegs->FDR |= (Fdr_StepValue & USIC_CH_FDR_STEP_Msk);
+ 714              		.loc 1 478 0
+ 715 0050 7B69     		ldr	r3, [r7, #20]
+ 716 0052 1A69     		ldr	r2, [r3, #16]
+ 717 0054 BB68     		ldr	r3, [r7, #8]
+ 718 0056 4FEA8353 		lsl	r3, r3, #22
+ 719 005a 4FEA9353 		lsr	r3, r3, #22
+ 720 005e 1A43     		orrs	r2, r2, r3
+ 721 0060 7B69     		ldr	r3, [r7, #20]
+ 722 0062 1A61     		str	r2, [r3, #16]
+ 479:../Dave/Generated/src/I2C001/I2C001.c ****               
+ 480:../Dave/Generated/src/I2C001/I2C001.c ****   /* Configure BitRate */
+ 481:../Dave/Generated/src/I2C001/I2C001.c ****   I2CRegs->BRG &= ~(USIC_CH_BRG_PDIV_Msk | USIC_CH_BRG_DCTQ_Msk | \
+ 723              		.loc 1 481 0
+ 724 0064 7B69     		ldr	r3, [r7, #20]
+ 725 0066 5A69     		ldr	r2, [r3, #20]
+ 726 0068 48F2FF03 		movw	r3, #33023
+ 727 006c CFF60043 		movt	r3, 64512
+ 728 0070 1340     		ands	r3, r3, r2
+ 729 0072 7A69     		ldr	r2, [r7, #20]
+ 730 0074 5361     		str	r3, [r2, #20]
+ 482:../Dave/Generated/src/I2C001/I2C001.c **** 	                    USIC_CH_BRG_PCTQ_Msk);
+ 483:../Dave/Generated/src/I2C001/I2C001.c ****     		                           
+ 484:../Dave/Generated/src/I2C001/I2C001.c ****   if(BitRate <= I2C001_BITRATE)
+ 731              		.loc 1 484 0
+ 732 0076 3B68     		ldr	r3, [r7, #0]
+ 733 0078 642B     		cmp	r3, #100
+ 734 007a 0FD8     		bhi	.L39
+ 485:../Dave/Generated/src/I2C001/I2C001.c ****   {  
+ 486:../Dave/Generated/src/I2C001/I2C001.c ****      /* The PreDivider for CTQ, PCTQ = 0  */
+ 487:../Dave/Generated/src/I2C001/I2C001.c ****      /* The Denominator for CTQ, DCTQ = 9 */
+ 488:../Dave/Generated/src/I2C001/I2C001.c ****      I2CRegs->BRG |= ((I2C_DCTQ1_VALUE <<  USIC_CH_BRG_DCTQ_Pos) | \
+ 735              		.loc 1 488 0
+ 736 007c 7B69     		ldr	r3, [r7, #20]
+ 737 007e 5A69     		ldr	r2, [r3, #20]
+ 489:../Dave/Generated/src/I2C001/I2C001.c ****       (((uint32_t)Brg_PDivValue  <<  USIC_CH_BRG_PDIV_Pos) & \
+ 738              		.loc 1 489 0
+ 739 0080 FB68     		ldr	r3, [r7, #12]
+ 740 0082 4FEA0341 		lsl	r1, r3, #16
+ 741 0086 4FF00003 		mov	r3, #0
+ 742 008a C0F2FF33 		movt	r3, 1023
+ 743 008e 0B40     		ands	r3, r3, r1
+ 488:../Dave/Generated/src/I2C001/I2C001.c ****      I2CRegs->BRG |= ((I2C_DCTQ1_VALUE <<  USIC_CH_BRG_DCTQ_Pos) | \
+ 744              		.loc 1 488 0
+ 745 0090 1343     		orrs	r3, r3, r2
+ 746 0092 43F41052 		orr	r2, r3, #9216
+ 747 0096 7B69     		ldr	r3, [r7, #20]
+ 748 0098 5A61     		str	r2, [r3, #20]
+ 749 009a 0EE0     		b	.L40
+ 750              	.L39:
+ 490:../Dave/Generated/src/I2C001/I2C001.c ****        USIC_CH_BRG_PDIV_Msk)); 
+ 491:../Dave/Generated/src/I2C001/I2C001.c ****   }
+ 492:../Dave/Generated/src/I2C001/I2C001.c ****   else
+ 493:../Dave/Generated/src/I2C001/I2C001.c ****   {
+ 494:../Dave/Generated/src/I2C001/I2C001.c ****      /* The PreDivider for CTQ, PCTQ = 0  */
+ 495:../Dave/Generated/src/I2C001/I2C001.c ****      /* The Denominator for CTQ, DCTQ = 24 */
+ 496:../Dave/Generated/src/I2C001/I2C001.c ****      I2CRegs->BRG |= ((I2C_DCTQ2_VALUE <<  USIC_CH_BRG_DCTQ_Pos) | \
+ 751              		.loc 1 496 0
+ 752 009c 7B69     		ldr	r3, [r7, #20]
+ 753 009e 5A69     		ldr	r2, [r3, #20]
+ 497:../Dave/Generated/src/I2C001/I2C001.c ****       (((uint32_t)Brg_PDivValue  <<  USIC_CH_BRG_PDIV_Pos) & \
+ 754              		.loc 1 497 0
+ 755 00a0 FB68     		ldr	r3, [r7, #12]
+ 756 00a2 4FEA0341 		lsl	r1, r3, #16
+ 757 00a6 4FF00003 		mov	r3, #0
+ 758 00aa C0F2FF33 		movt	r3, 1023
+ 759 00ae 0B40     		ands	r3, r3, r1
+ 496:../Dave/Generated/src/I2C001/I2C001.c ****      I2CRegs->BRG |= ((I2C_DCTQ2_VALUE <<  USIC_CH_BRG_DCTQ_Pos) | \
+ 760              		.loc 1 496 0
+ 761 00b0 1343     		orrs	r3, r3, r2
+ 762 00b2 43F4C042 		orr	r2, r3, #24576
+ 763 00b6 7B69     		ldr	r3, [r7, #20]
+ 764 00b8 5A61     		str	r2, [r3, #20]
+ 765              	.L40:
+ 498:../Dave/Generated/src/I2C001/I2C001.c ****         USIC_CH_BRG_PDIV_Msk));
+ 499:../Dave/Generated/src/I2C001/I2C001.c ****   }
+ 500:../Dave/Generated/src/I2C001/I2C001.c ****       	 
+ 501:../Dave/Generated/src/I2C001/I2C001.c ****   I2CRegs->PCR_IICMode &= ~(USIC_CH_PCR_IICMode_STIM_Msk);    
+ 766              		.loc 1 501 0
+ 767 00ba 7B69     		ldr	r3, [r7, #20]
+ 768 00bc DB6B     		ldr	r3, [r3, #60]
+ 769 00be 23F40032 		bic	r2, r3, #131072
+ 770 00c2 7B69     		ldr	r3, [r7, #20]
+ 771 00c4 DA63     		str	r2, [r3, #60]
+ 502:../Dave/Generated/src/I2C001/I2C001.c ****   /* Configuration of Protocol Control Register */ 
+ 503:../Dave/Generated/src/I2C001/I2C001.c ****   if(BitRate <= I2C001_BITRATE)
+ 772              		.loc 1 503 0
+ 773 00c6 3B68     		ldr	r3, [r7, #0]
+ 774 00c8 642B     		cmp	r3, #100
+ 775 00ca 04D8     		bhi	.L41
+ 504:../Dave/Generated/src/I2C001/I2C001.c ****   {
+ 505:../Dave/Generated/src/I2C001/I2C001.c ****      /* Symbol timing = 10 time quanta */
+ 506:../Dave/Generated/src/I2C001/I2C001.c ****      I2CRegs->PCR_IICMode |= \
+ 776              		.loc 1 506 0
+ 777 00cc 7B69     		ldr	r3, [r7, #20]
+ 778 00ce DA6B     		ldr	r2, [r3, #60]
+ 779 00d0 7B69     		ldr	r3, [r7, #20]
+ 780 00d2 DA63     		str	r2, [r3, #60]
+ 781 00d4 05E0     		b	.L42
+ 782              	.L41:
+ 507:../Dave/Generated/src/I2C001/I2C001.c ****               (((((uint32_t)0x0 << USIC_CH_PCR_IICMode_STIM_Pos)) & \
+ 508:../Dave/Generated/src/I2C001/I2C001.c ****                                             USIC_CH_PCR_IICMode_STIM_Msk)); 
+ 509:../Dave/Generated/src/I2C001/I2C001.c ****   }
+ 510:../Dave/Generated/src/I2C001/I2C001.c ****   else
+ 511:../Dave/Generated/src/I2C001/I2C001.c ****   {
+ 512:../Dave/Generated/src/I2C001/I2C001.c ****      /* Symbol timing = 25 time quanta */
+ 513:../Dave/Generated/src/I2C001/I2C001.c ****      I2CRegs->PCR_IICMode |= \
+ 783              		.loc 1 513 0
+ 784 00d6 7B69     		ldr	r3, [r7, #20]
+ 785 00d8 DB6B     		ldr	r3, [r3, #60]
+ 786 00da 43F40032 		orr	r2, r3, #131072
+ 787 00de 7B69     		ldr	r3, [r7, #20]
+ 788 00e0 DA63     		str	r2, [r3, #60]
+ 789              	.L42:
+ 514:../Dave/Generated/src/I2C001/I2C001.c ****                  (((((uint32_t)0x1 << USIC_CH_PCR_IICMode_STIM_Pos)) & \
+ 515:../Dave/Generated/src/I2C001/I2C001.c ****                                              USIC_CH_PCR_IICMode_STIM_Msk));  
+ 516:../Dave/Generated/src/I2C001/I2C001.c ****   }
+ 517:../Dave/Generated/src/I2C001/I2C001.c ****       	                            
+ 518:../Dave/Generated/src/I2C001/I2C001.c ****   Status = (status_t)DAVEApp_SUCCESS;
+ 790              		.loc 1 518 0
+ 791 00e2 4FF00003 		mov	r3, #0
+ 792 00e6 3B61     		str	r3, [r7, #16]
+ 519:../Dave/Generated/src/I2C001/I2C001.c ****   /* Enable I2C mode */
+ 520:../Dave/Generated/src/I2C001/I2C001.c ****   I2CRegs->CCR |= ((I2C_ENABLE) & USIC_CH_CCR_MODE_Msk);
+ 793              		.loc 1 520 0
+ 794 00e8 7B69     		ldr	r3, [r7, #20]
+ 795 00ea 1B6C     		ldr	r3, [r3, #64]
+ 796 00ec 43F00402 		orr	r2, r3, #4
+ 797 00f0 7B69     		ldr	r3, [r7, #20]
+ 798 00f2 1A64     		str	r2, [r3, #64]
+ 521:../Dave/Generated/src/I2C001/I2C001.c ****   
+ 522:../Dave/Generated/src/I2C001/I2C001.c ****   return Status;
  799              		.loc 1 522 0
- 800 00f6 1846     		mov	r0, r3
- 801 00f8 07F11807 		add	r7, r7, #24
- 802 00fc BD46     		mov	sp, r7
- 803 00fe 80BD     		pop	{r7, pc}
- 804              		.cfi_endproc
- 805              	.LFE116:
- 807              		.section	.text.I2C001_ReadData,"ax",%progbits
- 808              		.align	2
- 809              		.global	I2C001_ReadData
- 810              		.thumb
- 811              		.thumb_func
- 813              	I2C001_ReadData:
- 814              	.LFB117:
- 523:../Dave/Generated/src/I2C001/I2C001.c **** 
+ 800 00f4 3B69     		ldr	r3, [r7, #16]
+ 523:../Dave/Generated/src/I2C001/I2C001.c **** }
+ 801              		.loc 1 523 0
+ 802 00f6 1846     		mov	r0, r3
+ 803 00f8 07F11807 		add	r7, r7, #24
+ 804 00fc BD46     		mov	sp, r7
+ 805 00fe 80BD     		pop	{r7, pc}
+ 806              		.cfi_endproc
+ 807              	.LFE116:
+ 809              		.section	.text.I2C001_ReadData,"ax",%progbits
+ 810              		.align	2
+ 811              		.global	I2C001_ReadData
+ 812              		.thumb
+ 813              		.thumb_func
+ 815              	I2C001_ReadData:
+ 816              	.LFB117:
  524:../Dave/Generated/src/I2C001/I2C001.c **** 
- 525:../Dave/Generated/src/I2C001/I2C001.c **** /* This function reads out  the content of the USIC receive FIFO Buffer. 
- 526:../Dave/Generated/src/I2C001/I2C001.c ****  * Returns true in case FIFO is not empty.else  otherwise.
- 527:../Dave/Generated/src/I2C001/I2C001.c ****  *
- 528:../Dave/Generated/src/I2C001/I2C001.c ****  */
- 529:../Dave/Generated/src/I2C001/I2C001.c **** bool I2C001_ReadData(const I2C001Handle_type* I2CHandle, uint16_t* buffer)
- 530:../Dave/Generated/src/I2C001/I2C001.c **** { 
- 815              		.loc 1 530 0
- 816              		.cfi_startproc
- 817              		@ args = 0, pretend = 0, frame = 16
- 818              		@ frame_needed = 1, uses_anonymous_args = 0
- 819              		@ link register save eliminated.
- 820 0000 80B4     		push	{r7}
- 821              	.LCFI13:
- 822              		.cfi_def_cfa_offset 4
- 823              		.cfi_offset 7, -4
- 824 0002 85B0     		sub	sp, sp, #20
- 825              	.LCFI14:
- 826              		.cfi_def_cfa_offset 24
- 827 0004 00AF     		add	r7, sp, #0
- 828              	.LCFI15:
- 829              		.cfi_def_cfa_register 7
- 830 0006 7860     		str	r0, [r7, #4]
- 831 0008 3960     		str	r1, [r7, #0]
- 531:../Dave/Generated/src/I2C001/I2C001.c ****   bool Result = (bool)FALSE;
- 832              		.loc 1 531 0
- 833 000a 4FF00003 		mov	r3, #0
- 834 000e FB73     		strb	r3, [r7, #15]
- 532:../Dave/Generated/src/I2C001/I2C001.c ****   USIC_CH_TypeDef* I2CRegs = I2CHandle->I2CRegs;
- 835              		.loc 1 532 0
- 836 0010 7B68     		ldr	r3, [r7, #4]
- 837 0012 5B68     		ldr	r3, [r3, #4]
- 838 0014 BB60     		str	r3, [r7, #8]
- 533:../Dave/Generated/src/I2C001/I2C001.c ****   
- 534:../Dave/Generated/src/I2C001/I2C001.c ****   /* <<<DD_I2C001_API_4>>>*/
- 535:../Dave/Generated/src/I2C001/I2C001.c ****   if(USIC_ubIsRxFIFOempty(I2CRegs))
- 839              		.loc 1 535 0
- 840 0016 BB68     		ldr	r3, [r7, #8]
- 841 0018 D3F81431 		ldr	r3, [r3, #276]
- 842 001c 03F00803 		and	r3, r3, #8
- 843 0020 4FEAD303 		lsr	r3, r3, #3
- 844 0024 002B     		cmp	r3, #0
- 845 0026 03D0     		beq	.L45
- 536:../Dave/Generated/src/I2C001/I2C001.c ****   {
- 537:../Dave/Generated/src/I2C001/I2C001.c ****     Result = (bool)FALSE;
- 846              		.loc 1 537 0
- 847 0028 4FF00003 		mov	r3, #0
- 848 002c FB73     		strb	r3, [r7, #15]
- 849 002e 09E0     		b	.L46
- 850              	.L45:
- 538:../Dave/Generated/src/I2C001/I2C001.c ****   }
- 539:../Dave/Generated/src/I2C001/I2C001.c ****   else
- 540:../Dave/Generated/src/I2C001/I2C001.c ****   {
- 541:../Dave/Generated/src/I2C001/I2C001.c ****     *buffer = (uint8_t)I2CRegs->OUTR;
- 851              		.loc 1 541 0
- 852 0030 BB68     		ldr	r3, [r7, #8]
- 853 0032 D3F81C31 		ldr	r3, [r3, #284]
- 854 0036 DBB2     		uxtb	r3, r3
- 855 0038 1A46     		mov	r2, r3
- 856 003a 3B68     		ldr	r3, [r7, #0]
- 857 003c 1A80     		strh	r2, [r3, #0]	@ movhi
- 542:../Dave/Generated/src/I2C001/I2C001.c ****     Result = (bool)TRUE;
- 858              		.loc 1 542 0
- 859 003e 4FF00103 		mov	r3, #1
- 860 0042 FB73     		strb	r3, [r7, #15]
- 861              	.L46:
- 543:../Dave/Generated/src/I2C001/I2C001.c ****   }
- 544:../Dave/Generated/src/I2C001/I2C001.c ****   
- 545:../Dave/Generated/src/I2C001/I2C001.c ****   return Result;
- 862              		.loc 1 545 0
- 863 0044 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
- 546:../Dave/Generated/src/I2C001/I2C001.c **** }
+ 525:../Dave/Generated/src/I2C001/I2C001.c **** 
+ 526:../Dave/Generated/src/I2C001/I2C001.c **** /* This function reads out  the content of the USIC receive FIFO Buffer. 
+ 527:../Dave/Generated/src/I2C001/I2C001.c ****  * Returns true in case FIFO is not empty.else  otherwise.
+ 528:../Dave/Generated/src/I2C001/I2C001.c ****  *
+ 529:../Dave/Generated/src/I2C001/I2C001.c ****  */
+ 530:../Dave/Generated/src/I2C001/I2C001.c **** bool I2C001_ReadData(const I2C001Handle_type* I2CHandle, uint16_t* buffer)
+ 531:../Dave/Generated/src/I2C001/I2C001.c **** { 
+ 817              		.loc 1 531 0
+ 818              		.cfi_startproc
+ 819              		@ args = 0, pretend = 0, frame = 16
+ 820              		@ frame_needed = 1, uses_anonymous_args = 0
+ 821              		@ link register save eliminated.
+ 822 0000 80B4     		push	{r7}
+ 823              	.LCFI13:
+ 824              		.cfi_def_cfa_offset 4
+ 825              		.cfi_offset 7, -4
+ 826 0002 85B0     		sub	sp, sp, #20
+ 827              	.LCFI14:
+ 828              		.cfi_def_cfa_offset 24
+ 829 0004 00AF     		add	r7, sp, #0
+ 830              	.LCFI15:
+ 831              		.cfi_def_cfa_register 7
+ 832 0006 7860     		str	r0, [r7, #4]
+ 833 0008 3960     		str	r1, [r7, #0]
+ 532:../Dave/Generated/src/I2C001/I2C001.c ****   bool Result = (bool)FALSE;
+ 834              		.loc 1 532 0
+ 835 000a 4FF00003 		mov	r3, #0
+ 836 000e FB73     		strb	r3, [r7, #15]
+ 533:../Dave/Generated/src/I2C001/I2C001.c ****   USIC_CH_TypeDef* I2CRegs = I2CHandle->I2CRegs;
+ 837              		.loc 1 533 0
+ 838 0010 7B68     		ldr	r3, [r7, #4]
+ 839 0012 5B68     		ldr	r3, [r3, #4]
+ 840 0014 BB60     		str	r3, [r7, #8]
+ 534:../Dave/Generated/src/I2C001/I2C001.c ****   
+ 535:../Dave/Generated/src/I2C001/I2C001.c ****   /* <<<DD_I2C001_API_4>>>*/
+ 536:../Dave/Generated/src/I2C001/I2C001.c ****   if(USIC_ubIsRxFIFOempty(I2CRegs))
+ 841              		.loc 1 536 0
+ 842 0016 BB68     		ldr	r3, [r7, #8]
+ 843 0018 D3F81431 		ldr	r3, [r3, #276]
+ 844 001c 03F00803 		and	r3, r3, #8
+ 845 0020 4FEAD303 		lsr	r3, r3, #3
+ 846 0024 002B     		cmp	r3, #0
+ 847 0026 03D0     		beq	.L45
+ 537:../Dave/Generated/src/I2C001/I2C001.c ****   {
+ 538:../Dave/Generated/src/I2C001/I2C001.c ****     Result = (bool)FALSE;
+ 848              		.loc 1 538 0
+ 849 0028 4FF00003 		mov	r3, #0
+ 850 002c FB73     		strb	r3, [r7, #15]
+ 851 002e 09E0     		b	.L46
+ 852              	.L45:
+ 539:../Dave/Generated/src/I2C001/I2C001.c ****   }
+ 540:../Dave/Generated/src/I2C001/I2C001.c ****   else
+ 541:../Dave/Generated/src/I2C001/I2C001.c ****   {
+ 542:../Dave/Generated/src/I2C001/I2C001.c ****     *buffer = (uint8_t)I2CRegs->OUTR;
+ 853              		.loc 1 542 0
+ 854 0030 BB68     		ldr	r3, [r7, #8]
+ 855 0032 D3F81C31 		ldr	r3, [r3, #284]
+ 856 0036 DBB2     		uxtb	r3, r3
+ 857 0038 1A46     		mov	r2, r3
+ 858 003a 3B68     		ldr	r3, [r7, #0]
+ 859 003c 1A80     		strh	r2, [r3, #0]	@ movhi
+ 543:../Dave/Generated/src/I2C001/I2C001.c ****     Result = (bool)TRUE;
+ 860              		.loc 1 543 0
+ 861 003e 4FF00103 		mov	r3, #1
+ 862 0042 FB73     		strb	r3, [r7, #15]
+ 863              	.L46:
+ 544:../Dave/Generated/src/I2C001/I2C001.c ****   }
+ 545:../Dave/Generated/src/I2C001/I2C001.c ****   
+ 546:../Dave/Generated/src/I2C001/I2C001.c ****   return Result;
  864              		.loc 1 546 0
- 865 0046 1846     		mov	r0, r3
- 866 0048 07F11407 		add	r7, r7, #20
- 867 004c BD46     		mov	sp, r7
- 868 004e 80BC     		pop	{r7}
- 869 0050 7047     		bx	lr
- 870              		.cfi_endproc
- 871              	.LFE117:
- 873 0052 00BF     		.section	.text.I2C001_WriteData,"ax",%progbits
- 874              		.align	2
- 875              		.global	I2C001_WriteData
- 876              		.thumb
- 877              		.thumb_func
- 879              	I2C001_WriteData:
- 880              	.LFB118:
- 547:../Dave/Generated/src/I2C001/I2C001.c **** 
- 548:../Dave/Generated/src/I2C001/I2C001.c **** /* This function writes out a word to the USIC FIFO transmit buffer register.
- 549:../Dave/Generated/src/I2C001/I2C001.c ****  * Returns true in case if the FIFO is not full else otherwise.
- 550:../Dave/Generated/src/I2C001/I2C001.c ****  *
- 551:../Dave/Generated/src/I2C001/I2C001.c ****  */
- 552:../Dave/Generated/src/I2C001/I2C001.c **** bool I2C001_WriteData \
- 553:../Dave/Generated/src/I2C001/I2C001.c ****                    (const I2C001Handle_type* I2CHandle,const I2C001_DataType* Data)
- 554:../Dave/Generated/src/I2C001/I2C001.c **** {
- 881              		.loc 1 554 0
- 882              		.cfi_startproc
- 883              		@ args = 0, pretend = 0, frame = 16
- 884              		@ frame_needed = 1, uses_anonymous_args = 0
- 885              		@ link register save eliminated.
- 886 0000 80B4     		push	{r7}
- 887              	.LCFI16:
- 888              		.cfi_def_cfa_offset 4
- 889              		.cfi_offset 7, -4
- 890 0002 85B0     		sub	sp, sp, #20
- 891              	.LCFI17:
- 892              		.cfi_def_cfa_offset 24
- 893 0004 00AF     		add	r7, sp, #0
- 894              	.LCFI18:
- 895              		.cfi_def_cfa_register 7
- 896 0006 7860     		str	r0, [r7, #4]
- 897 0008 3960     		str	r1, [r7, #0]
- 555:../Dave/Generated/src/I2C001/I2C001.c ****   bool Result = (bool)FALSE;
- 898              		.loc 1 555 0
- 899 000a 4FF00003 		mov	r3, #0
- 900 000e FB73     		strb	r3, [r7, #15]
- 556:../Dave/Generated/src/I2C001/I2C001.c ****   USIC_CH_TypeDef* I2CRegs = I2CHandle->I2CRegs;
- 901              		.loc 1 556 0
- 902 0010 7B68     		ldr	r3, [r7, #4]
- 903 0012 5B68     		ldr	r3, [r3, #4]
- 904 0014 BB60     		str	r3, [r7, #8]
- 557:../Dave/Generated/src/I2C001/I2C001.c ****   
- 558:../Dave/Generated/src/I2C001/I2C001.c ****   /* <<<DD_I2C001_API_5>>>*/
- 559:../Dave/Generated/src/I2C001/I2C001.c ****   do
- 560:../Dave/Generated/src/I2C001/I2C001.c ****   {
- 561:../Dave/Generated/src/I2C001/I2C001.c ****      if(I2CRegs->PSR_IICMode & USIC_CH_PSR_IICMode_WTDF_Msk)
- 905              		.loc 1 561 0
- 906 0016 BB68     		ldr	r3, [r7, #8]
- 907 0018 9B6C     		ldr	r3, [r3, #72]
- 908 001a 03F00203 		and	r3, r3, #2
- 909 001e 002B     		cmp	r3, #0
- 910 0020 03D0     		beq	.L49
- 562:../Dave/Generated/src/I2C001/I2C001.c ****      {
- 563:../Dave/Generated/src/I2C001/I2C001.c **** 	     Result = (bool)FALSE;
- 911              		.loc 1 563 0
- 912 0022 4FF00003 		mov	r3, #0
- 913 0026 FB73     		strb	r3, [r7, #15]
- 564:../Dave/Generated/src/I2C001/I2C001.c ****        break;
- 914              		.loc 1 564 0
- 915 0028 19E0     		b	.L50
- 916              	.L49:
- 565:../Dave/Generated/src/I2C001/I2C001.c ****      }
- 566:../Dave/Generated/src/I2C001/I2C001.c **** 
- 567:../Dave/Generated/src/I2C001/I2C001.c ****      if(USIC_IsTxFIFOfull(I2CRegs))
- 917              		.loc 1 567 0
- 918 002a BB68     		ldr	r3, [r7, #8]
- 919 002c D3F81431 		ldr	r3, [r3, #276]
- 920 0030 03F48053 		and	r3, r3, #4096
- 921 0034 4FEA1333 		lsr	r3, r3, #12
- 922 0038 002B     		cmp	r3, #0
- 923 003a 03D0     		beq	.L51
- 568:../Dave/Generated/src/I2C001/I2C001.c ****      {
- 569:../Dave/Generated/src/I2C001/I2C001.c ****        Result = (bool)FALSE;
- 924              		.loc 1 569 0
- 925 003c 4FF00003 		mov	r3, #0
- 926 0040 FB73     		strb	r3, [r7, #15]
- 927 0042 0CE0     		b	.L50
- 928              	.L51:
- 570:../Dave/Generated/src/I2C001/I2C001.c ****      }
- 571:../Dave/Generated/src/I2C001/I2C001.c **** 
- 572:../Dave/Generated/src/I2C001/I2C001.c ****      else
- 573:../Dave/Generated/src/I2C001/I2C001.c ****      {
- 574:../Dave/Generated/src/I2C001/I2C001.c ****        I2CRegs->IN[0] = \
- 575:../Dave/Generated/src/I2C001/I2C001.c ****                     (((uint32_t)Data->Data1.TDF_Type << 8) | Data->Data1.Data);
- 929              		.loc 1 575 0
- 930 0044 3B68     		ldr	r3, [r7, #0]
- 931 0046 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
- 932 0048 4FEA0322 		lsl	r2, r3, #8
- 933 004c 3B68     		ldr	r3, [r7, #0]
- 934 004e 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
- 935 0050 1A43     		orrs	r2, r2, r3
- 574:../Dave/Generated/src/I2C001/I2C001.c ****        I2CRegs->IN[0] = \
- 936              		.loc 1 574 0
- 937 0052 BB68     		ldr	r3, [r7, #8]
- 938 0054 C3F88021 		str	r2, [r3, #384]
- 576:../Dave/Generated/src/I2C001/I2C001.c ****        Result = (bool)TRUE;     
- 939              		.loc 1 576 0
- 940 0058 4FF00103 		mov	r3, #1
- 941 005c FB73     		strb	r3, [r7, #15]
- 942              	.L50:
- 577:../Dave/Generated/src/I2C001/I2C001.c ****      }
- 578:../Dave/Generated/src/I2C001/I2C001.c ****   
- 579:../Dave/Generated/src/I2C001/I2C001.c ****   }while(0);
- 580:../Dave/Generated/src/I2C001/I2C001.c ****   return Result;
- 943              		.loc 1 580 0
- 944 005e FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
- 581:../Dave/Generated/src/I2C001/I2C001.c **** 
- 582:../Dave/Generated/src/I2C001/I2C001.c **** }
- 945              		.loc 1 582 0
- 946 0060 1846     		mov	r0, r3
- 947 0062 07F11407 		add	r7, r7, #20
- 948 0066 BD46     		mov	sp, r7
- 949 0068 80BC     		pop	{r7}
- 950 006a 7047     		bx	lr
- 951              		.cfi_endproc
- 952              	.LFE118:
- 954              		.section	.text.I2C001_GetFlagStatus,"ax",%progbits
- 955              		.align	2
- 956              		.global	I2C001_GetFlagStatus
- 957              		.thumb
- 958              		.thumb_func
- 960              	I2C001_GetFlagStatus:
- 961              	.LFB119:
- 583:../Dave/Generated/src/I2C001/I2C001.c **** /* Checks the specified Flag status bit.
- 584:../Dave/Generated/src/I2C001/I2C001.c ****  * The function is used to get the flag status.
- 585:../Dave/Generated/src/I2C001/I2C001.c ****  * It returns I2C_SET if the corresponding flag is set else otherwise.
- 586:../Dave/Generated/src/I2C001/I2C001.c ****  *
- 587:../Dave/Generated/src/I2C001/I2C001.c ****  * */
- 588:../Dave/Generated/src/I2C001/I2C001.c **** 
- 589:../Dave/Generated/src/I2C001/I2C001.c **** status_t I2C001_GetFlagStatus \
- 590:../Dave/Generated/src/I2C001/I2C001.c ****                (const I2C001Handle_type* I2CHandle,I2C001_FlagStatusType Flag)
- 591:../Dave/Generated/src/I2C001/I2C001.c **** {
- 962              		.loc 1 591 0
- 963              		.cfi_startproc
- 964              		@ args = 0, pretend = 0, frame = 24
- 965              		@ frame_needed = 1, uses_anonymous_args = 0
- 966              		@ link register save eliminated.
- 967 0000 80B4     		push	{r7}
- 968              	.LCFI19:
- 969              		.cfi_def_cfa_offset 4
- 970              		.cfi_offset 7, -4
- 971 0002 87B0     		sub	sp, sp, #28
- 972              	.LCFI20:
- 973              		.cfi_def_cfa_offset 32
- 974 0004 00AF     		add	r7, sp, #0
- 975              	.LCFI21:
- 976              		.cfi_def_cfa_register 7
- 977 0006 7860     		str	r0, [r7, #4]
- 978 0008 0B46     		mov	r3, r1
- 979 000a FB70     		strb	r3, [r7, #3]
- 592:../Dave/Generated/src/I2C001/I2C001.c ****   status_t Status = (status_t)I2C001_RESET;
- 980              		.loc 1 592 0
- 981 000c 4FF00203 		mov	r3, #2
- 982 0010 7B61     		str	r3, [r7, #20]
- 593:../Dave/Generated/src/I2C001/I2C001.c ****   uint32_t TempValue = 0x00U;
- 983              		.loc 1 593 0
- 984 0012 4FF00003 		mov	r3, #0
- 985 0016 3B61     		str	r3, [r7, #16]
- 594:../Dave/Generated/src/I2C001/I2C001.c ****   USIC_CH_TypeDef* I2CRegs = I2CHandle->I2CRegs;
- 986              		.loc 1 594 0
- 987 0018 7B68     		ldr	r3, [r7, #4]
- 988 001a 5B68     		ldr	r3, [r3, #4]
- 989 001c FB60     		str	r3, [r7, #12]
- 595:../Dave/Generated/src/I2C001/I2C001.c ****   
- 596:../Dave/Generated/src/I2C001/I2C001.c ****   /* <<<DD_I2C001_API_6>>>*/
- 597:../Dave/Generated/src/I2C001/I2C001.c ****   if(Flag <= I2C001_FLAG_RIF)
- 990              		.loc 1 597 0
- 991 001e FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
- 992 0020 042B     		cmp	r3, #4
- 993 0022 0DD8     		bhi	.L54
- 598:../Dave/Generated/src/I2C001/I2C001.c ****   {
- 599:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue = I2CRegs->PSR_IICMode;
- 994              		.loc 1 599 0
- 995 0024 FB68     		ldr	r3, [r7, #12]
- 996 0026 9B6C     		ldr	r3, [r3, #72]
- 997 0028 3B61     		str	r3, [r7, #16]
- 600:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue &= ((uint32_t)0x01 << ((uint32_t)Flag + 10U ));
- 998              		.loc 1 600 0
- 999 002a FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
- 1000 002c 03F10A03 		add	r3, r3, #10
- 1001 0030 4FF00102 		mov	r2, #1
- 1002 0034 02FA03F3 		lsl	r3, r2, r3
- 1003 0038 3A69     		ldr	r2, [r7, #16]
- 1004 003a 1340     		ands	r3, r3, r2
- 1005 003c 3B61     		str	r3, [r7, #16]
- 1006 003e 35E0     		b	.L55
- 1007              	.L54:
- 601:../Dave/Generated/src/I2C001/I2C001.c ****   }
- 602:../Dave/Generated/src/I2C001/I2C001.c ****   else if(Flag == I2C001_FLAG_NACK_RECEIVED)
- 1008              		.loc 1 602 0
- 1009 0040 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
- 1010 0042 062B     		cmp	r3, #6
- 1011 0044 07D1     		bne	.L56
- 603:../Dave/Generated/src/I2C001/I2C001.c ****   {
- 604:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue = I2CRegs->PSR_IICMode;
- 1012              		.loc 1 604 0
- 1013 0046 FB68     		ldr	r3, [r7, #12]
- 1014 0048 9B6C     		ldr	r3, [r3, #72]
- 1015 004a 3B61     		str	r3, [r7, #16]
- 605:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue &= ((uint32_t)0x01 << (uint32_t)I2C001_FLAG_WRONG_TDF);
- 1016              		.loc 1 605 0
- 1017 004c 3B69     		ldr	r3, [r7, #16]
- 1018 004e 03F02003 		and	r3, r3, #32
- 1019 0052 3B61     		str	r3, [r7, #16]
- 1020 0054 2AE0     		b	.L55
- 1021              	.L56:
- 606:../Dave/Generated/src/I2C001/I2C001.c ****   }
- 607:../Dave/Generated/src/I2C001/I2C001.c ****   else if(Flag == I2C001_FLAG_WRONG_TDF)
- 1022              		.loc 1 607 0
- 1023 0056 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
- 1024 0058 052B     		cmp	r3, #5
- 1025 005a 07D1     		bne	.L57
- 608:../Dave/Generated/src/I2C001/I2C001.c ****   {
- 609:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue = I2CRegs->PSR_IICMode;
- 1026              		.loc 1 609 0
- 1027 005c FB68     		ldr	r3, [r7, #12]
- 1028 005e 9B6C     		ldr	r3, [r3, #72]
- 1029 0060 3B61     		str	r3, [r7, #16]
- 610:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue &= ((uint32_t)0x01 << (uint32_t)I2C001_FLAG_DLIF);	
- 1030              		.loc 1 610 0
- 1031 0062 3B69     		ldr	r3, [r7, #16]
- 1032 0064 03F00203 		and	r3, r3, #2
- 1033 0068 3B61     		str	r3, [r7, #16]
- 1034 006a 1FE0     		b	.L55
- 1035              	.L57:
- 611:../Dave/Generated/src/I2C001/I2C001.c ****   }
- 612:../Dave/Generated/src/I2C001/I2C001.c ****   else if(Flag <= I2C001_FLAG_RBERI)
- 1036              		.loc 1 612 0
- 1037 006c FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
- 1038 006e 082B     		cmp	r3, #8
- 1039 0070 0ED8     		bhi	.L58
- 613:../Dave/Generated/src/I2C001/I2C001.c ****   {
- 614:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue = I2CRegs->TRBSR;
- 1040              		.loc 1 614 0
- 1041 0072 FB68     		ldr	r3, [r7, #12]
- 1042 0074 D3F81431 		ldr	r3, [r3, #276]
- 1043 0078 3B61     		str	r3, [r7, #16]
- 615:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue &= ((uint32_t)0x01 << ((uint32_t)Flag - \
- 1044              		.loc 1 615 0
- 1045 007a FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
- 1046 007c A3F10703 		sub	r3, r3, #7
- 1047 0080 4FF00102 		mov	r2, #1
- 1048 0084 02FA03F3 		lsl	r3, r2, r3
- 1049 0088 3A69     		ldr	r2, [r7, #16]
- 1050 008a 1340     		ands	r3, r3, r2
- 1051 008c 3B61     		str	r3, [r7, #16]
- 1052 008e 0DE0     		b	.L55
- 1053              	.L58:
- 616:../Dave/Generated/src/I2C001/I2C001.c ****                                                (uint32_t)I2C001_FLAG_SRBI));		
- 617:../Dave/Generated/src/I2C001/I2C001.c ****   }
- 618:../Dave/Generated/src/I2C001/I2C001.c ****   else
- 619:../Dave/Generated/src/I2C001/I2C001.c ****   {
- 620:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue = I2CRegs->TRBSR;
- 1054              		.loc 1 620 0
- 1055 0090 FB68     		ldr	r3, [r7, #12]
- 1056 0092 D3F81431 		ldr	r3, [r3, #276]
- 1057 0096 3B61     		str	r3, [r7, #16]
- 621:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue &= ((uint32_t)0x01 << (((uint32_t)Flag - \
- 1058              		.loc 1 621 0
- 1059 0098 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
- 622:../Dave/Generated/src/I2C001/I2C001.c ****                                   (uint32_t)I2C001_FLAG_STBI) + 8U));		
+ 865 0044 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 547:../Dave/Generated/src/I2C001/I2C001.c **** }
+ 866              		.loc 1 547 0
+ 867 0046 1846     		mov	r0, r3
+ 868 0048 07F11407 		add	r7, r7, #20
+ 869 004c BD46     		mov	sp, r7
+ 870 004e 80BC     		pop	{r7}
+ 871 0050 7047     		bx	lr
+ 872              		.cfi_endproc
+ 873              	.LFE117:
+ 875 0052 00BF     		.section	.text.I2C001_WriteData,"ax",%progbits
+ 876              		.align	2
+ 877              		.global	I2C001_WriteData
+ 878              		.thumb
+ 879              		.thumb_func
+ 881              	I2C001_WriteData:
+ 882              	.LFB118:
+ 548:../Dave/Generated/src/I2C001/I2C001.c **** 
+ 549:../Dave/Generated/src/I2C001/I2C001.c **** /* This function writes out a word to the USIC FIFO transmit buffer register.
+ 550:../Dave/Generated/src/I2C001/I2C001.c ****  * Returns true in case if the FIFO is not full else otherwise.
+ 551:../Dave/Generated/src/I2C001/I2C001.c ****  *
+ 552:../Dave/Generated/src/I2C001/I2C001.c ****  */
+ 553:../Dave/Generated/src/I2C001/I2C001.c **** bool I2C001_WriteData \
+ 554:../Dave/Generated/src/I2C001/I2C001.c ****                    (const I2C001Handle_type* I2CHandle,const I2C001_DataType* Data)
+ 555:../Dave/Generated/src/I2C001/I2C001.c **** {
+ 883              		.loc 1 555 0
+ 884              		.cfi_startproc
+ 885              		@ args = 0, pretend = 0, frame = 16
+ 886              		@ frame_needed = 1, uses_anonymous_args = 0
+ 887              		@ link register save eliminated.
+ 888 0000 80B4     		push	{r7}
+ 889              	.LCFI16:
+ 890              		.cfi_def_cfa_offset 4
+ 891              		.cfi_offset 7, -4
+ 892 0002 85B0     		sub	sp, sp, #20
+ 893              	.LCFI17:
+ 894              		.cfi_def_cfa_offset 24
+ 895 0004 00AF     		add	r7, sp, #0
+ 896              	.LCFI18:
+ 897              		.cfi_def_cfa_register 7
+ 898 0006 7860     		str	r0, [r7, #4]
+ 899 0008 3960     		str	r1, [r7, #0]
+ 556:../Dave/Generated/src/I2C001/I2C001.c ****   bool Result = (bool)FALSE;
+ 900              		.loc 1 556 0
+ 901 000a 4FF00003 		mov	r3, #0
+ 902 000e FB73     		strb	r3, [r7, #15]
+ 557:../Dave/Generated/src/I2C001/I2C001.c ****   USIC_CH_TypeDef* I2CRegs = I2CHandle->I2CRegs;
+ 903              		.loc 1 557 0
+ 904 0010 7B68     		ldr	r3, [r7, #4]
+ 905 0012 5B68     		ldr	r3, [r3, #4]
+ 906 0014 BB60     		str	r3, [r7, #8]
+ 558:../Dave/Generated/src/I2C001/I2C001.c ****   
+ 559:../Dave/Generated/src/I2C001/I2C001.c ****   /* <<<DD_I2C001_API_5>>>*/
+ 560:../Dave/Generated/src/I2C001/I2C001.c ****   do
+ 561:../Dave/Generated/src/I2C001/I2C001.c ****   {
+ 562:../Dave/Generated/src/I2C001/I2C001.c ****      if(I2CRegs->PSR_IICMode & USIC_CH_PSR_IICMode_WTDF_Msk)
+ 907              		.loc 1 562 0
+ 908 0016 BB68     		ldr	r3, [r7, #8]
+ 909 0018 9B6C     		ldr	r3, [r3, #72]
+ 910 001a 03F00203 		and	r3, r3, #2
+ 911 001e 002B     		cmp	r3, #0
+ 912 0020 03D0     		beq	.L49
+ 563:../Dave/Generated/src/I2C001/I2C001.c ****      {
+ 564:../Dave/Generated/src/I2C001/I2C001.c **** 	     Result = (bool)FALSE;
+ 913              		.loc 1 564 0
+ 914 0022 4FF00003 		mov	r3, #0
+ 915 0026 FB73     		strb	r3, [r7, #15]
+ 565:../Dave/Generated/src/I2C001/I2C001.c ****        break;
+ 916              		.loc 1 565 0
+ 917 0028 19E0     		b	.L50
+ 918              	.L49:
+ 566:../Dave/Generated/src/I2C001/I2C001.c ****      }
+ 567:../Dave/Generated/src/I2C001/I2C001.c **** 
+ 568:../Dave/Generated/src/I2C001/I2C001.c ****      if(USIC_IsTxFIFOfull(I2CRegs))
+ 919              		.loc 1 568 0
+ 920 002a BB68     		ldr	r3, [r7, #8]
+ 921 002c D3F81431 		ldr	r3, [r3, #276]
+ 922 0030 03F48053 		and	r3, r3, #4096
+ 923 0034 4FEA1333 		lsr	r3, r3, #12
+ 924 0038 002B     		cmp	r3, #0
+ 925 003a 03D0     		beq	.L51
+ 569:../Dave/Generated/src/I2C001/I2C001.c ****      {
+ 570:../Dave/Generated/src/I2C001/I2C001.c ****        Result = (bool)FALSE;
+ 926              		.loc 1 570 0
+ 927 003c 4FF00003 		mov	r3, #0
+ 928 0040 FB73     		strb	r3, [r7, #15]
+ 929 0042 0CE0     		b	.L50
+ 930              	.L51:
+ 571:../Dave/Generated/src/I2C001/I2C001.c ****      }
+ 572:../Dave/Generated/src/I2C001/I2C001.c **** 
+ 573:../Dave/Generated/src/I2C001/I2C001.c ****      else
+ 574:../Dave/Generated/src/I2C001/I2C001.c ****      {
+ 575:../Dave/Generated/src/I2C001/I2C001.c ****        I2CRegs->IN[0] = \
+ 576:../Dave/Generated/src/I2C001/I2C001.c ****                     (((uint32_t)Data->Data1.TDF_Type << 8) | Data->Data1.Data);
+ 931              		.loc 1 576 0
+ 932 0044 3B68     		ldr	r3, [r7, #0]
+ 933 0046 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 934 0048 4FEA0322 		lsl	r2, r3, #8
+ 935 004c 3B68     		ldr	r3, [r7, #0]
+ 936 004e 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 937 0050 1A43     		orrs	r2, r2, r3
+ 575:../Dave/Generated/src/I2C001/I2C001.c ****        I2CRegs->IN[0] = \
+ 938              		.loc 1 575 0
+ 939 0052 BB68     		ldr	r3, [r7, #8]
+ 940 0054 C3F88021 		str	r2, [r3, #384]
+ 577:../Dave/Generated/src/I2C001/I2C001.c ****        Result = (bool)TRUE;     
+ 941              		.loc 1 577 0
+ 942 0058 4FF00103 		mov	r3, #1
+ 943 005c FB73     		strb	r3, [r7, #15]
+ 944              	.L50:
+ 578:../Dave/Generated/src/I2C001/I2C001.c ****      }
+ 579:../Dave/Generated/src/I2C001/I2C001.c ****   
+ 580:../Dave/Generated/src/I2C001/I2C001.c ****   }while(0);
+ 581:../Dave/Generated/src/I2C001/I2C001.c ****   return Result;
+ 945              		.loc 1 581 0
+ 946 005e FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 582:../Dave/Generated/src/I2C001/I2C001.c **** 
+ 583:../Dave/Generated/src/I2C001/I2C001.c **** }
+ 947              		.loc 1 583 0
+ 948 0060 1846     		mov	r0, r3
+ 949 0062 07F11407 		add	r7, r7, #20
+ 950 0066 BD46     		mov	sp, r7
+ 951 0068 80BC     		pop	{r7}
+ 952 006a 7047     		bx	lr
+ 953              		.cfi_endproc
+ 954              	.LFE118:
+ 956              		.section	.text.I2C001_GetFlagStatus,"ax",%progbits
+ 957              		.align	2
+ 958              		.global	I2C001_GetFlagStatus
+ 959              		.thumb
+ 960              		.thumb_func
+ 962              	I2C001_GetFlagStatus:
+ 963              	.LFB119:
+ 584:../Dave/Generated/src/I2C001/I2C001.c **** /* Checks the specified Flag status bit.
+ 585:../Dave/Generated/src/I2C001/I2C001.c ****  * The function is used to get the flag status.
+ 586:../Dave/Generated/src/I2C001/I2C001.c ****  * It returns I2C_SET if the corresponding flag is set else otherwise.
+ 587:../Dave/Generated/src/I2C001/I2C001.c ****  *
+ 588:../Dave/Generated/src/I2C001/I2C001.c ****  * */
+ 589:../Dave/Generated/src/I2C001/I2C001.c **** 
+ 590:../Dave/Generated/src/I2C001/I2C001.c **** status_t I2C001_GetFlagStatus \
+ 591:../Dave/Generated/src/I2C001/I2C001.c ****                (const I2C001Handle_type* I2CHandle,I2C001_FlagStatusType Flag)
+ 592:../Dave/Generated/src/I2C001/I2C001.c **** {
+ 964              		.loc 1 592 0
+ 965              		.cfi_startproc
+ 966              		@ args = 0, pretend = 0, frame = 24
+ 967              		@ frame_needed = 1, uses_anonymous_args = 0
+ 968              		@ link register save eliminated.
+ 969 0000 80B4     		push	{r7}
+ 970              	.LCFI19:
+ 971              		.cfi_def_cfa_offset 4
+ 972              		.cfi_offset 7, -4
+ 973 0002 87B0     		sub	sp, sp, #28
+ 974              	.LCFI20:
+ 975              		.cfi_def_cfa_offset 32
+ 976 0004 00AF     		add	r7, sp, #0
+ 977              	.LCFI21:
+ 978              		.cfi_def_cfa_register 7
+ 979 0006 7860     		str	r0, [r7, #4]
+ 980 0008 0B46     		mov	r3, r1
+ 981 000a FB70     		strb	r3, [r7, #3]
+ 593:../Dave/Generated/src/I2C001/I2C001.c ****   status_t Status = (status_t)I2C001_RESET;
+ 982              		.loc 1 593 0
+ 983 000c 4FF00203 		mov	r3, #2
+ 984 0010 7B61     		str	r3, [r7, #20]
+ 594:../Dave/Generated/src/I2C001/I2C001.c ****   uint32_t TempValue = 0x00U;
+ 985              		.loc 1 594 0
+ 986 0012 4FF00003 		mov	r3, #0
+ 987 0016 3B61     		str	r3, [r7, #16]
+ 595:../Dave/Generated/src/I2C001/I2C001.c ****   USIC_CH_TypeDef* I2CRegs = I2CHandle->I2CRegs;
+ 988              		.loc 1 595 0
+ 989 0018 7B68     		ldr	r3, [r7, #4]
+ 990 001a 5B68     		ldr	r3, [r3, #4]
+ 991 001c FB60     		str	r3, [r7, #12]
+ 596:../Dave/Generated/src/I2C001/I2C001.c ****   
+ 597:../Dave/Generated/src/I2C001/I2C001.c ****   /* <<<DD_I2C001_API_6>>>*/
+ 598:../Dave/Generated/src/I2C001/I2C001.c ****   if(Flag <= I2C001_FLAG_RIF)
+ 992              		.loc 1 598 0
+ 993 001e FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 994 0020 042B     		cmp	r3, #4
+ 995 0022 0DD8     		bhi	.L54
+ 599:../Dave/Generated/src/I2C001/I2C001.c ****   {
+ 600:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue = I2CRegs->PSR_IICMode;
+ 996              		.loc 1 600 0
+ 997 0024 FB68     		ldr	r3, [r7, #12]
+ 998 0026 9B6C     		ldr	r3, [r3, #72]
+ 999 0028 3B61     		str	r3, [r7, #16]
+ 601:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue &= ((uint32_t)0x01 << ((uint32_t)Flag + 10U ));
+ 1000              		.loc 1 601 0
+ 1001 002a FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 1002 002c 03F10A03 		add	r3, r3, #10
+ 1003 0030 4FF00102 		mov	r2, #1
+ 1004 0034 02FA03F3 		lsl	r3, r2, r3
+ 1005 0038 3A69     		ldr	r2, [r7, #16]
+ 1006 003a 1340     		ands	r3, r3, r2
+ 1007 003c 3B61     		str	r3, [r7, #16]
+ 1008 003e 35E0     		b	.L55
+ 1009              	.L54:
+ 602:../Dave/Generated/src/I2C001/I2C001.c ****   }
+ 603:../Dave/Generated/src/I2C001/I2C001.c ****   else if(Flag == I2C001_FLAG_NACK_RECEIVED)
+ 1010              		.loc 1 603 0
+ 1011 0040 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 1012 0042 062B     		cmp	r3, #6
+ 1013 0044 07D1     		bne	.L56
+ 604:../Dave/Generated/src/I2C001/I2C001.c ****   {
+ 605:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue = I2CRegs->PSR_IICMode;
+ 1014              		.loc 1 605 0
+ 1015 0046 FB68     		ldr	r3, [r7, #12]
+ 1016 0048 9B6C     		ldr	r3, [r3, #72]
+ 1017 004a 3B61     		str	r3, [r7, #16]
+ 606:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue &= ((uint32_t)0x01 << (uint32_t)I2C001_FLAG_WRONG_TDF);
+ 1018              		.loc 1 606 0
+ 1019 004c 3B69     		ldr	r3, [r7, #16]
+ 1020 004e 03F02003 		and	r3, r3, #32
+ 1021 0052 3B61     		str	r3, [r7, #16]
+ 1022 0054 2AE0     		b	.L55
+ 1023              	.L56:
+ 607:../Dave/Generated/src/I2C001/I2C001.c ****   }
+ 608:../Dave/Generated/src/I2C001/I2C001.c ****   else if(Flag == I2C001_FLAG_WRONG_TDF)
+ 1024              		.loc 1 608 0
+ 1025 0056 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 1026 0058 052B     		cmp	r3, #5
+ 1027 005a 07D1     		bne	.L57
+ 609:../Dave/Generated/src/I2C001/I2C001.c ****   {
+ 610:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue = I2CRegs->PSR_IICMode;
+ 1028              		.loc 1 610 0
+ 1029 005c FB68     		ldr	r3, [r7, #12]
+ 1030 005e 9B6C     		ldr	r3, [r3, #72]
+ 1031 0060 3B61     		str	r3, [r7, #16]
+ 611:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue &= ((uint32_t)0x01 << (uint32_t)I2C001_FLAG_DLIF);	
+ 1032              		.loc 1 611 0
+ 1033 0062 3B69     		ldr	r3, [r7, #16]
+ 1034 0064 03F00203 		and	r3, r3, #2
+ 1035 0068 3B61     		str	r3, [r7, #16]
+ 1036 006a 1FE0     		b	.L55
+ 1037              	.L57:
+ 612:../Dave/Generated/src/I2C001/I2C001.c ****   }
+ 613:../Dave/Generated/src/I2C001/I2C001.c ****   else if(Flag <= I2C001_FLAG_RBERI)
+ 1038              		.loc 1 613 0
+ 1039 006c FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 1040 006e 082B     		cmp	r3, #8
+ 1041 0070 0ED8     		bhi	.L58
+ 614:../Dave/Generated/src/I2C001/I2C001.c ****   {
+ 615:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue = I2CRegs->TRBSR;
+ 1042              		.loc 1 615 0
+ 1043 0072 FB68     		ldr	r3, [r7, #12]
+ 1044 0074 D3F81431 		ldr	r3, [r3, #276]
+ 1045 0078 3B61     		str	r3, [r7, #16]
+ 616:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue &= ((uint32_t)0x01 << ((uint32_t)Flag - \
+ 1046              		.loc 1 616 0
+ 1047 007a FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 1048 007c A3F10703 		sub	r3, r3, #7
+ 1049 0080 4FF00102 		mov	r2, #1
+ 1050 0084 02FA03F3 		lsl	r3, r2, r3
+ 1051 0088 3A69     		ldr	r2, [r7, #16]
+ 1052 008a 1340     		ands	r3, r3, r2
+ 1053 008c 3B61     		str	r3, [r7, #16]
+ 1054 008e 0DE0     		b	.L55
+ 1055              	.L58:
+ 617:../Dave/Generated/src/I2C001/I2C001.c ****                                                (uint32_t)I2C001_FLAG_SRBI));		
+ 618:../Dave/Generated/src/I2C001/I2C001.c ****   }
+ 619:../Dave/Generated/src/I2C001/I2C001.c ****   else
+ 620:../Dave/Generated/src/I2C001/I2C001.c ****   {
+ 621:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue = I2CRegs->TRBSR;
+ 1056              		.loc 1 621 0
+ 1057 0090 FB68     		ldr	r3, [r7, #12]
+ 1058 0092 D3F81431 		ldr	r3, [r3, #276]
+ 1059 0096 3B61     		str	r3, [r7, #16]
+ 622:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue &= ((uint32_t)0x01 << (((uint32_t)Flag - \
  1060              		.loc 1 622 0
- 1061 009a 03F1FF33 		add	r3, r3, #-1
- 621:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue &= ((uint32_t)0x01 << (((uint32_t)Flag - \
- 1062              		.loc 1 621 0
- 1063 009e 4FF00102 		mov	r2, #1
- 1064 00a2 02FA03F3 		lsl	r3, r2, r3
- 1065 00a6 3A69     		ldr	r2, [r7, #16]
- 1066 00a8 1340     		ands	r3, r3, r2
- 1067 00aa 3B61     		str	r3, [r7, #16]
- 1068              	.L55:
- 623:../Dave/Generated/src/I2C001/I2C001.c ****   }
- 624:../Dave/Generated/src/I2C001/I2C001.c ****   if(TempValue != 0x00U)
- 1069              		.loc 1 624 0
- 1070 00ac 3B69     		ldr	r3, [r7, #16]
- 1071 00ae 002B     		cmp	r3, #0
- 1072 00b0 02D0     		beq	.L59
- 625:../Dave/Generated/src/I2C001/I2C001.c ****   {
- 626:../Dave/Generated/src/I2C001/I2C001.c ****     Status = (status_t)I2C001_SET;
- 1073              		.loc 1 626 0
- 1074 00b2 4FF00303 		mov	r3, #3
- 1075 00b6 7B61     		str	r3, [r7, #20]
- 1076              	.L59:
- 627:../Dave/Generated/src/I2C001/I2C001.c ****   }
- 628:../Dave/Generated/src/I2C001/I2C001.c ****   return Status;
- 1077              		.loc 1 628 0
- 1078 00b8 7B69     		ldr	r3, [r7, #20]
- 629:../Dave/Generated/src/I2C001/I2C001.c **** }
+ 1061 0098 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 623:../Dave/Generated/src/I2C001/I2C001.c ****                                   (uint32_t)I2C001_FLAG_STBI) + 8U));		
+ 1062              		.loc 1 623 0
+ 1063 009a 03F1FF33 		add	r3, r3, #-1
+ 622:../Dave/Generated/src/I2C001/I2C001.c ****     TempValue &= ((uint32_t)0x01 << (((uint32_t)Flag - \
+ 1064              		.loc 1 622 0
+ 1065 009e 4FF00102 		mov	r2, #1
+ 1066 00a2 02FA03F3 		lsl	r3, r2, r3
+ 1067 00a6 3A69     		ldr	r2, [r7, #16]
+ 1068 00a8 1340     		ands	r3, r3, r2
+ 1069 00aa 3B61     		str	r3, [r7, #16]
+ 1070              	.L55:
+ 624:../Dave/Generated/src/I2C001/I2C001.c ****   }
+ 625:../Dave/Generated/src/I2C001/I2C001.c ****   if(TempValue != 0x00U)
+ 1071              		.loc 1 625 0
+ 1072 00ac 3B69     		ldr	r3, [r7, #16]
+ 1073 00ae 002B     		cmp	r3, #0
+ 1074 00b0 02D0     		beq	.L59
+ 626:../Dave/Generated/src/I2C001/I2C001.c ****   {
+ 627:../Dave/Generated/src/I2C001/I2C001.c ****     Status = (status_t)I2C001_SET;
+ 1075              		.loc 1 627 0
+ 1076 00b2 4FF00303 		mov	r3, #3
+ 1077 00b6 7B61     		str	r3, [r7, #20]
+ 1078              	.L59:
+ 628:../Dave/Generated/src/I2C001/I2C001.c ****   }
+ 629:../Dave/Generated/src/I2C001/I2C001.c ****   return Status;
  1079              		.loc 1 629 0
- 1080 00ba 1846     		mov	r0, r3
- 1081 00bc 07F11C07 		add	r7, r7, #28
- 1082 00c0 BD46     		mov	sp, r7
- 1083 00c2 80BC     		pop	{r7}
- 1084 00c4 7047     		bx	lr
- 1085              		.cfi_endproc
- 1086              	.LFE119:
- 1088 00c6 00BF     		.section	.text.I2C001_ClearFlag,"ax",%progbits
- 1089              		.align	2
- 1090              		.global	I2C001_ClearFlag
- 1091              		.thumb
- 1092              		.thumb_func
- 1094              	I2C001_ClearFlag:
- 1095              	.LFB120:
- 630:../Dave/Generated/src/I2C001/I2C001.c **** 
- 631:../Dave/Generated/src/I2C001/I2C001.c **** /* Clears the specified flag status.*/
- 632:../Dave/Generated/src/I2C001/I2C001.c **** void I2C001_ClearFlag\
- 633:../Dave/Generated/src/I2C001/I2C001.c ****                 (const I2C001Handle_type* I2CHandle,I2C001_FlagStatusType Flag)
- 634:../Dave/Generated/src/I2C001/I2C001.c **** {
- 1096              		.loc 1 634 0
- 1097              		.cfi_startproc
- 1098              		@ args = 0, pretend = 0, frame = 16
- 1099              		@ frame_needed = 1, uses_anonymous_args = 0
- 1100              		@ link register save eliminated.
- 1101 0000 80B4     		push	{r7}
- 1102              	.LCFI22:
- 1103              		.cfi_def_cfa_offset 4
- 1104              		.cfi_offset 7, -4
- 1105 0002 85B0     		sub	sp, sp, #20
- 1106              	.LCFI23:
- 1107              		.cfi_def_cfa_offset 24
- 1108 0004 00AF     		add	r7, sp, #0
- 1109              	.LCFI24:
- 1110              		.cfi_def_cfa_register 7
- 1111 0006 7860     		str	r0, [r7, #4]
- 1112 0008 0B46     		mov	r3, r1
- 1113 000a FB70     		strb	r3, [r7, #3]
- 635:../Dave/Generated/src/I2C001/I2C001.c ****   USIC_CH_TypeDef* I2CRegs = I2CHandle->I2CRegs;
- 1114              		.loc 1 635 0
- 1115 000c 7B68     		ldr	r3, [r7, #4]
- 1116 000e 5B68     		ldr	r3, [r3, #4]
- 1117 0010 FB60     		str	r3, [r7, #12]
- 636:../Dave/Generated/src/I2C001/I2C001.c **** 
- 637:../Dave/Generated/src/I2C001/I2C001.c ****   /* <<<DD_SIMPLE_I2C_API_7>>>*/
- 638:../Dave/Generated/src/I2C001/I2C001.c ****   if(Flag <= I2C001_FLAG_RIF)
- 1118              		.loc 1 638 0
- 1119 0012 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
- 1120 0014 042B     		cmp	r3, #4
- 1121 0016 09D8     		bhi	.L62
- 639:../Dave/Generated/src/I2C001/I2C001.c ****   {
- 640:../Dave/Generated/src/I2C001/I2C001.c ****     I2CRegs->PSCR = ((uint32_t)0x01 << (((uint32_t)Flag - \
- 1122              		.loc 1 640 0
- 1123 0018 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
- 641:../Dave/Generated/src/I2C001/I2C001.c ****                                   (uint32_t)I2C001_FLAG_RSIF) + 10U));
+ 1080 00b8 7B69     		ldr	r3, [r7, #20]
+ 630:../Dave/Generated/src/I2C001/I2C001.c **** }
+ 1081              		.loc 1 630 0
+ 1082 00ba 1846     		mov	r0, r3
+ 1083 00bc 07F11C07 		add	r7, r7, #28
+ 1084 00c0 BD46     		mov	sp, r7
+ 1085 00c2 80BC     		pop	{r7}
+ 1086 00c4 7047     		bx	lr
+ 1087              		.cfi_endproc
+ 1088              	.LFE119:
+ 1090 00c6 00BF     		.section	.text.I2C001_ClearFlag,"ax",%progbits
+ 1091              		.align	2
+ 1092              		.global	I2C001_ClearFlag
+ 1093              		.thumb
+ 1094              		.thumb_func
+ 1096              	I2C001_ClearFlag:
+ 1097              	.LFB120:
+ 631:../Dave/Generated/src/I2C001/I2C001.c **** 
+ 632:../Dave/Generated/src/I2C001/I2C001.c **** /* Clears the specified flag status.*/
+ 633:../Dave/Generated/src/I2C001/I2C001.c **** void I2C001_ClearFlag\
+ 634:../Dave/Generated/src/I2C001/I2C001.c ****                 (const I2C001Handle_type* I2CHandle,I2C001_FlagStatusType Flag)
+ 635:../Dave/Generated/src/I2C001/I2C001.c **** {
+ 1098              		.loc 1 635 0
+ 1099              		.cfi_startproc
+ 1100              		@ args = 0, pretend = 0, frame = 16
+ 1101              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1102              		@ link register save eliminated.
+ 1103 0000 80B4     		push	{r7}
+ 1104              	.LCFI22:
+ 1105              		.cfi_def_cfa_offset 4
+ 1106              		.cfi_offset 7, -4
+ 1107 0002 85B0     		sub	sp, sp, #20
+ 1108              	.LCFI23:
+ 1109              		.cfi_def_cfa_offset 24
+ 1110 0004 00AF     		add	r7, sp, #0
+ 1111              	.LCFI24:
+ 1112              		.cfi_def_cfa_register 7
+ 1113 0006 7860     		str	r0, [r7, #4]
+ 1114 0008 0B46     		mov	r3, r1
+ 1115 000a FB70     		strb	r3, [r7, #3]
+ 636:../Dave/Generated/src/I2C001/I2C001.c ****   USIC_CH_TypeDef* I2CRegs = I2CHandle->I2CRegs;
+ 1116              		.loc 1 636 0
+ 1117 000c 7B68     		ldr	r3, [r7, #4]
+ 1118 000e 5B68     		ldr	r3, [r3, #4]
+ 1119 0010 FB60     		str	r3, [r7, #12]
+ 637:../Dave/Generated/src/I2C001/I2C001.c **** 
+ 638:../Dave/Generated/src/I2C001/I2C001.c ****   /* <<<DD_SIMPLE_I2C_API_7>>>*/
+ 639:../Dave/Generated/src/I2C001/I2C001.c ****   if(Flag <= I2C001_FLAG_RIF)
+ 1120              		.loc 1 639 0
+ 1121 0012 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 1122 0014 042B     		cmp	r3, #4
+ 1123 0016 09D8     		bhi	.L62
+ 640:../Dave/Generated/src/I2C001/I2C001.c ****   {
+ 641:../Dave/Generated/src/I2C001/I2C001.c ****     I2CRegs->PSCR = ((uint32_t)0x01 << (((uint32_t)Flag - \
  1124              		.loc 1 641 0
- 1125 001a 03F10A03 		add	r3, r3, #10
- 640:../Dave/Generated/src/I2C001/I2C001.c ****     I2CRegs->PSCR = ((uint32_t)0x01 << (((uint32_t)Flag - \
- 1126              		.loc 1 640 0
- 1127 001e 4FF00102 		mov	r2, #1
- 1128 0022 02FA03F2 		lsl	r2, r2, r3
- 1129 0026 FB68     		ldr	r3, [r7, #12]
- 1130 0028 DA64     		str	r2, [r3, #76]
- 1131 002a 25E0     		b	.L61
- 1132              	.L62:
- 642:../Dave/Generated/src/I2C001/I2C001.c ****   }
- 643:../Dave/Generated/src/I2C001/I2C001.c ****   else if(Flag == I2C001_FLAG_NACK_RECEIVED)
- 1133              		.loc 1 643 0
- 1134 002c FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
- 1135 002e 062B     		cmp	r3, #6
- 1136 0030 04D1     		bne	.L64
- 644:../Dave/Generated/src/I2C001/I2C001.c ****   {
- 645:../Dave/Generated/src/I2C001/I2C001.c ****     I2CRegs->PSCR = ((uint32_t)0x01 << (uint32_t)I2C001_FLAG_WRONG_TDF);
- 1137              		.loc 1 645 0
- 1138 0032 FB68     		ldr	r3, [r7, #12]
- 1139 0034 4FF02002 		mov	r2, #32
- 1140 0038 DA64     		str	r2, [r3, #76]
- 1141 003a 1DE0     		b	.L61
- 1142              	.L64:
- 646:../Dave/Generated/src/I2C001/I2C001.c ****   }
- 647:../Dave/Generated/src/I2C001/I2C001.c ****   else if(Flag == I2C001_FLAG_WRONG_TDF)
- 1143              		.loc 1 647 0
- 1144 003c FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
- 1145 003e 052B     		cmp	r3, #5
- 1146 0040 04D1     		bne	.L65
- 648:../Dave/Generated/src/I2C001/I2C001.c ****   {
- 649:../Dave/Generated/src/I2C001/I2C001.c ****     I2CRegs->PSCR = ((uint32_t)0x01 << (uint32_t)I2C001_FLAG_DLIF);	
- 1147              		.loc 1 649 0
- 1148 0042 FB68     		ldr	r3, [r7, #12]
- 1149 0044 4FF00202 		mov	r2, #2
- 1150 0048 DA64     		str	r2, [r3, #76]
- 1151 004a 15E0     		b	.L61
- 1152              	.L65:
- 650:../Dave/Generated/src/I2C001/I2C001.c ****   }
- 651:../Dave/Generated/src/I2C001/I2C001.c ****   else if(Flag <= I2C001_FLAG_RBERI)
- 1153              		.loc 1 651 0
- 1154 004c FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
- 1155 004e 082B     		cmp	r3, #8
- 1156 0050 09D8     		bhi	.L66
- 652:../Dave/Generated/src/I2C001/I2C001.c ****   {
- 653:../Dave/Generated/src/I2C001/I2C001.c ****     I2CRegs->PSCR = ((uint32_t)0x01 << ((uint32_t)Flag - \
- 1157              		.loc 1 653 0
- 1158 0052 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
- 1159 0054 A3F10703 		sub	r3, r3, #7
- 1160 0058 4FF00102 		mov	r2, #1
- 1161 005c 02FA03F2 		lsl	r2, r2, r3
- 1162 0060 FB68     		ldr	r3, [r7, #12]
- 1163 0062 DA64     		str	r2, [r3, #76]
- 1164 0064 08E0     		b	.L61
- 1165              	.L66:
- 654:../Dave/Generated/src/I2C001/I2C001.c ****                                         (uint32_t)I2C001_FLAG_SRBI));		
- 655:../Dave/Generated/src/I2C001/I2C001.c ****   }
- 656:../Dave/Generated/src/I2C001/I2C001.c ****   else
- 657:../Dave/Generated/src/I2C001/I2C001.c ****   {
- 658:../Dave/Generated/src/I2C001/I2C001.c ****     I2CRegs->PSCR = ((uint32_t)0x01 << (((uint32_t)Flag - \
- 1166              		.loc 1 658 0
- 1167 0066 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
- 659:../Dave/Generated/src/I2C001/I2C001.c ****                                           (uint32_t)I2C001_FLAG_STBI) + 8U));
+ 1125 0018 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 642:../Dave/Generated/src/I2C001/I2C001.c ****                                   (uint32_t)I2C001_FLAG_RSIF) + 10U));
+ 1126              		.loc 1 642 0
+ 1127 001a 03F10A03 		add	r3, r3, #10
+ 641:../Dave/Generated/src/I2C001/I2C001.c ****     I2CRegs->PSCR = ((uint32_t)0x01 << (((uint32_t)Flag - \
+ 1128              		.loc 1 641 0
+ 1129 001e 4FF00102 		mov	r2, #1
+ 1130 0022 02FA03F2 		lsl	r2, r2, r3
+ 1131 0026 FB68     		ldr	r3, [r7, #12]
+ 1132 0028 DA64     		str	r2, [r3, #76]
+ 1133 002a 25E0     		b	.L61
+ 1134              	.L62:
+ 643:../Dave/Generated/src/I2C001/I2C001.c ****   }
+ 644:../Dave/Generated/src/I2C001/I2C001.c ****   else if(Flag == I2C001_FLAG_NACK_RECEIVED)
+ 1135              		.loc 1 644 0
+ 1136 002c FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 1137 002e 062B     		cmp	r3, #6
+ 1138 0030 04D1     		bne	.L64
+ 645:../Dave/Generated/src/I2C001/I2C001.c ****   {
+ 646:../Dave/Generated/src/I2C001/I2C001.c ****     I2CRegs->PSCR = ((uint32_t)0x01 << (uint32_t)I2C001_FLAG_WRONG_TDF);
+ 1139              		.loc 1 646 0
+ 1140 0032 FB68     		ldr	r3, [r7, #12]
+ 1141 0034 4FF02002 		mov	r2, #32
+ 1142 0038 DA64     		str	r2, [r3, #76]
+ 1143 003a 1DE0     		b	.L61
+ 1144              	.L64:
+ 647:../Dave/Generated/src/I2C001/I2C001.c ****   }
+ 648:../Dave/Generated/src/I2C001/I2C001.c ****   else if(Flag == I2C001_FLAG_WRONG_TDF)
+ 1145              		.loc 1 648 0
+ 1146 003c FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 1147 003e 052B     		cmp	r3, #5
+ 1148 0040 04D1     		bne	.L65
+ 649:../Dave/Generated/src/I2C001/I2C001.c ****   {
+ 650:../Dave/Generated/src/I2C001/I2C001.c ****     I2CRegs->PSCR = ((uint32_t)0x01 << (uint32_t)I2C001_FLAG_DLIF);	
+ 1149              		.loc 1 650 0
+ 1150 0042 FB68     		ldr	r3, [r7, #12]
+ 1151 0044 4FF00202 		mov	r2, #2
+ 1152 0048 DA64     		str	r2, [r3, #76]
+ 1153 004a 15E0     		b	.L61
+ 1154              	.L65:
+ 651:../Dave/Generated/src/I2C001/I2C001.c ****   }
+ 652:../Dave/Generated/src/I2C001/I2C001.c ****   else if(Flag <= I2C001_FLAG_RBERI)
+ 1155              		.loc 1 652 0
+ 1156 004c FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 1157 004e 082B     		cmp	r3, #8
+ 1158 0050 09D8     		bhi	.L66
+ 653:../Dave/Generated/src/I2C001/I2C001.c ****   {
+ 654:../Dave/Generated/src/I2C001/I2C001.c ****     I2CRegs->PSCR = ((uint32_t)0x01 << ((uint32_t)Flag - \
+ 1159              		.loc 1 654 0
+ 1160 0052 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 1161 0054 A3F10703 		sub	r3, r3, #7
+ 1162 0058 4FF00102 		mov	r2, #1
+ 1163 005c 02FA03F2 		lsl	r2, r2, r3
+ 1164 0060 FB68     		ldr	r3, [r7, #12]
+ 1165 0062 DA64     		str	r2, [r3, #76]
+ 1166 0064 08E0     		b	.L61
+ 1167              	.L66:
+ 655:../Dave/Generated/src/I2C001/I2C001.c ****                                         (uint32_t)I2C001_FLAG_SRBI));		
+ 656:../Dave/Generated/src/I2C001/I2C001.c ****   }
+ 657:../Dave/Generated/src/I2C001/I2C001.c ****   else
+ 658:../Dave/Generated/src/I2C001/I2C001.c ****   {
+ 659:../Dave/Generated/src/I2C001/I2C001.c ****     I2CRegs->PSCR = ((uint32_t)0x01 << (((uint32_t)Flag - \
  1168              		.loc 1 659 0
- 1169 0068 03F1FF33 		add	r3, r3, #-1
- 658:../Dave/Generated/src/I2C001/I2C001.c ****     I2CRegs->PSCR = ((uint32_t)0x01 << (((uint32_t)Flag - \
- 1170              		.loc 1 658 0
- 1171 006c 4FF00102 		mov	r2, #1
- 1172 0070 02FA03F2 		lsl	r2, r2, r3
- 1173 0074 FB68     		ldr	r3, [r7, #12]
- 1174 0076 DA64     		str	r2, [r3, #76]
- 1175              	.L61:
- 660:../Dave/Generated/src/I2C001/I2C001.c ****   }
- 661:../Dave/Generated/src/I2C001/I2C001.c **** }
- 1176              		.loc 1 661 0
- 1177 0078 07F11407 		add	r7, r7, #20
- 1178 007c BD46     		mov	sp, r7
- 1179 007e 80BC     		pop	{r7}
- 1180 0080 7047     		bx	lr
- 1181              		.cfi_endproc
- 1182              	.LFE120:
- 1184 0082 00BF     		.text
- 1185              	.Letext0:
- 1186              		.file 2 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
- 1187              		.file 3 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Infineon/XMC4500_series/Include/XMC4500.h"
- 1188              		.file 4 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
- 1189              		.file 5 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
- 1190              		.file 6 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
- 1191              		.file 7 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
- 1192              		.file 8 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Include/core_cm4.h"
- 1193              		.file 9 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 1169 0066 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 660:../Dave/Generated/src/I2C001/I2C001.c ****                                           (uint32_t)I2C001_FLAG_STBI) + 8U));
+ 1170              		.loc 1 660 0
+ 1171 0068 03F1FF33 		add	r3, r3, #-1
+ 659:../Dave/Generated/src/I2C001/I2C001.c ****     I2CRegs->PSCR = ((uint32_t)0x01 << (((uint32_t)Flag - \
+ 1172              		.loc 1 659 0
+ 1173 006c 4FF00102 		mov	r2, #1
+ 1174 0070 02FA03F2 		lsl	r2, r2, r3
+ 1175 0074 FB68     		ldr	r3, [r7, #12]
+ 1176 0076 DA64     		str	r2, [r3, #76]
+ 1177              	.L61:
+ 661:../Dave/Generated/src/I2C001/I2C001.c ****   }
+ 662:../Dave/Generated/src/I2C001/I2C001.c **** }
+ 1178              		.loc 1 662 0
+ 1179 0078 07F11407 		add	r7, r7, #20
+ 1180 007c BD46     		mov	sp, r7
+ 1181 007e 80BC     		pop	{r7}
+ 1182 0080 7047     		bx	lr
+ 1183              		.cfi_endproc
+ 1184              	.LFE120:
+ 1186 0082 00BF     		.text
+ 1187              	.Letext0:
+ 1188              		.file 2 "c:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+ 1189              		.file 3 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Infineon/XMC4500_series/Include/XMC4500.h"
+ 1190              		.file 4 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 1191              		.file 5 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 1192              		.file 6 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 1193              		.file 7 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
+ 1194              		.file 8 "C:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Include/core_cm4.h"
+ 1195              		.file 9 "C:\\DAVE3_workspace\\mojWorkspace\\Bachelor_improved\\Dave\\Generated\\inc\\DAVESupport/.
 DEFINED SYMBOLS
                             *ABS*:00000000 I2C001.c
-C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:20     .text.I2C001_lInit:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:25     .text.I2C001_lInit:00000000 I2C001_lInit
-C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:284    .text.I2C001_lConfigureBitRate:00000000 I2C001_lConfigureBitRate
-C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:279    .text.I2C001_lConfigureBitRate:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:450    .text.I2C001_lConfigureBitRate:00000180 $d
-C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:462    .text.I2C001_Init:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:467    .text.I2C001_Init:00000000 I2C001_Init
-C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:628    .text.I2C001_DeInit:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:633    .text.I2C001_DeInit:00000000 I2C001_DeInit
-C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:655    .text.I2C001_Configure:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:660    .text.I2C001_Configure:00000000 I2C001_Configure
-C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:808    .text.I2C001_ReadData:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:813    .text.I2C001_ReadData:00000000 I2C001_ReadData
-C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:874    .text.I2C001_WriteData:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:879    .text.I2C001_WriteData:00000000 I2C001_WriteData
-C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:955    .text.I2C001_GetFlagStatus:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:960    .text.I2C001_GetFlagStatus:00000000 I2C001_GetFlagStatus
-C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:1089   .text.I2C001_ClearFlag:00000000 $t
-C:\Users\Mateusz\AppData\Local\Temp\ccrgYfuC.s:1094   .text.I2C001_ClearFlag:00000000 I2C001_ClearFlag
+C:\Users\Mateusz\AppData\Local\Temp\ccgrTpNI.s:20     .text.I2C001_lInit:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccgrTpNI.s:25     .text.I2C001_lInit:00000000 I2C001_lInit
+C:\Users\Mateusz\AppData\Local\Temp\ccgrTpNI.s:284    .text.I2C001_lConfigureBitRate:00000000 I2C001_lConfigureBitRate
+C:\Users\Mateusz\AppData\Local\Temp\ccgrTpNI.s:279    .text.I2C001_lConfigureBitRate:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccgrTpNI.s:450    .text.I2C001_lConfigureBitRate:00000180 $d
+C:\Users\Mateusz\AppData\Local\Temp\ccgrTpNI.s:462    .text.I2C001_Init:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccgrTpNI.s:467    .text.I2C001_Init:00000000 I2C001_Init
+C:\Users\Mateusz\AppData\Local\Temp\ccgrTpNI.s:630    .text.I2C001_DeInit:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccgrTpNI.s:635    .text.I2C001_DeInit:00000000 I2C001_DeInit
+C:\Users\Mateusz\AppData\Local\Temp\ccgrTpNI.s:657    .text.I2C001_Configure:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccgrTpNI.s:662    .text.I2C001_Configure:00000000 I2C001_Configure
+C:\Users\Mateusz\AppData\Local\Temp\ccgrTpNI.s:810    .text.I2C001_ReadData:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccgrTpNI.s:815    .text.I2C001_ReadData:00000000 I2C001_ReadData
+C:\Users\Mateusz\AppData\Local\Temp\ccgrTpNI.s:876    .text.I2C001_WriteData:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccgrTpNI.s:881    .text.I2C001_WriteData:00000000 I2C001_WriteData
+C:\Users\Mateusz\AppData\Local\Temp\ccgrTpNI.s:957    .text.I2C001_GetFlagStatus:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccgrTpNI.s:962    .text.I2C001_GetFlagStatus:00000000 I2C001_GetFlagStatus
+C:\Users\Mateusz\AppData\Local\Temp\ccgrTpNI.s:1091   .text.I2C001_ClearFlag:00000000 $t
+C:\Users\Mateusz\AppData\Local\Temp\ccgrTpNI.s:1096   .text.I2C001_ClearFlag:00000000 I2C001_ClearFlag
                      .debug_frame:00000010 $d
                            .group:00000000 wm4.1.35166846b5321d4273ad8c4248893ac3
                            .group:00000000 wm4.XMC4500.h.45.215f4b8c79f46c7645c15373868d08c0

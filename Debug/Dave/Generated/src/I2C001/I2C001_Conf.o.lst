@@ -42,11 +42,11 @@
   46 0018 00       		.byte	0
   47 0019 000000   		.space	3
   48 001c 00000340 		.word	1073938432
-  49 0020 64000000 		.word	100
+  49 0020 32000000 		.word	50
   50 0024 01       		.byte	1
   51 0025 00       		.byte	0
   52 0026 01       		.byte	1
-  53 0027 01       		.byte	1
+  53 0027 04       		.byte	4
   54 0028 00       		.byte	0
   55 0029 00       		.byte	0
   56 002a 00       		.byte	0
@@ -66,9 +66,9 @@
   70              		.file 7 "../Dave/Generated/src/I2C001/I2C001_Conf.c"
 DEFINED SYMBOLS
                             *ABS*:00000000 I2C001_Conf.c
-C:\Users\Mateusz\AppData\Local\Temp\ccbwWTnO.s:24     .rodata:00000000 I2C001_Handle0
-C:\Users\Mateusz\AppData\Local\Temp\ccbwWTnO.s:21     .rodata:00000000 $d
-C:\Users\Mateusz\AppData\Local\Temp\ccbwWTnO.s:45     .rodata:00000018 I2C001_Handle1
+C:\Users\Mateusz\AppData\Local\Temp\ccQzAyns.s:24     .rodata:00000000 I2C001_Handle0
+C:\Users\Mateusz\AppData\Local\Temp\ccQzAyns.s:21     .rodata:00000000 $d
+C:\Users\Mateusz\AppData\Local\Temp\ccQzAyns.s:45     .rodata:00000018 I2C001_Handle1
                            .group:00000000 wm4.1.35166846b5321d4273ad8c4248893ac3
                            .group:00000000 wm4.XMC4500.h.45.215f4b8c79f46c7645c15373868d08c0
                            .group:00000000 wm4.core_cm4.h.47.41af406cb4cda82c972f112a9cd0a024

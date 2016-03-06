@@ -1,6 +1,4 @@
-SendMeasurementsToBt.d SendMeasurementsToBt.o: ../SendMeasurementsToBt.c \
- ../CleanArray.h ../LSM9DS1_Driver.h ../LSM9DS1_Registers.h \
- ../LSM9DS1_Types.h \
+HTU21D.d HTU21D.o: ../HTU21D.c ../HTU21D.h \
  C:\DAVE3_workspace\mojWorkspace\Bachelor_improved\Dave\Generated\inc\DAVESupport/DAVE3.h \
  C:\DAVE-3.1.10\eclipse\/../CMSIS/Infineon/XMC4500_series/Include/XMC4500.h \
  C:\DAVE-3.1.10\eclipse\/../CMSIS/Include/core_cm4.h \
@@ -32,15 +30,9 @@ SendMeasurementsToBt.d SendMeasurementsToBt.o: ../SendMeasurementsToBt.c \
  C:\DAVE3_workspace\mojWorkspace\Bachelor_improved\Dave\Generated\inc\DAVESupport/../../inc/I2C001/I2C001.h \
  C:\DAVE3_workspace\mojWorkspace\Bachelor_improved\Dave\Generated\inc\DAVESupport/../../inc/I2C001/Usic.h \
  C:\DAVE3_workspace\mojWorkspace\Bachelor_improved\Dave\Generated\inc\DAVESupport/../../inc/I2C001/I2C001_Conf.h \
- ../BluetoothDriver.h ../SendMeasurementsToBt.h ../HTU21D.h
+ ../FIFO_functions.h
 
-../CleanArray.h:
-
-../LSM9DS1_Driver.h:
-
-../LSM9DS1_Registers.h:
-
-../LSM9DS1_Types.h:
+../HTU21D.h:
 
 C:\DAVE3_workspace\mojWorkspace\Bachelor_improved\Dave\Generated\inc\DAVESupport/DAVE3.h:
 
@@ -104,8 +96,4 @@ C:\DAVE3_workspace\mojWorkspace\Bachelor_improved\Dave\Generated\inc\DAVESupport
 
 C:\DAVE3_workspace\mojWorkspace\Bachelor_improved\Dave\Generated\inc\DAVESupport/../../inc/I2C001/I2C001_Conf.h:
 
-../BluetoothDriver.h:
-
-../SendMeasurementsToBt.h:
-
-../HTU21D.h:
+../FIFO_functions.h:

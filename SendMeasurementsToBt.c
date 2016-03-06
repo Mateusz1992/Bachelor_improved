@@ -10,6 +10,7 @@
 #include "SendMeasurementsToBt.h"
 #include <DAVE3.h>
 #include <string.h>
+#include "HTU21D.h"
 
 char device[20]; //tablica w ktorej przechowujemy wybrany sensor
 int turnedOn = 0; //czy ktorys timer jest wlaczony
@@ -22,6 +23,24 @@ char xAxisf[30]/*[50]*/;
 char yAxisf[30]/*[50]*/;
 char zAxisf[30]/*[50]*/;
 
+//all sensors
+char accX[20];
+char accY[20];
+char accZ[20];
+
+char gyrX[20];
+char gyrY[20];
+char gyrZ[20];
+
+char magX[20];
+char magY[20];
+char magZ[20];
+//all sensors
+
+char humidity[30];
+
+char json_data[300];
+
 bool connectionFailure; //jesli wystapil problem z polaczeniem bluetooth to trzeba usunac timer, zmienna wskazujaca
 
 handle_t TimerIdSentMsg; //id timera do
@@ -31,7 +50,7 @@ accel copiedData[100];
 
 void sendMeasurementsToBt(void)
 {
-	static i = 0;
+	static int i = 0;
 	if(!strcmp(device, "LSM9DS1"))
 	{
 		if(0 == i){
@@ -200,63 +219,313 @@ void sendMeasurementsToBt(void)
 			}
 		}
 	}
-}
+	else if(!strcmp(device, "Temperature"))
+	{
+		if(0 == i){
+			//startMeasurements();
+			++i;
+		}
+		//readAndSendMeasurements(NULL);
 
+		float temp = readTemperature();
+
+		sprintf(humidity, "%.2f ", temp);
+
+		if(0 == turnedOnSentTimer)
+		{
+			//TimerIdSentMsg = SYSTM001_CreateTimer(30,SYSTM001_PERIODIC,sendMsgLSM9DS1,NULL);
+			TimerIdSentMsg = SYSTM001_CreateTimer(30,SYSTM001_PERIODIC,sendMsgHTU21D,NULL);
+			SYSTM001_StartTimer(TimerIdSentMsg);
+			turnedOnSentTimer = 1;
+		}
+
+		if(1 == turnedOnSentTimer)
+		{
+			if(TRUE == connectionFailure)
+			{
+				connectionFailure = FALSE;
+				SYSTM001_StopTimer(TimerIdSentMsg);
+
+				SYSTM001_DeleteTimer(TimerIdSentMsg);
+
+				TimerIdSentMsg = 0;
+				cleanArray();
+
+			}
+		}
+	}
+	else if(!strcmp(device, "Humidity"))
+	{
+		if(0 == i){
+			//startMeasurements();
+			++i;
+		}
+		//readAndSendMeasurements(NULL);
+
+		float temp = readHumidity();
+
+		sprintf(humidity, "%.2f ", temp);
+
+		if(0 == turnedOnSentTimer)
+		{
+			//TimerIdSentMsg = SYSTM001_CreateTimer(30,SYSTM001_PERIODIC,sendMsgLSM9DS1,NULL);
+			TimerIdSentMsg = SYSTM001_CreateTimer(30,SYSTM001_PERIODIC,sendMsgHTU21D,NULL);
+			SYSTM001_StartTimer(TimerIdSentMsg);
+			turnedOnSentTimer = 1;
+		}
+
+		if(1 == turnedOnSentTimer)
+		{
+			if(TRUE == connectionFailure)
+			{
+				connectionFailure = FALSE;
+				SYSTM001_StopTimer(TimerIdSentMsg);
+
+				SYSTM001_DeleteTimer(TimerIdSentMsg);
+
+				TimerIdSentMsg = 0;
+				cleanArray();
+
+			}
+		}
+	}
+	else if(!strcmp(device, "All_sens"))
+	{
+		if(0 == i){
+			startMeasurements();
+			++i;
+		}
+		readAndSendMeasurements(NULL);
+
+		//acceleration all sensors
+		sprintf(accX, "x%.2f ", getAccelXf());
+
+		sprintf(accY, "y%.2f ", getAccelYf());
+
+		sprintf(accZ, "z%.2f ", getAccelZf());
+		//acceleration all sensors
+
+		//gyroscope all sensors
+		sprintf(gyrX, "x%.2f ", getGyroXf());
+
+		sprintf(gyrY, "y%.2f ", getGyroYf());
+
+		sprintf(gyrZ, "z%.2f ", getGyroZf());
+		//gyroscope all sensors
+
+		//magnetometer all sensors
+		sprintf(magX, "x%.2f ", getMagnetXf());
+
+		sprintf(magY, "y%.2f ", getMagnetYf());
+
+		sprintf(magZ, "z%.2f ", getMagnetZf());
+		//magnetometer all sensors
+
+		sprintf(json_data, "{"
+								"\"m\":"
+								"["
+										"{"
+											"\"id\":a,"
+											"\"x\":%.2f,"
+											"\"y\":%.2f,"
+											"\"z\":%.2f"
+										"},"
+										"{"
+											"\"id\":g,"
+											"\"x\":%.2f,"
+											"\"y\":%.2f,"
+											"\"z\":%.2f"
+										"},"
+										"{"
+											"\"id\":m,"
+											"\"x\":%.2f,"
+											"\"y\":%.2f,"
+											"\"z\":%.2f"
+										"},"
+										"{"
+											"\"id\":t,"
+											"\"x\":%.2f"
+										"},"
+										"{"
+											"\"id\":h,"
+											"\"x\":%.2f"
+										"}"
+								"]"
+							"}", getAccelXf(), getAccelYf(), getAccelZf(), getGyroXf(), getGyroYf(), getGyroZf(), getMagnetXf(), getMagnetYf(), getMagnetZf(),
+							readTemperature(), readHumidity());
+
+		if(0 == turnedOnSentTimer)
+		{
+			TimerIdSentMsg = SYSTM001_CreateTimer(50,SYSTM001_PERIODIC,sendAllSensors,NULL);
+			SYSTM001_StartTimer(TimerIdSentMsg);
+			turnedOnSentTimer = 1;
+		}
+
+		if(1 == turnedOnSentTimer)
+		{
+			if(TRUE == connectionFailure)
+			{
+				connectionFailure = FALSE;
+				SYSTM001_StopTimer(TimerIdSentMsg);
+
+				SYSTM001_DeleteTimer(TimerIdSentMsg);
+
+				TimerIdSentMsg = 0;
+				cleanArray();
+
+			}
+		}
+	}
+}
 
 void sendMsgLSM9DS1(void *T)
 {
 	static int i = 0;
 
 	if(copied == 1){
-		if(0 == i){/*
-			char xMs[51];
-
-			for(int i = 0; i < 50; i++){
-				xMs[i] = copiedData[i].ax;
-				xMs[i] += 48; //to 48 to offset
-			}
-			xMs[i] = '\0';*/
-
-			//send(xAxis, strlen((const char*)xAxis));
-
+		if(0 == i){
+			//send("a", strlen("a"));
+			//send("x", strlen("x"));
 			send(xAxisf, strlen((const char*)xAxisf));
-
-			//send(xMs, strlen(xMs));
 
 			i++;
 		}
 		else if(1 == i)
 		{
-			/*char yMs[51];
-
-			for(int i = 0; i < 50; i++){
-				yMs[i] = copiedData[i].ay;
-				yMs[i] += 48; //to 48 to offset
-			}
-			yMs[i] = '\0';*/
-
-			//send(yAxis, strlen((const char*)yAxis));
+			//send("a", strlen("a"));
+			//send("y", strlen("x"));
 
 			send(yAxisf, strlen((const char*)yAxisf));
-			/*send(yMs,strlen(yMs));*/
 
 			i++;
 		}
 		else if(2 == i)
 		{
-			/*char zMs[51];
-
-			for(int i = 0; i < 50; i++){
-				zMs[i] = copiedData[i].az;
-				zMs[i] += 48; //to 48 to offset
-			}
-			zMs[i] = '\0';*/
-
-			//send(zAxis, strlen((const char*)zAxis));
+			/*send("a", strlen("a"));
+			send("z", strlen("x"));*/
 
 			send(zAxisf, strlen((const char*)zAxisf));
-			//copied = 0;
+
 			i = 0;
 		}
+	}
+}
+
+
+void sendMsgHTU21D(void *T)
+{
+	static int i = 0;
+
+	/*if(copied == 1)
+	{*/
+		send(humidity, strlen((const char*)humidity));
+	//}
+}
+
+
+void sendAllSensors(void *T)
+{
+	static int i = 0;
+
+	if(copied == 1){
+		send(json_data, strlen((const char*)json_data));
+		/*if(0 == i)//accelerometer BEGIN
+		{
+			send("a", strlen("a"));
+			i++;
+		}
+		else if(1 == i){
+			send(accX, strlen((const char*)accX));
+
+			i++;
+		}
+		else if(2 == i)
+		{
+			send("a", strlen("a"));
+			i++;
+		}
+		else if(3 == i)
+		{
+			send(accY, strlen((const char*)accY));
+
+			i++;
+		}
+		else if(4 == i)
+		{
+			send("a", strlen("a"));
+			i++;
+		}
+		else if(5 == i)
+		{
+			send(accZ, strlen((const char*)accZ));
+
+			//i = 0;
+			i++;
+		}//accelerometer END
+		else if(6 == i)//gyroscope BEGIN
+		{
+			send("g", strlen("g"));
+			i++;
+		}
+		else if(7 == i)
+		{
+			send(gyrX, strlen((const char*)gyrX));
+			i++;
+		}
+		else if(8 == i)
+		{
+			send("g", strlen("g"));
+			i++;
+		}
+		else if(9 == i)
+		{
+			send(gyrY, strlen((const char*)gyrY));
+			i++;
+		}
+		else if(10 == i)
+		{
+			send("g", strlen("g"));
+			i++;
+		}
+		else if(11 == i)
+		{
+			send(gyrZ, strlen((const char*)gyrZ));
+			i++;
+		}//gyroscope END
+		else if(12 == i) //magnetometer BEGIN
+		{
+			send("m", strlen("m"));
+			i++;
+		}
+		else if(13 == i)
+		{
+			send(magX, strlen((const char*)magX));
+			i++;
+		}
+		else if(14 == i)
+		{
+			send("m", strlen("m"));
+			i++;
+		}
+		else if(15 == i)
+		{
+			send(magY, strlen((const char*)magY));
+			i++;
+		}
+		else if(16 == i)
+		{
+			send("m", strlen("m"));
+			i++;
+		}
+		else if(17 == i)
+		{
+			send(magZ, strlen((const char*)magZ));
+			i++;
+		} //magnetometer END
+		else if(18 == i)
+		{
+			send(json_data, strlen((const char*)json_data));
+			i = 0;
+		}*/
 	}
 }

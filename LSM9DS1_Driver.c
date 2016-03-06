@@ -196,8 +196,8 @@ void readAndSendMeasurements(void (*sendFunction)(char *str, int len))
 		if (_autoCalc) //kalibracja
 		{
 			accelX -= aBiasRaw[X_AXIS];
-			accelX -= aBiasRaw[Y_AXIS];
-			accelX -= aBiasRaw[Z_AXIS];
+			accelY -= aBiasRaw[Y_AXIS];
+			accelZ -= aBiasRaw[Z_AXIS];
 		}
 
 		accelXf = calcAccel(accelX);
@@ -1703,7 +1703,7 @@ void receiveByte(uint8_t adr, uint8_t subAdr, uint8_t *buffer)
 	data1.Data1.Data = ((adr << 1) | I2C_WRITE);
 	while(!I2C001_WriteData(&I2C001_Handle0,&data1))
 	{
-		flushFIFO();
+		flushFIFO(&I2C001_Handle0);
 	}
 
 	delay(DELAY);
@@ -1714,7 +1714,7 @@ void receiveByte(uint8_t adr, uint8_t subAdr, uint8_t *buffer)
 	data2.Data1.Data = subAdr;
 	while(!I2C001_WriteData(&I2C001_Handle0,&data2))
 	{
-		flushFIFO();
+		flushFIFO(&I2C001_Handle0);
 	}
 
 	delay(DELAY);
@@ -1725,7 +1725,7 @@ void receiveByte(uint8_t adr, uint8_t subAdr, uint8_t *buffer)
 	data3.Data1.Data = ((adr << 1) | I2C_READ);
 	while(!I2C001_WriteData(&I2C001_Handle0,&data3))
 	{
-		flushFIFO();
+		flushFIFO(&I2C001_Handle0);
 	}
 
 	delay(DELAY);
@@ -1735,7 +1735,7 @@ void receiveByte(uint8_t adr, uint8_t subAdr, uint8_t *buffer)
 	data4.Data1.Data = ubyteFF;
 	while(!I2C001_WriteData(&I2C001_Handle0,&data4))
 	{
-		flushFIFO();
+		flushFIFO(&I2C001_Handle0);
 	}
 
 	delay(DELAY);
@@ -1745,7 +1745,7 @@ void receiveByte(uint8_t adr, uint8_t subAdr, uint8_t *buffer)
 	data5.Data1.Data = ubyteFF;
 	while(!I2C001_WriteData(&I2C001_Handle0,&data5))
 	{
-		flushFIFO();
+		flushFIFO(&I2C001_Handle0);
 	}
 
 	delay(DELAY);

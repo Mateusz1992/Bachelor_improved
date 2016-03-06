@@ -10,7 +10,8 @@
 
 #include <DAVE3.h>
 
-void flushFIFO(void);
+
+void flushFIFO(const I2C001Handle_type *  I2CHandle);
 
 void clearErrorFlags(void);
 

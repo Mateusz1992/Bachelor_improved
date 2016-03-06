@@ -104,6 +104,45 @@ void chooseDevice(char *dev)
 		device[11] = 'r';
 		device[12] = '\0';
 	}
+	else if(!strcmp(dev, "Temperature"))
+	{
+		device[0] = 'T';
+		device[1] = 'e';
+		device[2] = 'm';
+		device[3] = 'p';
+		device[4] = 'e';
+		device[5] = 'r';
+		device[6] = 'a';
+		device[7] = 't';
+		device[8] = 'u';
+		device[9] = 'r';
+		device[10] = 'e';
+		device[11] = '\0';
+	}
+	else if(!strcmp(dev, "Humidity"))
+	{
+		device[0] = 'H';
+		device[1] = 'u';
+		device[2] = 'm';
+		device[3] = 'i';
+		device[4] = 'd';
+		device[5] = 'i';
+		device[6] = 't';
+		device[7] = 'y';
+		device[8] = '\0';
+	}
+	else if(!strcmp(dev, "All_sens"))
+	{
+		device[0] = 'A';
+		device[1] = 'l';
+		device[2] = 'l';
+		device[3] = '_';
+		device[4] = 's';
+		device[5] = 'e';
+		device[6] = 'n';
+		device[7] = 's';
+		device[8] = '\0';
+	}
 }
 
 void resetConnection(void)

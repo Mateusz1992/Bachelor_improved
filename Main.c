@@ -78,7 +78,7 @@ int main(void)
 	resetConnectionIndicator();
 
 	initBluetooth();
-	startMeasurements();
+	//startMeasurements();
 
 	while(1)
 	{

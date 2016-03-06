@@ -6,9 +6,10 @@
  */
 #include "FIFO_functions.h"
 
-void flushFIFO(void)
+void flushFIFO(const I2C001Handle_type *  I2CHandle)
 {
-	USIC_CH_TypeDef* I2CRegs = I2C001_Handle0.I2CRegs;
+	//USIC_CH_TypeDef* I2CRegs = I2C001_Handle0.I2CRegs;
+	USIC_CH_TypeDef* I2CRegs = I2CHandle->I2CRegs;
 	USIC_FlushTxFIFO(I2CRegs);
 }
 

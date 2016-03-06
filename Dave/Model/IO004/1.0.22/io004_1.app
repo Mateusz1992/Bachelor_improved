@@ -171,7 +171,7 @@ on Pad class selection.</toolTipHelpDescription>
     </item>
   </provided>
   <consumed xsi:type="ResourceModel:ProxyResource" evalFunction="function resourceCondition() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;       var value = Solver.getSoftwareId().substring(0,1).compareTo(&quot;1&quot;);&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;       var constr = &quot;&quot;;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;       if (value == 0) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   constr=&quot;reserved([port,p,AA,pad,_],app_pin) \n register_value(app_pin,iocr_pcr,-1) \n register_value(app_pin,iocr_oe,-1) \n uri_element_range(AA,[0,1,2])&quot;;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;       } else {&#xD;&#xA;              &#x9;&#x9;&#x9;     var resa1 = Solver.getResource(&quot;IO004_erwPadClass/0&quot;);&#xD;&#xA;                    &#x9;     var resa1p = Solver.getResource(&quot;IO004_erwPadClass/1&quot;);&#xD;&#xA;                    &#x9;     var resa2 = Solver.getResource(&quot;IO004_erwPadClass/2&quot;);&#xD;&#xA;                    &#x9;     var vala1 = Solver.getIntValue(resa1);&#xD;&#xA;                    &#x9;     var vala1p = Solver.getIntValue(resa1p);&#xD;&#xA;                    &#x9;     var vala2 = Solver.getIntValue(resa2);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;     if (vala1 == 1) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;        constr=&quot;reserved([port,p,AA,pad,_],app_pin) \n register_value(app_pin,iocr_pcr,-1) \n register_value(app_pin,iocr_oe,-1) \n uri_element_range(AA,[0,1,2,3,4,5,6])&quot;;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;     } else if (vala1p == 1) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;    constr=&quot;reserved([port,p,AA,pad,_],app_pin) \n register_value(app_pin,iocr_pcr,-1) \n register_value(app_pin,iocr_oe,-1) \n uri_element_range(AA,[0,1,2,3,4,5,6]) \n rg_constraint_property_value(app_pin,speed_class of rg_property,'A1+')&quot;;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;     } else if (vala2 == 1) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;    constr=&quot;reserved([port,p,AA,pad,_],app_pin) \n register_value(app_pin,iocr_pcr,-1) \n register_value(app_pin,iocr_oe,-1) \n uri_element_range(AA,[0,1,2,3,4,5,6]) \n rg_constraint_property_value(app_pin,speed_class of rg_property,'A2')&quot;;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;     }&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;       }&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;       Solver.setConstraintString(constr);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;       return true;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;        }" URI="http://www.infineon.com/1.0.22/app/io004/1/pin">
-    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../P1/P1_1.dd#//@provided.0"/>
+    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../P1/P1_1.dd#//@provided.4"/>
     <requiredResource uriString="port/p/1/pad/15" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.22/app/io004/1/io004_padclassdummy" upWardMappingList="//@provided.6/@item.0 //@provided.6/@item.1 //@provided.6/@item.2 //@provided.6/@item.3 //@provided.6/@item.4 //@provided.6/@item.5 //@provided.7 //@provided.7/@item.0 //@provided.7/@item.1 //@provided.7/@item.2" isSystemDefined="true">
@@ -180,35 +180,35 @@ on Pad class selection.</toolTipHelpDescription>
     <requiredResource uriString="" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.22/app/io004/1/pin/swreg_out" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P1/P1_1.dd#//@provided.1"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P1/P1_1.dd#//@provided.5"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.22/app/io004/1/pin/iocr_oe" upWardMappingList="//@provided.2 //@provided.2/@item.0" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../P1/P1_1.dd#//@provided.2"/>
+    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../P1/P1_1.dd#//@provided.6"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.22/app/io004/1/pin/iocr_po" upWardMappingList="//@provided.3 //@provided.3/@item.0 //@provided.3/@item.1" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../P1/P1_1.dd#//@provided.3"/>
+    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../P1/P1_1.dd#//@provided.7"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.22/app/io004/1/pin/iocr_pcr" upWardMappingList="//@provided.5 //@provided.5/@item.0 //@provided.5/@item.1 //@provided.5/@item.2 //@provided.5/@item.3 //@provided.5/@item.4 //@provided.5/@item.5 //@provided.5/@item.6 //@provided.5/@item.7" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../P1/P1_1.dd#//@provided.4"/>
+    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../P1/P1_1.dd#//@provided.8"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.22/app/io004/1/pin/omr_ps" upWardMappingList="//@provided.4 //@provided.4/@item.0" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../P1/P1_1.dd#//@provided.5"/>
+    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../P1/P1_1.dd#//@provided.9"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.22/app/io004/1/pin/pdr_pd" upWardMappingList="//@provided.6 //@provided.6/@item.0 //@provided.6/@item.1 //@provided.6/@item.2 //@provided.6/@item.3 //@provided.6/@item.4 //@provided.6/@item.5 //@provided.7/@item.0 //@provided.7/@item.1 //@provided.7/@item.2" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="4"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../P1/P1_1.dd#//@provided.6"/>
+    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../P1/P1_1.dd#//@provided.10"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="4"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.22/app/io004/1/pin/pad" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P1/P1_1.dd#//@provided.7"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P1/P1_1.dd#//@provided.11"/>
   </consumed>
   <categoryDescription description="Peripheral Specific Apps" name="Peripheral Specific Apps">
     <subCategory description="I/O Ports" name="I/O Ports">

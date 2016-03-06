@@ -7,6 +7,7 @@ C_SRCS += \
 ../BluetoothDriver.c \
 ../CleanArray.c \
 ../FIFO_functions.c \
+../HTU21D.c \
 ../LSM9DS1_Driver.c \
 ../Main.c \
 ../SendMeasurementsToBt.c \
@@ -17,6 +18,7 @@ OBJS += \
 ./BluetoothDriver.o \
 ./CleanArray.o \
 ./FIFO_functions.o \
+./HTU21D.o \
 ./LSM9DS1_Driver.o \
 ./Main.o \
 ./SendMeasurementsToBt.o \
@@ -27,6 +29,7 @@ C_DEPS += \
 ./BluetoothDriver.d \
 ./CleanArray.d \
 ./FIFO_functions.d \
+./HTU21D.d \
 ./LSM9DS1_Driver.d \
 ./Main.d \
 ./SendMeasurementsToBt.d \

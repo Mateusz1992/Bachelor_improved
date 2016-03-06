@@ -1,6 +1,7 @@
 BluetoothDriver.o
 CleanArray.o
 FIFO_functions.o
+HTU21D.o
 LSM9DS1_Driver.o
 Main.o
 SendMeasurementsToBt.o
